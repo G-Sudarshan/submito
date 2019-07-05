@@ -30,21 +30,36 @@
 
 </head>
 <body>
+	<?php $this->load->helper('form'); ?>
+
+	<h1><?php echo $clg_name; ?></h1>
+
+	<br/>
+	<br/>
+
+	<?php if( $feedback = $this->session->flashdata('feedback'))
+	{ echo '<div class="alert alert-dismissible alert-success">' . $feedback . '</div>'; } ?>
+    
 
 	Admin dashnoard
 
 <button type="button" class="btn btn-outline-primary" onclick="edit_clg_name()" >Edit college name</button>
-<button type="button" class="btn btn-outline-secondary">Secondary</button>
+<!--button type="button" class="btn btn-outline-secondary">Secondary</button>
 <button type="button" class="btn btn-outline-success">Success</button>
 <button type="button" class="btn btn-outline-info">Info</button>
 <button type="button" class="btn btn-outline-warning">Warning</button>
-<button type="button" class="btn btn-outline-danger">Danger</button>
+<button type="button" class="btn btn-outline-danger">Danger</button-->
 
 <br/>
 <br/>
 
 <div id="myDIV">
-<input type="text" name="clg_name">
+
+	<?php echo form_open('Admin/update_clg_name'); ?>
+
+	<?php echo form_input(['name'=>'new_clg_name','placeholder'=>$clg_name,'value'=>set_value('clg_name')]); 
+	echo form_submit(['name'=>'submit','value'=>'update college name','class'=>'btn btn-primary']); ?>
+      
 </div>
 
 </body>
