@@ -151,7 +151,7 @@
                    'd_id' => $dpt_name->dpt_id,
                     );
 
-				echo form_open('Admin/mng_dpt');
+				echo form_open('Admin/set_dpt_session');
 
 				echo form_hidden($d_data);
 				echo form_submit(['name'=>'submit','value'=>'Manage','class'=>'btn btn-outline-success']); echo form_close();

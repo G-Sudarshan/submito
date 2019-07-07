@@ -35,6 +35,14 @@ class Admin_model extends CI_Model{
 	{
 		return $this->db->insert('tbl_courses_db' , ['name' => $new_crs_name , 'course_code' => $new_crs_code] );
 	}
+
+	public function get_crs_names()
+	{
+		$crs_names = $this->db->get('tbl_courses_db');
+
+		return $crs_names;
+
+	}
 }
 
 ?>

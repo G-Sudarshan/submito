@@ -52,10 +52,18 @@
 	</script>
 </head>
 <body>
-	<center><h1><?= $dname; ?></h1>
-		<br/><br/>
-	<h2><?= $d_id; ?></h2></center>
-	<br/><br/><br/><br/>
+	<?php
+	$dname = $this->session->userdata('dname');
+   	$d_id = $this->session->userdata('d_id');
+  ?>
+     <center>
+     	<h1><?= $dname; ?></h1>
+
+     	<br/><br/>
+
+     	<h2><?= $d_id; ?></h2>
+
+     </center>
 
 	<?php if( $crs_msg = $this->session->flashdata('crs_msg'))
 	{ echo '<div class="alert alert-dismissible alert-success">' . $crs_msg . '</div>'; } ?>
@@ -72,7 +80,39 @@
     <div id="myDIV">
     	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          <button type="button" class="btn btn-outline-success" onclick="crt_crs()" >Create A New Course</button>
+
+         <table class="table">
+		<thead>
+			<tr>
+				<td>Sr. No.</td>
+				<td>Course Code</td>
+				<td>Course name </td>
+				<td>Manage Course</td>
+			</tr>
+		</thead>
+		<tbody>
+			
+			<tr>
+
+				
+				    <?php $count =0; ?>	
+				<?php foreach( $crs_names->result() as $crs_name ): ?>
+				<td><?= ++$count ?></td>
+				<td><?= $crs_name->course_code; ?></td>
+				<td><?= $crs_name->name; ?></td>
+				<td><?php 
+
+				echo form_open('Admin/mng_dpt');
+
+//				echo form_hidden($d_data);
+				echo form_submit(['name'=>'submit','value'=>'Manage','class'=>'btn btn-outline-success']); echo form_close();
+	?> </td>
+			
+			</tr>
+
+			<?php endforeach; ?>
     </div>
+
     <div id="myDIV2">
     	<?php echo form_open('Admin/create_course'); ?>
 

@@ -41,17 +41,12 @@ class Admin extends MY_Controller{
 
    public function mng_dpt()
    {
-
-
-   	$dname =  $this->input->post('dname');
-   	$d_id =  $this->input->post('d_id');
-
    	//echo $dname."<br/>".$d_id;
+   	$this->load->model('Admin_model');
 
+   	$crs_names = $this->Admin_model->get_crs_names();  
 
-    
-
-    $this->load->view('Admin/manage_department',['dname' => $dname , 'd_id' => $d_id]);
+    $this->load->view('Admin/manage_department',['crs_names' => $crs_names]);
 
    }
 
@@ -60,19 +55,29 @@ class Admin extends MY_Controller{
    {
       $new_crs_name = $this->input->post('new_crs_name');
       $new_crs_code = $this->input->post('new_crs_code');
-      $dname =  $this->input->post('dname');
-   	  $d_id =  $this->input->post('d_id');
+      
 
    	  $this->load->model('Admin_model');
    	  $this->Admin_model->create_crs($new_crs_name,$new_crs_code);
    	  $this->session->set_flashdata('crs_msg','Cousre created successfully !');
 
-   	  	$d_data = array(
-                    'dname'  => $dname,
-                   'd_id' => $d_id,
-                    );
+   	  	
 
-   	  $this->load->view('Admin/manage_department',['dname' => $dname , 'd_id' => $d_id]);
+   	 return redirect('Admin/mng_dpt');
+
+
+   }
+
+   public function set_dpt_session()
+   {
+      $dptname = $this->input->post('dname');
+      $dpt_id = $this->input->post('d_id');
+      
+       $dp_data = array('dname' => $dptname,'d_id' => $dpt_id);
+      
+       $this->session->set_userdata($dp_data);
+
+      return redirect('Admin/mng_dpt');
 
 
    }
