@@ -94,6 +94,9 @@
 
 <button type="button" class="btn btn-outline-primary" onclick="mng_dpt()" >Manage Departments</button>
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a class="btn btn-outline-primary" href=<?= base_url('Mycal'); ?>  >Academic Calender</a>
 
 <!--button type="button" class="btn btn-outline-secondary">Secondary</button>
 <button type="button" class="btn btn-outline-success">Success</button>
