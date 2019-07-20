@@ -98,6 +98,14 @@
 
 <a class="btn btn-outline-primary" href=<?= base_url('Mycal'); ?>  >Academic Calender</a>
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a class="btn btn-outline-primary" href=<?= base_url('Admin/notification'); ?>  >Add Notification</a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a class="btn btn-outline-primary" href=<?= base_url('Admin/site_home'); ?>  >Site home</a>
+
 <!--button type="button" class="btn btn-outline-secondary">Secondary</button>
 <button type="button" class="btn btn-outline-success">Success</button>
 <button type="button" class="btn btn-outline-info">Info</button>

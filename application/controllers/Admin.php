@@ -7,7 +7,7 @@ class Admin extends MY_Controller{
 
    //	echo "Admin Controller";
    	$this->load->model('Admin_model');
-   	$clg_name = $this->Admin_model->get_clg_name();
+    $clg_name = $this->Admin_model->get_clg_name();
    	$dpt_names = $this->Admin_model->get_dpt_names();
    //	print_r($dpt_names);
    	
@@ -80,6 +80,59 @@ class Admin extends MY_Controller{
       return redirect('Admin/mng_dpt');
 
 
+   }
+
+   public function notification()
+   {
+     $this->load->view('Admin/Add_notification');
+   }
+
+   public function add_notification()
+   {
+
+
+      $config = [
+        'upload_path' => './uploads',
+        'allowed_types' => 'pdf', 
+            ];
+    $this->load->library('upload', $config);
+    
+    if($this->upload->do_upload() )
+    {
+      $post = $this->input->post();
+      unset($post['submit']);
+
+      $data = $this->upload->data();
+      
+
+      $pdf_path = base_url("uploads/".$data['raw_name'].$data['file_ext']);
+      $post['pdf_path'] = $pdf_path;
+
+      $this->load->model('Admin_model');
+      $this->Admin_model->add_notification($post);
+          
+          echo "Notification uploaded successfully ! ";
+    }
+    else{
+      $upload_error = $this->upload->display_errors();
+      echo $upload_error;
+      echo "Upload unsuccessful";
+    }
+
+
+
+   }
+
+   public function site_home()
+   {
+     $this->load->model('Admin_model');
+     
+     $n_data = $this->Admin_model->fetch_notifications();
+     
+    /* print_r($n_data);
+     echo $n_data->row()->title;
+     echo $n_data->row()->pdf_path; */
+     $this->load->view('Admin/site_home',['n_data' => $n_data]);
    }
 
 }

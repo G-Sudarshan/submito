@@ -43,6 +43,17 @@ class Admin_model extends CI_Model{
 		return $crs_names;
 
 	}
+
+	public function add_notification($array)
+	{
+		return $this->db->insert('notification' , $array );
+	}
+
+	public function fetch_notifications()
+	{
+		$n_data = $this->db->get('notification');
+		return $n_data;
+	}
 }
 
 ?>
