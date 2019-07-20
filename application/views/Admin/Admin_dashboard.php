@@ -1,3 +1,10 @@
+<?php
+
+if(!$this->session->userdata('admin_id'))
+          return redirect('login');
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,6 +86,10 @@
 
 	<?php if( $dpt_msg = $this->session->flashdata('dpt_msg'))
 	{ echo '<div class="alert alert-dismissible alert-success">' . $dpt_msg . '</div>'; } ?>
+
+	<?php if($success = $this->session->flashdata('success')): 
+		echo '<div class="alert alert-dismissible alert-success">' . $success . '</div>';
+	 endif; ?>
     
 
 	<h2>Admin dashnoard</h2>
@@ -105,6 +116,10 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 <a class="btn btn-outline-primary" href=<?= base_url('Admin/site_home'); ?>  >Site home</a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a class="btn btn-outline-danger" href=<?= base_url('Admin/logout'); ?>  >Log out</a>
 
 <!--button type="button" class="btn btn-outline-secondary">Secondary</button>
 <button type="button" class="btn btn-outline-success">Success</button>

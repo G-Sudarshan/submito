@@ -135,6 +135,12 @@ class Admin extends MY_Controller{
      $this->load->view('Admin/site_home',['n_data' => $n_data]);
    }
 
+   public function logout()
+   {
+     $this->session->sess_destroy();
+      return redirect('Login');
+   }
+
 }
 
 ?>
