@@ -41,12 +41,21 @@ class Admin extends MY_Controller{
 
    public function mng_dpt()
    {
-   	//echo $dname."<br/>".$d_id;
+   	
+    $d_id = $this->session->userdata('d_id');
+
+    //echo $d_id;
+
    	$this->load->model('Admin_model');
 
    	$crs_names = $this->Admin_model->get_crs_names();  
+    $staff_names = $this->Admin_model->get_staff_names($d_id);
 
-    $this->load->view('Admin/manage_department',['crs_names' => $crs_names]);
+   // print_r($staff_names);
+
+
+   $this->load->view('Admin/manage_department',['crs_names' => $crs_names , 'staff_names' => $staff_names]);
+   
 
    }
 
@@ -139,6 +148,21 @@ class Admin extends MY_Controller{
    {
      $this->session->sess_destroy();
       return redirect('Login');
+   }
+
+   public function add_staff()
+   {
+      $new_staff_name = $this->input->post('new_staff_name');
+      $new_staff_id = $this->input->post('new_staff_id');
+      $dname = $this->input->post('dname');
+      $d_id = $this->input->post('d_id');
+
+      $this->load->model('Admin_model');
+      $this->Admin_model->add_staff($new_staff_name,$new_staff_id,$d_id,$dname);
+      $this->session->set_flashdata('stf_msg','Staff Added Successfully !');
+
+      return redirect('Admin/mng_dpt');
+
    }
 
 }

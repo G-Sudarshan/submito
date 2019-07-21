@@ -54,6 +54,21 @@ class Admin_model extends CI_Model{
 		$n_data = $this->db->get('notification');
 		return $n_data;
 	}
+
+	public function add_staff($new_staff_name,$new_staff_id,$d_id,$dname)
+	{
+		return $this->db->insert('tbl_teachers_db' , ['name' => $new_staff_name , 'staff_id' => $new_staff_id , 'department_id' => $d_id , 'department' => $dname] );
+
+	}
+
+	public function get_staff_names($d_id)
+	{
+		///$staff_names = $this->db->get('tbl_teachers_db')->where(['department_id'=> $d_id]);
+		$staff_names = $this->db->select(['staff_id','name','department'])->from('tbl_teachers_db')->where('department_id',$d_id)->get();
+
+		return $staff_names;
+
+	}
 }
 
 ?>

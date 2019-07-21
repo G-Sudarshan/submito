@@ -29,6 +29,24 @@ if(!$this->session->userdata('admin_id'))
   margin-top: 20px;
   display: none;
 }
+
+#myDIV3 {
+  width: 100%;
+  padding: 50px 0;
+
+ 
+  margin-top: 20px;
+  display: none;
+}
+
+#myDIV4 {
+  width: 100%;
+  padding: 50px 0;
+
+ 
+  margin-top: 20px;
+  display: none;
+}
 	</style>
 
 	<script type="text/javascript" language="javascript">
@@ -46,6 +64,26 @@ if(!$this->session->userdata('admin_id'))
 		function crt_crs()
 		{
             var x = document.getElementById("myDIV2"); 
+            if (x.style.display === "none") {
+               x.style.display = "block";
+                 } else {
+                    x.style.display = "none";
+               }
+		}
+
+		function mng_stf()
+		{
+            var x = document.getElementById("myDIV3"); 
+            if (x.style.display === "none") {
+               x.style.display = "block";
+                 } else {
+                    x.style.display = "none";
+               }
+		}
+
+		function add_stf()
+		{
+            var x = document.getElementById("myDIV4"); 
             if (x.style.display === "none") {
                x.style.display = "block";
                  } else {
@@ -73,6 +111,9 @@ if(!$this->session->userdata('admin_id'))
 
 	<?php if( $crs_msg = $this->session->flashdata('crs_msg'))
 	{ echo '<div class="alert alert-dismissible alert-success">' . $crs_msg . '</div>'; } ?>
+
+	<?php if( $stf_msg = $this->session->flashdata('stf_msg'))
+	{ echo '<div class="alert alert-dismissible alert-success">' . $stf_msg . '</div>'; } ?>
 
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -116,7 +157,7 @@ if(!$this->session->userdata('admin_id'))
 			
 			</tr>
 
-			<?php endforeach; ?>
+			<?php endforeach; ?></tbody></table>
     </div>
 
     <div id="myDIV2">
@@ -141,6 +182,73 @@ if(!$this->session->userdata('admin_id'))
     echo "<br/><br/>";
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 	echo form_submit(['name'=>'submit','value'=>'Create','class'=>'btn btn-primary']); 
+
+	echo form_close();
+	?>
+    </div>
+
+
+
+    <div id="myDIV3">
+    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <button type="button" class="btn btn-outline-success" onclick="add_stf()" > Add staff</button>
+
+          <table class="table">
+		<thead>
+			<tr>
+				<td>Sr. No.</td>
+				<td>staff id </td>
+				<td>Staff Name</td>
+				<td>Department</td>
+				<td>Manage</td>
+			</tr>
+		</thead>
+		<tbody>
+			
+			<tr>
+	
+				<?php $count =0; ?>	
+				<?php foreach( $staff_names->result() as $staff_name ): ?>
+				<td><?= ++$count ?></td>
+				<td><?= $staff_name->staff_id; ?></td>
+				<td><?= $staff_name->name; ?></td>
+				<td><?= $staff_name->department; ?></td>
+				<td><?php 
+
+				echo form_open('Admin');
+
+//				echo form_hidden($d_data);
+				echo form_submit(['name'=>'submit','value'=>'Manage','class'=>'btn btn-outline-success']); echo form_close();
+	?> </td>
+			
+			</tr>
+
+			<?php endforeach; ?></tbody></table>
+     </div>
+
+
+     <div id="myDIV4">
+    	<?php echo form_open('Admin/add_staff'); ?>
+
+    	
+
+	<?php echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"; ?>
+
+	<?php 
+
+	$d_data = array(
+                    'dname'  => $dname,
+                   'd_id' => $d_id,
+                    );
+    echo form_hidden($d_data);
+	echo "Enter name of staff to be added &nbsp;&nbsp; :  ";
+	echo form_input(['name'=>'new_staff_name','placeholder'=>' Name of satff','value'=>set_value('staff_name')]); 
+	echo "<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+	echo "Enter id of staff to be added &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:  ";
+	echo form_input(['name'=>'new_staff_id','placeholder'=>' staff id ','value'=>set_value('staff id')]); 
+    echo "<br/><br/>";
+    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+	echo form_submit(['name'=>'submit','value'=>'Add','class'=>'btn btn-primary']); 
 
 	echo form_close();
 	?>
