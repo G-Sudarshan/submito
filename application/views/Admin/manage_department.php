@@ -193,6 +193,33 @@ if(!$this->session->userdata('admin_id'))
     	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          <button type="button" class="btn btn-outline-success" onclick="add_stf()" > Add staff</button>
 
+         <div id="myDIV4">
+    	<?php echo form_open('Admin/add_staff'); ?>
+
+    	
+
+	<?php echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"; ?>
+
+	<?php 
+
+	$d_data = array(
+                    'dname'  => $dname,
+                   'd_id' => $d_id,
+                    );
+    echo form_hidden($d_data);
+	echo "Enter name of staff to be added &nbsp;&nbsp; :  ";
+	echo form_input(['name'=>'new_staff_name','placeholder'=>' Name of satff','value'=>set_value('staff_name')]); 
+	echo "<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+	echo "Enter id of staff to be added &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:  ";
+	echo form_input(['name'=>'new_staff_id','placeholder'=>' staff id ','value'=>set_value('staff id')]); 
+    echo "<br/><br/>";
+    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+	echo form_submit(['name'=>'submit','value'=>'Add','class'=>'btn btn-primary']); 
+
+	echo form_close();
+	?>
+    </div>
+
           <table class="table">
 		<thead>
 			<tr>
@@ -227,32 +254,7 @@ if(!$this->session->userdata('admin_id'))
      </div>
 
 
-     <div id="myDIV4">
-    	<?php echo form_open('Admin/add_staff'); ?>
-
-    	
-
-	<?php echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"; ?>
-
-	<?php 
-
-	$d_data = array(
-                    'dname'  => $dname,
-                   'd_id' => $d_id,
-                    );
-    echo form_hidden($d_data);
-	echo "Enter name of staff to be added &nbsp;&nbsp; :  ";
-	echo form_input(['name'=>'new_staff_name','placeholder'=>' Name of satff','value'=>set_value('staff_name')]); 
-	echo "<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-	echo "Enter id of staff to be added &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:  ";
-	echo form_input(['name'=>'new_staff_id','placeholder'=>' staff id ','value'=>set_value('staff id')]); 
-    echo "<br/><br/>";
-    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-	echo form_submit(['name'=>'submit','value'=>'Add','class'=>'btn btn-primary']); 
-
-	echo form_close();
-	?>
-    </div>
+     
 
 </body>
 </html>
