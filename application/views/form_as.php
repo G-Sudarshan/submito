@@ -1,9 +1,3 @@
-<?php
-
-if(!$this->session->userdata('admin_id'))
-          return redirect('login');
-
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,8 +10,7 @@ if(!$this->session->userdata('admin_id'))
 	<?php 
 
 	$this->load->helper('form');
-  
-      echo form_open('Mycal/add_event');
+      echo form_open('CaledarController/add_event');
 
 
       echo "<br/><br/>";
@@ -27,12 +20,12 @@ if(!$this->session->userdata('admin_id'))
      echo form_input(['name'=>'title','placeholder'=>'Event Title','value'=>set_value('title')]);
 
      echo "<br/><br/>";
-     echo "Enter Event Description : <br/>";
-     echo form_textarea(['name'=>'body','placeholder'=>'Event Description','value'=>set_value('body')]);
+     echo "Enter Event start_date : <br/>";
+     echo form_input(['name'=>'start_date','type'=>'date','value']);
 
      echo "<br/><br/>";
 
-     echo "Enter Event Date : ";  echo form_input(['name'=>'date','type'=>'date','value'=>set_value('date')]);
+     echo "Enter Event end_date : ";  echo form_input(['name'=>'end_date','type'=>'date','value']);
 
      echo "<br/><br/>";
 
