@@ -1,7 +1,7 @@
 <?php
 
 if(!$this->session->userdata('admin_id'))
-          return redirect('login');
+          return redirect('Login');
 
 ?>
 
@@ -115,7 +115,7 @@ if(!$this->session->userdata('admin_id'))
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-<a class="btn btn-outline-primary" href=<?= base_url('Admin/site_home'); ?>  >Site home</a>
+<a class="btn btn-outline-primary" href=<?= base_url('Login'); ?>  >Site home</a>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 

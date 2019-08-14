@@ -242,10 +242,11 @@ if(!$this->session->userdata('admin_id'))
 				<td><?= $staff_name->department; ?></td>
 				<td><?php 
 
-				echo form_open('Admin');
+				echo form_open('Admin/edit_staff');
 
-//				echo form_hidden($d_data);
-				echo form_submit(['name'=>'submit','value'=>'Manage','class'=>'btn btn-outline-success']); echo form_close();
+			echo form_hidden('staff_id',$staff_name->staff_id);
+				echo form_submit(['name'=>'submit','value'=>'Edit','class'=>'btn btn-outline-success']);
+				 echo form_close();
 	?> </td>
 			
 			</tr>

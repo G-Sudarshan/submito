@@ -69,6 +69,20 @@ class Admin_model extends CI_Model{
 		return $staff_names;
 
 	}
+
+	public function getStaffDataToEdit($staff_id)
+	{
+		$data = $this->db->select(['staff_id','name','department','department_id'])->from('tbl_teachers_db')->where('staff_id',$staff_id)->get();
+
+		return $data->row();
+	}
+
+	public function upadateStaffData($userdata,$id)
+	{
+		$this->db->set($userdata);
+		$this->db->where('staff_id',$id);
+		$this->db->update('tbl_teachers_db');
+	}
 }
 
 ?>

@@ -165,6 +165,33 @@ class Admin extends MY_Controller{
 
    }
 
+   public function edit_staff()
+   {
+     $staff_id = $this->input->post('staff_id');
+     $this->load->model('Admin_model');
+     $data = $this->Admin_model->getStaffDataToEdit($staff_id);
+     $this->load->view('Admin/edit_staff',['data'=>$data]);
+   }
+
+   public function update_staff()
+   {
+    $userdata = array(
+      'name' => $this->input->post('staff_name'),
+      'staff_id' => $this->input->post('staff_id'),
+      'department' => $this->input->post('staff_department'),
+      'department_id' => $this->input->post('staff_department_id'),
+       );
+
+    $id = $this->input->post('staff_id');
+    $this->load->model('Admin_model');
+    $this->Admin_model->upadateStaffData($userdata,$id);
+
+    $this->session->set_flashdata('stf_msg','Staff Information Updated Successfully !');
+
+      return redirect('Admin/mng_dpt');
+
+   }
+
 }
 
 ?>
