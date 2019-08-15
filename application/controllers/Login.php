@@ -123,6 +123,28 @@ class Login extends MY_Controller{
 
    }
 
+   public function change_password_admin()
+   {
+     $this->load->view('Admin/change_password_admin');
+
+   }
+
+   public function update_admin_password()
+   {
+      $admin_id = $this->session->userdata('admin_id');
+      $userdata = array(
+         'password' => $this->input->post('new_password')
+
+      );
+
+      $this->load->model('LoginModel');
+      $this->LoginModel->change_password_admin($userdata,$admin_id);
+
+      $this->session->set_flashdata("success","Password Updated Successfully");
+      return redirect('Admin');
+
+   }
+
 }
 
 ?>

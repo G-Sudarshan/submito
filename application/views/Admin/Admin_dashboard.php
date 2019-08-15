@@ -115,7 +115,7 @@ if(!$this->session->userdata('admin_id'))
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-<a class="btn btn-outline-primary" href=<?= base_url('Login'); ?>  >Site home</a>
+<a class="btn btn-outline-primary" href=<?= base_url('Login/change_password_admin'); ?>  >Change Password</a>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
