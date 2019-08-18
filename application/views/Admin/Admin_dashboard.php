@@ -120,6 +120,13 @@ if(!$this->session->userdata('admin_id'))
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 <a class="btn btn-outline-danger" href=<?= base_url('Admin/logout'); ?>  >Log out</a>
+<br/><br/>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a class="btn btn-outline-primary" href=<?= base_url('Admin/load_add_admin'); ?>  >Add Admin    </a>
+
+
 
 <!--button type="button" class="btn btn-outline-secondary">Secondary</button>
 <button type="button" class="btn btn-outline-success">Success</button>
