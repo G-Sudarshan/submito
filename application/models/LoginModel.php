@@ -17,7 +17,7 @@ public function admin_login($userdata)
 	public function teacher_login($userdata)
 	{
 		$this->db->select('*');
-		$this->db->from('tbl_teacher_db');
+		$this->db->from('tbl_teachers_db');
 		$this->db->where($userdata);
 		$query= $this->db->get();
 		if($query->num_rows()==1)

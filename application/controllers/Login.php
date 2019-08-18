@@ -75,6 +75,8 @@ class Login extends MY_Controller{
          {
             $this->session->set_userdata('teacher_id',$user_id);
             $this->session->set_flashdata('success',"You are logged in");
+
+            return redirect('Teacher');
          }
          else
          {
@@ -98,7 +100,7 @@ class Login extends MY_Controller{
       if($this->form_validation->run()==TRUE)
       {
          $userdata = array(
-                        'username' => $this->input->post('username', TRUE),
+                        'rollno' => $this->input->post('username', TRUE),
                         'password' => $this->input->post('password', TRUE),
                      );
          $this->load->model('LoginModel');
@@ -107,6 +109,8 @@ class Login extends MY_Controller{
          {
             $this->session->set_userdata('student_id',$user_id);
             $this->session->set_flashdata('success',"You are logged in");
+
+            return redirect('Student');
          }
          else
          {
@@ -118,8 +122,7 @@ class Login extends MY_Controller{
       {
          $this->session->set_flashdata('login_failed','Invalid username and password');
          return redirect('Login');
-      }
-      
+      }    
 
    }
 
