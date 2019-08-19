@@ -9,6 +9,13 @@ class TeacherModel extends CI_Model{
 		return $data->row();
 
 	}
+
+	public function getAssignmentData()
+	{
+		$data = $this->db->select(['id','pdf_path','name','rollno','subject','assignment_no','upload_datetime'])->from('assignments')->get();
+
+		return $data;
+	}
 }
 
 ?>

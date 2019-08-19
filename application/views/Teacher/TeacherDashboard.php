@@ -31,6 +31,54 @@ echo "your staff id : ".$teacherData->staff_id."<br/>";
 
 
 ?> 
+
+<br/><br/>
+
+<h1>Assignments to be checked </h1>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <td>Sr. No.</td>
+        <td>subject</td>
+        <td>Assignment no.</td>
+        <td>Roll no</td>
+        <td>Student Name</td>
+        <td>Assignment</td>
+        <td>Upload date and time</td>
+        
+        
+        
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <? if( count($data)): ?>
+          <?php $count = 0; ?>
+          <?php foreach( $a_data->result() as $a ): ?>
+        <td><?= ++$count ?></td>
+        <td><?= $a->subject; ?></td>
+        <td><?= $a->assignment_no; ?></td>
+        <td><?= $a->rollno; ?></td>
+        <td><?= $a->name; ?></td>
+        <td><?= anchor($a->pdf_path,'view assignment') ?></td>
+        <td><?= $a->upload_datetime; ?></td>
+        
+
+   <?php endforeach; ?>
+
+      <? else : ?>
+        <tr>
+        <td colspan="3"> No more assignments for checking.</td>
+          </tr>
+        <? endif; ?>
+
+        </tbody>
+  </table> 
+
+
+
+
 </div></center>
 
 </body>
