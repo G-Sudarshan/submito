@@ -119,7 +119,7 @@ if(!$this->session->userdata('admin_id'))
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-<a class="btn btn-outline-danger" href=<?= base_url('Admin/logout'); ?>  >Log out</a>
+<a class="btn btn-outline-danger" href=<?= base_url('Login/logout'); ?>  >Log out</a>
 <br/><br/>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

@@ -6,6 +6,16 @@
 </head>
 <body>
 
+	<div class="container" align="right">
+		
+		<a class="btn btn-outline-danger" href=<?= base_url('Login/logout'); ?>  >Log out</a>
+
+<br/><br/>
+
+	</div>
+
+	<center><div class="container">
+
 <?php if($success = $this->session->flashdata('success')): 
 		echo '<div class="alert alert-dismissible alert-success">' . $success . '</div>';
 	 endif; ?>
@@ -21,6 +31,7 @@ echo "your staff id : ".$teacherData->staff_id."<br/>";
 
 
 ?> 
+</div></center>
 
 </body>
 </html>

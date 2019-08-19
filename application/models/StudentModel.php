@@ -9,6 +9,11 @@ class StudentModel extends CI_Model{
 
 		return $data->row();
 	}
+
+	public function upload_assignment($post)
+	{
+		return $this->db->insert('assignments' , $post );
+	}
 }
 
 ?>

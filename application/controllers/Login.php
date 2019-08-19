@@ -126,6 +126,12 @@ class Login extends MY_Controller{
 
    }
 
+   public function logout()
+   {
+      $this->session->sess_destroy();
+      return redirect('Login');
+   }
+
    public function change_password_admin()
    {
      $this->load->view('Admin/change_password_admin');
@@ -147,6 +153,7 @@ class Login extends MY_Controller{
       return redirect('Admin');
 
    }
+
 
 }
 

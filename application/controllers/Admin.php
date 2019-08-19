@@ -144,13 +144,7 @@ class Admin extends MY_Controller{
      $this->load->view('Admin/site_home',['n_data' => $n_data]);
    }
 
-   public function logout()
-   {
-     $this->session->sess_destroy();
-      return redirect('Login');
-   }
-
-   public function add_staff()
+      public function add_staff()
    {
       $new_staff_name = $this->input->post('new_staff_name');
       $new_staff_id = $this->input->post('new_staff_id');
