@@ -64,7 +64,7 @@ class Admin_model extends CI_Model{
 	public function get_staff_names($d_id)
 	{
 		///$staff_names = $this->db->get('tbl_teachers_db')->where(['department_id'=> $d_id]);
-		$staff_names = $this->db->select(['staff_id','name','department'])->from('tbl_teachers_db')->where('department_id',$d_id)->get();
+		$staff_names = $this->db->select(['id','staff_id','name','department'])->from('tbl_teachers_db')->where('department_id',$d_id)->get();
 
 		return $staff_names;
 
@@ -72,7 +72,7 @@ class Admin_model extends CI_Model{
 
 	public function getStaffDataToEdit($staff_id)
 	{
-		$data = $this->db->select(['staff_id','name','department','department_id'])->from('tbl_teachers_db')->where('staff_id',$staff_id)->get();
+		$data = $this->db->select(['staff_id','name','department','department_id'])->from('tbl_teachers_db')->where('id',$staff_id)->get();
 
 		return $data->row();
 	}

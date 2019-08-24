@@ -11,6 +11,11 @@
 
 </head>
 <body>
+  <div class="container" align="left">
+
+    <a class="btn btn-info" href=<?= base_url('Admin') ?> >Back to Admin Dashboard</a>
+    
+  </div>
   
 <div class="container">
     <h1 style="color: red;"><center>Calendar </center></h1>

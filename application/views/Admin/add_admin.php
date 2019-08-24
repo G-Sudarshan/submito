@@ -6,6 +6,11 @@
 </head>
 <body><center>
 	<h1>Add admin</h1>
+	 <div class="container" align="left">
+
+    <a class="btn btn-info" href=<?= base_url('Admin') ?> >Back to Admin Dashboard</a>
+    
+  </div>
 	<div class="container">
 		<div class="col-lg-6">
 		<?php 

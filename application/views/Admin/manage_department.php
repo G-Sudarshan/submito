@@ -100,6 +100,7 @@ if(!$this->session->userdata('admin_id'))
 	$dname = $this->session->userdata('dname');
    	$d_id = $this->session->userdata('d_id');
   ?>
+
      <center>
      	<h1><?= $dname; ?></h1>
 
@@ -115,20 +116,49 @@ if(!$this->session->userdata('admin_id'))
 	<?php if( $stf_msg = $this->session->flashdata('stf_msg'))
 	{ echo '<div class="alert alert-dismissible alert-success">' . $stf_msg . '</div>'; } ?>
 
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	 <div class="container" align="left">
+
+    <a class="btn btn-info" href=<?= base_url('Admin') ?> >Back to Admin Dashboard</a>
+    
+  </div>
+  <div class="container">
+
+  <br/><br/>
+
+	
 
     <button type="button" class="btn btn-outline-primary" onclick="mng_crs()" >Manage Courses</button>
 
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    
 
 
     <button type="button" class="btn btn-outline-primary" onclick="mng_stf()" >Manage Staff</button>
 
     <div id="myDIV">
-    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    
          <button type="button" class="btn btn-outline-success" onclick="crt_crs()" >Create A New Course</button>
+         <div id="myDIV2">
+    	<?php echo form_open('Admin/create_course');  
 
-         <table class="table">
+	$d_data = array(
+                    'dname'  => $dname,
+                   'd_id' => $d_id,
+                    );
+    echo form_hidden($d_data);
+	echo "Enter Name of Course to be created :  ";
+	echo form_input(['name'=>'new_crs_name','placeholder'=>' Name of Course','value'=>set_value('crs_name')]); 
+	echo "<br/><br/>";
+	echo "Enter course code of Course to be created &nbsp; :&nbsp; ";
+	echo form_input(['name'=>'new_crs_code','placeholder'=>' Course Code ','value'=>set_value('crs_code')]); 
+    echo "<br/><br/>";
+    
+	echo form_submit(['name'=>'submit','value'=>'Create','class'=>'btn btn-primary']); 
+
+	echo form_close();
+	?>
+    </div><br><br>
+
+         <table class="table table-dark table-hover">
 		<thead>
 			<tr>
 				<td>Sr. No.</td>
@@ -160,47 +190,16 @@ if(!$this->session->userdata('admin_id'))
 			<?php endforeach; ?></tbody></table>
     </div>
 
-    <div id="myDIV2">
-    	<?php echo form_open('Admin/create_course'); ?>
-
-    	
-
-	<?php echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"; ?>
-
-	<?php 
-
-	$d_data = array(
-                    'dname'  => $dname,
-                   'd_id' => $d_id,
-                    );
-    echo form_hidden($d_data);
-	echo "Enter Name of Course to be created &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :  ";
-	echo form_input(['name'=>'new_crs_name','placeholder'=>' Name of Course','value'=>set_value('crs_name')]); 
-	echo "<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-	echo "Enter course code of Course to be created &nbsp; :&nbsp; ";
-	echo form_input(['name'=>'new_crs_code','placeholder'=>' Course Code ','value'=>set_value('crs_code')]); 
-    echo "<br/><br/>";
-    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-	echo form_submit(['name'=>'submit','value'=>'Create','class'=>'btn btn-primary']); 
-
-	echo form_close();
-	?>
-    </div>
+    
 
 
 
     <div id="myDIV3">
-    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         <button type="button" class="btn btn-outline-success" onclick="add_stf()" > Add staff</button>
+    	
+         <button type="button" class="btn btn-outline-success" onclick="add_stf()" > Add staff</button><br><br>
 
          <div id="myDIV4">
-    	<?php echo form_open('Admin/add_staff'); ?>
-
-    	
-
-	<?php echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"; ?>
-
-	<?php 
+    	<?php echo form_open('Admin/add_staff');
 
 	$d_data = array(
                     'dname'  => $dname,
@@ -209,18 +208,18 @@ if(!$this->session->userdata('admin_id'))
     echo form_hidden($d_data);
 	echo "Enter name of staff to be added &nbsp;&nbsp; :  ";
 	echo form_input(['name'=>'new_staff_name','placeholder'=>' Name of satff','value'=>set_value('staff_name')]); 
-	echo "<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-	echo "Enter id of staff to be added &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:  ";
+	echo "<br/><br/>";
+	echo "Enter id of staff to be added :  ";
 	echo form_input(['name'=>'new_staff_id','placeholder'=>' staff id ','value'=>set_value('staff id')]); 
     echo "<br/><br/>";
-    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+    
 	echo form_submit(['name'=>'submit','value'=>'Add','class'=>'btn btn-primary']); 
 
 	echo form_close();
 	?>
     </div>
 
-          <table class="table">
+          <table class="table table-dark table-hover">
 		<thead>
 			<tr>
 				<td>Sr. No.</td>
@@ -244,7 +243,7 @@ if(!$this->session->userdata('admin_id'))
 
 				echo form_open('Admin/edit_staff');
 
-			echo form_hidden('staff_id',$staff_name->staff_id);
+			echo form_hidden('staff_id',$staff_name->id);
 				echo form_submit(['name'=>'submit','value'=>'Edit','class'=>'btn btn-outline-success']);
 				 echo form_close();
 	?> </td>
@@ -253,9 +252,7 @@ if(!$this->session->userdata('admin_id'))
 
 			<?php endforeach; ?></tbody></table>
      </div>
-
-
-     
+    </div> 
 
 </body>
 </html>

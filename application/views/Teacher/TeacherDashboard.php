@@ -53,7 +53,7 @@ echo "your staff id : ".$teacherData->staff_id."<br/>";
     <tbody>
       
       <tr>
-        <? if( count($data)): ?>
+        <? if( count($a_data)): ?>
           <?php $count = 0; ?>
           <?php foreach( $a_data->result() as $a ): ?>
         <td><?= ++$count ?></td>
@@ -63,6 +63,7 @@ echo "your staff id : ".$teacherData->staff_id."<br/>";
         <td><?= $a->name; ?></td>
         <td><?= anchor($a->pdf_path,'view assignment') ?></td>
         <td><?= $a->upload_datetime; ?></td>
+      </tr>
         
 
    <?php endforeach; ?>

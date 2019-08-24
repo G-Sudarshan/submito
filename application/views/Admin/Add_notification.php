@@ -14,7 +14,12 @@ if(!$this->session->userdata('admin_id'))
 <body>
 
 	<?php echo form_open_multipart('Admin/add_notification'); ?>
+ <div class="container" align="left">
 
+    <a class="btn btn-info" href=<?= base_url('Admin') ?> >Back to Admin Dashboard</a>
+    
+  </div>
+  <div class="container">
 	<div class="row">
       	<div class="col-lg-6">  
       	  <div class="form-group">
@@ -53,7 +58,7 @@ if(!$this->session->userdata('admin_id'))
       </div>
     </div>
   </fieldset>
-<?php echo form_close(); ?>
+<?php echo form_close(); ?></div>
 
 </body>
 </html>

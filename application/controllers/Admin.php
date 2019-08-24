@@ -161,9 +161,9 @@ class Admin extends MY_Controller{
 
    public function edit_staff()
    {
-     $staff_id = $this->input->post('staff_id');
+     $id = $this->input->post('staff_id');
      $this->load->model('Admin_model');
-     $data = $this->Admin_model->getStaffDataToEdit($staff_id);
+     $data = $this->Admin_model->getStaffDataToEdit($id);
      $this->load->view('Admin/edit_staff',['data'=>$data]);
    }
 

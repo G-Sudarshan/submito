@@ -8,6 +8,11 @@
 	<div class="container" align="center">
 
     <h2>Edit Staff Information</h2>
+    <div class="container" align="left">
+
+    <a class="btn btn-info" href=<?= base_url('Admin/mng_dpt') ?> >Back to Department Admin Dashboard</a>
+    
+  </div>
 	<?php echo form_open('Admin/update_staff'); ?>
 
     	

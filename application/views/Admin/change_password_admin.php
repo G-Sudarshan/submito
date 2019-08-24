@@ -6,6 +6,11 @@
 </head>
 <body><center>
 	<h1>Chnage your passsword</h1><br><br>
+	 <div class="container" align="left">
+
+    <a class="btn btn-info" href=<?= base_url('Admin') ?> >Back to Admin Dashboard</a>
+    
+  </div>
 
 	<div class="conatainer">
 		<div class="col-lg-6" >
