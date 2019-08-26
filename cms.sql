@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 18, 2019 at 08:06 AM
+-- Generation Time: Aug 26, 2019 at 02:56 PM
 -- Server version: 10.1.39-MariaDB
 -- PHP Version: 7.1.29
 
@@ -25,6 +25,35 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `assignments`
+--
+
+CREATE TABLE `assignments` (
+  `id` int(11) NOT NULL,
+  `pdf_path` text NOT NULL,
+  `rollno` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `subject` varchar(50) NOT NULL,
+  `assignment_no` int(11) NOT NULL,
+  `upload_datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `marks` int(11) NOT NULL,
+  `checked` int(11) NOT NULL,
+  `checked_by` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `assignments`
+--
+
+INSERT INTO `assignments` (`id`, `pdf_path`, `rollno`, `name`, `subject`, `assignment_no`, `upload_datetime`, `marks`, `checked`, `checked_by`) VALUES
+(1, 'http://localhost/cms/uploads/Student_Dashboard.pdf', 176101, 'Suraj Ahire', 'Object Oriented Programming', 2, '2019-08-19 16:03:02', 0, 0, ''),
+(2, 'http://localhost/cms/uploads/Admin_Panel.pdf', 176101, 'Suraj Ahire', 'Computer Network', 1, '2019-08-20 04:54:12', 0, 0, ''),
+(3, 'http://localhost/cms/uploads/localhost___127_0_0_1___cms___assignments___phpMyAdmin_4_8_5.pdf', 176101, 'Suraj Ahire', 'Object Oriented Programming', 4, '2019-08-20 04:59:03', 0, 0, ''),
+(4, 'http://localhost/cms/uploads/atlassian-git-cheatsheet.pdf', 176101, 'Suraj Ahire', 'dbms', 1, '2019-08-20 11:45:26', 0, 0, '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `events`
 --
 
@@ -41,7 +70,8 @@ CREATE TABLE `events` (
 
 INSERT INTO `events` (`id`, `title`, `start_date`, `end_date`) VALUES
 (3, 'The new event', '2019-08-15', '2019-08-15'),
-(4, 'Submission', '2019-09-20', '2019-09-28');
+(4, 'Submission', '2019-09-20', '2019-09-28'),
+(5, 'Teachers Day', '2019-09-05', '2019-09-06');
 
 -- --------------------------------------------------------
 
@@ -220,6 +250,12 @@ INSERT INTO `tbl_teachers_db` (`id`, `staff_id`, `name`, `department`, `departme
 --
 
 --
+-- Indexes for table `assignments`
+--
+ALTER TABLE `assignments`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `events`
 --
 ALTER TABLE `events`
@@ -274,10 +310,16 @@ ALTER TABLE `tbl_teachers_db`
 --
 
 --
+-- AUTO_INCREMENT for table `assignments`
+--
+ALTER TABLE `assignments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `notification`
