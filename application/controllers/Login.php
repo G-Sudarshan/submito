@@ -31,7 +31,7 @@ class Login extends MY_Controller{
       {
          $userdata = array(
                         'username' => $this->input->post('username'),
-                        'password' => $this->input->post('password'),
+                        'password' => md5($this->input->post('password')),
                      );
           $this->load->model('LoginModel');
 
@@ -66,7 +66,7 @@ class Login extends MY_Controller{
       {
          $userdata = array(
                         'username' => $this->input->post('username', TRUE),
-                        'password' => $this->input->post('password', TRUE),
+                        'password' => md5($this->input->post('password', TRUE)),
                      );
          $this->load->model('LoginModel');
 
@@ -101,7 +101,7 @@ class Login extends MY_Controller{
       {
          $userdata = array(
                         'rollno' => $this->input->post('username', TRUE),
-                        'password' => $this->input->post('password', TRUE),
+                        'password' => md5($this->input->post('password', TRUE)),
                      );
          $this->load->model('LoginModel');
          $user_id = $this->LoginModel->student_login($userdata);
@@ -142,7 +142,7 @@ class Login extends MY_Controller{
    {
       $admin_id = $this->session->userdata('admin_id');
       $userdata = array(
-         'password' => $this->input->post('new_password')
+         'password' => md5($this->input->post('new_password'))
 
       );
 

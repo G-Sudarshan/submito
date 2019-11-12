@@ -147,12 +147,14 @@ class Admin extends MY_Controller{
       public function add_staff()
    {
       $new_staff_name = $this->input->post('new_staff_name');
+      $new_staff_pw = md5($this->input->post('new_staff_pw'));      
+      $new_staff_username = $this->input->post('new_staff_username');
       $new_staff_id = $this->input->post('new_staff_id');
       $dname = $this->input->post('dname');
       $d_id = $this->input->post('d_id');
 
       $this->load->model('Admin_model');
-      $this->Admin_model->add_staff($new_staff_name,$new_staff_id,$d_id,$dname);
+      $this->Admin_model->add_staff($new_staff_name,$new_staff_id,$d_id,$dname,$new_staff_pw,$new_staff_username);
       $this->session->set_flashdata('stf_msg','Staff Added Successfully !');
 
       return redirect('Admin/mng_dpt');

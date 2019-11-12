@@ -55,9 +55,9 @@ class Admin_model extends CI_Model{
 		return $n_data;
 	}
 
-	public function add_staff($new_staff_name,$new_staff_id,$d_id,$dname)
+	public function add_staff($new_staff_name,$new_staff_id,$d_id,$dname,$new_staff_pw,$new_staff_username)
 	{
-		return $this->db->insert('tbl_teachers_db' , ['name' => $new_staff_name , 'staff_id' => $new_staff_id , 'department_id' => $d_id , 'department' => $dname] );
+		return $this->db->insert('tbl_teachers_db' , ['name' => $new_staff_name , 'staff_id' => $new_staff_id , 'department_id' => $d_id , 'department' => $dname ,'password'=>$new_staff_pw, 'username' => $new_staff_username]);
 
 	}
 

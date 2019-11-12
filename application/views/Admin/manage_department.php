@@ -206,13 +206,23 @@ if(!$this->session->userdata('admin_id'))
                    'd_id' => $d_id,
                     );
     echo form_hidden($d_data);
-	echo "Enter name of staff to be added &nbsp;&nbsp; :  ";
-	echo form_input(['name'=>'new_staff_name','placeholder'=>' Name of satff','value'=>set_value('staff_name')]); 
-	echo "<br/><br/>";
+	
 	echo "Enter id of staff to be added :  ";
 	echo form_input(['name'=>'new_staff_id','placeholder'=>' staff id ','value'=>set_value('staff id')]); 
     echo "<br/><br/>";
+
+    echo "Enter name of staff to be added &nbsp;&nbsp; :  ";
+	echo form_input(['name'=>'new_staff_name','placeholder'=>' Name of satff','value'=>set_value('staff_name')]); 
+	echo "<br/><br/>";
+
+	echo "Enter username of staff to be added &nbsp;&nbsp; :  ";
+	echo form_input(['name'=>'new_staff_username','placeholder'=>' UserName of satff','value'=>set_value('staff_username')]); 
+	echo "<br/><br/>";
     
+    echo "Enter PASSWORD of staff to be added &nbsp;&nbsp; :  ";
+	echo form_input(['name'=>'new_staff_pw','placeholder'=>' password of satff','value'=>set_value('staff_pw')]); 
+	echo "<br/><br/>";
+
 	echo form_submit(['name'=>'submit','value'=>'Add','class'=>'btn btn-primary']); 
 
 	echo form_close();
