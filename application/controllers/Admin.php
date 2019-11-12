@@ -202,7 +202,7 @@ class Admin extends MY_Controller{
    {
     $this->load->model('Admin_model');
     $data = $this->Admin_model->get_teachers_data();
-    $this->load->view('Admin/change_teacher_password',['teacher'=>$data]);
+    $this->load->view('Admin/change_teacher_password',['teachers'=>$data]);
    }
 
    public function load_change_student_password()
