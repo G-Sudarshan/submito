@@ -83,6 +83,11 @@ class Admin_model extends CI_Model{
 		$this->db->where('staff_id',$id);
 		$this->db->update('tbl_teachers_db');
 	}
+
+	public function get_teachers_data()
+	{
+		return $this->db->select(['staff_id','name','department','department_id','username'])->from('tbl_teachers_db')->get();
+	}
 }
 
 ?>

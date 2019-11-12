@@ -10,6 +10,9 @@ if(!$this->session->userdata('admin_id'))
 <head>
 	<title>Admin Panel</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style>
 #myDIV {
   width: 100%;
@@ -124,9 +127,9 @@ if(!$this->session->userdata('admin_id'))
 
 <a class="btn btn-outline-primary" href=<?= base_url('Admin/load_add_admin'); ?>  >Add Admin    </a>
 
-<a class="btn btn-outline-primary" href=<?= base_url('Admin/load_change_student_teacher_password'); ?>  > Change Password of Teacher </a>
+<a class="btn btn-outline-primary" href=<?= base_url('Admin/load_change_teacher_password'); ?>  > Change Password of Teacher </a>
 
-<a class="btn btn-outline-primary" href=<?= base_url('Admin/load_change_student_teacher_password'); ?>  > Change Password of Student </a>
+<a class="btn btn-outline-primary" href=<?= base_url('Admin/load_change_student_password'); ?>  > Change Password of Student </a>
 
 
 
