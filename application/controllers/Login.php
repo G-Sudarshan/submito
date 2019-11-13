@@ -156,7 +156,39 @@ class Login extends MY_Controller{
 
    public function update_teacher_password()
    {
-      
+      $id = $this->input->post('id');
+      $userdata = array(
+         'password' => md5($this->input->post('new_password'))
+
+      );
+
+      $this->load->model('LoginModel');
+      $this->LoginModel->change_password_teacher($userdata,$id);
+
+      $this->session->set_flashdata("success","Password Updated Successfully");
+      if($this->session->userdata('admin_id'))
+         return redirect('Admin');
+      else
+         return redirect('Teacher');
+   }
+
+   public function update_student_password()
+   {
+      $id = $this->input->post('id');
+      $userdata = array(
+         'password' => md5($this->input->post('new_password'))
+
+      );
+
+      $this->load->model('LoginModel');
+      $this->LoginModel->change_password_student($userdata,$id);
+
+      $this->session->set_flashdata("success","Password Updated Successfully");
+      if($this->session->userdata('admin_id'))
+         return redirect('Admin');
+      else
+         return redirect('Student');
+
    }
 
 

@@ -9,17 +9,17 @@
 </head>
 <body>
 	<div class="container" align="center">
-<h2>Enter new password for <?php echo $teacher['username']; ?> of <?php echo $teacher['department']; ?> Department : <br/><br/><br/><br/>
+<h2>Enter new password for <?php echo $student['name']; ?> ( Roll no : <?php echo $student['rollno'] ?> )of <?php echo $student['department']; ?> Department : <br/><br/><br/><br/>
 
 	
 	<div class="row"><div class="col-lg-6" >
-		<?php echo form_open('Login/update_teacher_password');
+		<?php echo form_open('Login/update_student_password');
 
 
 			  echo form_input(['name' => 'new_password','placeholder'=>'Enter new password','class'=>'form-control']);
 			  echo "<br/>";
 
-			  echo form_hidden('id',$teacher['id']);
+			  echo form_hidden('id',$student['id']);
 			  echo form_submit(['name'=>'submit','value'=>'Change Password','class'=>'btn btn-success']);
 
 			  echo form_close();

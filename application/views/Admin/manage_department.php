@@ -7,11 +7,15 @@ if(!$this->session->userdata('admin_id'))
 <!DOCTYPE html>
 <html>
 <head>
+<!------------------- Bootsrap -------------------------------------------->	
 	<title>Manage Deaprtment</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!------------------------------------------------------------------------>
+
+<!-- This is css for hiding and showing courses/staff/student tables---- -->
 
 	<style type="text/css">
 
@@ -50,7 +54,28 @@ if(!$this->session->userdata('admin_id'))
   margin-top: 20px;
   display: none;
 }
+
+#myDIV5 {
+  width: 100%;
+  padding: 50px 0;
+
+ 
+  margin-top: 20px;
+  display: none;
+}
+
+#myDIV6 {
+  width: 100%;
+  padding: 50px 0;
+
+ 
+  margin-top: 20px;
+  display: none;
+}
 	</style>
+<!----------------------------------------------------------------------->
+	
+<!-- This is js for hiding and showing courses/staff/student tables---- -->
 
 	<script type="text/javascript" language="javascript">
 		
@@ -94,9 +119,30 @@ if(!$this->session->userdata('admin_id'))
                }
 		}
 
+		function mng_sdt()
+		{
+            var x = document.getElementById("myDIV5"); 
+            if (x.style.display === "none") {
+               x.style.display = "block";
+                 } else {
+                    x.style.display = "none";
+               }
+		}
+
+		function add_sdt()
+		{
+            var x = document.getElementById("myDIV6"); 
+            if (x.style.display === "none") {
+               x.style.display = "block";
+                 } else {
+                    x.style.display = "none";
+               }
+		}
+
 
 
 	</script>
+<!----------------------------------------------------------------------->
 </head>
 <body>
 	<?php
@@ -129,14 +175,15 @@ if(!$this->session->userdata('admin_id'))
   <br/><br/>
 
 	
-
+<!------------------------- Buttons of dashboard ----------------------->
     <button type="button" class="btn btn-outline-primary" onclick="mng_crs()" >Manage Courses</button>
+  
+   <button type="button" class="btn btn-outline-primary" onclick="mng_stf()" >Manage Staff</button>
 
-    
-
-
-    <button type="button" class="btn btn-outline-primary" onclick="mng_stf()" >Manage Staff</button>
-
+     <button type="button" class="btn btn-outline-primary" onclick="mng_sdt()" >Manage Students</button>
+<!----------------------------------------------------------------------->
+  
+<!---------------------------------- Courses------------------------------>
     <div id="myDIV">
     
          <button type="button" class="btn btn-outline-success" onclick="crt_crs()" >Create A New Course</button>
@@ -195,7 +242,9 @@ if(!$this->session->userdata('admin_id'))
 
     
 
+<!---------------------------------------------------------------------->
 
+<!------------------------------ Staff --------------------------------->
 
     <div id="myDIV3">
     	
@@ -266,6 +315,75 @@ if(!$this->session->userdata('admin_id'))
 			<?php endforeach; ?></tbody></table>
      </div>
     </div> 
+<!------------------------------------------------------------------------->
+
+<!------------------------------ Students ---------------------------------->
+
+
+<div id="myDIV5" class="container">
+    	
+         <button type="button" class="btn btn-outline-success" onclick="add_sdt()" > Add Student</button><br><br>
+
+         <div id="myDIV6" class="container">
+    	<?php echo form_open('Admin/add_student');
+
+	$d_data = array(
+                    'dname'  => $dname,
+                   'd_id' => $d_id,
+                    );
+    echo form_hidden($d_data);
+	
+	echo "Enter rollno of Student to be added :  ";
+	echo form_input(['name'=>'new_student_rollno','placeholder'=>' student rollno ']); 
+    echo "<br/><br/>";
+
+    echo "Enter PASSWORD of student to be added &nbsp;&nbsp; :  ";
+	echo form_input(['name'=>'new_student_password','placeholder'=>' password of student']); 
+	echo "<br/><br/>";
+
+	echo form_submit(['name'=>'submit','value'=>'Add','class'=>'btn btn-primary']); 
+
+	echo form_close();
+	?>
+    </div>
+
+          <table class="table table-dark table-hover">
+		<thead>
+			<tr>
+				<td>Sr. No.</td>
+				<td>Roll no.</td>
+				<td>student Name</td>
+				<td>Department</td>
+				<td>Delete</td>
+			</tr>
+		</thead>
+		<tbody>
+			
+			<tr>
+	
+				<?php $count =0; ?>	
+				<?php foreach( $students->result() as $student ): ?>
+				<td><?= ++$count ?></td>
+				<td><?= $student->rollno; ?></td>
+				<td><?= $student->name; ?></td>
+				<td><?= $student->department; ?></td>
+				<td><?php 
+
+				echo form_open('Admin/delete_student');
+
+			echo form_hidden('id',$student->id);
+				echo form_submit(['name'=>'submit','value'=>'Delete','class'=>'btn btn-outline-danger']);
+				 echo form_close();
+	?> </td>
+			
+			</tr>
+
+			<?php endforeach; ?></tbody></table>
+     </div>
+    </div> 
+
+
+<!-------------------------------------------------------------------------->
 
 </body>
 </html>

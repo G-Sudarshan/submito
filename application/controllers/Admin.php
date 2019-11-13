@@ -50,11 +50,12 @@ class Admin extends MY_Controller{
 
    	$crs_names = $this->Admin_model->get_crs_names();  
     $staff_names = $this->Admin_model->get_staff_names($d_id);
+    $student_names = $this->Admin_model->get_student_names($d_id);
 
    // print_r($staff_names);
 
 
-   $this->load->view('Admin/manage_department',['crs_names' => $crs_names , 'staff_names' => $staff_names]);
+   $this->load->view('Admin/manage_department',['crs_names' => $crs_names , 'staff_names' => $staff_names,'students' => $student_names]);
    
 
    }
@@ -208,7 +209,9 @@ class Admin extends MY_Controller{
 
    public function load_change_student_password()
    {
-    $this->load->view('Admin/add_admin');
+    $this->load->model('Admin_model');
+    $data = $this->Admin_model->get_students_data();
+    $this->load->view('Admin/change_student_password',['students'=>$data]);
    }
 
    public function load_update_teacher_password()
@@ -217,11 +220,42 @@ class Admin extends MY_Controller{
       $userdata = array(
       'username' => $this->input->post('username'),
       
-      'department' => $this->input->post('department')
+      'department' => $this->input->post('department'),
+      'id' => $this->input->post('id')
       
        );
 
       $this->load->view('Teacher/change_password',['teacher'=>$userdata]);
+   }
+
+   public function load_update_student_password()
+   {
+      $userdata = array(
+      'name' => $this->input->post('name'),
+      'rollno' => $this->input->post('rollno'),
+      'department' => $this->input->post('department'),
+      'id' => $this->input->post('id')
+      
+       );
+
+      $this->load->view('Student/change_password',['student'=>$userdata]);
+
+   }
+
+   public function add_student()
+   {
+      $new_student_rollno = $this->input->post('new_student_rollno');
+      $new_student_password = md5($this->input->post('new_student_password'));      
+            
+      $dname = $this->input->post('dname');
+      $d_id = $this->input->post('d_id');
+
+      $this->load->model('Admin_model');
+      $this->Admin_model->add_student($new_student_rollno,$new_student_password,$dname,$d_id);
+      $this->session->set_flashdata('stf_msg','Student Added Successfully !');
+
+      return redirect('Admin/mng_dpt');
+
    }
 
 }

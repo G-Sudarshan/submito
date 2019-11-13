@@ -88,6 +88,24 @@ class Admin_model extends CI_Model{
 	{
 		return $this->db->select(['id','staff_id','name','department','department_id','username'])->from('tbl_teachers_db')->get();
 	}
+
+	public function get_student_names($d_id)
+	{
+		$student_names = $this->db->select(['id','rollno','name','department'])->from('tbl_student_db')->where('department_id',$d_id)->get();
+
+		return $student_names;
+	}
+
+	public function add_student($new_student_rollno,$new_student_password,$dname,$d_id)
+	{
+		return $this->db->insert('tbl_student_db' , ['rollno' => $new_student_rollno , 'password' => $new_student_password , 'department_id' => $d_id , 'department' => $dname]);
+
+	}
+
+	public function get_students_data()
+	{
+		return $this->db->select(['id','rollno','name','department','department_id'])->from('tbl_student_db')->get();
+	}
 }
 
 ?>

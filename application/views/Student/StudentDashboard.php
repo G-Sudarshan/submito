@@ -12,6 +12,9 @@
 		
 		<a class="btn btn-outline-danger" href=<?= base_url('Login/logout'); ?>  >Log out</a>
 
+		<br/><br/>
+    <a class="btn btn-outline-primary" href=<?= base_url('Student/load_change_password_student'); ?>  >Change Password</a>
+
 <br/><br/>
 
 	</div>

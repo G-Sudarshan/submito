@@ -45,5 +45,24 @@ class Student extends MY_Controller{
                   echo "Upload unsuccessful";
                 }
 	}
+
+
+  public function load_change_password_student()
+  {
+    $id = $this->session->userdata('student_id');
+    $this->load->model('StudentModel');
+
+    $studentData = $this->StudentModel->getStudentData($id);
+    $userdata = array(
+      'name' => $studentData->name,
+      'rollno' => $studentData->rollno,
+      'id' => $studentData->id,
+      'department' => $studentData->department,
+           );
+
+    $this->load->view('Student/change_password',['student'=>$userdata]);
+
+  }
 }
 
+?>

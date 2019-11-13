@@ -45,6 +45,23 @@ public function admin_login($userdata)
 		$this->db->update('tbl_admin_login');
 	}
 
+	public function change_password_teacher($userdata,$id)
+	{
+		$this->db->set($userdata);
+		$this->db->where('id',$id);
+		$this->db->update('tbl_teachers_db');
+
+	}
+
+	public function change_password_student($userdata,$id)
+	{
+		$this->db->set($userdata);
+		$this->db->where('id',$id);
+		$this->db->update('tbl_student_db');
+
+
+	}
+
 }
 
 ?>
