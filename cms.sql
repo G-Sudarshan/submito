@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Aug 26, 2019 at 02:56 PM
--- Server version: 10.1.39-MariaDB
--- PHP Version: 7.1.29
+-- Host: localhost
+-- Generation Time: Nov 13, 2019 at 07:36 AM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.1.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -35,7 +35,7 @@ CREATE TABLE `assignments` (
   `name` varchar(50) NOT NULL,
   `subject` varchar(50) NOT NULL,
   `assignment_no` int(11) NOT NULL,
-  `upload_datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `upload_datetime` timestamp NOT NULL DEFAULT current_timestamp(),
   `marks` int(11) NOT NULL,
   `checked` int(11) NOT NULL,
   `checked_by` varchar(50) NOT NULL
@@ -91,9 +91,9 @@ CREATE TABLE `notification` (
 --
 
 INSERT INTO `notification` (`id`, `title`, `pdf_path`, `created_at`) VALUES
-(1, 'first notification', 'http://localhost/cms/uploads/paymenthistoryredirecturl_PRAFULLA.pdf', ''),
-(2, 'Second notofication', 'http://localhost/cms/uploads/hi.pdf', ''),
-(3, 'CI library', 'http://localhost/cms/uploads/File_Uploading_Class_—_CodeIgniter_3_1_10_documentation.pdf', '');
+(1, 'first notification', 'http://localhost/cms/uploads/paymenthistoryredirecturl_PRAFULLA.pdf', 0x),
+(2, 'Second notofication', 'http://localhost/cms/uploads/hi.pdf', 0x),
+(3, 'CI library', 'http://localhost/cms/uploads/File_Uploading_Class_—_CodeIgniter_3_1_10_documentation.pdf', 0x);
 
 -- --------------------------------------------------------
 
@@ -104,7 +104,7 @@ INSERT INTO `notification` (`id`, `title`, `pdf_path`, `created_at`) VALUES
 CREATE TABLE `tbl_admin_login` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` binary(32) NOT NULL,
   `email` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -113,7 +113,7 @@ CREATE TABLE `tbl_admin_login` (
 --
 
 INSERT INTO `tbl_admin_login` (`id`, `username`, `password`, `email`) VALUES
-(1, 'admin', 'admin1234', '');
+(1, 'admin', 0x6339336363643738623230373635323833343632313662336232663730316536, '');
 
 -- --------------------------------------------------------
 
@@ -209,7 +209,7 @@ CREATE TABLE `tbl_student_db` (
   `rcc9` int(11) NOT NULL,
   `rcc10` int(11) NOT NULL,
   `mobile_no` bigint(20) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `password` binary(32) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -217,7 +217,7 @@ CREATE TABLE `tbl_student_db` (
 --
 
 INSERT INTO `tbl_student_db` (`id`, `rollno`, `name`, `department`, `department_id`, `rcc1`, `rcc2`, `rcc3`, `rcc4`, `rcc5`, `rcc6`, `rcc7`, `rcc8`, `rcc9`, `rcc10`, `mobile_no`, `password`) VALUES
-(1, 176101, 'Suraj Ahire', 'Computer Technology', 61, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8530416269, 'suraj1234');
+(1, 176101, 'Suraj Ahire', 'Computer Technology', 61, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8530416269, 0x6164353833663131336164336536663834666638323761623965626261353431);
 
 -- --------------------------------------------------------
 
@@ -232,7 +232,7 @@ CREATE TABLE `tbl_teachers_db` (
   `department` varchar(50) NOT NULL,
   `department_id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `password` binary(32) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -240,10 +240,7 @@ CREATE TABLE `tbl_teachers_db` (
 --
 
 INSERT INTO `tbl_teachers_db` (`id`, `staff_id`, `name`, `department`, `department_id`, `username`, `password`) VALUES
-(1, 1, 'Patil sir', 'Mechanical', 11, 'patilsir', 'patilsir1234'),
-(2, 2, 'sanap sir', 'Mechanical', 11, '', ''),
-(3, 1, 'Bhalerao Sir', 'Electrical', 31, '', ''),
-(4, 3, 'Sinare Sir', 'Mechanical', 11, '', '');
+(5, 1, 'Mali Sir', 'Computer Department', 61, 'malisir@gpnashik.org', 0x6630643336656530343363313165333134373563356262383464623531646433);
 
 --
 -- Indexes for dumped tables
@@ -361,7 +358,7 @@ ALTER TABLE `tbl_student_db`
 -- AUTO_INCREMENT for table `tbl_teachers_db`
 --
 ALTER TABLE `tbl_teachers_db`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '1', AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '1', AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

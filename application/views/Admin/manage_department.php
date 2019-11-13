@@ -256,7 +256,7 @@ if(!$this->session->userdata('admin_id'))
 
 				echo form_open('Admin/edit_staff');
 
-			echo form_hidden('staff_id',$staff_name->id);
+			echo form_hidden('id',$staff_name->id);
 				echo form_submit(['name'=>'submit','value'=>'Edit','class'=>'btn btn-outline-success']);
 				 echo form_close();
 	?> </td>

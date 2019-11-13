@@ -70,9 +70,9 @@ class Admin_model extends CI_Model{
 
 	}
 
-	public function getStaffDataToEdit($staff_id)
+	public function getStaffDataToEdit($id)
 	{
-		$data = $this->db->select(['staff_id','name','department','department_id'])->from('tbl_teachers_db')->where('id',$staff_id)->get();
+		$data = $this->db->select(['id','staff_id','name','department','department_id'])->from('tbl_teachers_db')->where('id',$id)->get();
 
 		return $data->row();
 	}
@@ -80,13 +80,13 @@ class Admin_model extends CI_Model{
 	public function upadateStaffData($userdata,$id)
 	{
 		$this->db->set($userdata);
-		$this->db->where('staff_id',$id);
+		$this->db->where('id',$id);
 		$this->db->update('tbl_teachers_db');
 	}
 
 	public function get_teachers_data()
 	{
-		return $this->db->select(['staff_id','name','department','department_id','username'])->from('tbl_teachers_db')->get();
+		return $this->db->select(['id','staff_id','name','department','department_id','username'])->from('tbl_teachers_db')->get();
 	}
 }
 

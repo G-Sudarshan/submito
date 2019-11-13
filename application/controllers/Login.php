@@ -154,6 +154,11 @@ class Login extends MY_Controller{
 
    }
 
+   public function update_teacher_password()
+   {
+      
+   }
+
 
 }
 

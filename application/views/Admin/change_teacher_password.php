@@ -8,7 +8,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-	<h1><center>CHange Password of Teacher</center></h1>
+	<h1><center>CHange Password of Teacher</center></h1><br>
+	<a class="btn btn-info" href=<?= base_url('Admin') ?> >Back to Admin Dashboard</a>
 
 	</div><br><br>
 
@@ -30,16 +31,19 @@
 
 				
 				    <?php $count =0; ?>	
-				<?php foreach( $crs_names->result() as $crs_name ): ?>
+				<?php foreach( $teachers->result() as $teacher ): ?>
 				<td><?= ++$count ?></td>
-				<td><?= $crs_name->course_code; ?></td>
-				<td><?= $crs_name->name; ?></td>
+				<td><?= $teacher->department; ?></td>
+				<td><?= $teacher->name; ?></td>
+				<td><?= $teacher->username; ?></td>
+				<td><?= $teacher->department_id; ?></td>
+				<td><?= $teacher->staff_id; ?></td>
 				<td><?php 
 
-				echo form_open('Admin/mng_dpt');
+				echo form_open('Admin/load_update_teacher_password');
 
-//				echo form_hidden($d_data);
-				echo form_submit(['name'=>'submit','value'=>'Manage','class'=>'btn btn-outline-success']); echo form_close();
+				echo form_hidden(['username'=>$teacher->username,'department'=>$teacher->department,'id'=>]);
+				echo form_submit(['name'=>'submit','value'=>'Change Password','class'=>'btn btn-outline-success']); echo form_close();
 	?> </td>
 			
 			</tr>

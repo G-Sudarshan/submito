@@ -163,7 +163,7 @@ class Admin extends MY_Controller{
 
    public function edit_staff()
    {
-     $id = $this->input->post('staff_id');
+     $id = $this->input->post('id');
      $this->load->model('Admin_model');
      $data = $this->Admin_model->getStaffDataToEdit($id);
      $this->load->view('Admin/edit_staff',['data'=>$data]);
@@ -176,9 +176,10 @@ class Admin extends MY_Controller{
       'staff_id' => $this->input->post('staff_id'),
       'department' => $this->input->post('staff_department'),
       'department_id' => $this->input->post('staff_department_id'),
+
        );
 
-    $id = $this->input->post('staff_id');
+    $id = $this->input->post('id');
     $this->load->model('Admin_model');
     $this->Admin_model->upadateStaffData($userdata,$id);
 
@@ -208,6 +209,19 @@ class Admin extends MY_Controller{
    public function load_change_student_password()
    {
     $this->load->view('Admin/add_admin');
+   }
+
+   public function load_update_teacher_password()
+   {
+
+      $userdata = array(
+      'username' => $this->input->post('username'),
+      
+      'department' => $this->input->post('department')
+      
+       );
+
+      $this->load->view('Teacher/change_password',['teacher'=>$userdata]);
    }
 
 }

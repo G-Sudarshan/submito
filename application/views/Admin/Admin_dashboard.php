@@ -95,7 +95,7 @@ if(!$this->session->userdata('admin_id'))
 	 endif; ?>
     
 
-	<h2>Admin dashnoard</h2>
+	<h2>Admin dashboard</h2>
 </center><div class="container">
 	<br/><br/>
 

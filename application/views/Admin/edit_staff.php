@@ -34,13 +34,15 @@
     echo "<br/><br/>";
 
     echo "department of staff :  ";
-	echo form_input(['name'=>'staff_department','placeholder'=>' staff id ','class'=>'form-control','value'=>set_value('staff_department',$data->department)]); 
+	echo form_input(['name'=>'staff_department','placeholder'=>' staff department ','class'=>'form-control','value'=>set_value('staff_department',$data->department)]); 
     echo "<br/><br/>";
 
     echo "department id of staff :  ";
-	echo form_input(['name'=>'staff_department_id','placeholder'=>' staff id ','class'=>'form-control','value'=>set_value('staff_department',$data->department_id)]); 
+	echo form_input(['name'=>'staff_department_id','placeholder'=>' department id ','class'=>'form-control','value'=>set_value('staff_department_id',$data->department_id)]); 
     echo "<br/><br/>";
-    
+
+    echo form_hidden('id',$data->id);
+
 	echo form_submit(['name'=>'submit','value'=>'Update Information','class'=>'btn btn-primary']); 
 
 	echo form_close();
