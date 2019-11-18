@@ -229,10 +229,11 @@ if(!$this->session->userdata('admin_id'))
 				<td><?= $crs_name->name; ?></td>
 				<td><?php 
 
-				echo form_open('Admin/mng_dpt');
+				echo form_open('Admin/delete_course');
 
-//				echo form_hidden($d_data);
-				echo form_submit(['name'=>'submit','value'=>'Manage','class'=>'btn btn-outline-success']); echo form_close();
+     			echo form_hidden('id',$crs_name->id);
+				echo form_submit(['name'=>'submit','value'=>'Delete','class'=>'btn btn-outline-danger']); 
+				echo form_close();
 	?> </td>
 			
 			</tr>

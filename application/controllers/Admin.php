@@ -262,6 +262,19 @@ class Admin extends MY_Controller{
       return redirect('Admin/mng_dpt');
    }
 
+   public function delete_course()
+   {
+     $id = $this->input->post('id');
+     $this->load->model('Admin_model');
+
+     $this->Admin_model->delete_course($id);
+
+      $this->session->set_flashdata('stf_msg','Course Deleted Successfully !');
+
+      return redirect('Admin/mng_dpt');
+
+   }
+
 }
 
 ?>

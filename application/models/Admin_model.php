@@ -111,6 +111,11 @@ class Admin_model extends CI_Model{
 	{
 		return $this->db->delete('tbl_student_db',['id' => $id]);
 	}
+
+	public function delete_course($id)
+	{
+		return $this->db->delete('tbl_courses_db',['id' => $id]);
+	}
 }
 
 ?>
