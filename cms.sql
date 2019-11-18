@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 13, 2019 at 07:36 AM
+-- Generation Time: Nov 18, 2019 at 12:34 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.1.33
 
@@ -71,7 +71,9 @@ CREATE TABLE `events` (
 INSERT INTO `events` (`id`, `title`, `start_date`, `end_date`) VALUES
 (3, 'The new event', '2019-08-15', '2019-08-15'),
 (4, 'Submission', '2019-09-20', '2019-09-28'),
-(5, 'Teachers Day', '2019-09-05', '2019-09-06');
+(5, 'Teachers Day', '2019-09-05', '2019-09-06'),
+(6, 'holidays', '2019-11-15', '2019-12-15'),
+(7, 'project complete week', '2019-11-25', '2019-11-30');
 
 -- --------------------------------------------------------
 
@@ -122,7 +124,7 @@ INSERT INTO `tbl_admin_login` (`id`, `username`, `password`, `email`) VALUES
 --
 
 CREATE TABLE `tbl_courses_db` (
-  `serial_no` int(11) NOT NULL COMMENT '1',
+  `id` int(11) NOT NULL COMMENT '1',
   `course_code` varchar(20) NOT NULL,
   `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -131,7 +133,7 @@ CREATE TABLE `tbl_courses_db` (
 -- Dumping data for table `tbl_courses_db`
 --
 
-INSERT INTO `tbl_courses_db` (`serial_no`, `course_code`, `name`) VALUES
+INSERT INTO `tbl_courses_db` (`id`, `course_code`, `name`) VALUES
 (1, '6301', 'Physics'),
 (6, '6302', 'Basic Mathematics'),
 (7, '6234', 'C programming'),
@@ -147,7 +149,7 @@ INSERT INTO `tbl_courses_db` (`serial_no`, `course_code`, `name`) VALUES
 --
 
 CREATE TABLE `tbl_departments` (
-  `serial_no` int(11) NOT NULL COMMENT '1',
+  `id` int(11) NOT NULL COMMENT '1',
   `dpt_id` int(11) NOT NULL,
   `dpt_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -156,7 +158,7 @@ CREATE TABLE `tbl_departments` (
 -- Dumping data for table `tbl_departments`
 --
 
-INSERT INTO `tbl_departments` (`serial_no`, `dpt_id`, `dpt_name`) VALUES
+INSERT INTO `tbl_departments` (`id`, `dpt_id`, `dpt_name`) VALUES
 (1, 11, 'Mechanical'),
 (3, 21, 'civil'),
 (4, 31, 'Electrical'),
@@ -174,7 +176,7 @@ INSERT INTO `tbl_departments` (`serial_no`, `dpt_id`, `dpt_name`) VALUES
 --
 
 CREATE TABLE `tbl_info` (
-  `info_id` int(11) NOT NULL COMMENT '1',
+  `id` int(11) NOT NULL COMMENT '1',
   `title` text NOT NULL,
   `value` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -183,7 +185,7 @@ CREATE TABLE `tbl_info` (
 -- Dumping data for table `tbl_info`
 --
 
-INSERT INTO `tbl_info` (`info_id`, `title`, `value`) VALUES
+INSERT INTO `tbl_info` (`id`, `title`, `value`) VALUES
 (1, 'college_name', 'Goverenment Polytechnic Nashik');
 
 -- --------------------------------------------------------
@@ -198,16 +200,6 @@ CREATE TABLE `tbl_student_db` (
   `name` varchar(255) NOT NULL,
   `department` varchar(50) NOT NULL,
   `department_id` int(11) NOT NULL,
-  `rcc1` int(11) NOT NULL,
-  `rcc2` int(11) NOT NULL,
-  `rcc3` int(11) NOT NULL,
-  `rcc4` int(11) NOT NULL,
-  `rcc5` int(11) NOT NULL,
-  `rcc6` int(11) NOT NULL,
-  `rcc7` int(11) NOT NULL,
-  `rcc8` int(11) NOT NULL,
-  `rcc9` int(11) NOT NULL,
-  `rcc10` int(11) NOT NULL,
   `mobile_no` bigint(20) NOT NULL,
   `password` binary(32) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -216,8 +208,8 @@ CREATE TABLE `tbl_student_db` (
 -- Dumping data for table `tbl_student_db`
 --
 
-INSERT INTO `tbl_student_db` (`id`, `rollno`, `name`, `department`, `department_id`, `rcc1`, `rcc2`, `rcc3`, `rcc4`, `rcc5`, `rcc6`, `rcc7`, `rcc8`, `rcc9`, `rcc10`, `mobile_no`, `password`) VALUES
-(1, 176101, 'Suraj Ahire', 'Computer Technology', 61, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8530416269, 0x6164353833663131336164336536663834666638323761623965626261353431);
+INSERT INTO `tbl_student_db` (`id`, `rollno`, `name`, `department`, `department_id`, `mobile_no`, `password`) VALUES
+(2, 176101, '', 'Computer Department', 61, 0, 0x3961323666653766323030643437396437643137356636626163653035366263);
 
 -- --------------------------------------------------------
 
@@ -240,7 +232,9 @@ CREATE TABLE `tbl_teachers_db` (
 --
 
 INSERT INTO `tbl_teachers_db` (`id`, `staff_id`, `name`, `department`, `department_id`, `username`, `password`) VALUES
-(5, 1, 'Mali Sir', 'Computer Department', 61, 'malisir@gpnashik.org', 0x6630643336656530343363313165333134373563356262383464623531646433);
+(5, 1, 'Mali Sir', 'Computer Department', 61, 'malisir@gpnashik.org', 0x6630643336656530343363313165333134373563356262383464623531646433),
+(6, 1, 'Patil Sir', 'Electrical', 31, 'patilsir@gpnashik.org', 0x6434316438636439386630306232303465393830303939386563663834323765),
+(9, 1, 'Khedkar Sir', 'Mechanical', 11, 'khedkarsir@gpnashik.org', 0x3565396431316131346164316338646437376539386566396235336664316261);
 
 --
 -- Indexes for dumped tables
@@ -268,39 +262,42 @@ ALTER TABLE `notification`
 -- Indexes for table `tbl_admin_login`
 --
 ALTER TABLE `tbl_admin_login`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indexes for table `tbl_courses_db`
 --
 ALTER TABLE `tbl_courses_db`
-  ADD PRIMARY KEY (`serial_no`),
+  ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `course_code` (`course_code`);
 
 --
 -- Indexes for table `tbl_departments`
 --
 ALTER TABLE `tbl_departments`
-  ADD PRIMARY KEY (`serial_no`),
+  ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `dpt_id` (`dpt_id`);
 
 --
 -- Indexes for table `tbl_info`
 --
 ALTER TABLE `tbl_info`
-  ADD PRIMARY KEY (`info_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tbl_student_db`
 --
 ALTER TABLE `tbl_student_db`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `rollno` (`rollno`);
 
 --
 -- Indexes for table `tbl_teachers_db`
 --
 ALTER TABLE `tbl_teachers_db`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -316,7 +313,7 @@ ALTER TABLE `assignments`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `notification`
@@ -334,31 +331,31 @@ ALTER TABLE `tbl_admin_login`
 -- AUTO_INCREMENT for table `tbl_courses_db`
 --
 ALTER TABLE `tbl_courses_db`
-  MODIFY `serial_no` int(11) NOT NULL AUTO_INCREMENT COMMENT '1', AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '1', AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tbl_departments`
 --
 ALTER TABLE `tbl_departments`
-  MODIFY `serial_no` int(11) NOT NULL AUTO_INCREMENT COMMENT '1', AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '1', AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tbl_info`
 --
 ALTER TABLE `tbl_info`
-  MODIFY `info_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '1', AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '1', AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_student_db`
 --
 ALTER TABLE `tbl_student_db`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '1', AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '1', AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_teachers_db`
 --
 ALTER TABLE `tbl_teachers_db`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '1', AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '1', AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

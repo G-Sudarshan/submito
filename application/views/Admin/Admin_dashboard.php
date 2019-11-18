@@ -124,9 +124,6 @@ if(!$this->session->userdata('admin_id'))
 <br/><br/>
 
 
-
-<a class="btn btn-outline-primary" href=<?= base_url('Admin/load_add_admin'); ?>  >Add Admin    </a>
-
 <a class="btn btn-outline-primary" href=<?= base_url('Admin/load_change_teacher_password'); ?>  > Change Password of Teacher </a>
 
 <a class="btn btn-outline-primary" href=<?= base_url('Admin/load_change_student_password'); ?>  > Change Password of Student </a>

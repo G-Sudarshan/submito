@@ -190,15 +190,7 @@ class Admin extends MY_Controller{
 
    }
 
-   public function load_add_admin()
-   {
-    $this->load->view('Admin/add_admin');
-   }
-
-   public function add_admin()
-   {
-    
-   }
+   
 
    public function load_change_teacher_password()
    {
