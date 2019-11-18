@@ -106,6 +106,11 @@ class Admin_model extends CI_Model{
 	{
 		return $this->db->select(['id','rollno','name','department','department_id'])->from('tbl_student_db')->get();
 	}
+
+	public function delete_student($id)
+	{
+		return $this->db->delete('tbl_student_db',['id' => $id]);
+	}
 }
 
 ?>

@@ -370,7 +370,7 @@ if(!$this->session->userdata('admin_id'))
 				<td><?php 
 
 				echo form_open('Admin/delete_student');
-
+ 
 			echo form_hidden('id',$student->id);
 				echo form_submit(['name'=>'submit','value'=>'Delete','class'=>'btn btn-outline-danger']);
 				 echo form_close();

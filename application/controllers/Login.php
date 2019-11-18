@@ -9,7 +9,24 @@ class Login extends MY_Controller{
    	
    //	print_r($dpt_names);
 
-      $this->load->model('Admin_model');
+
+//---- IF USER IS LOGGED IN HE WILL BE REDIRECTED TO RESPECTIVE DASHBOARD ------//
+   
+    
+
+    if($this->session->userdata('student_id'))
+          return redirect('Student');
+
+
+    if($this->session->userdata('teacher_id'))
+          return redirect('Teacher');
+
+    if($this->session->userdata('admin_id'))
+          return redirect('Admin');
+
+//------------------------------------------------------------------------------//
+      
+     $this->load->model('Admin_model');
      
      $n_data = $this->Admin_model->fetch_notifications();
      
@@ -100,11 +117,12 @@ class Login extends MY_Controller{
       if($this->form_validation->run()==TRUE)
       {
          $userdata = array(
-                        'rollno' => $this->input->post('username', TRUE),
-                        'password' => md5($this->input->post('password', TRUE)),
+                        'rollno' => $this->input->post('username'),
+                        'password' => md5($this->input->post('password'))
                      );
          $this->load->model('LoginModel');
          $user_id = $this->LoginModel->student_login($userdata);
+
          if($user_id)
          {
             $this->session->set_userdata('student_id',$user_id);
@@ -114,8 +132,8 @@ class Login extends MY_Controller{
          }
          else
          {
-            $this->session->set_flashdata("error","No such account exists in database");
-            redirect('Login');
+            $this->session->set_flashdata("login_failed","No such account exists in database");
+            //return redirect('Login');
          }
       }
        else

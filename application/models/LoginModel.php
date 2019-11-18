@@ -28,13 +28,34 @@ public function admin_login($userdata)
 
 	public function student_login($userdata)
 	{
-		$this->db->select('*');
+		$this->db->select('id');
 		$this->db->from('tbl_student_db');
 		$this->db->where($userdata);
 		$query= $this->db->get();
+		//print_r($query);
+		//echo $query['id'];
+		//echo $query->row()->id;
+		// $result = mysqli_fetch_array($query);
+		// echo $result;
+		// print_r($result);
+
+		// echo $query->id;
+		// echo $query['id'];
+
+		// print_r($query);
+		// echo $query.id;
+		// echo $query->row('id');
+
+		echo $userdata['password'];
+		echo "<br/>";
+		echo $userdata['rollno'];
 		if($query->num_rows()==1)
 		{
 			return $query->row()->id;
+		}
+		else 
+		{
+			echo " id not returned";
 		}
 	}
 

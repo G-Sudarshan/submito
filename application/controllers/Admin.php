@@ -258,6 +258,18 @@ class Admin extends MY_Controller{
 
    }
 
+   public function delete_student()
+   {
+     $id = $this->input->post('id');
+     $this->load->model('Admin_model');
+
+     $this->Admin_model->delete_student($id);
+
+      $this->session->set_flashdata('stf_msg','Student Deleted Successfully !');
+
+      return redirect('Admin/mng_dpt');
+   }
+
 }
 
 ?>
