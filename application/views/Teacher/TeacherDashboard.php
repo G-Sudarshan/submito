@@ -2,10 +2,13 @@
 <html>
 <head>
 	<title>Teacher Dashboard </title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <meta charset="utf-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+ 
 </head>
 <body>
 
@@ -39,53 +42,113 @@ echo "your staff id : ".$teacherData->staff_id."<br/>";
 
 <br/><br/>
 
-<h1>Assignments to be checked </h1>
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <td>Sr. No.</td>
-        <td>subject</td>
-        <td>Assignment no.</td>
-        <td>Roll no</td>
-        <td>Student Name</td>
-        <td>Assignment</td>
-        <td>Upload date and time</td>
-        
-        
-        
-      </tr>
-    </thead>
-    <tbody>
+<button class="btn btn-primary" data-toggle="modal" data-target="#mySubjectModal">My Subjects</button>
+
+
+
+
+<!------------------ The My Subject Modal ------------------------------>
+
+
+<!-- Modal -->
+<div class="modal fade" id="mySubjectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">My Subjects</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
       
+
+          <div class="form-group">
+          <div class="form-check">
+  <table class="table table-hover">
+          <?php $i=0; ?>
       <tr>
-        <? if( count($a_data)): ?>
-          <?php $count = 0; ?>
-          <?php foreach( $a_data->result() as $a ): ?>
-        <td><?= ++$count ?></td>
-        <td><?= $a->subject; ?></td>
-        <td><?= $a->assignment_no; ?></td>
-        <td><?= $a->rollno; ?></td>
-        <td><?= $a->name; ?></td>
-        <td><?= anchor($a->pdf_path,'view assignment') ?></td>
-        <td><?= $a->upload_datetime; ?></td>
-      </tr>
-        
+          <?php foreach( $courses->result() as $course ): ?>
 
-   <?php endforeach; ?>
+         
+      <div class="form-check" align="left">
+     
 
-      <? else : ?>
-        <tr>
-        <td colspan="3"> No more assignments for checking.</td>
-          </tr>
-        <? endif; ?>
+     <?php 
 
-        </tbody>
-  </table> 
+     echo "<input type='checkbox'  class='form-check-input' id='cc' value='$course->course_code' >
+        <label class='form-check-label' for='exampleCheck1'>".$course->course_code.' ( '.$course->name.' ) '."</label>";
+        $i++;
+         ?>
 
+      </div>
 
+            </tr>
+          
+          
+          <?php endforeach; ?></table>
+      </div>
+    </div>
+  </div>
+         
+      
+          <!-- Modal footer -->
+          
+      <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      <button type="button" class="btn btn-primary" onclick="saveMySubjects()">Save changes</button>
+            </div>
+           </div>
+          </div>
+        </div>
+      </div>
+
+<!-- -------------------------------------------------------------- -->
 
 
 </div></center>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+ <script type="text/javascript">
+
+  function saveMySubjects(){
+      
+      var c = document.getElementById('cc');
+      for(var i in c)
+      {
+        console.log(c);
+      }
+      // var firstname = $('#firstname').val();
+      // var lastname = $('#lastname').val();
+      // var email = $('#email').val();
+      // var mobile = $('#mobile').val();
+
+
+      // $.ajax({
+      //   url:"backend1.php",
+      //   type:"POST",
+      //   data: {
+      //     firstname: firstname,
+      //     lastname: lastname,
+      //     email: email,
+      //     mobile: mobile
+      //   },
+
+      //   success:function(data,status){
+      //     readRecords();
+      //   }
+      // });
+
+       
+  }
+
+   
+ </script>
 
 </body>
 </html>

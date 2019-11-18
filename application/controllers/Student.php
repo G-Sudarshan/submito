@@ -9,8 +9,10 @@ class Student extends MY_Controller{
 		$this->load->model('StudentModel');
 
 		$studentData = $this->StudentModel->getStudentData($student_id);
+    $this->load->model('Admin_model');
+    $courseData = $this->Admin_model->get_crs_names();
 
-		$this->load->view('Student/StudentDashboard',['studentData' => $studentData]);
+		$this->load->view('Student/StudentDashboard',['studentData' => $studentData,'courses'=>$courseData]);
 	}
 
 	public function upload_assignment()

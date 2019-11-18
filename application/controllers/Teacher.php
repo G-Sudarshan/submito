@@ -11,7 +11,9 @@ class Teacher extends MY_Controller{
 		$teacherData = $this->TeacherModel->getTeacherData($teacher_id);
 		$a_data = $this->TeacherModel->getAssignmentData();
 
-		$this->load->view('Teacher/TeacherDashboard',['teacherData'=>$teacherData,'a_data'=>$a_data]);
+		$this->load->model('Admin_model');
+		$courseData = $this->Admin_model->get_crs_names();
+		$this->load->view('Teacher/TeacherDashboard',['teacherData'=>$teacherData,'a_data'=>$a_data,'courses'=>$courseData]);
 	}
 
 	public function load_change_password_teacher()

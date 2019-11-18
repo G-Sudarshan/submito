@@ -2,10 +2,13 @@
 <html>
 <head>
 	<title>Student Dashboard</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta charset="utf-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+
 </head>
 <body>
 	<div class="container" align="right">
@@ -33,67 +36,101 @@ echo "Deapartment id : ".$studentData->department_id."<br/>";
 echo "Your mobile no : ".$studentData->mobile_no."<br/>";
 ?>
 <div class="container">
-	<br><br>
-	<h3>Upload Assignment</h3>
-	<br>
-
-<?php
-
-echo form_open_multipart('Student/upload_assignment');
-
-echo form_input(['name'=>'subject','placeholder'=>'Enter Subject','class'=>'form_control']);
-
-$options = array(
-
-	    '0' => 'Assignment no.',
-        '1'         => '1',
-        '2'         => '2',
-        '3'         => '3',
-        '4'         => '4',
-        '5'         => '5',
-        '6'         => '6',
-        '7'         => '7',
-        '8'         => '8',
-        '9'         => '9',
-        '10'        => '10',
-);
-
-
-echo form_dropdown('assignment_no', $options, 'Assignment no.');
-echo "<br/><br/>";
-?>
 
 
 	
 	<div class="col-lg-4" >
-<?php echo form_upload(['name'=>'userfile','class'=>'form-control']); ?>
+	<?php 
+	// echo form_upload(['name'=>'userfile','class'=>'form-control']); ?>
+	</div>
+	<?php
+	// echo "<br/><br/>";
+
+	// echo form_hidden('name',$studentData->name);
+	// echo form_hidden('rollno',$studentData->rollno);
+
+	// echo form_reset(['name'=>'reset','value'=>'Reset','class'=>'btn btn-default']);
+	// echo form_submit(['name'=>'submit','value'=>'Upload','class'=>'btn btn-primary']);
+
+	// echo form_close();
+
+	?>
+	</div>
+
+	<button class="btn btn-primary" data-toggle="modal" data-target="#mySubjectModal">My Subjects</button>
+
+
+
+
+<!------------------ The My Subject Modal ------------------------------>
+
+
+<!-- Modal -->
+<div class="modal fade" id="mySubjectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">My Subjects</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+      <?php echo form_open('Teacher/update_mysubjects'); ?>
+
+          <div class="form-group">
+          <div class="form-check">
+  <table class="table table-hover">
+          
+      <tr>
+          <?php foreach( $courses->result() as $course ): ?>
+
+         
+    <div class="form-check" align="left">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1"><?php echo $course->course_code." ( ".$course->name." ) "; ?></label>
+      </div>
+
+            </tr>
+          <!--   
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label> -->
+          
+          <?php endforeach; ?></table>
+      </div>
+    </div>
+  </div>
+         
+      
+          <!-- Modal footer -->
+          
+      <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+          <?php  echo form_submit(['name'=>'submit','value'=>'Save changes','class'=>'btn btn-primary']);
+
+            echo form_close();
+           ?>
+            </div>
+           </div>
+          </div>
+        </div>
+      </div>
+
+<!-- -------------------------------------------------------------- -->
+
+
 </div>
-<?php
-echo "<br/><br/>";
-
-echo form_hidden('name',$studentData->name);
-echo form_hidden('rollno',$studentData->rollno);
-
-echo form_reset(['name'=>'reset','value'=>'Reset','class'=>'btn btn-default']);
-echo form_submit(['name'=>'submit','value'=>'Upload','class'=>'btn btn-primary']);
-
-echo form_close();
-
-
-
-
-?>
-
-
-
-
-</div>
 
 
 </div>
 
 
 
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </center>
 </body>
