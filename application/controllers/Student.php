@@ -12,7 +12,16 @@ class Student extends MY_Controller{
     $this->load->model('Admin_model');
     $courseData = $this->Admin_model->get_crs_names();
 
-		$this->load->view('Student/StudentDashboard',['studentData' => $studentData,'courses'=>$courseData]);
+
+
+    $user =  $this->getUserById($student_id);
+    $course_codes = $user['course_codes'];
+
+
+
+    $selectedcourseData = $this->StudentModel->getCourses($course_codes);
+
+		$this->load->view('Student/StudentDashboard',['studentData' => $studentData,'courses'=>$courseData,'selectedcourses'=>$selectedcourseData,'scc'=>$course_codes]);
 	}
 
 	public function upload_assignment()
@@ -87,6 +96,25 @@ class Student extends MY_Controller{
     
   }
 
+  public function update_student()
+  {
+    $userdata = array(
+      'name' => $this->input->post('student_name'),
+      'email' => $this->input->post('student_email'),
+      'year' => $this->input->post('student_year'),
+      'mobile_no' => $this->input->post('student_mobile'),
+
+       );
+
+    $id = $this->session->userdata('student_id');
+    $this->load->model('StudentModel');
+    $this->StudentModel->upadateStudentData($userdata,$id);
+
+    $this->session->set_flashdata('success','Your information has been updated successfully!');
+
+      return redirect('Student');
+  }
+
   // -----------------JSON FUNCTIONS OF STUDENT------------------//
 
    public function getUsers()
@@ -131,6 +159,19 @@ class Student extends MY_Controller{
     return $updateUser;
 
     }
+
+     public function getUserById($id)
+   {
+    $users = $this->getUsers();
+    foreach ($users as $user) {
+      if($user['id'] == $id)
+      {
+        return $user;
+      }
+    }
+
+    return null;
+  }
 
 
 

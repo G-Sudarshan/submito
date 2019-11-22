@@ -12,8 +12,24 @@ class Teacher extends MY_Controller{
 		$a_data = $this->TeacherModel->getAssignmentData();
 
 		$this->load->model('Admin_model');
-		$courseData = $this->Admin_model->get_crs_names();
-		$this->load->view('Teacher/TeacherDashboard',['teacherData'=>$teacherData,'a_data'=>$a_data,'courses'=>$courseData]);
+   	    $crs_names = $this->Admin_model->get_crs_names();  
+
+
+		$user =  $this->getUserById($teacher_id);
+		$course_codes = $user['course_codes'];
+
+		$selectedcourseData = $this->TeacherModel->getCourses($course_codes);
+
+//-------------------- FOR TROUBLESHOOTING PURPOSE -------------------------//
+
+		// foreach ($courseData->result() as $course) {
+		// 	echo $course->id."<br/>";
+		// 	echo $course->course_code."<br/>";
+		// 	echo $course->name."<br/>"."<br/>";
+		// }
+//--------------------------------------------------------------------------//		
+
+		$this->load->view('Teacher/TeacherDashboard',['teacherData'=>$teacherData,'a_data'=>$a_data,'selectedcourses'=>$selectedcourseData,'courses'=>$crs_names,'scc'=>$course_codes]);
 	}
 
 	public function load_change_password_teacher()
@@ -53,6 +69,28 @@ class Teacher extends MY_Controller{
 		
 	}
 
+
+  public function update_teacher()
+  {
+    $userdata = array(
+      'name' => $this->input->post('teacher_name'),
+      'email' => $this->input->post('teacher_email'),
+      'mobile_no' => $this->input->post('teacher_mobile'),
+       );
+
+    $id = $this->session->userdata('teacher_id');
+    $this->load->model('TeacherModel');
+    $this->TeacherModel->upadateTeacherData($userdata,$id);
+
+    print_r($userdata);
+
+    echo "$id";
+
+    $this->session->set_flashdata('success','Your information has been updated successfully!');
+
+      return redirect('Teacher');
+  }
+
 	// -----------------JSON FUNCTIONS OF TEACHER------------------//
 
    public function getUsers()
@@ -81,7 +119,7 @@ class Teacher extends MY_Controller{
 
     }
 
-    function updateUser($data,$id)
+   public function updateUser($data,$id)
     {
 		$updateUser = [];
 		$users = $this->getUsers();
@@ -97,6 +135,19 @@ class Teacher extends MY_Controller{
 		return $updateUser;
 
     }
+
+    public function getUserById($id)
+   {
+		$users = $this->getUsers();
+		foreach ($users as $user) {
+			if($user['id'] == $id)
+			{
+				return $user;
+			}
+		}
+
+		return null;
+	}
 
 
 

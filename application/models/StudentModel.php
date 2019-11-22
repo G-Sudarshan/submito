@@ -5,7 +5,7 @@ class StudentModel extends CI_Model{
 	public function getStudentData($student_id)
 	{
 
-		$data = $this->db->select(['id','name','department','rollno','department_id','mobile_no'])->from('tbl_student_db')->where('id',$student_id)->get();
+		$data = $this->db->select(['id','name','department','rollno','department_id','mobile_no','email','year'])->from('tbl_student_db')->where('id',$student_id)->get();
 
 		return $data->row();
 	}
@@ -13,6 +13,21 @@ class StudentModel extends CI_Model{
 	public function upload_assignment($post)
 	{
 		return $this->db->insert('assignments' , $post );
+	}
+
+	public function getCourses($course_codes)
+	{
+		$data = $this->db->from('tbl_courses_db')->where_in('course_code',$course_codes)->get();
+
+		return $data;
+
+	}
+
+	public function upadateStudentData($userdata,$id)
+	{
+		$this->db->set($userdata);
+		$this->db->where('id',$id);
+		$this->db->update('tbl_student_db');
 	}
 }
 

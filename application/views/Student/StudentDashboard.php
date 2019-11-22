@@ -56,8 +56,44 @@ echo "Your mobile no : ".$studentData->mobile_no."<br/>";
 
 	?>
 	</div>
+<div align="right">
 
-	<button class="btn btn-primary" data-toggle="modal" data-target="#mySubjectModal">My Subjects</button>
+	<button class="btn btn-primary" data-toggle="modal" data-target="#mySubjectModal">Edit My Subjects</button>
+
+  <button class="btn btn-warning" data-toggle="modal" data-target="#myUpdateModal">Update My Info</button>
+
+</div>
+<br/>
+<div>
+  <table class="table table-striped">
+    <thead>
+      <th>Sr no.</th>
+      <th>Course Code</th>
+      <th>Name</th>
+      <th>Actions</th>
+      
+    </thead>
+    <tbody>
+      <?php $i=1 ?>
+      
+        <?php foreach ($selectedcourses->result() as $selectedCourse):  ?>
+          <tr>
+        <td><?= $i++; ?></td> 
+        <td><?= $selectedCourse->course_code; ?></td>
+        <td><?= $selectedCourse->name; ?></td>
+        <td>
+          <button class="btn btn-info btn-sm">Upload assignements</button>
+          <button class="btn btn-success btn-sm" disabled>Download all assignements</button>
+          
+        </td>
+      
+      </tr>
+
+      <?php endforeach; ?>
+    </tbody>
+    
+  </table>  
+</div>
 
 
 
@@ -92,7 +128,7 @@ echo "Your mobile no : ".$studentData->mobile_no."<br/>";
        
      <?php 
 
-       echo "<input type='checkbox' name='check_list[]'' value='$course->course_code'><label class='form-check-label' for='exampleCheck1'>"."&nbsp;&nbsp".$course->course_code.' ( '.$course->name.' ) '."</label>"
+    echo "<input type='checkbox' name='check_list[]'' value='$course->course_code'".(in_array($course->course_code, $scc) ? ' checked="checked"' : '')." ><label class='form-check-label' for='exampleCheck1'>"."&nbsp;&nbsp".$course->course_code.' ( '.$course->name.' ) '."</label>"
 
          ?>
 
@@ -122,7 +158,73 @@ echo "Your mobile no : ".$studentData->mobile_no."<br/>";
         </div>
       </div>
 
-<!-- -------------------------------------------------------------- -->
+<!-- ----------------------------------------------------------------->
+
+<!--------------------------------- updata model ------------------------------->
+
+    <div class="modal" id="myUpdateModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Update My Information</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+
+           <div class="form-group">
+            <?php echo form_open('Student/update_student'); ?>
+
+      
+
+  
+
+  <?php 
+
+  
+  echo "Your Name :  ";
+  echo form_input(['name'=>'student_name','placeholder'=>'Name of Student','class'=>'form-control','value'=>set_value('student_name',$studentData->name)]);
+   echo "<br/><br/>"; 
+  
+  echo "Your Email :  ";
+  echo form_input(['name'=>'student_email','type'=>'email','placeholder'=>'Enter email eg. ganesha@gmail.com','class'=>'form-control','value'=>set_value('student_email',$studentData->email)]); 
+    echo "<br/><br/>";
+
+    echo "Year :  ";
+  echo form_input(['name'=>'student_year','placeholder'=>'Enter year eg. First Year ','class'=>'form-control','value'=>set_value('student_year',$studentData->year)]); 
+    echo "<br/><br/>";
+
+    echo " Mobile no :  ";
+  echo form_input(['name'=>'student_mobile','placeholder'=>'Enter your mobile no','class'=>'form-control','value'=>set_value('student_mobile',$studentData->mobile_no)]); 
+    echo "<br/><br/>"; ?>
+
+  
+ 
+
+          </div>
+
+          <!-- Modal footer -->
+          
+
+          <div class="modal-footer">
+                        
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
+            <?php  echo form_submit(['name'=>'submit','value'=>'Update','class'=>'btn btn-primary']); 
+               echo form_close();
+               ?>
+
+           
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+<!------------------------------------------------------------------------->
 
 
 </div>
