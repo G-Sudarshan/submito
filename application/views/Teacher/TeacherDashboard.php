@@ -44,6 +44,10 @@ echo "your staff id : ".$teacherData->staff_id."<br/>";
 
 <button class="btn btn-primary" data-toggle="modal" data-target="#mySubjectModal">My Subjects</button>
 
+<div id="abc">
+  
+</div>
+
 
 
 
@@ -62,12 +66,13 @@ echo "your staff id : ".$teacherData->staff_id."<br/>";
       </div>
 
       <div class="modal-body">
+        <?php echo form_open('Teacher/saveMySubjects'); ?>
       
 
           <div class="form-group">
           <div class="form-check">
   <table class="table table-hover">
-          <?php $i=0; ?>
+          
       <tr>
           <?php foreach( $courses->result() as $course ): ?>
 
@@ -77,9 +82,8 @@ echo "your staff id : ".$teacherData->staff_id."<br/>";
 
      <?php 
 
-     echo "<input type='checkbox'  class='form-check-input' id='cc' value='$course->course_code' onclick='addCourseCode(this.value)'>
-        <label class='form-check-label' for='exampleCheck1'>".$course->course_code.' ( '.$course->name.' ) '."</label>";
-        $i++;
+       echo "<input type='checkbox' name='check_list[]'' value='$course->course_code'><label class='form-check-label' for='exampleCheck1'>"."&nbsp;&nbsp".$course->course_code.' ( '.$course->name.' ) '."</label>"
+
          ?>
 
       </div>
@@ -98,16 +102,26 @@ echo "your staff id : ".$teacherData->staff_id."<br/>";
       <div class="modal-footer">
          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-      <button type="button" class="btn btn-primary" onclick="saveMySubjects()">Save changes</button>
+         
+     <?php 
+
+      echo form_submit('submit', 'Save changes',"class='btn btn-primary'");
+
+       form_close(); ?>
+       
             </div>
            </div>
           </div>
         </div>
-      </div>
+      
+
+
+</div>
 
        <input type="hidden" id="curl" name="curl" value=<?= base_url('Teacher/saveMySubjects'); ?>>
-       <input type="hidden" id="json" name="jurl" value=<?= base_url('j/teacher.json'); ?>>
 
+       
+      
 <!-- -------------------------------------------------------------- -->
 
 
@@ -132,51 +146,64 @@ echo "your staff id : ".$teacherData->staff_id."<br/>";
       
     
       console.log(arr);
+
+
       
       // var firstname = $('#firstname').val();
       // var lastname = $('#lastname').val();
       // var email = $('#email').val();
       // var mobile = $('#mobile').val();
 
-      var targeturl = document.getElementById('curl').value;
-      var jsonurl = document.getElementById('jurl').value;
+      // var targeturl = document.getElementById('curl').value;
+      // var n = document.getElementById('csrf').name;
+      // var v = document.getElementById('csrf').value;
+
+      // var csrf = [n=>v];
+      //var jsonurl = document.getElementById('jurl').value;
+      
       console.log(targeturl)
+      console.log(n);
+      console.log(v);
 
       // $.ajax({
       //   url:targeturl,
       //   type:"POST",
-      //   data: {
-      //     arr:arr
-      //   },
+      //   data: {arr: arr,
+      //           n:v
+      //         },
 
       //   success:function(data,status){
-      //     console.log("in success")
+      //     console.log(data)
+      //     document.getElementById('abc').innerHTML = data;
       //   }
       // });
 
-      var req = new XMLHttpRequest();
-       xhttp.onreadystatechange = function(){
-        if(this.readyState === 4 && this.status == 200){
-        
-      console.log(req.responseText);
-      var response =  JSON.parse(req.responseText);
-      console.log(response.employee);
 
-      var employees = response.employee;
+
+
+  //     var req = new XMLHttpRequest();
+  //      xhttp.onreadystatechange = function(){
+  //       if(this.readyState === 4 && this.status == 200){
+        
+  //     console.log(req.responseText);
+  //     var response =  JSON.parse(req.responseText);
+  //     console.log(response.employee);
+
+  //     var employees = response.employee;
 
       
-      var showdata = "";
+  //     var showdata = "";
 
-      for(var i = 0 ; i < employees.length ; i++)
-      {
-        showdata += employees[i].age+"<br/>";
-      }
-      document.write(showdata);
-    }
-  };
+  //     for(var i = 0 ; i < employees.length ; i++)
+  //     {
+  //       showdata += employees[i].age+"<br/>";
+  //     }
+  //     document.write(showdata);
+  //   }
+  // };
 
-  req.open("GET",jsonurl,true);
-  req.send();
+  // req.open("GET",jsonurl,true);
+  // req.send();
 
        
   }

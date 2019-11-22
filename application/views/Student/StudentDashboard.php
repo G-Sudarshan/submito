@@ -77,7 +77,7 @@ echo "Your mobile no : ".$studentData->mobile_no."<br/>";
       </div>
 
       <div class="modal-body">
-      <?php echo form_open('Teacher/update_mysubjects'); ?>
+     <?php echo form_open('Student/saveMySubjects'); ?>
 
           <div class="form-group">
           <div class="form-check">
@@ -86,16 +86,20 @@ echo "Your mobile no : ".$studentData->mobile_no."<br/>";
       <tr>
           <?php foreach( $courses->result() as $course ): ?>
 
+
          
     <div class="form-check" align="left">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1"><?php echo $course->course_code." ( ".$course->name." ) "; ?></label>
+       
+     <?php 
+
+       echo "<input type='checkbox' name='check_list[]'' value='$course->course_code'><label class='form-check-label' for='exampleCheck1'>"."&nbsp;&nbsp".$course->course_code.' ( '.$course->name.' ) '."</label>"
+
+         ?>
+
       </div>
 
             </tr>
-          <!--   
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Check me out</label> -->
+        
           
           <?php endforeach; ?></table>
       </div>

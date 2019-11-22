@@ -65,6 +65,76 @@ class Student extends MY_Controller{
     $this->load->view('Student/change_password',['student'=>$userdata]);
 
   }
+
+  public function saveMySubjects()
+  {
+    $arr = $this->input->post('check_list');
+    $id = $this->session->userdata('student_id');
+
+    $data = array(
+      'course_codes' => $arr
+    );
+
+    echo "<pre>";
+    var_dump($arr);
+    echo "<pre>";
+
+        $this->updateUser($data,$id);
+
+       $this->session->set_flashdata('success',"Your subjects saved succcessfully");
+
+        return redirect('Student');
+    
+  }
+
+  // -----------------JSON FUNCTIONS OF STUDENT------------------//
+
+   public function getUsers()
+   {
+    //echo FCPATH;
+    return json_decode(file_get_contents(FCPATH.'assets/j/students.json'), true);
+   }
+
+   public function createUser($data,$userId)
+    {
+      $users = $this->getUsers();
+
+      $data['id'] = $userId;
+
+      $users[] = $data;
+
+      $this->putJson($users);
+
+      return $data; 
+    }
+
+    public function putJson($users)
+    {
+      //base_url('assets/js/bootstrap.min.js');
+      file_put_contents(FCPATH.'assets/j/students.json', json_encode($users,JSON_PRETTY_PRINT));
+
+    }
+
+    function updateUser($data,$id)
+    {
+    $updateUser = [];
+    $users = $this->getUsers();
+    foreach ($users as $i => $user) {
+      if($user['id'] == $id)
+      { 
+        $users[$i] = $updateUser = array_merge($user,$data);
+      }
+    }
+
+    $this->putJson($users);
+    
+    return $updateUser;
+
+    }
+
+
+
+   //-----------------------------------------------------------------//
 }
 
 ?>

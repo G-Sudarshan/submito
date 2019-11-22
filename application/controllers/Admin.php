@@ -277,7 +277,7 @@ class Admin extends MY_Controller{
 
    }
 
-   // -----------------JSON FUNCTIONS OF TEACHER------------------//
+   // -----------------JSON FUNCTIONS OF STUDENT------------------//
 
    public function getUsersS()
    {
