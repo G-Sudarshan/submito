@@ -57,7 +57,11 @@ class Admin_model extends CI_Model{
 
 	public function add_staff($new_staff_name,$new_staff_id,$d_id,$dname,$new_staff_pw,$new_staff_username)
 	{
-		return $this->db->insert('tbl_teachers_db' , ['name' => $new_staff_name , 'staff_id' => $new_staff_id , 'department_id' => $d_id , 'department' => $dname ,'password'=>$new_staff_pw, 'username' => $new_staff_username]);
+		 $this->db->insert('tbl_teachers_db' , ['name' => $new_staff_name , 'staff_id' => $new_staff_id , 'department_id' => $d_id , 'department' => $dname ,'password'=>$new_staff_pw, 'username' => $new_staff_username]);
+
+	   $id = $this->db->select('id')->from('tbl_teachers_db')->where('username',$new_staff_username)->get();
+
+		return $id;
 
 	}
 
@@ -98,7 +102,11 @@ class Admin_model extends CI_Model{
 
 	public function add_student($new_student_rollno,$new_student_password,$dname,$d_id)
 	{
-		return $this->db->insert('tbl_student_db' , ['rollno' => $new_student_rollno , 'password' => $new_student_password , 'department_id' => $d_id , 'department' => $dname]);
+		 $this->db->insert('tbl_student_db' , ['rollno' => $new_student_rollno , 'password' => $new_student_password , 'department_id' => $d_id , 'department' => $dname]);
+
+		 $id = $this->db->select('id')->from('tbl_student_db')->where('rollno',$new_student_rollno)->get();
+
+		return $id;
 
 	}
 

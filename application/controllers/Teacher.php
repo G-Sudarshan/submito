@@ -30,6 +30,14 @@ class Teacher extends MY_Controller{
 
 		$this->load->view('Teacher/change_password',['teacher'=>$userdata]);
 	}
+
+
+	public function saveMySubjects()
+	{
+		$arr = $this->input->post('arr');
+		$id = $this->session->userdata('teacher_id');
+		
+	}
 }
 
 ?>

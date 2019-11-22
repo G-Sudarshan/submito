@@ -77,7 +77,7 @@ echo "your staff id : ".$teacherData->staff_id."<br/>";
 
      <?php 
 
-     echo "<input type='checkbox'  class='form-check-input' id='cc' value='$course->course_code' >
+     echo "<input type='checkbox'  class='form-check-input' id='cc' value='$course->course_code' onclick='addCourseCode(this.value)'>
         <label class='form-check-label' for='exampleCheck1'>".$course->course_code.' ( '.$course->name.' ) '."</label>";
         $i++;
          ?>
@@ -105,6 +105,9 @@ echo "your staff id : ".$teacherData->staff_id."<br/>";
         </div>
       </div>
 
+       <input type="hidden" id="curl" name="curl" value=<?= base_url('Teacher/saveMySubjects'); ?>>
+       <input type="hidden" id="json" name="jurl" value=<?= base_url('j/teacher.json'); ?>>
+
 <!-- -------------------------------------------------------------- -->
 
 
@@ -116,36 +119,68 @@ echo "your staff id : ".$teacherData->staff_id."<br/>";
 
  <script type="text/javascript">
 
-  function saveMySubjects(){
+ 
+  var arr = new Array();
+  var i = 0;
+  function addCourseCode(course_code)
+  {
+    arr[i] = course_code;
+    i++;
+  }
+
+   function saveMySubjects(){
       
-      var c = document.getElementById('cc');
-      for(var i in c)
-      {
-        console.log(c);
-      }
+    
+      console.log(arr);
+      
       // var firstname = $('#firstname').val();
       // var lastname = $('#lastname').val();
       // var email = $('#email').val();
       // var mobile = $('#mobile').val();
 
+      var targeturl = document.getElementById('curl').value;
+      var jsonurl = document.getElementById('jurl').value;
+      console.log(targeturl)
 
       // $.ajax({
-      //   url:"backend1.php",
+      //   url:targeturl,
       //   type:"POST",
       //   data: {
-      //     firstname: firstname,
-      //     lastname: lastname,
-      //     email: email,
-      //     mobile: mobile
+      //     arr:arr
       //   },
 
       //   success:function(data,status){
-      //     readRecords();
+      //     console.log("in success")
       //   }
       // });
 
+      var req = new XMLHttpRequest();
+       xhttp.onreadystatechange = function(){
+        if(this.readyState === 4 && this.status == 200){
+        
+      console.log(req.responseText);
+      var response =  JSON.parse(req.responseText);
+      console.log(response.employee);
+
+      var employees = response.employee;
+
+      
+      var showdata = "";
+
+      for(var i = 0 ; i < employees.length ; i++)
+      {
+        showdata += employees[i].age+"<br/>";
+      }
+      document.write(showdata);
+    }
+  };
+
+  req.open("GET",jsonurl,true);
+  req.send();
+
        
   }
+
 
    
  </script>

@@ -145,6 +145,38 @@ class Admin extends MY_Controller{
      $this->load->view('Admin/site_home',['n_data' => $n_data]);
    }
 
+   // -----------------JSON FUNCTIONS OF TEACHER------------------//
+
+   public function getUsersT()
+   {
+    //echo FCPATH;
+    return json_decode(file_get_contents(FCPATH.'assets/j/teachers.json'), true);
+   }
+
+   public function createUserT($data,$userId)
+    {
+      $users = $this->getUsersT();
+
+      $data['id'] = $userId;
+
+      $users[] = $data;
+
+      $this->putJsonT($users);
+
+      return $data; 
+    }
+
+    public function putJsonT($users)
+    {
+      //base_url('assets/js/bootstrap.min.js');
+      file_put_contents(FCPATH.'assets/j/teachers.json', json_encode($users,JSON_PRETTY_PRINT));
+
+    }
+
+
+
+   //-----------------------------------------------------------------//
+
       public function add_staff()
    {
       $new_staff_name = $this->input->post('new_staff_name');
@@ -155,8 +187,19 @@ class Admin extends MY_Controller{
       $d_id = $this->input->post('d_id');
 
       $this->load->model('Admin_model');
-      $this->Admin_model->add_staff($new_staff_name,$new_staff_id,$d_id,$dname,$new_staff_pw,$new_staff_username);
-      $this->session->set_flashdata('stf_msg','Staff Added Successfully !');
+
+     $sid = $this->Admin_model->add_staff($new_staff_name,$new_staff_id,$d_id,$dname,$new_staff_pw,$new_staff_username);
+
+  
+     $id = $sid->row()->id;
+     
+     $data = [];
+
+     $this->createUserT($data,$id);
+
+     $this->session->set_flashdata('stf_msg','Staff Added Successfully !');
+
+     
 
       return redirect('Admin/mng_dpt');
 
@@ -234,6 +277,38 @@ class Admin extends MY_Controller{
 
    }
 
+   // -----------------JSON FUNCTIONS OF TEACHER------------------//
+
+   public function getUsersS()
+   {
+    //echo FCPATH;
+    return json_decode(file_get_contents(FCPATH.'assets/j/students.json'), true);
+   }
+
+   public function createUserS($data,$userId)
+    {
+      $users = $this->getUsersS();
+
+      $data['id'] = $userId;
+
+      $users[] = $data;
+
+      $this->putJsonS($users);
+
+      return $data; 
+    }
+
+    public function putJsonS($users)
+    {
+      //base_url('assets/js/bootstrap.min.js');
+      file_put_contents(FCPATH.'assets/j/students.json', json_encode($users,JSON_PRETTY_PRINT));
+
+    }
+
+
+
+   //-----------------------------------------------------------------//
+
    public function add_student()
    {
       $new_student_rollno = $this->input->post('new_student_rollno');
@@ -243,10 +318,18 @@ class Admin extends MY_Controller{
       $d_id = $this->input->post('d_id');
 
       $this->load->model('Admin_model');
-      $this->Admin_model->add_student($new_student_rollno,$new_student_password,$dname,$d_id);
-      $this->session->set_flashdata('stf_msg','Student Added Successfully !');
+      $sid = $this->Admin_model->add_student($new_student_rollno,$new_student_password,$dname,$d_id);
+        
+     $id = $sid->row()->id;
+     
+     $data = [];
 
-      return redirect('Admin/mng_dpt');
+     $this->createUserS($data,$id);
+
+
+     $this->session->set_flashdata('stf_msg','Student Added Successfully !');
+
+     return redirect('Admin/mng_dpt');
 
    }
 
