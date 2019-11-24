@@ -10,12 +10,6 @@ class TeacherModel extends CI_Model{
 
 	}
 
-	public function getAssignmentData()
-	{
-		$data = $this->db->select(['id','pdf_path','name','rollno','subject','assignment_no','upload_datetime'])->from('assignments')->get();
-
-		return $data;
-	}
 
 	public function getCourses($course_codes)
 	{
@@ -30,6 +24,19 @@ class TeacherModel extends CI_Model{
 		$this->db->set($userdata);
 		$this->db->where('id',$id);
 		$this->db->update('tbl_teachers_db');
+	}
+
+	public function create_assignment($userdata)
+	{
+		return $this->db->insert('static_assignments' , $userdata );
+	}
+
+	public function getCreatedAssignments($cc)
+	{
+		$data = $this->db->where('course_code',$cc)->get('static_assignments');
+
+		return $data;
+
 	}
 }
 

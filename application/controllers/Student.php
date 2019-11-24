@@ -115,6 +115,58 @@ class Student extends MY_Controller{
       return redirect('Student');
   }
 
+
+
+
+ public function load_upload_assignment()
+ {
+     $cc =  $this->input->post('course_code');
+     $cn = $this->input->post('course_name');
+     $rollno = $this->input->post('rollno');
+     $this->load->model('StudentModel');
+
+     $createdAssignmentData = $this->StudentModel->getCreatedAssignments($cc);
+     
+
+     $this->load->view('Student/upload_assignment',['course_code'=>$cc,'course_name'=>$cn,'rollno'=>$rollno,'cad'=>$createdAssignmentData]);
+
+ }
+
+ public function upload_assignment_text()
+ { 
+    $userdata = array(
+      'course_code' => $this->input->post('course_code'),
+      'rollno' => $this->input->post('rollno'),
+      'student_id' => $this->session->userdata('student_id'),
+      'text' => $this->input->post('a_text'),
+      'assignment_no' => $this->input->post('assignment_no'),
+       );
+
+    $this->load->model('StudentModel');
+    $this->StudentModel->upload_assignment_text($userdata);
+
+    $cc =  $this->input->post('course_code');
+     $cn = $this->input->post('course_name');
+     $rollno = $this->input->post('rollno');
+
+     $createdAssignmentData = $this->StudentModel->getCreatedAssignments($cc);
+
+     $this->session->set_flashdata('success','Your assignment has been submitted successfully!');
+
+       $this->load->view('Student/upload_assignment',['course_code'=>$cc,'course_name'=>$cn,'rollno'=>$rollno,'cad'=>$createdAssignmentData]);
+
+
+
+ }
+
+
+
+
+
+
+
+
+
   // -----------------JSON FUNCTIONS OF STUDENT------------------//
 
    public function getUsers()

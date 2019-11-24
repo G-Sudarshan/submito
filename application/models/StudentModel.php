@@ -29,6 +29,19 @@ class StudentModel extends CI_Model{
 		$this->db->where('id',$id);
 		$this->db->update('tbl_student_db');
 	}
+
+	public function getCreatedAssignments($cc)
+	{
+		$data = $this->db->where('course_code',$cc)->get('static_assignments');
+
+		return $data;
+
+	}
+
+	public function upload_assignment_text($userdata)
+	{
+		return $this->db->insert('assignments' , $userdata );
+	}
 }
 
 ?>

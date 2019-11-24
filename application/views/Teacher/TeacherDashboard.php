@@ -28,7 +28,7 @@
 		echo '<div class="alert alert-dismissible alert-success">' . $success . '</div>';
 	 endif; ?>
     
-<h1> Teacher Dashboard </h1>
+<h1> Teacher Dashboard </h1> 
 <?php 
 
 echo "Welcome : ".$teacherData->name."<br/>";
@@ -55,7 +55,10 @@ echo "your staff id : ".$teacherData->staff_id."<br/>";
       <th>Sr no.</th>
       <th>Course Code</th>
       <th>Name</th>
-      <th>Actions</th>
+      <th>Create</th>
+      <th>  Check  </th>
+      <th>Upload</th>
+      <th>Share</th>
       
     </thead>
     <tbody>
@@ -67,10 +70,30 @@ echo "your staff id : ".$teacherData->staff_id."<br/>";
         <td><?= $selectedCourse->course_code; ?></td>
         <td><?= $selectedCourse->name; ?></td>
         <td>
-          <button class="btn btn-info btn-sm">Create assignements</button>
-          <button class="btn btn-success btn-sm">check assignements</button>
-          <button class="btn btn-warning btn-sm">Upload front pages</button>
-        </td>
+       
+
+          <?php
+          echo form_open('Teacher/load_create_assignment');
+
+          $data = array(
+                   'course_code'  => $selectedCourse->course_code,
+                   'course_name' => $selectedCourse->name,
+                   'teacher_name' => $teacherData->name
+                    );
+            echo form_hidden($data);
+
+           echo form_submit('submit', 'Create assignements',"class='btn btn-primary btn-sm '");
+
+
+            echo form_close();
+
+          ?></td>
+
+                    
+          <td><button class="btn btn-success btn-sm ">check assignments</button></td>
+          <td><button class="btn btn-info btn-sm ">Upload front pages</button></td>
+          <td><button class="btn btn-warning btn-sm ">Share study material</button></td> 
+        
       
       </tr>
 
@@ -150,13 +173,11 @@ echo "your staff id : ".$teacherData->staff_id."<br/>";
 
 </div>
 
-       <input type="hidden" id="curl" name="curl" value=<?= base_url('Teacher/saveMySubjects'); ?>>
-
-       
+            
       
-<!-- -------------------------------------------------------------- -->
+<!-- --------------------------------------------------------------------------------- -->
 
-<!--------------------------------- updata model ------------------------------->
+<!--------------------------------- updata model -------------------------------------------->
 
     <div class="modal" id="myUpdateModal">
       <div class="modal-dialog">

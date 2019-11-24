@@ -70,7 +70,9 @@ echo "Your mobile no : ".$studentData->mobile_no."<br/>";
       <th>Sr no.</th>
       <th>Course Code</th>
       <th>Name</th>
-      <th>Actions</th>
+      <th>Upload</th>
+      <th>Downoad</th>
+      <th>DOwnload</th>
       
     </thead>
     <tbody>
@@ -82,9 +84,29 @@ echo "Your mobile no : ".$studentData->mobile_no."<br/>";
         <td><?= $selectedCourse->course_code; ?></td>
         <td><?= $selectedCourse->name; ?></td>
         <td>
-          <button class="btn btn-info btn-sm">Upload assignements</button>
+          <?php
+          echo form_open('Student/load_upload_assignment');
+
+          $data = array(
+                    'course_code'  => $selectedCourse->course_code,
+                   'course_name' => $selectedCourse->name,
+                   'rollno' => $studentData->rollno
+                        );
+            echo form_hidden($data);
+
+           echo form_submit('submit', 'Upload assignements',"class='btn btn-primary btn-sm '");
+
+
+            echo form_close();
+
+          ?>
+          </td>
+          <td>
           <button class="btn btn-success btn-sm" disabled>Download all assignements</button>
-          
+           </td>
+           <td>
+            <button class="btn btn-secondary btn-sm">See shared Study material</button>
+            </td>
         </td>
       
       </tr>

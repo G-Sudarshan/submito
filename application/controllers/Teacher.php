@@ -9,7 +9,7 @@ class Teacher extends MY_Controller{
 		$this->load->model('TeacherModel');
 
 		$teacherData = $this->TeacherModel->getTeacherData($teacher_id);
-		$a_data = $this->TeacherModel->getAssignmentData();
+		
 
 		$this->load->model('Admin_model');
    	    $crs_names = $this->Admin_model->get_crs_names();  
@@ -29,7 +29,7 @@ class Teacher extends MY_Controller{
 		// }
 //--------------------------------------------------------------------------//		
 
-		$this->load->view('Teacher/TeacherDashboard',['teacherData'=>$teacherData,'a_data'=>$a_data,'selectedcourses'=>$selectedcourseData,'courses'=>$crs_names,'scc'=>$course_codes]);
+		$this->load->view('Teacher/TeacherDashboard',['teacherData'=>$teacherData,'selectedcourses'=>$selectedcourseData,'courses'=>$crs_names,'scc'=>$course_codes]);
 	}
 
 	public function load_change_password_teacher()
@@ -90,6 +90,64 @@ class Teacher extends MY_Controller{
 
       return redirect('Teacher');
   }
+
+
+   public function load_create_assignment()
+   {
+   	 $cc =  $this->input->post('course_code');
+   	 $cn = $this->input->post('course_name');
+   	 $teacher_name = $this->input->post('teacher_name');
+
+   	 $this->load->model('TeacherModel');
+
+   	 $createdAssignmentData = $this->TeacherModel->getCreatedAssignments($cc);
+   	 
+
+   	 $this->load->view('Teacher/create_assignment',['course_code'=>$cc,'course_name'=>$cn,'teacher_name'=>$teacher_name,'cad'=>$createdAssignmentData]);
+   }
+
+
+   public function create_assignment()
+   {
+   	 $userdata = array(
+      'assignment_no' => $this->input->post('a_no'),
+      'course_code' => $this->input->post('course_code'),
+      'name' => $this->input->post('a_title'),
+      'description' => $this->input->post('a_description'),
+      'deadline' => $this->input->post('a_deadline'),
+      'type' => $this->input->post('a_type'),
+      'created_by' => $this->input->post('t_name'),
+
+
+       );
+
+   	 $cc =  $this->input->post('course_code');
+   	 $cn = $this->input->post('course_name');
+   	 $teacher_name = $this->input->post('t_name');
+
+   	 $this->load->model('TeacherModel');
+   	 $this->TeacherModel->create_assignment($userdata);
+   	 $createdAssignmentData = $this->TeacherModel->getCreatedAssignments($cc);
+
+   	 $this->session->set_flashdata('success','New assignment has been created successfully!');
+
+   	 $this->load->view('Teacher/create_assignment',['course_code'=>$cc,'course_name'=>$cn,'teacher_name'=>$teacher_name,'cad'=>$createdAssignmentData]);
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	// -----------------JSON FUNCTIONS OF TEACHER------------------//
 
