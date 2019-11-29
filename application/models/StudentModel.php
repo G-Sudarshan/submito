@@ -42,6 +42,29 @@ class StudentModel extends CI_Model{
 	{
 		return $this->db->insert('assignments' , $userdata );
 	}
+
+	public function upload_assignment_pdf($userdata)
+	{
+		return $this->db->insert('assignments' , $userdata );
+	}
+
+	public function getUploadedAssignments($id,$cc)
+	{
+		$array = array('student_id' => $id, 'course_code' => $cc);
+        //$this->db->where($array);
+		$data = $this->db->where($array)->get('assignments');
+
+		return $data;
+	}
+
+	public function update_assignment_text($userdata,$cc,$id,$an)
+	{
+	    $array = array('student_id' => $id, 'course_code' => $cc, 'assignment_no' => $an);
+
+		$this->db->set($userdata);
+		$this->db->where($array);
+		$this->db->update('assignments');
+	}
 }
 
 ?>

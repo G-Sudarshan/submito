@@ -11,6 +11,7 @@
 
 </head>
 <body>
+  
 	<div class="container" align="right">
 		
 		<a class="btn btn-outline-danger" href=<?= base_url('Login/logout'); ?>  >Log out</a>
@@ -72,7 +73,7 @@ echo "Your mobile no : ".$studentData->mobile_no."<br/>";
       <th>Name</th>
       <th>Upload</th>
       <th>Downoad</th>
-      <th>DOwnload</th>
+      <th>Download</th>
       
     </thead>
     <tbody>

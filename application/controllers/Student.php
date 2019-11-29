@@ -123,12 +123,14 @@ class Student extends MY_Controller{
      $cc =  $this->input->post('course_code');
      $cn = $this->input->post('course_name');
      $rollno = $this->input->post('rollno');
+     $id = $this->session->userdata('student_id');
      $this->load->model('StudentModel');
 
      $createdAssignmentData = $this->StudentModel->getCreatedAssignments($cc);
+     $uploadedAssignmentData = $this->StudentModel->getUploadedAssignments($id,$cc);
      
 
-     $this->load->view('Student/upload_assignment',['course_code'=>$cc,'course_name'=>$cn,'rollno'=>$rollno,'cad'=>$createdAssignmentData]);
+     $this->load->view('Student/upload_assignment',['course_code'=>$cc,'course_name'=>$cn,'rollno'=>$rollno,'cad'=>$createdAssignmentData,'uad'=>$uploadedAssignmentData]);
 
  }
 
@@ -148,20 +150,160 @@ class Student extends MY_Controller{
     $cc =  $this->input->post('course_code');
      $cn = $this->input->post('course_name');
      $rollno = $this->input->post('rollno');
+     $id = $this->session->userdata('student_id');
 
      $createdAssignmentData = $this->StudentModel->getCreatedAssignments($cc);
+      $uploadedAssignmentData = $this->StudentModel->getUploadedAssignments($id,$cc);
+     
 
      $this->session->set_flashdata('success','Your assignment has been submitted successfully!');
 
-       $this->load->view('Student/upload_assignment',['course_code'=>$cc,'course_name'=>$cn,'rollno'=>$rollno,'cad'=>$createdAssignmentData]);
+       $this->load->view('Student/upload_assignment',['course_code'=>$cc,'course_name'=>$cn,'rollno'=>$rollno,'cad'=>$createdAssignmentData,'uad'=>$uploadedAssignmentData]);
 
 
 
  }
 
+ public function update_assignment_text()
+ { 
+  $userdata = array(
+      'course_code' => $this->input->post('course_code'),
+      'rollno' => $this->input->post('rollno'),
+      'student_id' => $this->session->userdata('student_id'),
+      'text' => $this->input->post('updated_a_text'),
+      'assignment_no' => $this->input->post('assignment_no'),
+       );
+
+       $cc =  $this->input->post('course_code');
+       $cn = $this->input->post('course_name');
+       $rollno = $this->input->post('rollno');
+       $id = $this->session->userdata('student_id');
+       $an = $this->input->post('assignment_no');
+
+      $this->load->model('StudentModel');
+      $this->StudentModel->update_assignment_text($userdata,$cc,$id,$an);
+
+      $cc =  $this->input->post('course_code');
+      $cn = $this->input->post('course_name');
+      $rollno = $this->input->post('rollno');
+      $id = $this->session->userdata('student_id');
+
+     $createdAssignmentData = $this->StudentModel->getCreatedAssignments($cc);
+      $uploadedAssignmentData = $this->StudentModel->getUploadedAssignments($id,$cc);
+
+     $this->session->set_flashdata('success','Your assignment has been Updated successfully!');
+
+       $this->load->view('Student/upload_assignment',['course_code'=>$cc,'course_name'=>$cn,'rollno'=>$rollno,'cad'=>$createdAssignmentData,'uad'=>$uploadedAssignmentData]);
+
+ }
+
+ public function upload_assignment_pdf()
+ {
+  $userdata = array(
+      'course_code' => $this->input->post('course_code'),
+      'rollno' => $this->input->post('rollno'),
+      'student_id' => $this->session->userdata('student_id'),
+      'assignment_no' => $this->input->post('assignment_no'),
+       );
+
+    $rollno = $this->input->post('rollno');
+    $course_code = $this->input->post('course_code');
+    $assignment_no = $this->input->post('assignment_no');
+
+    $config = [
+        'upload_path' => './assets/a',
+        'allowed_types' => 'pdf', 
+        'file_name' => $rollno."_".$course_code."_".$assignment_no.".pdf",
+        'max_size' => 2048
+            ];
+         
+         $this->load->library('upload', $config);
+    
+        if($this->upload->do_upload('userfile'))
+           {
+              $data = $this->upload->data();
+      
+
+               $pdf_path = base_url("assets/a/".$data['raw_name'].$data['file_ext']);
+               $userdata['pdf_path'] = $pdf_path;
+
+                 $this->load->model('StudentModel');
+                 $this->StudentModel->upload_assignment_pdf($userdata);
+          
+               $cc =  $this->input->post('course_code');
+               $cn = $this->input->post('course_name');
+               $rollno = $this->input->post('rollno');
+               $id = $this->session->userdata('student_id');
+
+               $createdAssignmentData = $this->StudentModel->getCreatedAssignments($cc);
+                $uploadedAssignmentData = $this->StudentModel->getUploadedAssignments($id,$cc);
+     
+
+               $this->session->set_flashdata('success','Your assignment has been submitted successfully!');
+
+                return $this->load->view('Student/upload_assignment',['course_code'=>$cc,'course_name'=>$cn,'rollno'=>$rollno,'cad'=>$createdAssignmentData,'uad'=>$uploadedAssignmentData]);
+           }
+           else
+           {
+             echo "Upload was failed try again file size should be less than 2MB ";
+           }
 
 
+  }
 
+ public function update_assignment_pdf()
+ {
+      $userdata = array(
+      'course_code' => $this->input->post('course_code'),
+      'rollno' => $this->input->post('rollno'),
+      'student_id' => $this->session->userdata('student_id'),
+      'assignment_no' => $this->input->post('assignment_no'),
+       );
+
+      $rollno = $this->input->post('rollno');
+      $course_code = $this->input->post('course_code');
+      $assignment_no = $this->input->post('assignment_no');
+
+    $config = [
+        'upload_path' => './assets/a',
+        'allowed_types' => 'pdf', 
+        'file_name' => $rollno."_".$course_code."_".$assignment_no.".pdf",
+        'max_size' => 2048,
+        'overwrite' => TRUE
+            ];
+         
+         $this->load->library('upload', $config);
+    
+        if($this->upload->do_upload('userfile'))
+           {
+              $data = $this->upload->data();
+      
+
+               // $pdf_path = base_url("assets/a/".$data['raw_name'].$data['file_ext']);
+               // $userdata['pdf_path'] = $pdf_path;
+
+                  $this->load->model('StudentModel');
+               //   $this->StudentModel->upload_assignment_pdf($userdata);
+          
+               $cc =  $this->input->post('course_code');
+               $cn = $this->input->post('course_name');
+               $rollno = $this->input->post('rollno');
+               $id = $this->session->userdata('student_id');
+
+               $createdAssignmentData = $this->StudentModel->getCreatedAssignments($cc);
+                $uploadedAssignmentData = $this->StudentModel->getUploadedAssignments($id,$cc);
+     
+
+               $this->session->set_flashdata('success','Your assignment has been submitted successfully!');
+
+                 $this->load->view('Student/upload_assignment',['course_code'=>$cc,'course_name'=>$cn,'rollno'=>$rollno,'cad'=>$createdAssignmentData,'uad'=>$uploadedAssignmentData]);
+           }
+           else
+           {
+             echo "Upload was failed try again file size should be less than 2MB ";
+           }
+
+ }
 
 
 
