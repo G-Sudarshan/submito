@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 24, 2019 at 05:33 AM
+-- Generation Time: Nov 30, 2019 at 07:54 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.1.33
 
@@ -42,6 +42,22 @@ CREATE TABLE `assignments` (
   `text` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `assignments`
+--
+
+INSERT INTO `assignments` (`id`, `pdf_path`, `course_code`, `rollno`, `assignment_no`, `upload_datetime`, `marks`, `checked`, `checked_by`, `student_id`, `text`) VALUES
+(2, '', 'CM6238', 176101, 1, '2019-11-24 06:53:30', 0, 0, '', 1, 'printf(Hello Worlds)'),
+(10, '', 'CM6234', 176101, 3, '2019-11-25 15:25:11', 0, 0, '', 1, 'dfgdfgfdg dfgdfgdfg'),
+(13, '', 'CM6238', 176103, 1, '2019-11-26 10:43:14', 0, 0, '', 2, 'this is first assignment of C'),
+(14, '', 'CM6238', 176103, 2, '2019-11-26 10:45:31', 0, 0, '', 2, 'This is second assignment of operator overloading jgd_/\\_\r\n'),
+(15, '', 'CM6234', 176103, 3, '2019-11-26 11:40:48', 0, 0, '', 2, 'class Sudarshan{\r\nvoid print()\r\n{\r\nSystem.out.println(\" asdfghjkl \");\r\n}\r\npublic static void main(String [ ]args){\r\n\r\nSudarshan s1=new Sudarshan();\r\ns1.print();\r\n}\r\n}'),
+(16, '', 'CM6238', 176101, 3, '2019-11-27 09:47:20', 0, 0, '', 1, '\\alpha = \\sqrt{ \\pi^2 }'),
+(19, '', 'CM6238', 176103, 3, '2019-11-27 12:40:55', 0, 0, '', 2, 'lkjlkjl'),
+(20, '', 'CM6235', 176103, 1, '2019-11-27 12:41:26', 0, 0, '', 2, 'dsfsdfsd'),
+(29, 'assets/a/176103_CM6234_1_1.pdf', 'CM6234', 176103, 1, '2019-11-29 10:10:07', 0, 0, '', 2, ''),
+(30, 'assets/a/176103_CM6234_2_1.pdf', 'CM6234', 176103, 2, '2019-11-30 06:53:00', 0, 0, '', 2, '');
+
 -- --------------------------------------------------------
 
 --
@@ -77,7 +93,7 @@ INSERT INTO `events` (`id`, `title`, `start_date`, `end_date`) VALUES
 
 CREATE TABLE `notification` (
   `id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
+  `title` varchar(50) NOT NULL,
   `pdf_path` text NOT NULL,
   `created_at` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -90,7 +106,8 @@ INSERT INTO `notification` (`id`, `title`, `pdf_path`, `created_at`) VALUES
 (1, 'first notification', 'http://localhost/cms/uploads/paymenthistoryredirecturl_PRAFULLA.pdf', ''),
 (2, 'Second notofication', 'http://localhost/cms/uploads/hi.pdf', ''),
 (3, 'CI library', 'http://localhost/cms/uploads/File_Uploading_Class_—_CodeIgniter_3_1_10_documentation.pdf', ''),
-(4, 'asdf', 'http://localhost/cms/uploads/atlassian-git-cheatsheet1.pdf', '');
+(4, 'asdf', 'http://localhost/cms/uploads/atlassian-git-cheatsheet1.pdf', ''),
+(5, 'abc', 'http://localhost/cms/uploads/sample.pdf', NULL);
 
 -- --------------------------------------------------------
 
@@ -124,7 +141,8 @@ INSERT INTO `static_assignments` (`id`, `assignment_no`, `course_code`, `name`, 
 (9, 1, 'CM6235', 'stack', 'Sanap Sir', '2019-11-25', 'erhgaethbe', 2),
 (10, 2, 'CM6235', 'queue', 'Sanap Sir', '2019-11-28', 'dgbfeahgrtgh', 1),
 (11, 3, 'CM6234', 'registers', 'Sanap Sir', '3533-05-31', '.lmd.mf.,sdmf.', 2),
-(12, 2, 'CM6238', 'write program for operator overloading in cpp', 'Mali Sir', '2019-11-27', 'mflkjmsl.mf.lsdmflmlsfm;lsdm', 2);
+(12, 2, 'CM6238', 'write program for operator overloading in cpp', 'Mali Sir', '2019-11-27', 'mflkjmsl.mf.lsdmflmlsfm;lsdm', 2),
+(13, 3, 'CM6238', 'abc', 'Mali Sir', '0000-00-00', '1/πr2', 2);
 
 -- --------------------------------------------------------
 
@@ -208,8 +226,8 @@ INSERT INTO `tbl_departments` (`id`, `dpt_id`, `dpt_name`) VALUES
 
 CREATE TABLE `tbl_info` (
   `id` int(11) NOT NULL COMMENT '1',
-  `title` text NOT NULL,
-  `value` text NOT NULL
+  `title` varchar(100) NOT NULL,
+  `value` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -228,7 +246,7 @@ INSERT INTO `tbl_info` (`id`, `title`, `value`) VALUES
 CREATE TABLE `tbl_student_db` (
   `id` int(11) NOT NULL COMMENT '1',
   `rollno` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `department` varchar(50) NOT NULL,
   `department_id` int(11) NOT NULL,
   `mobile_no` bigint(20) NOT NULL,
@@ -254,12 +272,12 @@ INSERT INTO `tbl_student_db` (`id`, `rollno`, `name`, `department`, `department_
 CREATE TABLE `tbl_teachers_db` (
   `id` int(11) NOT NULL COMMENT '1',
   `staff_id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `department` varchar(50) NOT NULL,
   `department_id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` binary(32) NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `mobile_no` bigint(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -352,7 +370,7 @@ ALTER TABLE `tbl_teachers_db`
 -- AUTO_INCREMENT for table `assignments`
 --
 ALTER TABLE `assignments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `events`
@@ -364,13 +382,13 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `static_assignments`
 --
 ALTER TABLE `static_assignments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tbl_admin_login`

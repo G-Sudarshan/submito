@@ -174,7 +174,7 @@
                 $pdf_path = $ua[$key]['p'];
                 //$submitted_text = trim($submitted_text);
 
-                $strV = "<input type='hidden' id='idpv".$a->assignment_no."' value='".$pdf_path."'>";
+                $strV = "<input type='hidden' id='idpv".$a->assignment_no."' value='".base_url($pdf_path)."'>";
                 echo $strV."<button class='btn btn-primary' onclick='viewPDF(".$a->assignment_no.",document.getElementById(\"idpv".$a->assignment_no."\").value)'".(in_array($a->assignment_no, $submitted_assignments_no) ? '' : 'disabled').">View PDF</button>";
 
                } ?>
@@ -448,7 +448,7 @@
           <label for="userfile" class="col-lg-4 control-label">Select PDF of assignment to Upload : </label>
           <div>
             <input type="hidden" name="assignment_no" id="update_pdf_assignment_no" value="">
-            <?php echo form_upload(['name'=>'userfile','class'=>'form-control']); ?>
+            <?php echo form_upload(['name'=>'updateuserfile','class'=>'form-control']); ?>
           </div>
         </div>
       
@@ -500,10 +500,10 @@
       <div class="container">
 
   <center>
-
-    <object id="viewmyassgnmentpdf" data="" type="application/pdf" width="80%" height="1000px">
-
-        </object>
+    <div id = "viewmyassgnmentpdf">
+      
+    </div>
+    
 
   </center>
 
@@ -599,14 +599,15 @@
     //alert(submitted_text);
    console.log(a_no);
    console.log(submitted_text);
-
+   //alert(submitted_text);
+   var str = '<object data="'+submitted_text+'" type="application/pdf" width="80%" height="1000px"></object>';
 
    
 
    
    //document.getElementById('update_text_assignment_no').value = an; 
-   document.getElementById('viewmyassgnmentpdf').data = submitted_text;
-
+   document.getElementById('viewmyassgnmentpdf').innerHTML = str;
+   // document.getElementById('viewmyassgnmentpdf').reload();
    $('#viewAssignmentPDFModal').modal("show");
   }
 </script>

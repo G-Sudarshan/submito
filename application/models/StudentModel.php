@@ -65,6 +65,20 @@ class StudentModel extends CI_Model{
 		$this->db->where($array);
 		$this->db->update('assignments');
 	}
+
+	public function get_path($userdata)
+	{
+		$data = $this->db->select('pdf_path')->from('assignments')->where($userdata)->get();
+
+		return $data;
+	}
+
+	public function update_pdf_path($userdata,$updated_path)
+	{
+		$this->db->set('pdf_path',$updated_path);
+		$this->db->where($userdata);
+		$this->db->update('assignments');
+	}
 }
 
 ?>

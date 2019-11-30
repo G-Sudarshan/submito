@@ -213,7 +213,7 @@ class Student extends MY_Controller{
     $config = [
         'upload_path' => './assets/a',
         'allowed_types' => 'pdf', 
-        'file_name' => $rollno."_".$course_code."_".$assignment_no.".pdf",
+        'file_name' => $rollno."_".$course_code."_".$assignment_no."_".".pdf",
         'max_size' => 2048
             ];
          
@@ -224,7 +224,7 @@ class Student extends MY_Controller{
               $data = $this->upload->data();
       
 
-               $pdf_path = base_url("assets/a/".$data['raw_name'].$data['file_ext']);
+               $pdf_path = "assets/a/".$data['raw_name'].$data['file_ext'];
                $userdata['pdf_path'] = $pdf_path;
 
                  $this->load->model('StudentModel');
@@ -253,6 +253,8 @@ class Student extends MY_Controller{
 
  public function update_assignment_pdf()
  {
+
+
       $userdata = array(
       'course_code' => $this->input->post('course_code'),
       'rollno' => $this->input->post('rollno'),
@@ -260,30 +262,38 @@ class Student extends MY_Controller{
       'assignment_no' => $this->input->post('assignment_no'),
        );
 
-      $rollno = $this->input->post('rollno');
-      $course_code = $this->input->post('course_code');
-      $assignment_no = $this->input->post('assignment_no');
+    $rollno = $this->input->post('rollno');
+    $course_code = $this->input->post('course_code');
+    $assignment_no = $this->input->post('assignment_no');
 
     $config = [
         'upload_path' => './assets/a',
         'allowed_types' => 'pdf', 
-        'file_name' => $rollno."_".$course_code."_".$assignment_no.".pdf",
-        'max_size' => 2048,
-        'overwrite' => TRUE
+        'file_name' => $rollno."_".$course_code."_".$assignment_no."_".".pdf",
+        'max_size' => 2048
             ];
          
          $this->load->library('upload', $config);
     
-        if($this->upload->do_upload('userfile'))
+        if($this->upload->do_upload('updateuserfile'))
            {
               $data = $this->upload->data();
+
+                $this->load->model('StudentModel');
+                $path = $this->StudentModel->get_path($userdata);
+                $final_path = $path->row()->pdf_path;
+                $this->load->helper('file');
+                //echo FCPATH."/".$final_path;
+               unlink(FCPATH."/".$final_path);
       
 
-               // $pdf_path = base_url("assets/a/".$data['raw_name'].$data['file_ext']);
-               // $userdata['pdf_path'] = $pdf_path;
+               $pdf_path = "assets/a/".$data['raw_name'].$data['file_ext'];
+              // $userdata['pdf_path'] = $pdf_path;
 
-                  $this->load->model('StudentModel');
-               //   $this->StudentModel->upload_assignment_pdf($userdata);
+             
+                // $this->StudentModel->upload_assignment_pdf($userdata);
+
+                 $this->StudentModel->update_pdf_path($userdata,$pdf_path);
           
                $cc =  $this->input->post('course_code');
                $cn = $this->input->post('course_name');
@@ -294,14 +304,101 @@ class Student extends MY_Controller{
                 $uploadedAssignmentData = $this->StudentModel->getUploadedAssignments($id,$cc);
      
 
-               $this->session->set_flashdata('success','Your assignment has been submitted successfully!');
+               $this->session->set_flashdata('success','Your assignment has been updated successfully!');
 
-                 $this->load->view('Student/upload_assignment',['course_code'=>$cc,'course_name'=>$cn,'rollno'=>$rollno,'cad'=>$createdAssignmentData,'uad'=>$uploadedAssignmentData]);
+               return $this->load->view('Student/upload_assignment',['course_code'=>$cc,'course_name'=>$cn,'rollno'=>$rollno,'cad'=>$createdAssignmentData,'uad'=>$uploadedAssignmentData]);
            }
            else
            {
              echo "Upload was failed try again file size should be less than 2MB ";
            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //   $userdata = array(
+    //   'course_code' => $this->input->post('course_code'),
+    //   'rollno' => $this->input->post('rollno'),
+    //   'student_id' => $this->session->userdata('student_id'),
+    //   'assignment_no' => $this->input->post('assignment_no'),
+    //    );
+
+    //   $rollno = $this->input->post('rollno');
+    //   $course_code = $this->input->post('course_code');
+    //   $assignment_no = $this->input->post('assignment_no');
+
+    // $config = [
+    //     'upload_path' => './assets/a',
+    //     'allowed_types' => 'pdf', 
+    //     'file_name' => $rollno."_".$course_code."_".$assignment_no."_".".pdf",
+    //     'max_size' => 2048
+    //         ];
+         
+    //      $this->load->library('upload', $config);
+    
+    //     if($this->upload->do_upload('updateuserfile'))
+    //        {
+    //         // echo $v;
+    //           $data = $this->upload->data();
+      
+
+    //            $updated_path = "assets/a/".$data['raw_name'].$data['file_ext'];
+    //            // $userdata['pdf_path'] = $pdf_path;
+
+    //             $this->load->model('StudentModel');
+    //            //   $this->StudentModel->upload_assignment_pdf($userdata);
+    //             $path = $this->StudentModel->get_path($userdata);
+
+    //             $final_path = $path->row()->pdf_path;
+
+
+    //             // $this->load->helper('file');
+    //             // unlink(FCPATH."/".$final_path);
+
+    //             $this->StudentModel->update_pdf_path($userdata,$updated_path);
+          
+    //            $cc =  $this->input->post('course_code');
+    //            $cn = $this->input->post('course_name');
+    //            $rollno = $this->input->post('rollno');
+    //            $id = $this->session->userdata('student_id');
+
+    //            $createdAssignmentData = $this->StudentModel->getCreatedAssignments($cc);
+    //             $uploadedAssignmentData = $this->StudentModel->getUploadedAssignments($id,$cc);
+     
+    //             // echo "<pre>";
+    //             // echo var_dump($uploadedAssignmentData->result());
+    //             // echo "</pre>";
+
+    //             $path = $this->StudentModel->get_path($userdata);
+
+    //             $final_path = $path->row()->pdf_path;
+
+    //             unlink($final_path);
+     
+    //  $this->session->set_flashdata('success','Your assignment has been Updated successfully!');
+
+    // $this->load->view('Student/upload_assignment',['course_code'=>$cc,'course_name'=>$cn,'rollno'=>$rollno,'cad'=>$createdAssignmentData,'uad'=>$uploadedAssignmentData]);
+    //        }
+    //        else
+    //        {
+    //          echo "Upload was failed try again file size should be less than 2MB ";
+    //        }
 
  }
 
