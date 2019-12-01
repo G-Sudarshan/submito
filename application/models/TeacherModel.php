@@ -38,6 +38,47 @@ class TeacherModel extends CI_Model{
 		return $data;
 
 	}
+	public function get_submitted_assignment($cc,$assignment_no)
+	{
+		$array = array('course_code' => $cc, 'assignment_no' => $assignment_no);
+
+		//$this->db->from($this->assignments);
+		$this->db->where($array);
+		$this->db->order_by("rollno", "asc");
+		$data = $this->db->get('assignments');
+
+		return $data;
+
+		// $this->db->from($this->table_name);
+		// $this->db->order_by("name", "asc");
+		// $query = $this->db->get(); 
+		// return $query->result()
+
+	}
+
+	public function set_marks($cc,$assignment_no,$rollno,$teacher_id,$marks)
+	{
+		$w_array = array('course_code'=>$cc,'rollno'=>$rollno,'assignment_no'=>$assignment_no);
+		$s_array = array('marks'=>$marks,'checked_by'=>$teacher_id,'checked'=>1,'checked_on'=>date('Y-m-d H:i:s'));
+		$this->db->set($s_array);
+		$this->db->where($w_array);
+		$this->db->update('assignments');
+	}
+
+	public function edit_assignment($assignment_no,$cc,$name,$description,$created_by)
+	{
+		$w_array = array('course_code'=>$cc,'assignment_no'=>$assignment_no);
+		$s_array = array('name'=>$name,'description'=>$description,'created_by'=>$created_by);
+		$this->db->set($s_array);
+		$this->db->where($w_array);
+		$this->db->update('static_assignments');
+
+	}
+
+	public function delete_static_assignment($id)
+	{
+		return $this->db->delete('static_assignments',['id' => $id]);
+	}
 }
 
 ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 30, 2019 at 07:54 AM
+-- Generation Time: Dec 01, 2019 at 10:02 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.1.33
 
@@ -38,6 +38,7 @@ CREATE TABLE `assignments` (
   `marks` int(11) NOT NULL,
   `checked` int(11) NOT NULL,
   `checked_by` varchar(50) NOT NULL,
+  `checked_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `student_id` int(11) NOT NULL,
   `text` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -46,17 +47,21 @@ CREATE TABLE `assignments` (
 -- Dumping data for table `assignments`
 --
 
-INSERT INTO `assignments` (`id`, `pdf_path`, `course_code`, `rollno`, `assignment_no`, `upload_datetime`, `marks`, `checked`, `checked_by`, `student_id`, `text`) VALUES
-(2, '', 'CM6238', 176101, 1, '2019-11-24 06:53:30', 0, 0, '', 1, 'printf(Hello Worlds)'),
-(10, '', 'CM6234', 176101, 3, '2019-11-25 15:25:11', 0, 0, '', 1, 'dfgdfgfdg dfgdfgdfg'),
-(13, '', 'CM6238', 176103, 1, '2019-11-26 10:43:14', 0, 0, '', 2, 'this is first assignment of C'),
-(14, '', 'CM6238', 176103, 2, '2019-11-26 10:45:31', 0, 0, '', 2, 'This is second assignment of operator overloading jgd_/\\_\r\n'),
-(15, '', 'CM6234', 176103, 3, '2019-11-26 11:40:48', 0, 0, '', 2, 'class Sudarshan{\r\nvoid print()\r\n{\r\nSystem.out.println(\" asdfghjkl \");\r\n}\r\npublic static void main(String [ ]args){\r\n\r\nSudarshan s1=new Sudarshan();\r\ns1.print();\r\n}\r\n}'),
-(16, '', 'CM6238', 176101, 3, '2019-11-27 09:47:20', 0, 0, '', 1, '\\alpha = \\sqrt{ \\pi^2 }'),
-(19, '', 'CM6238', 176103, 3, '2019-11-27 12:40:55', 0, 0, '', 2, 'lkjlkjl'),
-(20, '', 'CM6235', 176103, 1, '2019-11-27 12:41:26', 0, 0, '', 2, 'dsfsdfsd'),
-(29, 'assets/a/176103_CM6234_1_1.pdf', 'CM6234', 176103, 1, '2019-11-29 10:10:07', 0, 0, '', 2, ''),
-(30, 'assets/a/176103_CM6234_2_1.pdf', 'CM6234', 176103, 2, '2019-11-30 06:53:00', 0, 0, '', 2, '');
+INSERT INTO `assignments` (`id`, `pdf_path`, `course_code`, `rollno`, `assignment_no`, `upload_datetime`, `marks`, `checked`, `checked_by`, `checked_on`, `student_id`, `text`) VALUES
+(2, '', 'CM6238', 176101, 1, '2019-11-24 06:53:30', 18, 1, '2', '2019-12-01 02:04:33', 1, 'printf(Hello Worlds)'),
+(10, '', 'CM6234', 176101, 3, '2019-11-25 15:25:11', 18, 1, '2', '2019-12-01 02:09:19', 1, 'dfgdfgfdg dfgdfgdfg'),
+(13, '', 'CM6238', 176103, 1, '2019-11-26 10:43:14', 0, 0, '', '0000-00-00 00:00:00', 2, 'this is first assignment of C'),
+(14, '', 'CM6238', 176103, 2, '2019-11-26 10:45:31', 0, 0, '', '0000-00-00 00:00:00', 2, 'This is second assignment of operator overloading jgd_/\\_\r\n'),
+(15, '', 'CM6234', 176103, 3, '2019-11-26 11:40:48', 20, 1, '2', '2019-12-01 02:09:12', 2, 'class Sudarshan{\r\nvoid print()\r\n{\r\nSystem.out.println(\" asdfghjkl \");\r\n}\r\npublic static void main(String [ ]args){\r\n\r\nSudarshan s1=new Sudarshan();\r\ns1.print();\r\n}\r\n}'),
+(16, '', 'CM6238', 176101, 3, '2019-11-27 09:47:20', 15, 1, '1', '2019-12-01 02:35:07', 1, '\\alpha = \\sqrt{ \\pi^2 }'),
+(19, '', 'CM6238', 176103, 3, '2019-11-27 12:40:55', 0, 0, '', '0000-00-00 00:00:00', 2, 'lkjlkjl'),
+(20, '', 'CM6235', 176103, 1, '2019-11-27 12:41:26', 0, 0, '', '0000-00-00 00:00:00', 2, 'dsfsdfsd'),
+(29, 'assets/a/176103_CM6234_1_1.pdf', 'CM6234', 176103, 1, '2019-11-29 10:10:07', 0, 0, '', '0000-00-00 00:00:00', 2, ''),
+(30, 'assets/a/176103_CM6234_2_1.pdf', 'CM6234', 176103, 2, '2019-11-30 06:53:00', 20, 1, '2', '2019-12-01 01:18:18', 2, ''),
+(31, 'assets/a/176101_CM6234_1_.pdf', 'CM6234', 176101, 1, '2019-11-30 06:57:27', 20, 1, '2', '2019-12-01 01:06:55', 1, ''),
+(32, 'assets/a/176101_CM6234_2_1.pdf', 'CM6234', 176101, 2, '2019-11-30 06:57:34', 20, 1, '1', '2019-12-01 01:05:09', 1, ''),
+(33, 'assets/a/176106_CM6234_1_.pdf', 'CM6234', 176106, 1, '2019-11-30 11:25:09', 0, 0, '', '0000-00-00 00:00:00', 3, ''),
+(34, '', 'CM6238', 176101, 2, '2019-12-01 07:05:49', 0, 0, '', '0000-00-00 00:00:00', 1, 'gfdfgdfgd fgdfgdfgd');
 
 -- --------------------------------------------------------
 
@@ -131,18 +136,18 @@ CREATE TABLE `static_assignments` (
 --
 
 INSERT INTO `static_assignments` (`id`, `assignment_no`, `course_code`, `name`, `created_by`, `deadline`, `description`, `type`) VALUES
-(1, 1, 'CM6238', 'Write a program for Hello world in C', 'Mali Sir', '2019-11-29', 'this is description of assigment', 2),
+(1, 1, 'CM6238', 'Write a program for Hello world in C', 'Mali Sir', '2019-11-29', 'this is description of assigment ', 2),
 (3, 2, 'CM6236', 'hi', 'Mali Sir', '2019-11-28', 'FGNZGTHJN', 1),
 (4, 3, 'CM6236', 'ZDGNTZTN', 'Mali Sir', '2019-11-30', 'ZTNHGNJZR', 1),
 (5, 1, 'CM6243', 'RGWRGGWR', 'Mali Sir', '2019-11-29', 'WRGWRGWR', 2),
 (6, 2, 'CM6243', 'qerq3r', 'Mali Sir', '2019-11-17', '3r3', 1),
-(7, 1, 'CM6234', 'Study architecture of 8085', 'Sanap Sir', '2019-11-29', 'grgGrGWgrwgr', 1),
 (8, 2, 'CM6234', 'draw 8086', 'Sanap Sir', '2019-11-26', 'defAEFWefWEFAERG', 1),
 (9, 1, 'CM6235', 'stack', 'Sanap Sir', '2019-11-25', 'erhgaethbe', 2),
 (10, 2, 'CM6235', 'queue', 'Sanap Sir', '2019-11-28', 'dgbfeahgrtgh', 1),
 (11, 3, 'CM6234', 'registers', 'Sanap Sir', '3533-05-31', '.lmd.mf.,sdmf.', 2),
-(12, 2, 'CM6238', 'write program for operator overloading in cpp', 'Mali Sir', '2019-11-27', 'mflkjmsl.mf.lsdmflmlsfm;lsdm', 2),
-(13, 3, 'CM6238', 'abc', 'Mali Sir', '0000-00-00', '1/πr2', 2);
+(12, 2, 'CM6238', 'write program for operator overloading in cpp', 'Mali Sir', '2019-11-27', 'mflkjmsl.mf.lsdmflmlsfm;lsdm ', 2),
+(13, 3, 'CM6238', 'abc', 'Mali Sir', '0000-00-00', '1/πr2', 2),
+(15, 1, 'CM6234', 'Study architecture of 8085', 'Mali Sir', '2019-12-21', 'fsfsdf sdfsdfsdf', 1);
 
 -- --------------------------------------------------------
 
@@ -261,7 +266,8 @@ CREATE TABLE `tbl_student_db` (
 
 INSERT INTO `tbl_student_db` (`id`, `rollno`, `name`, `department`, `department_id`, `mobile_no`, `email`, `year`, `password`) VALUES
 (1, 176101, 'Suraj Ahire', 'Computer Technology', 61, 7845961232, 'surajahire@gmail.com', 'Third Year', 0x3961323666653766323030643437396437643137356636626163653035366263),
-(2, 176103, 'Saurabh Bhalerao', 'Computer Technology', 61, 3213654654, 'saurabh@gmail.com', 'Third Year', 0x3563353830613361313533393938373035393930373364646132326139646137);
+(2, 176103, 'Saurabh Bhalerao', 'Computer Technology', 61, 3213654654, 'saurabh@gmail.com', 'Third Year', 0x3563353830613361313533393938373035393930373364646132326139646137),
+(3, 176106, '', 'Computer Technology', 61, 0, '', '', 0x6165633165333363393734333737666439653464653861393462386263633338);
 
 -- --------------------------------------------------------
 
@@ -370,7 +376,7 @@ ALTER TABLE `tbl_teachers_db`
 -- AUTO_INCREMENT for table `assignments`
 --
 ALTER TABLE `assignments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `events`
@@ -388,7 +394,7 @@ ALTER TABLE `notification`
 -- AUTO_INCREMENT for table `static_assignments`
 --
 ALTER TABLE `static_assignments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `tbl_admin_login`
@@ -418,7 +424,7 @@ ALTER TABLE `tbl_info`
 -- AUTO_INCREMENT for table `tbl_student_db`
 --
 ALTER TABLE `tbl_student_db`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '1', AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '1', AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_teachers_db`

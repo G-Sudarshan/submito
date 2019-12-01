@@ -30,6 +30,8 @@
     $ua[$i]['a_no'] = $u->assignment_no;
     $ua[$i]['t'] = $u->text;
     $ua[$i]['p'] = $u->pdf_path;
+    $ua[$i]['c'] = $u->checked;
+    $ua[$i]['m'] = $u->marks;
     }
 
     // echo "SUBMITTED ASSIGNMENTS NO<br/>";
@@ -140,7 +142,10 @@
     				<td>
     					<?php if($a->type == 1)
               { 
-                echo "<button class='btn btn-primary' onclick='updatePDF(".$a->assignment_no.")'".(in_array($a->assignment_no, $submitted_assignments_no) ? '' : 'disabled')." >Update PDF</button>";
+                $key = array_search($a->assignment_no, array_column($ua, 'a_no'));
+
+                $checked = $ua[$key]['c'];
+                echo "<button class='btn btn-primary' onclick='updatePDF(".$a->assignment_no.")'".(in_array($a->assignment_no, $submitted_assignments_no) && $checked == 0  ? '' : 'disabled')." >Update PDF</button>";
                 
                } ?>
 
@@ -151,14 +156,11 @@
 
                 
                 $submitted_text = $ua[$key]['t'];
-                $submitted_text = trim($submitted_text);
+                //$submitted_text = trim($submitted_text);
 
-                if($submitted_text!=NULL)
-                {
-                 //echo "$submitted_text";
-                }
+                $checked = $ua[$key]['c'];
                   $str = "<input type='hidden' id='id".$a->assignment_no."' value='".$submitted_text."'>";
-                   echo $str."<button class='btn btn-primary' onclick='updateText(".$a->assignment_no.",document.getElementById(\"id".$a->assignment_no."\").value)'".(in_array($a->assignment_no, $submitted_assignments_no) ? '' : 'disabled').">Update Text</button>";
+                   echo $str."<button class='btn btn-primary' onclick='updateText(".$a->assignment_no.",document.getElementById(\"id".$a->assignment_no."\").value)'".(in_array($a->assignment_no, $submitted_assignments_no) && $checked == 0 ? '' : 'disabled').">Update Text</button>";
                 } 
                 ?>   
     					
@@ -194,8 +196,27 @@
               
             </td>
             <td>
+              <?php 
+              if(in_array($a->assignment_no, $submitted_assignments_no)){
+
+                 $key = array_search($a->assignment_no, array_column($ua, 'a_no'));
+
+                $checked = $ua[$key]['c'];
+                if($checked==1)
+                {
+                  $marks = $ua[$key]['m'];
+                  echo "<p class='text-success' >$marks</p>";
+                }else{
+
+                 ?>
               <p class="text-danger">Not assessd yet</p>
-              
+              <?php } 
+            }else{
+            ?>
+            <p class="text-danger">Not assessd yet</p>
+            <?php
+            }
+            ?>
             </td>
     			</tr>
 

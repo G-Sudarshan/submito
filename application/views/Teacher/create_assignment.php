@@ -66,10 +66,24 @@
     					  } ?>
     				</td>
     				<td>
-    					<button class="btn btn-warning ">Edit</button>
+    					<?php echo "<button class='btn btn-warning' onclick='editAssignment(".$a->assignment_no.",\"".$a->name."\",".$a->deadline.",\"".$a->description."\")'>Edit</button>"; ?>
     				</td>
     				<td>
-    					<button class="btn btn-danger ">Delete</button>
+                        <?php
+                        echo form_open('Teacher/delete_static_assignment');
+                      $data = array(
+                            'course_code'  => $course_code,
+                           'course_name' => $course_name,
+                           't_name' => $teacher_name
+                            );
+                      echo form_hidden($data);
+
+                echo form_hidden('id',$a->id);
+                echo form_hidden('assignment_no',$a->assignment_no);
+                echo form_submit(['name'=>'submit','value'=>'Delete','class'=>'btn btn-danger']); 
+                echo form_close();
+                        ?>
+    					
     					
     				</td>
     			</tr>
@@ -174,11 +188,110 @@
 </div>
 <!-- ------------------------------------------------------------------------------------- -->
 
+<!------------------ The Edit Assignment Modal ------------------------------>
+
+
+<!-- Modal -->
+<div class="modal fade" id="editAssignmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Edit Assignment</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-group">
+        <?php echo form_open('Teacher/edit_assignment'); 
+
+
+
+            $data = array(
+                    'course_code'  => $course_code,
+                   'course_name' => $course_name,
+                   't_name' => $teacher_name
+                    );
+            echo form_hidden($data);
+            echo "assignment no :  ";
+            ?>
+            <input type="text" class="form-control" name="assignment_no" id="edit_assignment_no" disabled>
+            <input type="hidden" name="a_no" id="aa">
+            <?php 
+            
+            echo "Enter title of of assignment to be created &nbsp; :&nbsp; ";
+            echo form_input(['name'=>'a_title','class'=>'form-control','placeholder'=>' Title of assignment eg. Write a program for Hello world in C ','id'=>'edit_assignment_name']); 
+            echo "Enter description of assignment to be created &nbsp; :&nbsp; ";
+            echo form_textarea(['name'=>'a_description','class'=>'form-control','placeholder'=>' description of assignment  ','id'=>'edit_assignment_description']);
+            // echo "Enter last date to submit for assignment to be created &nbsp; :&nbsp; ";
+            // echo form_input(['name'=>'a_deadline','type'=>'date','class'=>'form-control','placeholder'=>' Last date to submit assignment ','id'=>'edit_assignment_deadline']);
+           
+           // echo "Choose assignment type &nbsp; :&nbsp; "; 
+            ?>
+            
+                <!-- <input id="gender" name="a_type" type="radio" class="form-control"  value="1" />
+                <label for="a_type" class="form-control">PDF</label>
+
+                <input id="a_type" name="a_type" type="radio" class="form-control" value="2" />
+                <label for="a_type" class="form-control">Text</label> -->
+
+              <!--   <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="a_type" id="inlineRadio1" value="1">
+                  <label class="form-check-label" for="inlineRadio1">PDF</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="a_type" id="inlineRadio2" value="2">
+                  <label class="form-check-label" for="inlineRadio2">Text</label>
+                </div> -->
+          
+          <!-- Modal footer -->
+          
+      <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+         
+     <?php 
+
+      echo form_submit('submit', 'Save Changes','class="btn btn-primary"');
+
+       echo form_close(); ?>
+   </div>
+       
+            </div>
+           </div>
+          </div>
+        </div>
+      
+
+
 </div>
-</body>
+<!-- ------------------------------------------------------------------------------------- -->
+
+
+</div>
+
+<script type="text/javascript">
+    function editAssignment(assignment_no,name,deadline,description)
+    {
+
+
+    $('#editAssignmentModal').modal("show");
+
+   
+   document.getElementById('edit_assignment_no').value = assignment_no; 
+   document.getElementById('edit_assignment_name').value = name ;
+   document.getElementById('aa').value = assignment_no; 
+   document.getElementById('edit_assignment_description').value = description ;
+    }
+</script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+ 
+</body>
+
+
 
 </html>

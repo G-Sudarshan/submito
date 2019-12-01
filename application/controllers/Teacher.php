@@ -135,6 +135,132 @@ class Teacher extends MY_Controller{
    }
 
 
+   public function load_check_assignment()
+   {
+     $cc =  $this->input->post('course_code');
+     $cn = $this->input->post('course_name');
+     $teacher_name = $this->input->post('teacher_name');
+
+     $this->load->model('TeacherModel');
+
+     $createdAssignmentData = $this->TeacherModel->getCreatedAssignments($cc);
+     
+
+     $this->load->view('Teacher/check_assignment',['course_code'=>$cc,'course_name'=>$cn,'teacher_name'=>$teacher_name,'cad'=>$createdAssignmentData]);
+     
+   }
+
+   public function load_submitted_assignment()
+   {
+     $cc =  $this->input->post('course_code');
+     $cn = $this->input->post('course_name');
+     $teacher_name = $this->input->post('teacher_name');
+     $assignment_no = $this->input->post('assignment_no');
+     $assignment_type = $this->input->post('assignment_type');
+
+
+     $this->load->model('TeacherModel');
+
+     //$createdAssignmentData = $this->TeacherModel->getCreatedAssignments($cc);
+
+     $submittedAssignmentData = $this->TeacherModel->get_submitted_assignment($cc,$assignment_no);
+
+     $this->load->view('Teacher/submitted_assignment',['course_code'=>$cc,'course_name'=>$cn,'teacher_name'=>$teacher_name,'assignment_no'=>$assignment_no,'assignment_type'=>$assignment_type,'sad'=>$submittedAssignmentData]);
+
+   }
+
+   public function submit_marks()
+    {
+
+     $cc =  $this->input->post('course_code');
+     $cn = $this->input->post('course_name');
+    
+     $assignment_no = $this->input->post('assignment_no');
+     $assignment_type = $this->input->post('assignment_type');
+     $teacher_id = $this->session->userdata('teacher_id');
+
+     $rollno = $this->input->post('rollno');
+     $marks = $this->input->post('marks');
+
+
+     $this->load->model('TeacherModel');
+
+     $this->TeacherModel->set_marks($cc,$assignment_no,$rollno,$teacher_id,$marks);
+     $submittedAssignmentData = $this->TeacherModel->get_submitted_assignment($cc,$assignment_no);
+
+     $this->session->set_flashdata('success','Marks of Roll no '.$rollno.' submitted successfully');
+
+     $this->load->view('Teacher/submitted_assignment',['course_code'=>$cc,'course_name'=>$cn,'assignment_no'=>$assignment_no,'assignment_type'=>$assignment_type,'sad'=>$submittedAssignmentData]);
+
+    }
+
+    public function load_previously_checked_assignment()
+    {
+      $cc =  $this->input->post('course_code');
+     $cn = $this->input->post('course_name');
+     //$teacher_name = $this->input->post('teacher_name');
+     $assignment_no = $this->input->post('assignment_no');
+     $assignment_type = $this->input->post('assignment_type');
+
+
+     $this->load->model('TeacherModel');
+
+     //$createdAssignmentData = $this->TeacherModel->getCreatedAssignments($cc);
+
+     $submittedAssignmentData = $this->TeacherModel->get_submitted_assignment($cc,$assignment_no);
+
+     $this->load->view('Teacher/previously_checked_assignment',['course_code'=>$cc,'course_name'=>$cn,'assignment_no'=>$assignment_no,'assignment_type'=>$assignment_type,'sad'=>$submittedAssignmentData]);
+
+    }
+
+    public function edit_assignment()
+    {
+      
+      $assignment_no = $this->input->post('a_no');
+      
+      $name = $this->input->post('a_title');
+      $description = $this->input->post('a_description');
+      //$deadline => $this->input->post('a_deadline'),
+     // $type => $this->input->post('a_type'),
+      $created_by = $this->input->post('t_name');
+
+
+       
+    //echo $assignment_no;
+     $cc =  $this->input->post('course_code');
+     $cn = $this->input->post('course_name');
+     $teacher_name = $this->input->post('t_name');
+
+     $this->load->model('TeacherModel');
+     $this->TeacherModel->edit_assignment($assignment_no,$cc,$name,$description,$created_by);
+     $createdAssignmentData = $this->TeacherModel->getCreatedAssignments($cc);
+
+     $this->session->set_flashdata('success','assignment '.$assignment_no.' has been Updated successfully!');
+
+    $this->load->view('Teacher/create_assignment',['course_code'=>$cc,'course_name'=>$cn,'teacher_name'=>$teacher_name,'cad'=>$createdAssignmentData]);
+    }
+
+    public function delete_static_assignment()
+    {
+      $id = $this->input->post('id');
+      $assignment_no = $this->input->post('assignment_no');
+      $this->load->model('TeacherModel');
+      $this->TeacherModel->delete_static_assignment($id);
+
+     $cc =  $this->input->post('course_code');
+     $cn = $this->input->post('course_name');
+     $teacher_name = $this->input->post('t_name');
+
+     
+     $createdAssignmentData = $this->TeacherModel->getCreatedAssignments($cc);
+
+     $this->session->set_flashdata('success','assignment '.$assignment_no.' has been deleted successfully!');
+
+    $this->load->view('Teacher/create_assignment',['course_code'=>$cc,'course_name'=>$cn,'teacher_name'=>$teacher_name,'cad'=>$createdAssignmentData]);
+
+    }
+
+
 
 
 
