@@ -245,7 +245,7 @@ class Student extends MY_Controller{
            }
            else
            {
-             echo "Upload was failed try again file size should be less than 2MB ";
+             echo "Upload was failed try again file size should be less than 1 MB ";
            }
 
 

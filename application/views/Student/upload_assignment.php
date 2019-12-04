@@ -225,6 +225,7 @@
     	</table>
     </div>
 
+    
     <!------------------ The Text Upload Assignment Modal ------------------------------>
 
 
@@ -411,6 +412,15 @@
 		        <?php echo form_upload(['name'=>'userfile','class'=>'form-control']); ?>
 		      </div>
 		    </div>
+        <div>
+      <p class="text-danger">
+        Note : Upload PDF file of Size less than 1MB (1024 KB)
+      </p>
+      <p class="text-success">
+        If your PDF's size is more than 1 MB you can compress it on <span class="text-primary"><a href="https://www.ilovepdf.com/compress_pdf" target="_blank"> ilovepdf.com</a> </span> or
+        <span class="text-primary"> <a href="https://pdfcandy.com/compress-pdf.html" target="_blank">pdfcandy.com</a> </span>
+      </p>
+    </div>
 			
 		   
 		   
@@ -472,6 +482,15 @@
             <?php echo form_upload(['name'=>'updateuserfile','class'=>'form-control']); ?>
           </div>
         </div>
+        <div>
+      <p class="text-danger">
+        Note : Upload PDF file of Size less than 1MB (1024 KB)
+      </p>
+      <p class="text-success">
+        If your PDF's size is more than 1 MB you can compress it on <span class="text-primary"><a href="https://www.ilovepdf.com/compress_pdf" target="_blank"> ilovepdf.com</a> </span> or
+        <span class="text-primary"> <a href="https://pdfcandy.com/compress-pdf.html" target="_blank">pdfcandy.com</a> </span>
+      </p>
+    </div>
       
        
        
