@@ -13,67 +13,11 @@ if(!$this->session->userdata('admin_id'))
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<style>
-#myDIV {
-  width: 100%;
-  padding: 50px 0;
 
- 
-  margin-top: 20px;
-  display: none;
-}
-#myDIV2 {
-  width: 100%;
-  padding: 50px 0;
+	
+	
 
- 
-  margin-top: 20px;
-  display: none;
-}
-#myDIV3 {
-  width: 100%;
-  padding: 50px 0;
-
- 
-  margin-top: 20px;
-  display: none;
-}
-</style>
-
-	<script type="text/javascript" language="javascript">
-
-		function edit_clg_name()
-		{
-            var x = document.getElementById("myDIV"); 
-            if (x.style.display === "none") {
-               x.style.display = "block";
-                 } else {
-                    x.style.display = "none";
-               }
-		}
-
-		function mng_dpt()
-		{
-			var x = document.getElementById("myDIV2");
-            if (x.style.display === "none") {
-               x.style.display = "block";
-                 } else {
-                    x.style.display = "none";
-               }
-
-		}
-
-		function crt_dpt()
-		{
-			var x = document.getElementById("myDIV3");
-            if (x.style.display === "none") {
-               x.style.display = "block";
-                 } else {
-                    x.style.display = "none";
-               }
-		}
-		
-	</script>
+	
 
 </head>
 <body>
@@ -93,6 +37,9 @@ if(!$this->session->userdata('admin_id'))
 	<?php if($success = $this->session->flashdata('success')): 
 		echo '<div class="alert alert-dismissible alert-success">' . $success . '</div>';
 	 endif; ?>
+	 <?php if($failure = $this->session->flashdata('failure')): 
+		echo '<div class="alert alert-dismissible alert-danger">' . $failure . '</div>';
+	 endif; ?>
     
 
 	<h2>Admin dashboard</h2>
@@ -101,10 +48,11 @@ if(!$this->session->userdata('admin_id'))
 
 
 
-<button type="button" class="btn btn-outline-primary" onclick="edit_clg_name()" >Edit college name</button>
+<button class="btn btn-outline-primary" data-toggle="modal" data-target="#editClg">Edit College Name</button>
 
 
-<button type="button" class="btn btn-outline-primary" onclick="mng_dpt()" >Manage Departments</button>
+
+<button class="btn btn-outline-primary" data-toggle="modal" data-target="#createDept">Create a New Department</button> 
 
 
 
@@ -120,7 +68,7 @@ if(!$this->session->userdata('admin_id'))
 
 
 
-<a class="btn btn-outline-danger" href=<?= base_url('Login/logout'); ?>  >Log out</a>
+<button class="btn btn-outline-danger" data-toggle="modal" data-target="#logoutModal">Log out</button>
 <br/><br/>
 
 
@@ -128,53 +76,200 @@ if(!$this->session->userdata('admin_id'))
 
 <a class="btn btn-outline-primary" href=<?= base_url('Admin/load_change_student_password'); ?>  > Change Password of Student </a>
 
+<button class="btn btn-outline-success" data-toggle="modal" data-target="#myUpdateModaladmin">Update My Info</button>
 
+<button class="btn btn-outline-success" data-toggle="modal" data-target="#myUpdateModaladmin">Add new Admin</button>
+<button class="btn btn-outline-danger" data-toggle="modal" data-target="#myUpdateModaladmin">Reset the whole System</button>
 
+<!--------------------------------- update info model ------------------------------->
 
-<br/>
-<br/>
+    <div class="modal" id="myUpdateModaladmin">
+      <div class="modal-dialog">
+        <div class="modal-content">
 
-<div id="myDIV">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Update My Information</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
 
+          <!-- Modal body -->
+          <div class="modal-body">
 
-	<?php echo form_open('Admin/update_clg_name'); ?>
-
-	<?php 
-	 
-	echo form_input(['name'=>'new_clg_name','placeholder'=>$clg_name,'value'=>set_value('clg_name')]); 
-	echo form_submit(['name'=>'submit','value'=>'update college name','class'=>'btn btn-primary']); 
-
-	echo form_close();
-	?>
-
+           <div class="form-group">
+            <?php echo form_open('Admin/update_admin'); ?>
 
       
-</div>
 
+  
 
+  <?php 
 
-<div id="myDIV2">
-          
-         <button type="button" class="btn btn-outline-success" onclick="crt_dpt()" >Create A New Department</button>
-
-         <div id="myDIV3">
-
-
-	<?php echo form_open('Admin/create_dpt'); 
-
-	echo "Enter Name of Department to be created &nbsp; :&nbsp; ";
-	echo form_input(['name'=>'new_dpt_name','placeholder'=>' Name of Department','value'=>set_value('dpt_name')]); 
-	
-	echo "<br/><br/>Enter id no. of Department to be created &nbsp; :&nbsp; ";
-	echo form_input(['name'=>'new_dpt_id','placeholder'=>' id Number ','value'=>set_value('dpt_id')]); 
+  
+  echo "Your Name :  ";
+  echo form_input(['name'=>'admin_name','placeholder'=>'Name of Admin','class'=>'form-control','value'=>set_value('admin_name',$admin->name)]);
+   echo "<br/><br/>"; 
+  
+  echo "Your Email :  ";
+  echo form_input(['name'=>'admin_email','type'=>'email','placeholder'=>'Enter email eg. ganesha@gmail.com','class'=>'form-control','value'=>set_value('admin_email',$admin->email)]); 
     echo "<br/><br/>";
-    
-	echo form_submit(['name'=>'submit','value'=>'Create','class'=>'btn btn-primary']); 
 
-	echo form_close();
-	?>
+    echo "Department :  ";
+  echo form_input(['name'=>'admin_department','placeholder'=>'Enter year eg. First Year ','class'=>'form-control','value'=>set_value('admin_department',$admin->department)]); 
+    echo "<br/><br/>";
+
+    echo " Mobile no :  ";
+  echo form_input(['name'=>'admin_mobile','placeholder'=>'Enter your mobile no','class'=>'form-control','value'=>set_value('admin_mobile',$admin->mobile_no)]); 
+    echo "<br/><br/>"; ?>
+
+  
+ 
+
+          </div>
+
+          <!-- Modal footer -->
+          
+
+          <div class="modal-footer">
+                        
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
+            <?php  echo form_submit(['name'=>'submit','value'=>'Update','class'=>'btn btn-primary']); 
+               echo form_close();
+               ?>
+
+           
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+</div>
+<!-------------------------------------------------------------------------------------->
+
+<!---------------------------------- Logout Modal --------------------------------------->
+
+
       
-</div><br><br>
+
+	<!-- Modal-->
+	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	    <div class="modal-dialog" role="document">
+	       <div class="modal-content">
+	       		<!-- Modal Header-->
+	            <div class="modal-header">
+	                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+	          		<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+	            		<span aria-hidden="true">×</span>
+	          		</button>
+	        	</div>
+	        	<!-- Modal Body-->
+	        	<div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+	        	<!-- Modal footer -->
+	        	<div class="modal-footer">
+	          		<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+	          		<a class="btn btn-danger" href=<?= base_url('Login/logout'); ?> >Logout</a>
+	        	</div>
+	      	</div>
+	    </div>
+	</div>
+
+  	<!-- --------------------------------------------------------------------------------- -->
+  	<!------------------------------- Edit College Name Modal ------------------------------->
+
+    <!-- Modal -->
+    <div class="modal fade" id="editClg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    	<div class="modal-dialog" role="document">
+      		<div class="modal-content">
+        		<!-- Modal Header-->
+        		<div class="modal-header">
+	          		<h5 class="modal-title" id="exampleModalLongTitle">Edit College Name</h5>
+	          		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	            		<span aria-hidden="true">&times;</span>
+	          		</button>
+        		</div>
+		        <!-- Modal Body-->
+		        <div class="modal-body">
+		        	<?php 
+			    		$attributes = ['id' => 'editClgForm'];
+			      		echo form_open('Admin/update_clg_name', $attributes);
+				    ?>	    
+		            	<div class="form-group">
+					        <label for="new_clg_name">Enter College Name:</label>
+					        <input type="text" name="new_clg_name" class="form-control" value="<?php echo $clg_name ?>" autocomplete="off" >
+
+					    </div>
+		        </div>
+		        <!-- Modal footer -->   
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		            <?php
+						echo form_submit(['value'=>'Update College Name','class'=>'btn btn-primary']); 
+
+					//echo form_submit(['value'=>'Change Password','class'=>'btn btn-success']);
+						echo form_close();
+					?>
+		        </div>
+      		</div>
+    	</div>
+    </div>
+
+  	<!-- --------------------------------------------------------------------------------- -->
+  	<!------------------------------- Create Department Modal ------------------------------->
+
+    <!-- Modal -->
+    <div class="modal fade" id="createDept" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    	<div class="modal-dialog" role="document">
+      		<div class="modal-content">
+        		<!-- Modal Header-->
+        		<div class="modal-header">
+	          		<h5 class="modal-title" id="exampleModalLongTitle">Create a New Department</h5>
+	          		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	            		<span aria-hidden="true">&times;</span>
+	          		</button>
+        		</div>
+		        <!-- Modal Body-->
+		        <div class="modal-body">
+		        	<?php 
+			    		$attributes = ['id' => 'createDeptForm'];
+			      		echo form_open('Admin/create_dpt', $attributes);
+				    ?>	    
+		            	<div class="form-group">
+					        <label for="new_dpt_name">Enter Name of the Department to be created:</label>
+					        <input type="text" name="new_dpt_name" id="new_dpt_name" class="form-control" placeholder="Name of Department" autocomplete="off" >
+					    </div>
+					    <div class="form-group">
+					        <label for="new_dpt_id">Enter Id of the Department to be created:</label>
+					        <input type="number" name="new_dpt_id" id="new_dpt_id"class="form-control" placeholder="Id" autocomplete="off" >
+					    </div>
+		        </div>
+		        <!-- Modal footer -->   
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		            <?php
+						echo form_submit(['name'=>'submit','value'=>'Create','class'=>'btn btn-primary']); 
+						echo form_close();
+					?>
+		        </div>
+      		</div>
+    	</div>
+    </div>
+
+  	<!-- --------------------------------------------------------------------------------- -->
+
+
+
+<br/>
+<br/>
+
+
+
+
+
+<div>
+          
+        <br><br>
 
          <table class="table table-dark table-hover" >
 		<thead>
@@ -212,11 +307,19 @@ if(!$this->session->userdata('admin_id'))
 
 			<?php endforeach; ?>
 		</tbody></table>
-	
-      
-</div>
+
+		</div>
+
+
+
+
 
 </div>
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </body>
 </html>

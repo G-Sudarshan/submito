@@ -9,9 +9,11 @@ class Admin extends MY_Controller{
    	$this->load->model('Admin_model');
     $clg_name = $this->Admin_model->get_clg_name();
    	$dpt_names = $this->Admin_model->get_dpt_names();
+    $id = $this->session->userdata('admin_id');
+    $admin_data = $this->Admin_model->get_admin_info($id);
    //	print_r($dpt_names);
    	
-   	$this->load->view('Admin/Admin_dashboard',['clg_name' => $clg_name,'dpt_names' => $dpt_names]);
+   	$this->load->view('Admin/Admin_dashboard',['clg_name' => $clg_name,'dpt_names' => $dpt_names,'admin'=>$admin_data]);
    }
 
    public function update_clg_name()
@@ -94,7 +96,9 @@ class Admin extends MY_Controller{
 
    public function notification()
    {
-     $this->load->view('Admin/Add_notification');
+     $this->load->model('Admin_model');
+     $data = $this->Admin_model->getAllNotifications();
+     $this->load->view('Admin/Add_notification',['data'=>$data]);
    }
 
    public function add_notification()
@@ -115,13 +119,13 @@ class Admin extends MY_Controller{
       $data = $this->upload->data();
       
 
-      $pdf_path = base_url("uploads/".$data['raw_name'].$data['file_ext']);
+      $pdf_path = "uploads/".$data['raw_name'].$data['file_ext'];
       $post['pdf_path'] = $pdf_path;
 
       $this->load->model('Admin_model');
       $this->Admin_model->add_notification($post);
-          
-          echo "Notification uploaded successfully ! ";
+          $this->session->set_flashdata('success','Notification added successfully !');
+        return redirect('Admin/notification');
     }
     else{
       $upload_error = $this->upload->display_errors();
@@ -355,6 +359,41 @@ class Admin extends MY_Controller{
       $this->session->set_flashdata('stf_msg','Course Deleted Successfully !');
 
       return redirect('Admin/mng_dpt');
+
+   }
+
+   public function update_admin()
+   {
+    $userdata = array(
+      'name' => $this->input->post('admin_name'),
+      'email' => $this->input->post('admin_email'),
+      'department' => $this->input->post('admin_department'),
+      'mobile_no' => $this->input->post('admin_mobile'),
+
+       );
+
+    $id = $this->session->userdata('admin_id');
+    $this->load->model('Admin_model');
+    $this->Admin_model->upadateAdmin($userdata,$id);
+
+    $this->session->set_flashdata('feedback','Your Information has been Updated Successfully !');
+
+      return redirect('Admin');
+
+   }
+
+   public function delete_notification()
+   {
+    $this->load->model('Admin_model');
+    $id = $this->input->post('id');
+    $path = $this->input->post('path');
+    $this->load->helper('file');
+                //echo FCPATH."/".$final_path;
+    unlink(FCPATH."/".$path);
+
+    $this->Admin_model->delete_notification($id);
+    $this->session->set_flashdata('success','Notification deleted successfully !');
+        return redirect('Admin/notification');
 
    }
 

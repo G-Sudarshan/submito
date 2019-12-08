@@ -32,7 +32,7 @@
 	      <marquee> 
 	        <?php foreach ($n_data->result() as $n) { ?> 
 
-	          <a href=<?= $n->pdf_path ?> > <?= $n->title; ?> </a> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+	          <a target="_blank" href=<?= base_url($n->pdf_path); ?> > <?= $n->title; ?> </a> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
 
 	        <?php } ?>
 	      </marquee>

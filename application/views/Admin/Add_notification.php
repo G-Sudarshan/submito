@@ -15,6 +15,10 @@ if(!$this->session->userdata('admin_id'))
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+  
+  <?php if($success = $this->session->flashdata('success')): 
+    echo '<div class="alert alert-dismissible alert-success">' . $success . '</div>';
+   endif; ?>
 
 	<?php echo form_open_multipart('Admin/add_notification'); ?>
  <div class="container" align="left">
@@ -62,6 +66,40 @@ if(!$this->session->userdata('admin_id'))
     </div>
   </fieldset>
 <?php echo form_close(); ?></div>
+
+<div class="container">
+
+  <table class="table table-striped">
+    <thead>
+      <th>Sr. NO.</th>
+      <th>Title</th>
+      <th>view</th>
+      <th>Delete</th>
+    </thead>
+    <tbody>
+       <?php $i=1 ?>
+      
+        <?php foreach ($data->result() as $notification):  ?>
+          <tr>
+        <td><?= $i++; ?></td> 
+        <td><?= $notification->title; ?></td>
+        <td><a  class="btn btn-success" target="_blank" href=<?= base_url($notification->pdf_path); ?> >View</a></td>
+        <td><?php
+
+        echo form_open('Admin/delete_notification');
+        echo form_hidden('id',$notification->id);
+        echo form_hidden('path',$notification->pdf_path); 
+        echo form_submit(['value'=>'Delete','class'=>'btn btn-danger']);
+        echo form_close();
+        ?></td>
+      </tr>
+    <?php endforeach; ?>
+      
+    </tbody>
+    
+  </table>
+  
+</div>
 
 </body>
 </html>

@@ -123,7 +123,18 @@ class Login extends MY_Controller{
 
    public function change_password_admin()
    {
-     $this->load->view('Admin/change_password_admin');
+     $this->load->model('Admin_model');
+     $id = $this->session->userdata('admin_id');
+     $adminemail = $this->Admin_model->getEmailAdmin($id);
+     if($adminemail==NULL)
+     {
+       $this->session->set_flashdata("failure","To change the Password first set your email through Update My Info button on admin dashboard ");
+      return redirect('Admin');
+     }else{
+
+     $this->session->set_userdata('email',$adminemail);
+     return redirect('Email/sendemail');
+     }
 
    }
 

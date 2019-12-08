@@ -124,6 +124,39 @@ class Admin_model extends CI_Model{
 	{
 		return $this->db->delete('tbl_courses_db',['id' => $id]);
 	}
+
+	public function upadateAdmin($userdata,$id)
+	{
+		$this->db->set($userdata);
+		$this->db->where('id',$id);
+		$this->db->update('tbl_admin_login');
+	}
+
+	public function get_admin_info($id)
+	{
+		$data = $this->db->select(['username','name','department','email','mobile_no'])->from('tbl_admin_login')->where('id',$id)->get();
+
+		return $data->row();
+	}
+
+	public function getAllNotifications()
+	{
+		$n_data = $this->db->get('notification');
+		return $n_data;
+	}
+
+	public function delete_notification($id)
+	{
+		return $this->db->delete('notification',['id' => $id]);
+	}
+
+	public function getEmailAdmin($id)
+	{
+		$data = $this->db->select('email')->from('tbl_admin_login')->where('id',$id)->get();
+
+		return $data->row()->email;
+
+	}
 }
 
 ?>
