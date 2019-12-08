@@ -57,7 +57,7 @@ echo "your staff id : ".$teacherData->staff_id."<br/>";
       <th>Name</th>
       <th>Create</th>
       <th>  Check  </th>
-      <th>Upload</th>
+    
       <th>Share</th>
       
     </thead>
@@ -110,7 +110,7 @@ echo "your staff id : ".$teacherData->staff_id."<br/>";
 
           ?>
 
-          <td><button class="btn btn-info btn-sm ">Upload front pages</button></td>
+          
           <td><button class="btn btn-warning btn-sm ">Share study material</button></td> 
         
       

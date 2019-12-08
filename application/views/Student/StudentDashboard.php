@@ -72,7 +72,6 @@ echo "Your mobile no : ".$studentData->mobile_no."<br/>";
       <th>Course Code</th>
       <th>Name</th>
       <th>Upload</th>
-      <th>Downoad</th>
       <th>Download</th>
       
     </thead>
@@ -102,11 +101,9 @@ echo "Your mobile no : ".$studentData->mobile_no."<br/>";
 
           ?>
           </td>
-          <td>
-          <button class="btn btn-success btn-sm" disabled>Download all assignements</button>
-           </td>
+          
            <td>
-            <button class="btn btn-secondary btn-sm">See shared Study material</button>
+            <button class="btn btn-success btn-sm">See shared Study material</button>
             </td>
         </td>
       
