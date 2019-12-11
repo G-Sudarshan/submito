@@ -253,7 +253,27 @@ echo "Your mobile no : ".$studentData->mobile_no."<br/>";
 </div>
 
 
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
+<script>
+ 
+  var options = {
+  bottom: '64px', // default: '32px'
+  right: '32px', // default: '32px'
+  left: 'unset', // default: 'unset'
+  time: '0.5s', // default: '0.3s'
+  mixColor: '#fff', // default: '#fff'
+  backgroundColor: '#ffffff',  // default: '#fff'
+  buttonColorDark: '#100f2c',  // default: '#100f2c'
+  buttonColorLight: '#fff', // default: '#fff'
+  saveInCookies: false, // default: true,
+  label: '🎁', // default: ''
+  autoMatchOsTheme: true // default: true
+}
 
+const darkmode = new Darkmode(options);
+darkmode.showWidget();
+ 
+</script>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
