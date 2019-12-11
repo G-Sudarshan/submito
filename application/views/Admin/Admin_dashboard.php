@@ -10,23 +10,282 @@ if(!$this->session->userdata('admin_id'))
 <head>
 	<title>Admin Panel</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	
-	
+	<style type="text/css">
+		/*right corner menu*/
+		.dropdown-menu
+		{
+		  background-color: grey;
+		}
+
+		.dropdown-item
+		{
+			color: #fff;
+		}
+
+		#wrapper 
+		{
+		  display: -webkit-box;
+		  display: -ms-flexbox;
+		  display: flex;
+		}
+
+		#wrapper #content-wrapper 
+		{
+		  overflow-x: hidden;
+		  width: 100%;
+		  padding-top: 1rem;
+		  padding-bottom: 80px;
+		}
+
+		/*Sidebar*/
+		.sidebar 
+		{
+		  width: 90px !important;
+		  background-color: #212529;
+		  min-height: calc(
+		    100vh - 56px);
+		}
+
+		.sidebar .nav-item:last-child 
+		{
+		  margin-bottom: 1rem;
+		}
+
+		.sidebar .nav-item .nav-link 
+		{
+		  text-align: center;
+		  padding: 0.75rem 1rem;
+		  width: 90px;
+		}
+
+		.sidebar .nav-item .nav-link span 
+		{
+		  font-size: 0.65rem;
+		  display: block;
+		}
+
+		.sidebar .nav-item .dropdown-menu 
+		{
+		  position: absolute !important;
+		  -webkit-transform: none !important;
+		  transform: none !important;
+		  left: calc(90px + 0.5rem) !important;
+		  margin: 0;
+		}
+
+		.sidebar .nav-item .dropdown-menu.dropup 
+		{
+		  bottom: 0;
+		  top: auto !important;
+		}
+
+		.sidebar .nav-item.dropdown .dropdown-toggle::after 
+		{
+		  display: none;
+		}
+
+		.sidebar .nav-item .nav-link 
+		{
+		  color: rgba(255, 255, 255, 0.5);
+		}
+
+		.sidebar .nav-item .nav-link:active, .sidebar .nav-item .nav-link:focus, .sidebar .nav-item .nav-link:hover 
+		{
+		  color: rgba(255, 255, 255, 0.75);
+		}
+
+		.sidebar.toggled 
+		{
+		  width: 0 !important;
+		  overflow: hidden;
+		}
+
+		@media (min-width: 768px) 
+		{
+		  .sidebar 
+		  {
+		    width: 225px !important;
+		  }
+		  .sidebar .nav-item .nav-link 
+		  {
+		    display: block;
+		    width: 100%;
+		    text-align: left;
+		    padding: 1rem;
+		    width: 225px;
+		  }
+		  .sidebar .nav-item .nav-link span 
+		  {
+		    font-size: 1rem;
+		    display: inline;
+		  }
+		  .sidebar .nav-item .dropdown-menu 
+		  {
+		    position: static !important;
+		    margin: 0 1rem;
+		    top: 0;
+		  }
+		  .sidebar .nav-item.dropdown .dropdown-toggle::after 
+		  {
+		    display: block;
+		  }
+		  .sidebar.toggled {
+		    overflow: visible;
+		    width: 90px !important;
+		  }
+		  .sidebar.toggled .nav-item:last-child 
+		  {
+		    margin-bottom: 1rem;
+		  }
+		  .sidebar.toggled .nav-item .nav-link 
+		  {
+		    text-align: center;
+		    padding: 0.75rem 1rem;
+		    width: 90px;
+		  }
+		  .sidebar.toggled .nav-item .nav-link span 
+		  {
+		    font-size: 0.65rem;
+		    display: block;
+		  }
+		  .sidebar.toggled .nav-item .dropdown-menu 
+		  {
+		    position: absolute !important;
+		    -webkit-transform: none !important;
+		    transform: none !important;
+		    left: calc(90px + 0.5rem) !important;
+		    margin: 0;
+		  }
+		  .sidebar.toggled .nav-item .dropdown-menu.dropup 
+		  {
+		    bottom: 0;
+		    top: auto !important;
+		  }
+		  .sidebar.toggled .nav-item.dropdown .dropdown-toggle::after 
+		  {
+		    display: none;
+		  }
+		}
+
+		/* scroll bar*/
+		.scroll-to-top 
+		{
+		  position: fixed;
+		  right: 15px;
+		  bottom: 15px;
+		  width: 50px;
+		  height: 50px;
+		  text-align: center;
+		  color: #fff;
+		  background: rgba(52, 58, 64, 0.5);
+		  line-height: 46px;
+		}
+
+		.scroll-to-top:focus, .scroll-to-top:hover 
+		{
+		  color: white;
+		}
+
+		.scroll-to-top:hover 
+		{
+		  background: #343a40;
+		}
+	</style>
 
 	
 
 </head>
 <body>
+
+	<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+			<button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" >
+				<i class="fa fa-bars fa-2x"></i>
+			<a class="navbar-brand mr-1" href="#"><h1><?php echo " &nbsp;&nbsp;".$clg_name; ?></h1></a>
+			
+	   			
+	   		</button>
+
+	   		<!--Right corner menu-->
+	   		<ul class="nav navbar-nav ml-auto">
+	   			<li>
+	   				<a class="nav-link" href="#" data-toggle="dropdown">
+			          <i class="fa fa-user-circle fa-2x" ></i>
+			        </a>
+			        <div class="dropdown-menu dropdown-menu-right">
+			          <a class="dropdown-item " href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+			        </div>
+	   			</li>
+	   		</ul>
+
+		</nav>
+	
+
+
+	<!-- ------------------------------------------------------------------------------------------ -->
+
+
+<div id="wrapper">
+			<!--Sidebar-->
+	   		<ul class="sidebar navbar-nav">
+		      <li class="nav-item active">
+		        <a class="nav-link" href=<?= base_url('Admin/index'); ?> >
+		          <i class="fa fa-tachometer"></i>
+		          <span>Dashboard</span>
+		        </a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="#">
+		          <i class="fa fa-edit"></i>
+		          <span data-toggle="modal" data-target="#editClg">Edit College Name</span>
+		      	</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href=<?= base_url('Admin/notification'); ?> >
+		          <i class="fa fa-bell"></i>
+		          <span>Add Notification</span>
+		      	</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href=<?= base_url('CaledarController'); ?> >
+		          <i class="fa fa-calendar"></i>
+		          <span>Academic Calender</span>
+		      	</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href=<?= base_url('Login/change_password_admin'); ?> >
+		          <i class="fa fa-key"></i>
+		          <span>Change Password</span>
+		      	</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href=<?= base_url('Admin/load_change_teacher_password'); ?> >
+		          <i class="fa fa-key"></i>
+		          <span>Change Password of Teacher</span>
+		      	</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href=<?= base_url('Admin/load_change_student_password'); ?> >
+		          <i class="fa fa-key"></i>
+		          <span>Change Password of Student</span>
+		      	</a>
+		      </li>
+
+		    </ul>
+		
+
+	<!-- --------------------------------------------------------------------------------------- -->
+
+<div class="container">
 	<?php $this->load->helper('form'); ?>
 
-<center><h1><?php echo $clg_name; ?></h1>
-
-	<br/>
-	<br/>
+<center>
 
 	<?php if( $feedback = $this->session->flashdata('feedback'))
 	{ echo '<div class="alert alert-dismissible alert-success">' . $feedback . '</div>'; } ?>
@@ -43,10 +302,8 @@ if(!$this->session->userdata('admin_id'))
     
 
 	<h2>Admin dashboard</h2>
-</center><div class="container">
+</center>
 	<br/><br/>
-
-
 
 <button class="btn btn-outline-primary" data-toggle="modal" data-target="#editClg">Edit College Name</button>
 
@@ -356,6 +613,7 @@ if(!$this->session->userdata('admin_id'))
 
 
 
+</div>
 
 
 </div>
@@ -364,6 +622,48 @@ if(!$this->session->userdata('admin_id'))
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+    <script>
+
+	    (function($) 
+	    {
+		  "use strict"; // Start of use strict
+
+		  // Toggle the side navigation
+		    $("#sidebarToggle").on('click', function(e) 
+		    {
+			    e.preventDefault();
+			    $("body").toggleClass("sidebar-toggled");
+			    $(".sidebar").toggleClass("toggled");
+		    }); 
+
+		
+			// Scroll to top button appear
+			$(document).on('scroll', function() 
+			{
+			    if ($(this).scrollTop() > 100) 
+			    {
+			      $('#scroll-to-top').fadeIn();
+			    } 
+			    else 
+			    {
+			      $('#scroll-to-top').fadeOut();
+			    }
+			});
+
+			// Smooth scrolling using jQuery easing
+			/*$(document).on('click', 'a.scroll-to-top', function(event) {
+			    var $anchor = $(this);
+			    $('html, body').stop().animate({
+			      scrollTop: ($($anchor.attr('href')).offset().top)
+			    }, 1000, 'easeInOutExpo');
+			    event.preventDefault();
+			});
+*/
+		})(jQuery);
+
+	</script>
 
 </body>
 </html>

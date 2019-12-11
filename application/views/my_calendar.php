@@ -21,7 +21,7 @@
   </div>
   
 <div class="container">
-    <h1 style="color: red;"><center>Calendar </center></h1>
+    <h1 style="color: black"><center>Academic Calendar </center></h1>
     <br>
     <center><div class="row" style="width:50%">
        <div class="col-md-12">

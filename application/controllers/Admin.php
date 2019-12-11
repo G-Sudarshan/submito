@@ -281,7 +281,7 @@ class Admin extends MY_Controller{
     }
 
     // Row per page
-    $rowperpage = 5;
+    $rowperpage = 10;
 
     // Row position
     if($rowno != 0){
