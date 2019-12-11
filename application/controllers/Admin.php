@@ -239,19 +239,9 @@ class Admin extends MY_Controller{
 
    
 
-   public function load_change_teacher_password()
-   {
-    $this->load->model('Admin_model');
-    $data = $this->Admin_model->get_teachers_data();
-    $this->load->view('Admin/change_teacher_password',['teachers'=>$data]);
-   }
+  
 
-   public function load_change_student_password()
-   {
-    $this->load->model('Admin_model');
-    $data = $this->Admin_model->get_students_data();
-    $this->load->view('Admin/change_student_password',['students'=>$data]);
-   }
+   
 
    public function load_update_teacher_password()
    {
@@ -266,6 +256,157 @@ class Admin extends MY_Controller{
 
       $this->load->view('Teacher/change_password',['teacher'=>$userdata]);
    }
+
+    public function load_change_teacher_password()
+   {
+    $this->load->model('Admin_model');
+    $data = $this->Admin_model->get_teachers_data();
+    return redirect('Admin/loadRecordT');
+   }
+
+    public function loadRecordT($rowno=0){
+
+   
+    $this->load->helper('url');
+    $this->load->library('pagination');
+     // Search text
+    $search_text = "";
+    if($this->input->post('submit') != NULL ){
+      $search_text = $this->input->post('search');
+      $this->session->set_userdata(array("search"=>$search_text));
+    }else{
+      if($this->session->userdata('search') != NULL){
+        $search_text = $this->session->userdata('search');
+      }
+    }
+
+    // Row per page
+    $rowperpage = 5;
+
+    // Row position
+    if($rowno != 0){
+      $rowno = ($rowno-1) * $rowperpage;
+    }
+        
+        // All records count
+        $this->load->model('Admin_model');
+        $allcount = $this->Admin_model->getrecordCountT($search_text);
+
+        // Get  records
+        $users_record = $this->Admin_model->getDataT($rowno,$rowperpage,$search_text);
+        
+        // Pagination Configuration
+        $config['base_url'] = base_url().'index.php/Admin/loadRecordT';
+        $config['use_page_numbers'] = TRUE;
+        $config['total_rows'] = $allcount;
+        $config['per_page'] = $rowperpage;
+
+    $config['full_tag_open']    = '<div class="pagging text-center"><nav><ul class="pagination">';
+    $config['full_tag_close']   = '</ul></nav></div>';
+    $config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
+    $config['num_tag_close']    = '</span></li>';
+    $config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
+    $config['cur_tag_close']    = '<span class="sr-only">(current)</span></span></li>';
+    $config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
+    $config['next_tag_close']  = '<span aria-hidden="true"></span></span></li>';
+    // $config['next_tag_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
+    $config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
+    $config['prev_tag_close']  = '</span></li>';
+    $config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
+    $config['first_tag_close'] = '</span></li>';
+    $config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
+    $config['last_tag_close']  = '</span></li>';
+
+    // Initialize
+    $this->pagination->initialize($config);
+
+    $data['pagination'] = $this->pagination->create_links();
+    $data['result'] = $users_record;
+    $data['row'] = $rowno;
+    $data['search'] = $search_text;
+
+
+    // Load view
+    $this->load->view('Admin/change_teacher_password',$data);
+    
+  }
+
+
+   public function load_change_student_password()
+   {
+    $this->load->model('Admin_model');
+    $data = $this->Admin_model->get_students_data();
+    //$this->load->view('Admin/change_student_password',['students'=>$data]);
+
+    return redirect('Admin/loadRecord');
+   }
+
+   public function loadRecord($rowno=0){
+
+   
+    $this->load->helper('url');
+    $this->load->library('pagination');
+     // Search text
+    $search_text = "";
+    if($this->input->post('submit') != NULL ){
+      $search_text = $this->input->post('search');
+      $this->session->set_userdata(array("search"=>$search_text));
+    }else{
+      if($this->session->userdata('search') != NULL){
+        $search_text = $this->session->userdata('search');
+      }
+    }
+
+    // Row per page
+    $rowperpage = 10;
+
+    // Row position
+    if($rowno != 0){
+      $rowno = ($rowno-1) * $rowperpage;
+    }
+        
+        // All records count
+        $this->load->model('Admin_model');
+        $allcount = $this->Admin_model->getrecordCount($search_text);
+
+        // Get  records
+        $users_record = $this->Admin_model->getData($rowno,$rowperpage,$search_text);
+        
+        // Pagination Configuration
+        $config['base_url'] = base_url().'index.php/Admin/loadRecord';
+        $config['use_page_numbers'] = TRUE;
+        $config['total_rows'] = $allcount;
+        $config['per_page'] = $rowperpage;
+
+    $config['full_tag_open']    = '<div class="pagging text-center"><nav><ul class="pagination">';
+    $config['full_tag_close']   = '</ul></nav></div>';
+    $config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
+    $config['num_tag_close']    = '</span></li>';
+    $config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
+    $config['cur_tag_close']    = '<span class="sr-only">(current)</span></span></li>';
+    $config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
+    $config['next_tag_close']  = '<span aria-hidden="true"></span></span></li>';
+    // $config['next_tag_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
+    $config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
+    $config['prev_tag_close']  = '</span></li>';
+    $config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
+    $config['first_tag_close'] = '</span></li>';
+    $config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
+    $config['last_tag_close']  = '</span></li>';
+
+    // Initialize
+    $this->pagination->initialize($config);
+
+    $data['pagination'] = $this->pagination->create_links();
+    $data['result'] = $users_record;
+    $data['row'] = $rowno;
+    $data['search'] = $search_text;
+
+
+    // Load view
+    $this->load->view('Admin/change_student_password',$data);
+    
+  }
 
    public function load_update_student_password()
    {
@@ -394,6 +535,23 @@ class Admin extends MY_Controller{
     $this->Admin_model->delete_notification($id);
     $this->session->set_flashdata('success','Notification deleted successfully !');
         return redirect('Admin/notification');
+
+   }
+
+   public function add_admin()
+   {
+    $userdata = array(
+      'username' => $this->input->post('name'),
+      'password' => md5($this->input->post('password'))
+
+       );
+
+    $this->load->model('Admin_model');
+    $this->Admin_model->add_admin($userdata);
+
+    $this->session->set_flashdata('feedback','Admin has been added Successfully !');
+
+      return redirect('Admin');
 
    }
 

@@ -26,7 +26,7 @@ class Email extends CI_Controller {
             
         } 
         else {
-          $this->session->set_flashdata('failure', 'Incoorrect OTP');
+          $this->session->set_flashdata('failure', 'Incorrect OTP');
           $this->load->view('Admin/otpverify');    
               }
     //return redirect('Email');

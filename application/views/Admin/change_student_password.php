@@ -3,6 +3,7 @@
 <head>
 	<title>Change Student Password</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,39 +14,63 @@
 
 	</div><br><br>
 
-         <table class="table table-dark table-hover">
-		<thead>
-			<tr>
-				<td>Sr. No.</td>
-				<td>Deparment</td>
-				<td>Student rollno </td>
-				<td>Student Name</td>
-				<td>Change password</td>
-			</tr>
-		</thead>
-		<tbody>
-			
-			<tr>
+	<div class="container">
 
-				
-				    <?php $count =0; ?>	
-				<?php foreach( $students->result() as $student ): ?>
-				<td><?= ++$count ?></td>
-				<td><?= $student->department; ?></td>
-				<td><?= $student->rollno; ?></td>
-				<td><?= $student->name; ?></td>
-				<td><?php 
+         <div class="" >
+		<?php echo form_open(base_url().'index.php/Admin/loadRecord'); ?>
+     
+		 <input type='text' class="form-control" name='search' placeholder="Search By rollno or name or email or department" value='<?= $search ?>'><br/>
+		<center><input type='submit' class="btn btn-primary" name='submit' value='Search'></center>
+	<?php echo form_close(); ?></div>
+	<br/>
 
-				echo form_open('Admin/load_update_student_password');
+	<!-- Posts List -->
+	<table class="table table-dark table-border table-hover" border='1' width='100%' style='border-collapse: collapse;'>
+		<tr>
+			<th>S.no</th>
+			<th>name</th>
+			<th>gmail</th>
+			<th>rollno</th>
+			<th>department</th>
+			<th>change password</th>
+		</tr>
+		<?php 
+		$sno = $row+1;
+		foreach($result as $data){
 
-				echo form_hidden(['rollno'=>$student->rollno,'department'=>$student->department,'id'=>$student->id,'name'=>$student->name]);
-				echo form_submit(['name'=>'submit','value'=>'Change Password','class'=>'btn btn-outline-success']); echo form_close();
-	?> </td>
-			
-			</tr>
+			$content = substr($data['email'],0, 180);
+			$content1 = substr($data['rollno'],0, 180);
+			$content2 = substr($data['department'],0, 180);
+			echo "<tr>";
+			echo "<td>".$sno."</td>";
+			echo "<td>".$data['name']."</a></td>";
+			echo "<td>".$content."</td>";
+			echo "<td>".$content1."</td>";
+			echo "<td>".$content2."</td>";
+			echo "<td>"."<button class='btn btn-outline-success'>Change Password</button>"."</td>";
+			echo "</tr>";
+			$sno++;
 
-			<?php endforeach; ?></tbody></table>
-    </div>
+		}
+		if(count($result) == 0){
+			echo "<tr>";
+			echo "<td colspan='3'>No record found.</td>";
+			echo "</tr>";
+		}
+		?>
+	</table>
+
+	<!-- Paginate -->
+	<!-- <div class="pagination pagination-info" style='margin-top: 10px;'>
+		
+	</div> -->
+
+	<nav>
+  <ul class="pagination">
+   <?= $pagination; ?>
+  </ul>
+</nav>
+</div>
 
 </body>
 </html>

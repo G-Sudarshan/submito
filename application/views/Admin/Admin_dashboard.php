@@ -78,7 +78,8 @@ if(!$this->session->userdata('admin_id'))
 
 <button class="btn btn-outline-success" data-toggle="modal" data-target="#myUpdateModaladmin">Update My Info</button>
 
-<button class="btn btn-outline-success" data-toggle="modal" data-target="#myUpdateModaladmin">Add new Admin</button>
+<button class="btn btn-outline-success" data-toggle="modal" data-target="#addAdmin">Add new Admin</button>
+
 <button class="btn btn-outline-danger" data-toggle="modal" data-target="#myUpdateModaladmin">Reset the whole System</button>
 
 <!--------------------------------- update info model ------------------------------->
@@ -257,6 +258,49 @@ if(!$this->session->userdata('admin_id'))
     </div>
 
   	<!-- --------------------------------------------------------------------------------- -->
+
+  	<!------------------------------- Add Admin Modal ------------------------------->
+
+    <!-- Modal -->
+    <div class="modal fade" id="addAdmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    	<div class="modal-dialog" role="document">
+      		<div class="modal-content">
+        		<!-- Modal Header-->
+        		<div class="modal-header">
+	          		<h5 class="modal-title" id="exampleModalLongTitle">Create a New Department</h5>
+	          		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	            		<span aria-hidden="true">&times;</span>
+	          		</button>
+        		</div>
+		        <!-- Modal Body-->
+		        <div class="modal-body">
+		        	<?php 
+			    		
+			      		echo form_open('Admin/add_admin');
+				    ?>	    
+		            	<div class="form-group">
+					        <label for="new_dpt_name">Enter Username of the admin to be added:</label>
+					        <input type="text" name="name" required="" class="form-control" placeholder="Username" autocomplete="off" >
+					    </div>
+					    <div class="form-group">
+					        <label for="new_dpt_id">Enter password of the admin to be added:</label>
+					        <input type="text" required="" name="password" class="form-control" placeholder="Password" autocomplete="off" >
+					    </div>
+		        </div>
+		        <!-- Modal footer -->   
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		            <?php
+						echo form_submit(['name'=>'submit','value'=>'Add','class'=>'btn btn-primary']); 
+						echo form_close();
+					?>
+		        </div>
+      		</div>
+    	</div>
+    </div>
+
+  	<!-- --------------------------------------------------------------------------------- -->
+
 
 
 

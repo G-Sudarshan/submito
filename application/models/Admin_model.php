@@ -157,6 +157,87 @@ class Admin_model extends CI_Model{
 		return $data->row()->email;
 
 	}
+
+	public function add_admin($userdata)
+	{
+		return $this->db->insert('tbl_admin_login' , $userdata );
+	}
+
+	public function getData($rowno,$rowperpage,$search="") {
+			
+		$this->db->select('*');
+		$this->db->from('tbl_student_db');
+
+		if($search != ''){
+        	$this->db->like('name', $search);
+			$this->db->or_like('rollno', $search);
+			$this->db->or_like('department', $search);
+			$this->db->or_like('email', $search);
+        }
+
+        $this->db->limit($rowperpage, $rowno);  
+		$query = $this->db->get();
+       	
+		return $query->result_array();
+	}
+
+	// Select total records
+    public function getrecordCount($search = '') {
+
+    	$this->db->select('count(*) as allcount');
+      	$this->db->from('tbl_student_db');
+      
+      	if($search != ''){
+       		$this->db->like('name', $search);
+			$this->db->or_like('rollno', $search);
+			$this->db->or_like('department', $search);
+			$this->db->or_like('email', $search);
+      	}
+
+      	$query = $this->db->get();
+      	$result = $query->result_array();
+      
+      	return $result[0]['allcount'];
+
+      }
+
+      public function getDataT($rowno,$rowperpage,$search="") {
+			
+		$this->db->select('*');
+		$this->db->from('tbl_teachers_db');
+
+		if($search != ''){
+        	$this->db->like('name', $search);
+			$this->db->or_like('department', $search);
+			$this->db->or_like('email', $search);
+			$this->db->or_like('username', $search);
+        }
+
+        $this->db->limit($rowperpage, $rowno);  
+		$query = $this->db->get();
+       	
+		return $query->result_array();
+	}
+
+	// Select total records
+    public function getrecordCountT($search = '') {
+
+    	$this->db->select('count(*) as allcount');
+      	$this->db->from('tbl_teachers_db');
+      
+      	if($search != ''){
+       		$this->db->like('name', $search);
+			$this->db->or_like('department', $search);
+			$this->db->or_like('email', $search);
+			$this->db->or_like('username', $search);
+      	}
+
+      	$query = $this->db->get();
+      	$result = $query->result_array();
+      
+      	return $result[0]['allcount'];
+
+      }
 }
 
 ?>

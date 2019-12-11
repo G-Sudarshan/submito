@@ -12,44 +12,62 @@
 	<a class="btn btn-info" href=<?= base_url('Admin') ?> >Back to Admin Dashboard</a>
 
 	</div><br><br>
+    <div class="container">
 
-         <table class="table table-dark table-hover">
-		<thead>
-			<tr>
-				<td>Sr. No.</td>
-				<td>Deparment</td>
-				<td>Teacher name </td>
-				<td>Teacher Username</td>
-				<td>department id </td>
-				<td>staff id</td>
-				<td>Change password</td>
-			</tr>
-		</thead>
-		<tbody>
-			
-			<tr>
+         <div class="" >
+		<?php echo form_open(base_url().'index.php/Admin/loadRecordT'); ?>
+     
+		 <input type='text' class="form-control" name='search' placeholder="Search By rollno or name or email or department" value='<?= $search ?>'><br/>
+		<center><input type='submit' class="btn btn-primary" name='submit' value='Search'></center>
+	<?php echo form_close(); ?></div>
+	<br/>
 
-				
-				    <?php $count =0; ?>	
-				<?php foreach( $teachers->result() as $teacher ): ?>
-				<td><?= ++$count ?></td>
-				<td><?= $teacher->department; ?></td>
-				<td><?= $teacher->name; ?></td>
-				<td><?= $teacher->username; ?></td>
-				<td><?= $teacher->department_id; ?></td>
-				<td><?= $teacher->staff_id; ?></td>
-				<td><?php 
+	<!-- Posts List -->
+	<table class="table table-dark table-border table-hover" border='1' width='100%' style='border-collapse: collapse;'>
+		<tr>
+			<th>Sr. No.</th>
+			<th>Deparment</th>
+			<th>Teacher name</th>
+			<th>Teacher Username</th>
+			<th>change password</th>
+		</tr>
+		<?php 
+		$sno = $row+1;
+		foreach($result as $data){
 
-				echo form_open('Admin/load_update_teacher_password');
+			$content = substr($data['email'],0, 180);
+			$content1 = substr($data['name'],0, 180);
+			$content2 = substr($data['department'],0, 180);
+			$content4 = substr($data['username'],0, 180);
+			echo "<tr>";
+			echo "<td>".$sno."</td>";
+			echo "<td>".$content2."</a></td>";
+			echo "<td>".$content1."</td>";
+			echo "<td>".$content4."</td>";
+			echo "<td>"."<button class='btn btn-outline-success'>Change Password</button>"."</td>";
+			echo "</tr>";
+			$sno++;
 
-				echo form_hidden(['username'=>$teacher->username,'department'=>$teacher->department,'id'=>$teacher->id]);
-				echo form_submit(['name'=>'submit','value'=>'Change Password','class'=>'btn btn-outline-success']); echo form_close();
-	?> </td>
-			
-			</tr>
+		}
+		if(count($result) == 0){
+			echo "<tr>";
+			echo "<td colspan='3'>No record found.</td>";
+			echo "</tr>";
+		}
+		?>
+	</table>
 
-			<?php endforeach; ?></tbody></table>
-    </div>
+	<!-- Paginate -->
+	<!-- <div class="pagination pagination-info" style='margin-top: 10px;'>
+		
+	</div> -->
+
+	<nav>
+  <ul class="pagination">
+   <?= $pagination; ?>
+  </ul>
+</nav>
+</div>
 
 </body>
 </html>
