@@ -31,9 +31,9 @@ class Admin_model extends CI_Model{
 
 	}
 
-	public function create_crs($new_crs_name,$new_crs_code)
+	public function create_crs($new_crs_name,$new_crs_code,$d_id)
 	{
-		return $this->db->insert('tbl_courses_db' , ['name' => $new_crs_name , 'course_code' => $new_crs_code] );
+		return $this->db->insert('tbl_courses_db' , ['name' => $new_crs_name , 'course_code' => $new_crs_code, 'department_id'=>$d_id] );
 	}
 
 	public function get_crs_names()
@@ -264,6 +264,20 @@ class Admin_model extends CI_Model{
         $this->db->update('tbl_info',['value' => $id]);
 
         $this->db->insert('tbl_admin_login' , $userdata );
+      }
+
+      public function get_department_students($d_id)
+      {
+      	$data = $this->db->select(['id','rollno','name','email'])->from('tbl_student_db')->where('department_id',$d_id)->get();
+
+		return $data;
+      }
+
+      public function get_department_courses($d_id)
+      {
+      	$data = $this->db->select(['id','course_code','name'])->from('tbl_courses_db')->where('department_id',$d_id)->get();
+
+		return $data;
       }
 }
 

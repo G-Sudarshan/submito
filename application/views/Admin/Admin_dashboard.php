@@ -606,7 +606,9 @@ if(!$this->session->userdata('admin_id'))
 				<td>Sr. No.</td>
 				<td>Department id</td>
 				<td>Department name </td>
-				<td>Manage Department</td>
+				<td>Student</td>
+				<td>Staff</td>
+				<td>Course</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -626,11 +628,38 @@ if(!$this->session->userdata('admin_id'))
                    'd_id' => $dpt_name->dpt_id,
                     );
 
-				echo form_open('Admin/set_dpt_session');
+				echo form_open('Admin/load_manage_students');
 
 				echo form_hidden($d_data);
-				echo form_submit(['name'=>'submit','value'=>'Manage','class'=>'btn btn-outline-success']); echo form_close();
-	?> </td>
+				echo form_submit(['name'=>'submit','value'=>'Students','class'=>'btn btn-outline-success']); echo form_close();
+	        ?> 
+  </td>
+  <td><?php 
+
+				$d_data = array(
+                    'dname'  => $dpt_name->dpt_name,
+                   'd_id' => $dpt_name->dpt_id,
+                    );
+
+				echo form_open('Admin/load_manage_teachers');
+
+				echo form_hidden($d_data);
+				echo form_submit(['name'=>'submit','value'=>'Teachers','class'=>'btn btn-outline-success']); 
+				echo form_close();
+	        ?> </td>
+  <td><?php 
+
+				$d_data = array(
+                    'dname'  => $dpt_name->dpt_name,
+                   'd_id' => $dpt_name->dpt_id,
+                    );
+
+				echo form_open('Admin/load_manage_courses');
+
+				echo form_hidden($d_data);
+				echo form_submit(['name'=>'submit','value'=>'Courses','class'=>'btn btn-outline-info']); 
+				echo form_close();
+	        ?></td>
 			
 			</tr>
 

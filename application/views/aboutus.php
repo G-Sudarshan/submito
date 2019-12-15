@@ -45,13 +45,14 @@
 		}
 		.team-title h5 
 		{
+			font-size: 15px;
 		    margin-bottom: 0px;
 		    display: block;
 		    text-transform: uppercase;
 		}
 		.team-title span 
 		{
-		    font-size: 15px;
+		    font-size: 13px;
 		    text-transform: uppercase;
 		    color: #a6a6a6;
 		    letter-spacing: 1px;
@@ -299,17 +300,17 @@
 <body class="hm-gradient">
 
 	<?php $this->view('header'); ?>
-	<br/><br/>
+	<br/>
 
 	<section>
 
 		<h2>ABOUT US</h2>
 		<div class="container">
-			<p><h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;We strive to build an application where teacher can set assignments for various classes she handles/teaches. Students are expected to participate in these assignments related to topics they are part of.</h5></p>
-			<p><h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is easy to create assignments, attach files, submit assignments online, etc. with the help of this application.</h5></p>
+			<p><h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;We strive to build an application where teacher can set assignments for various classes she handles/teaches. Students are expected to participate in these assignments related to topics they are part of.</h6></p>
+			<p><h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is easy to create assignments, attach files, submit assignments online, etc. with the help of this application.</h6></p>
 		</div>	
 		<br/>
-		<h2>OUR INSPIRATION</h2>
+		<h2>OUR GUIDE</h2>
 		<br/>
 		<div class="container">
 			<div class="row">
@@ -323,8 +324,8 @@
 							<i>
 								<div class="img"><img src="<?php echo base_url('assets\images\img2.jpg'); ?>" alt="img"></div>
 								<div class="info">
-			  						<h3>Heading here</h3>
-			  						<p>Description goes here</p>
+			  						<h3>Mr. Mali Sir</h3>
+			  						<p>A Professor of Computer Technology in Government Polytechnic Nashik.</p>
 			  						<br/><br/><br/>
 			  						<p>
 		                        		<a class="fa fa-facebook" href="#"></a>
@@ -335,8 +336,8 @@
 						</div>
 					</div>
 						<div class="team-title">
-			            	<h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mr. Mali Sir</h5>
-			            	<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Professor</span>
+			            	<h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mr. Mali Sir</h5>
+			            	<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Professor</span>
 			        	</div>
 				</div>
 				<div class="col-lg-4 col-md-4 col-sm-12">
@@ -355,6 +356,8 @@
 			<div class="row mt-4">
 				<div class="col text-center">
 					<h2>OUR AWESOME TEAM</h2>
+					<h6>Teamwork is the fuel that allows common people to attain uncommon results.</h6>
+
 				</div>
 			</div>
 			<br/>
@@ -366,12 +369,33 @@
 						<i>
         					<div class="img"><img src="<?php echo base_url('assets\images\img2.jpg'); ?>" alt="img"></div>
         					<div class="info">
-          						<h3>Heading here</h3>
-          						<p>Description goes here</p>
-          						<br/><br/><br/><br/>
+          						<h3>Saurabh Bhalerao</h3>
+          						<p>A student of Computer Technology in Government Polytechnic Nashik.</p>
+          						<p>Roll No. 176103</p>
           						<p>
-                            		<a class="fa fa-facebook" href="#"></a>
-                 					<a class="fa fa-instagram" href="#"></a>
+                            		<a class="fa fa-instagram" href="https://www.instagram.com/saurabh.wakadikar/"></a>
+                 					<a class="fa fa-github" href="https://github.com/Guru7prvhilla/"></a>
+                        		</p>
+        					</div>
+        				</i>
+        			</div>
+	                <div class="team-title">
+                    	<h5>Saurabh Bhalerao</h5>
+                    	<span>176103</span>
+                	</div>
+	            </div>
+
+				<div class="col-lg-3 col-md-3 col-sm-6">
+					<div class="ih-item square effect2">
+						<i>
+        					<div class="img"><img src="<?php echo base_url('assets\images\img3.jpg'); ?>" alt="img"></div>
+        					<div class="info">
+          						<h3>Sudarshan Gawale</h3>
+          						<p>A student of Computer Technology in Government Polytechnic Nashik.</p>
+          						<p>Roll No. 176114</p>
+          						<p>
+                            		<a class="fa fa-instagram" href="https://www.instagram.com/g.sudarshan_11/"></a>
+                 					<a class="fa fa-github" href="https://github.com/G-Sudarshan/"></a>
                         		</p>
         					</div>
         				</i>
@@ -387,33 +411,12 @@
 						<i>
         					<div class="img"><img src="<?php echo base_url('assets\images\img2.jpg'); ?>" alt="img"></div>
         					<div class="info">
-          						<h3>Heading here</h3>
-          						<p>Description goes here</p>
-          						<br/><br/><br/><br/>
+          						<h3>Aniket Sinare</h3>
+          						<p>A student of Computer Technology in Government Polytechnic Nashik.</p>
+          						<p>Roll No. 176154</p>
           						<p>
-                            		<a class="fa fa-facebook" href="#"></a>
-                 					<a class="fa fa-instagram" href="#"></a>
-                        		</p>
-        					</div>
-        				</i>
-        			</div>
-	                <div class="team-title">
-                    	<h5>Saurabh Bhalerao</h5>
-                    	<span>176103</span>
-                	</div>
-	            </div>
-
-	            <div class="col-lg-3 col-md-3 col-sm-6">
-					<div class="ih-item square effect2">
-						<i>
-        					<div class="img"><img src="<?php echo base_url('assets\images\img2.jpg'); ?>" alt="img"></div>
-        					<div class="info">
-          						<h3>Heading here</h3>
-          						<p>Description goes here</p>
-          						<br/><br/><br/><br/>
-          						<p>
-                            		<a class="fa fa-facebook" href="#"></a>
-                 					<a class="fa fa-instagram" href="#"></a>
+                            		<a class="fa fa-instagram" href="https://www.instagram.com/aniket.sinu/"></a>
+                 					<a class="fa fa-github" href="https://github.com/aniket4206/"></a>
                         		</p>
         					</div>
         				</i>
@@ -429,12 +432,12 @@
 						<i>
         					<div class="img"><img src="<?php echo base_url('assets\images\img2.jpg'); ?>" alt="img"></div>
         					<div class="info">
-          						<h3>Heading here</h3>
-          						<p>Description goes here</p>
-          						<br/><br/><br/><br/>
+          						<h3>Prajakta Dhage</h3>
+          						<p>A student of Computer Technology in Government Polytechnic Nashik.</p>
+          						<p>Roll No. 176161</p>
           						<p>
-                            		<a class="fa fa-facebook" href="#"></a>
-                 					<a class="fa fa-instagram" href="#"></a>
+                            		<a class="fa fa-instagram" href="https://www.instagram.com/_prajaktagd_/"></a>
+                 					<a class="fa fa-github" href="https://github.com/prajaktagd/"></a>
                         		</p>
         					</div>
         				</i>

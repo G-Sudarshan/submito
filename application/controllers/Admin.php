@@ -67,17 +67,20 @@ class Admin extends MY_Controller{
    {
       $new_crs_name = $this->input->post('new_crs_name');
       $new_crs_code = $this->input->post('new_crs_code');
+      $dname = $this->input->post('dname');
+      $d_id = $this->input->post('d_id');
       
 
    	  $this->load->model('Admin_model');
-   	  $this->Admin_model->create_crs($new_crs_name,$new_crs_code);
-   	  $this->session->set_flashdata('crs_msg','Cousre created successfully !');
+   	  $this->Admin_model->create_crs($new_crs_name,$new_crs_code,$d_id);
+   	  
 
    	  	
+      $courses = $this->Admin_model->get_department_courses($d_id);
+      $this->session->set_flashdata('success','Course created successfully !');
 
-   	 return redirect('Admin/mng_dpt');
-
-
+      $this->load->view('Admin/manage_courses',['courses'=>$courses,'dname'=>$dname,'d_id'=>$d_id]);
+   	 
    }
 
    public function set_dpt_session()
@@ -189,24 +192,22 @@ class Admin extends MY_Controller{
       $new_staff_id = $this->input->post('new_staff_id');
       $dname = $this->input->post('dname');
       $d_id = $this->input->post('d_id');
+      $dname = $this->input->post('dname');
 
       $this->load->model('Admin_model');
 
      $sid = $this->Admin_model->add_staff($new_staff_name,$new_staff_id,$d_id,$dname,$new_staff_pw,$new_staff_username);
 
   
-     $id = $sid->row()->id;
+    $id = $sid->row()->id;
      
-     $data = [];
+    $data = [];
 
-     $this->createUserT($data,$id);
+    $this->createUserT($data,$id);
 
-     $this->session->set_flashdata('stf_msg','Staff Added Successfully !');
+    $teachers = $this->Admin_model->get_staff_names($d_id);
 
-     
-
-      return redirect('Admin/mng_dpt');
-
+    $this->load->view('Admin/manage_teachers',['teachers'=>$teachers,'dname'=>$dname,'d_id'=>$d_id]);
    }
 
    public function edit_staff()
@@ -471,10 +472,12 @@ class Admin extends MY_Controller{
 
      $this->createUserS($data,$id);
 
+     $students = $this->Admin_model->get_department_students($d_id);    
 
-     $this->session->set_flashdata('stf_msg','Student Added Successfully !');
+     $this->session->set_flashdata('success','Student Added Successfully !');
 
-     return redirect('Admin/mng_dpt');
+     $this->load->view('Admin/manage_students',['students'=>$students,'dname'=>$dname,'d_id'=>$d_id]);
+
 
    }
 
@@ -483,11 +486,16 @@ class Admin extends MY_Controller{
      $id = $this->input->post('id');
      $this->load->model('Admin_model');
 
+     $dname = $this->input->post('dname');
+      $d_id = $this->input->post('d_id');
+
      $this->Admin_model->delete_student($id);
 
-      $this->session->set_flashdata('stf_msg','Student Deleted Successfully !');
+     $students = $this->Admin_model->get_department_students($d_id);    
 
-      return redirect('Admin/mng_dpt');
+     $this->session->set_flashdata('success','Student Deleted Successfully !');
+
+     $this->load->view('Admin/manage_students',['students'=>$students,'dname'=>$dname,'d_id'=>$d_id]);
    }
 
    public function delete_course()
@@ -497,9 +505,15 @@ class Admin extends MY_Controller{
 
      $this->Admin_model->delete_course($id);
 
-      $this->session->set_flashdata('stf_msg','Course Deleted Successfully !');
+      $dname = $this->input->post('dname');
+    $d_id = $this->input->post('d_id');
 
-      return redirect('Admin/mng_dpt');
+    $courses = $this->Admin_model->get_department_courses($d_id);
+
+   
+      $this->session->set_flashdata('success','Course Deleted Successfully !');
+
+      $this->load->view('Admin/manage_courses',['courses'=>$courses,'dname'=>$dname,'d_id'=>$d_id]);
 
    }
 
@@ -592,6 +606,7 @@ class Admin extends MY_Controller{
         $this->load->helper('file');
         delete_files(FCPATH.'assets/a');
         delete_files(FCPATH.'assets/notes');
+        delete_files(FCPATH.'uploads');
         unlink(FCPATH.'assets/j/students.json');
         unlink(FCPATH.'assets/j/teachers.json');
 
@@ -614,6 +629,42 @@ class Admin extends MY_Controller{
      echo "Your attempt to reset system has been failed ..... please try again!";
       }
    }
+
+
+   public function load_manage_students()
+   {
+    $this->load->model('Admin_model');
+    $dname = $this->input->post('dname');
+    $d_id = $this->input->post('d_id');
+
+    $students = $this->Admin_model->get_department_students($d_id);
+
+    $this->load->view('Admin/manage_students',['students'=>$students,'dname'=>$dname,'d_id'=>$d_id]);
+   }
+
+   public function load_manage_teachers()
+   {
+    $this->load->model('Admin_model');
+    $dname = $this->input->post('dname');
+    $d_id = $this->input->post('d_id');
+
+    $teachers = $this->Admin_model->get_staff_names($d_id);
+
+    $this->load->view('Admin/manage_teachers',['teachers'=>$teachers,'dname'=>$dname,'d_id'=>$d_id]);
+
+   }
+
+   public function load_manage_courses()
+   {
+    $this->load->model('Admin_model');
+    $dname = $this->input->post('dname');
+    $d_id = $this->input->post('d_id');
+
+    $courses = $this->Admin_model->get_department_courses($d_id);
+
+    $this->load->view('Admin/manage_courses',['courses'=>$courses,'dname'=>$dname,'d_id'=>$d_id]);
+   }
+
 
 }
 
