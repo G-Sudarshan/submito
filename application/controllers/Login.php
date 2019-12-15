@@ -158,6 +158,21 @@ class Login extends MY_Controller{
       $this->session->set_flashdata("success","Password Updated Successfully");
       return redirect('Admin');
    }
+
+   public function change_password_teacher()
+   {
+     $this->load->model('TeacherModel');
+     $id = $this->session->userdata('teacher_id');
+     $teacheremail = $this->TeacherModel->getTeacherEmail($id);
+     if($teacheremail==NULL)
+     {
+       $this->session->set_flashdata("failure","To change the Password first set your email through Update My Info button on admin dashboard ");
+      return redirect('Teacher');
+     }else{
+     $this->session->set_userdata('email',$teacheremail);
+     return redirect('Teacher/sendemail');
+     }
+   }
    public function update_teacher_password()
    {
       $id = $this->input->post('id');

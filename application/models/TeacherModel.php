@@ -79,6 +79,13 @@ class TeacherModel extends CI_Model{
 	{
 		return $this->db->delete('static_assignments',['id' => $id]);
 	}
+
+	public function getTeacherEmail($id)
+	{
+		$data = $this->db->select('email')->from('tbl_teachers_db')->where('id',$id)->get();
+
+		return $data->row()->email;
+	}
 }
 
 ?>

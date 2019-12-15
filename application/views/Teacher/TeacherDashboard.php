@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<?php
+
+// $this->session->set_userdata('name',$teacherData->name);
+// $this->session->set_userdata('department',$teacherData->department);
+?><!DOCTYPE html>
 <html>
 <head>
 	<title>Teacher Dashboard</title>
@@ -51,7 +55,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right">
               <a class="dropdown-item" href="#" data-toggle="modal" data-target="#profileModal">Profile</a>
-              <a class="dropdown-item" href=<?= base_url('Teacher/load_change_password_teacher'); ?> >Change Password</a>
+              <a class="dropdown-item" href=<?= base_url('Login/change_password_teacher'); ?> >Change Password</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
             </div>
@@ -73,6 +77,10 @@
               echo '<div class="alert alert-dismissible alert-success">' . $success . '</div>';
             endif; 
       ?>
+      <?php if($failure = $this->session->flashdata('failure')): 
+              echo '<div class="alert alert-dismissible alert-danger">' . $failure . '</div>';
+            endif; 
+      ?>
       <br/>
 
       <div align="right">
@@ -82,6 +90,7 @@
 
       <!-- Subject Table -->
       <div>
+        <?php if($selectedcourses!=NULL): ?>
         <table class="table table-striped">
           <thead>
             <th>Sr No.</th>
@@ -129,6 +138,7 @@
               <?php endforeach; ?>
           </tbody> 
         </table>  
+      <?php endif; ?>
       </div>
 
     </div>
@@ -158,7 +168,7 @@
          <div class="modal-content">
             <!-- Modal Header-->
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Profile <i class=" fa fa-user-o" ></i> </h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -167,9 +177,10 @@
             <div class="modal-body">
               <?php
                 echo "Name: ".$teacherData->name."<br/>";
+                echo "Username: ".$teacherData->username."<br/>";
+                echo "Email: ".$teacherData->email."<br/>";
                 echo "Department: ".$teacherData->department."<br/>";
                 echo "Department Id: ".$teacherData->department_id."<br/>";
-                echo "Username: ".$teacherData->username."<br/>";
                 echo "Staff Id: ".$teacherData->staff_id."<br/>";
               ?>
             </div>
@@ -202,7 +213,7 @@
             <!-- Modal footer -->
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href=<?= base_url('Login/logout'); ?> >Logout</a>
+                <a class="btn btn-danger" href=<?= base_url('Login/logout'); ?> >Logout</a>
             </div>
           </div>
       </div>
