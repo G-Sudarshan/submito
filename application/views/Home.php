@@ -25,14 +25,14 @@
 
 	<div class="container">
     	<br/><br/><br/><br/>
-    	<h1>SUBMITO</h1>
+    	<h1>SubMito!</h1>
 		<h2>Online Assignment Management System</h2>
 		<br/><br/>
 	    <h4>
 	      <marquee> 
 	        <?php foreach ($n_data->result() as $n) { ?> 
 
-	          <a target="_blank" href=<?= base_url($n->pdf_path); ?> > <?= $n->title; ?> </a> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
+	          <a href=<?= $n->pdf_path ?> > <?= $n->title; ?> </a> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; 
 
 	        <?php } ?>
 	      </marquee>

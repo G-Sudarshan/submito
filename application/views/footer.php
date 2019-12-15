@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Header</title>
+	<title>Footer</title>
 	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -16,7 +16,8 @@
 	<footer class="py-3 bg-dark">
 	    <div class="container text-center text-white-50">
 	    	<h6><a href=<?= base_url('Login/aboutus'); ?> >About Us</a></h6>
-	    	<h6><a href="#" >Terms of Services</a></h6>
+	    	<h6><a href=<?= base_url('Login/terms'); ?> >Terms and Conditions</a></h6>
+	    	<h6><a href=<?= base_url('Login/privacy'); ?> >Privacy Policy</a></h6>
 	    	<h6><a href=<?= base_url('Login/contactus'); ?> >Contact Us</a></h6>
 	      	<small>&COPY; 2019 COMPUTER TECHNOLOGY. All Rights Reserved</small>
 	    </div>

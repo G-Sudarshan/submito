@@ -2,660 +2,566 @@
 <html>
 <head>
 	<title>Upload Assignments</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-	<div class="container" align="center">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap Link -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- Bootstrap font awesome link -->
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <!-- Script links -->
+ <!--  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
 
-    <?php
+  <!-- Style -->
+  <style type="text/css">
 
-  // echo "<pre>";
-  // echo var_dump($uad->result());
-  // echo "</pre>";
-
-  //$ua = $uad->result();
-
- // $ua = $uad->fetch_all(MYSQLI_ASSOC);
-
-  //echo $ua.assignment_no;
-    
-    if($uad->result())
+    /* body */
+    .hm-gradient 
     {
+        background-image: linear-gradient(to top, #f3e7e9 20%, #e3eeff 60%, #e3eeff 100%);
+        font-family: 'Source Sans Pro', sans-serif;
+    } 
 
-      
-    foreach ($uad->result() as $i => $u) {
-    $ua[$i]['a_no'] = $u->assignment_no;
-    $ua[$i]['t'] = $u->text;
-    $ua[$i]['p'] = $u->pdf_path;
-    $ua[$i]['c'] = $u->checked;
-    $ua[$i]['m'] = $u->marks;
+  </style>
+</head>
+<body class="hm-gradient">
+
+  <?php
+    if($uad->result())
+    {      
+      foreach ($uad->result() as $i => $u) 
+      {
+        $ua[$i]['a_no'] = $u->assignment_no;
+        $ua[$i]['t'] = $u->text;
+        $ua[$i]['p'] = $u->pdf_path;
+        $ua[$i]['c'] = $u->checked;
+        $ua[$i]['m'] = $u->marks;
+      }  
+    }
+    else
+    {
+      $ua[0]['t'] = NULL;
     }
 
-    // echo "SUBMITTED ASSIGNMENTS NO<br/>";
-
-    // echo "<pre>";
-    // echo var_dump($ua);
-    // echo "</pre>";
-
-  }else
-  {
-    $ua[0]['t'] = NULL;
-    $ua[0]['c'] = NULL;
-    $ua[0]['p'] = NULL;
-
-  }
-
-  $submitted_assignments_no = Array();
-    foreach ($uad->result() as $i => $ua1) {
-    $submitted_assignments_no[$i] = $ua1->assignment_no;
+    $submitted_assignments_no = Array();
+    foreach ($uad->result() as $i => $ua1) 
+    {
+      $submitted_assignments_no[$i] = $ua1->assignment_no;
     }
-
-
-
-  // echo "<pre>";
-  //  echo var_dump($ua);
-  //  echo "</pre>";
-
-
-
   ?>
 
-	<h1 class="text-primary">Upload Assignment</h1>
-	<h3 class="text-success"><?= $course_name; ?><br/><?= $course_code ?></h3>
-	<?php if($success = $this->session->flashdata('success')): 
-		echo '<div class="alert alert-dismissible alert-success">' . $success . '</div>';
-	 endif; ?>
-	<div align="left">
-	<a class="btn btn-info" href="<?= base_url('Student'); ?>" >Back to Student Dashboard</a>
-    </div><br/>
+  <section>
 
-    <div>
-    	<table class="table table-striped">
-    		<thead>
+    <!-- ----------------------------------------------------------------- Header --------------------------------------------------------------------- -->    
+    
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+      <a class="navbar-brand mr-1" href="#">SubMito!</a>
+    </nav>
 
-    			<th>Assignment no.</th>
-    			<th>Title</th>
-    			<th>Description</th>
-    			<th>Assigned By</th>
-    			<th>Last date to submit</th>
-    			<th>Type</th>
-    			<th>Upload</th>
-    			<th>Submission Status</th>
-          <th>Update</th>
-          <th>view</th>
-          <th>Marks</th>
+    <!-- ---------------------------------------------------------------------------------------------------------------------------------------------- -->
 
-    		</thead>
-    		<tbody>
-    			<?php foreach ($cad->result() as $a): ?>
-    			
-    			
-    			<tr>
-    				<td>
-    					<?= $a->assignment_no; ?>
-    				</td>
-    				<td>
-    					<?= $a->name; ?>
-    				</td>
-    				<td>
-    					<?= $a->description; ?>
-    				</td>
-    				<td>
-    					<?= $a->created_by; ?>
-    				</td>
-    				<td>
-    					<?= $a->deadline; ?>
-    				</td>
-    				<td>
-    					<?php if($a->type == 1)
-    					{
-    						echo "PDF";
-    					 }
-    					 elseif ($a->type == 2) {
-    					 		echo "Text";
-    					 }
-    					 else {
-    					  	echo "Error : contatct developer";
-    					  } ?>
-    				</td>
-    				<td>
-    					<?php if($a->type == 1)
-    					{ 
-    						echo "<button class='btn btn-warning' onclick='uploadPDF(".$a->assignment_no.")'".(in_array($a->assignment_no, $submitted_assignments_no) ? 'disabled' : '')." >Upload PDF</button>";
-    						
-    					 } ?>
+    <!-- ----------------------------------------------------------------- Content -------------------------------------------------------------------- -->
 
-              <?php 
-    					 if ($a->type == 2) { 
-    					 		echo "<button class='btn btn-warning' onclick='uploadText(".$a->assignment_no.")'".(in_array($a->assignment_no, $submitted_assignments_no) ? 'disabled' : '')." >Upload Text</button>";
-    					  } ?>               
-    					
-    				</td>
-            <td>
-              <?php if(in_array($a->assignment_no, $submitted_assignments_no)){ ?>
-              <p class="text-success">Submitted</p>
-            <?php }else{ ?>
-              <p class="text-danger">Not Submitted yet</p> 
-            <?php } ?>
-              
-            </td>
-    				<td>
-    					<?php if($a->type == 1)
-              { 
-                $key = array_search($a->assignment_no, array_column($ua, 'a_no'));
+    <div class="container-fluid">
+      <div align="left">&nbsp;
+        <h4><a href="<?= base_url('Student'); ?>" ><i class="fa fa-arrow-circle-left font-weight-bold text-dark"></i></a></h4>
+      </div>
+    </div>
 
-                $checked = $ua[$key]['c'];
-                echo "<button class='btn btn-primary' onclick='updatePDF(".$a->assignment_no.")'".(in_array($a->assignment_no, $submitted_assignments_no) && $checked == 0  ? '' : 'disabled')." >Update PDF</button>";
-                
-               } ?>
+    <div class="container-fluid" align="center">
 
-              <?php 
-               if ($a->type == 2) { 
+      <h2>Upload Assignment</h2>
+      <h4><?= $course_name; ?><br/><?= $course_code ?></h4>
 
-                $key = array_search($a->assignment_no, array_column($ua, 'a_no'));
+      <!-- Flashdata -->
+      <?php 
+        if($success = $this->session->flashdata('success')): 
+          echo '<div class="alert alert-dismissible alert-success">' . $success . '</div>';
+        endif; 
+      ?>
+      <br/><br/>
 
-                
-                $submitted_text = $ua[$key]['t'];
-                //$submitted_text = trim($submitted_text);
+      <div>
+        <table class="table table-striped">
+          <thead>
+            <th>Assignment No.</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Assigned By</th>
+            <th>Last Date to Submit</th>
+            <th>Type</th>
+            <th>Upload</th>
+            <th>Submission Status</th>
+            <th>Update</th>
+            <th>View</th>
+            <th>Marks</th>
+          </thead>
+          <tbody>
+            <?php foreach ($cad->result() as $a): ?>
+            <tr>
+              <td><?= $a->assignment_no; ?></td>
+              <td><?= $a->name; ?></td>
+              <td><?= $a->description; ?></td>
+              <td><?= $a->created_by; ?></td>
+              <td><?= $a->deadline; ?></td>
+              <td>
+                <?php 
+                  if($a->type == 1)
+                  {
+                    echo "PDF";
+                  }
+                  elseif ($a->type == 2) 
+                  {
+                    echo "Text";
+                  }
+                  else 
+                  {
+                    echo "Error : contatct developer";
+                  } 
+                ?>
+              </td>
+              <td>
+                <?php 
+                  if($a->type == 1)
+                  { 
+                    echo "<button class='btn btn-warning' onclick='uploadPDF(".$a->assignment_no.")'".(in_array($a->assignment_no, $submitted_assignments_no) ? 'disabled' : '')." >Upload PDF</button>";
+                  } 
+                ?>
+                <?php 
+                  if ($a->type == 2) 
+                  { 
+                    echo "<button class='btn btn-warning' onclick='uploadText(".$a->assignment_no.")'".(in_array($a->assignment_no, $submitted_assignments_no) ? 'disabled' : '')." >Upload Text</button>";
+                  } 
+                ?>                   
+              </td>
+              <td>
+                <?php 
+                  if(in_array($a->assignment_no, $submitted_assignments_no))
+                  { 
+                ?>
+                <p class="text-success">Submitted</p>
+                <?php 
+                  }
+                  else
+                  { 
+                ?>
+                <p class="text-danger">Not Submitted yet</p> 
+                <?php 
+                  } 
+                ?>
+              </td>
+              <td>
+                <?php 
+                  if($a->type == 1)
+                  { 
+                    $key = array_search($a->assignment_no, array_column($ua, 'a_no'));
+                    $checked = $ua[$key]['c'];
+                    echo "<button class='btn btn-primary' onclick='updatePDF(".$a->assignment_no.")'".(in_array($a->assignment_no, $submitted_assignments_no) && $checked == 0  ? '' : 'disabled')." >Update PDF</button>";   
+                  } 
+                ?>
+                <?php 
+                  if ($a->type == 2) 
+                  { 
+                    $key = array_search($a->assignment_no, array_column($ua, 'a_no'));  
+                    $submitted_text = $ua[$key]['t'];
+                    $checked = $ua[$key]['c'];
+                    $str = "<input type='hidden' id='id".$a->assignment_no."' value='".$submitted_text."'>";
+                    echo $str."<button class='btn btn-primary' onclick='updateText(".$a->assignment_no.",document.getElementById(\"id".$a->assignment_no."\").value)'".(in_array($a->assignment_no, $submitted_assignments_no) && $checked == 0 ? '' : 'disabled').">Update Text</button>";
+                  } 
+                ?>               
+              </td>
+              <td>
+                <?php 
+                  if($a->type == 1)
+                  { 
+                    $key = array_search($a->assignment_no, array_column($ua, 'a_no'));
+                    $pdf_path = $ua[$key]['p'];
+                    $strV = "<input type='hidden' id='idpv".$a->assignment_no."' value='".base_url($pdf_path)."'>";
+                    echo $strV."<button class='btn btn-primary' onclick='viewPDF(".$a->assignment_no.",document.getElementById(\"idpv".$a->assignment_no."\").value)'".(in_array($a->assignment_no, $submitted_assignments_no) ? '' : 'disabled').">View PDF</button>";
+                  } 
+                ?>
+                <?php 
+                  if ($a->type == 2) 
+                  {  
+                    $key = array_search($a->assignment_no, array_column($ua, 'a_no'));
+                    $submitted_text = $ua[$key]['t'];
+                    $strV = "<input type='hidden' id='idv".$a->assignment_no."' value='".$submitted_text."'>";
+                    echo $strV."<button class='btn btn-primary' onclick='viewText(".$a->assignment_no.",document.getElementById(\"idv".$a->assignment_no."\").value)'".(in_array($a->assignment_no, $submitted_assignments_no) ? '' : 'disabled').">View Text</button>";
+                  } 
+                ?>     
+              </td>
+              <td>
+                <?php 
+                  if(in_array($a->assignment_no, $submitted_assignments_no))
+                  {
+                    $key = array_search($a->assignment_no, array_column($ua, 'a_no'));
+                    $checked = $ua[$key]['c'];
+                    if($checked==1)
+                    {
+                      $marks = $ua[$key]['m'];
+                      echo "<p class='text-success' >$marks</p>";
+                    }
+                    else
+                    {
+                ?>
+                      <p class="text-danger">Not assessd yet</p>
+                <?php 
+                    } 
+                  }
+                  else
+                  {
+                ?>
+                    <p class="text-danger">Not assessd yet</p>
+                <?php
+                  }
+                ?>
+              </td>
+            </tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
+      </div>
 
-                $checked = $ua[$key]['c'];
-                  $str = "<input type='hidden' id='id".$a->assignment_no."' value='".$submitted_text."'>";
-                   echo $str."<button class='btn btn-primary' onclick='updateText(".$a->assignment_no.",document.getElementById(\"id".$a->assignment_no."\").value)'".(in_array($a->assignment_no, $submitted_assignments_no) && $checked == 0 ? '' : 'disabled').">Update Text</button>";
-                } 
-                ?>   
-    					
-    				</td>
-            <td>
-             <?php if($a->type == 1)
-              { 
-                // echo "<button class='btn btn-success' onclick='uploadPDF(".$a->assignment_no.")'".(in_array($a->assignment_no, $submitted_assignments_no) ? '' : 'disabled')." >View PDF</button>";
-                
-                $key = array_search($a->assignment_no, array_column($ua, 'a_no'));
+    </div>
 
-                
-                $pdf_path = $ua[$key]['p'];
-                //$submitted_text = trim($submitted_text);
+    <!-- ---------------------------------------------------------------------------------------------------------------------------------------------- --><!-- -------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
-                $strV = "<input type='hidden' id='idpv".$a->assignment_no."' value='".base_url($pdf_path)."'>";
-                echo $strV."<button class='btn btn-primary' onclick='viewPDF(".$a->assignment_no.",document.getElementById(\"idpv".$a->assignment_no."\").value)'".(in_array($a->assignment_no, $submitted_assignments_no) ? '' : 'disabled').">View PDF</button>";
+  <!-- --------------------------------------------------- The Text Upload Assignment Modal ------------------------------------------------------------- -->
 
-               } ?>
-
-              <?php 
-               if ($a->type == 2) { 
-                  
-                $key = array_search($a->assignment_no, array_column($ua, 'a_no'));
-
-                
-                $submitted_text = $ua[$key]['t'];
-                //$submitted_text = trim($submitted_text);
-
-                $strV = "<input type='hidden' id='idv".$a->assignment_no."' value='".$submitted_text."'>";
-                echo $strV."<button class='btn btn-primary' onclick='viewText(".$a->assignment_no.",document.getElementById(\"idv".$a->assignment_no."\").value)'".(in_array($a->assignment_no, $submitted_assignments_no) ? '' : 'disabled').">View Text</button>";
-                } ?>   
-              
-            </td>
-            <td>
-              <?php 
-              if(in_array($a->assignment_no, $submitted_assignments_no)){
-
-                 $key = array_search($a->assignment_no, array_column($ua, 'a_no'));
-
-                $checked = $ua[$key]['c'];
-                if($checked==1)
-                {
-                  $marks = $ua[$key]['m'];
-                  echo "<p class='text-success' >$marks</p>";
-                }else{
-
-                 ?>
-              <p class="text-danger">Not assessd yet</p>
-              <?php } 
-            }else{
+  <!-- Modal -->
+  <div class="modal fade" id="uploadAssignmentTextModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Create New Assignment</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <div class="form-group">
+            <?php 
+              echo form_open('Student/upload_assignment_text'); 
+              $data = array(
+                        'course_code'  => $course_code,
+                       'course_name' => $course_name,
+                        'rollno' => $rollno
+                              );
+              echo form_hidden($data); 
             ?>
-            <p class="text-danger">Not assessd yet</p>
-            <?php
-            }
+              <input type="hidden" name="assignment_no" id="text_assignment_no" value="">
+            <?php 
+              echo "Type assignment Text&nbsp; :&nbsp; ";
+              echo form_textarea(['name'=>'a_text','class'=>'form-control','id'=>'my123','placeholder'=>' Assignment   ']); 
             ?>
-            </td>
-    			</tr>
-
-    		<?php endforeach; ?>
-    		</tbody>
-    	</table>
+          </div>
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+            <?php 
+              echo form_submit('submit', 'Submit',"class='btn btn-primary'");
+              echo form_close(); ?>
+        </div>
+      </div>
     </div>
-
-    
-    <!------------------ The Text Upload Assignment Modal ------------------------------>
-
-
-<!-- Modal -->
-<div class="modal fade" id="uploadAssignmentTextModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Create new assignment</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-      <div class="modal-body">
-      	<div class="form-group">
-        <?php echo form_open('Student/upload_assignment_text'); 
-
-
-
-        	$data = array(
-                    'course_code'  => $course_code,
-                   'course_name' => $course_name,
-                    'rollno' => $rollno
-                          );
-            echo form_hidden($data); ?>
-		 <input type="hidden" name="assignment_no" id="text_assignment_no" value="">
-			<?php echo "Type assignment Text&nbsp; :&nbsp; ";
-			echo form_textarea(['name'=>'a_text','class'=>'form-control','id'=>'my123','placeholder'=>' Assignment   ']); 
-			?>
-			
-		  
-          <!-- Modal footer -->
-          
-      <div class="modal-footer">
-         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-         
-     <?php 
-
-      echo form_submit('submit', 'Submit',"class='btn btn-primary'");
-
-       echo form_close(); ?>
-   </div>
-       
-            </div>
-           </div>
-          </div>
-        </div>
-      
-
-
-</div>
-<!-- ------------------------------------------------------------------------------------- -->
-
-<!------------------ The Text Update Assignment Modal ------------------------------>
-
-
-<!-- Modal -->
-<div class="modal fade" id="updatessignmentTextModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Update assignment</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-      <div class="modal-body">
-        <div class="form-group">
-        <?php echo form_open('Student/update_assignment_text'); 
-
-
-
-          $data = array(
-                    'course_code'  => $course_code,
-                   'course_name' => $course_name,
-                    'rollno' => $rollno
-                          );
-            echo form_hidden($data); ?>
-     <input type="hidden" name="assignment_no" id="update_text_assignment_no" value="">
-      
-      <?php echo "Type assignment Text to Update &nbsp; :&nbsp; "; ?>
-
-      <textarea name="updated_a_text" id="myassignment" value="" class="form-control" placeholder="Assignment" type="textarea" onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off></textarea><br>
-
-      
-      
-          <!-- Modal footer -->
-          
-      <div class="modal-footer">
-         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-         
-     <?php 
-
-      echo form_submit('submit', 'Submit',"class='btn btn-primary'");
-
-       echo form_close(); ?>
-   </div>
-       
-            </div>
-           </div>
-          </div>
-        </div>
-      
-
-
-</div>
-<!-- ------------------------------------------------------------------------------------- -->
-
-<!------------------ The View Text  Assignment Modal ------------------------------>
-
-
-<!-- Modal -->
-<div class="modal fade" id="viewAssignmentTextModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">View submitted assignment</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-      <div class="modal-body">
-        <div class="form-group">
+  </div>
         
-     
-     <div align="left" id="viewmyassgnmenttext">
-       
-     </div>
-      
-      
-          <!-- Modal footer -->
-          
-      <div class="modal-footer">
-         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-   </div>
-       
-            </div>
-           </div>
+  <!-- -------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+  <!-- --------------------------------------------------- The Text Update Assignment Modal ------------------------------------------------------------- -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="updatessignmentTextModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Update Assignment</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <div class="form-group">
+            <?php 
+              echo form_open('Student/update_assignment_text'); 
+              $data = array(
+                      'course_code'  => $course_code,
+                     'course_name' => $course_name,
+                      'rollno' => $rollno
+                            );
+              echo form_hidden($data); 
+            ?>
+              <input type="hidden" name="assignment_no" id="update_text_assignment_no" value=""> 
+            <?php 
+              echo "Type Assignment Text to Update &nbsp; :&nbsp; "; 
+            ?>
+              <textarea name="updated_a_text" id="myassignment" value="" class="form-control" placeholder="Assignment" type="textarea" onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off></textarea>
+              <br/>
           </div>
         </div>
-      
-
-
-</div>
-<!-- ------------------------------------------------------------------------------------- -->
-
-<!------------------ The PDF Upload Assignment Modal ------------------------------>
-
-
-<!-- Modal -->
-<div class="modal fade" id="uploadAssignmentPdfModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Create new assignment</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <!-- Modal footer -->    
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>  
+          <?php 
+            echo form_submit('submit', 'Submit',"class='btn btn-primary'");
+            echo form_close(); 
+          ?>
+        </div>
       </div>
-
-      <div class="modal-body">
-      	<div class="form-group">
-        <?php echo form_open_multipart('Student/upload_assignment_pdf'); 
-
-
-
-        	$data = array(
-                    'course_code'  => $course_code,
-                   'course_name' => $course_name,
-                   'rollno' => $rollno
-                    ); 
-                    echo form_hidden($data);  ?>
-            
-
-			<div class="form-group">
-		      <label for="userfile" class="col-lg-4 control-label">Select PDF of assignment to Upload : </label>
-		      <div>
-            <input type="hidden" name="assignment_no" id="pdf_assignment_no" value="">
-		        <?php echo form_upload(['name'=>'userfile','class'=>'form-control']); ?>
-		      </div>
-		    </div>
-        <div>
-      <p class="text-danger">
-        Note : Upload PDF file of Size less than 1MB (1024 KB)
-      </p>
-      <p class="text-success">
-        If your PDF's size is more than 1 MB you can compress it on <span class="text-primary"><a href="https://www.ilovepdf.com/compress_pdf" target="_blank"> ilovepdf.com</a> </span> or
-        <span class="text-primary"> <a href="https://pdfcandy.com/compress-pdf.html" target="_blank">pdfcandy.com</a> </span>
-      </p>
     </div>
-			
-		   
-		   
-          <!-- Modal footer -->
-          
-      <div class="modal-footer">
-         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
+  </div>
          
-     <?php 
+  <!-- -------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
-      echo form_submit('submit', 'Submit',"class='btn btn-primary'");
+  <!-- ----------------------------------------------------- The View Text Assignment Modal ------------------------------------------------------------- -->
 
-       echo form_close(); ?>
-   </div>
-       
-            </div>
-           </div>
+  <!-- Modal -->
+  <div class="modal fade" id="viewAssignmentTextModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">View Submitted Assignment</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <div class="form-group">
+            <div align="left" id="viewmyassgnmenttext"></div>
           </div>
         </div>
-      
-
-
-</div>
-<!-- ------------------------------------------------------------------------------------- -->
-
-<!------------------ The PDF Update Assignment Modal ------------------------------>
-
-
-<!-- Modal -->
-<div class="modal fade" id="updateAssignmentPdfModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Update assignment</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <!-- Modal footer -->   
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
       </div>
-
-      <div class="modal-body">
-        <div class="form-group">
-        <?php echo form_open_multipart('Student/update_assignment_pdf'); 
-
-
-
-          $data = array(
-                    'course_code'  => $course_code,
-                   'course_name' => $course_name,
-                   'rollno' => $rollno
-                    ); 
-                    echo form_hidden($data);  ?>
-            
-
-      <div class="form-group">
-          <label for="userfile" class="col-lg-4 control-label">Select PDF of assignment to Upload : </label>
-          <div>
-            <input type="hidden" name="assignment_no" id="update_pdf_assignment_no" value="">
-            <?php echo form_upload(['name'=>'updateuserfile','class'=>'form-control']); ?>
-          </div>
-        </div>
-        <div>
-      <p class="text-danger">
-        Note : Upload PDF file of Size less than 1MB (1024 KB)
-      </p>
-      <p class="text-success">
-        If your PDF's size is more than 1 MB you can compress it on <span class="text-primary"><a href="https://www.ilovepdf.com/compress_pdf" target="_blank"> ilovepdf.com</a> </span> or
-        <span class="text-primary"> <a href="https://pdfcandy.com/compress-pdf.html" target="_blank">pdfcandy.com</a> </span>
-      </p>
     </div>
-      
-       
-       
-          <!-- Modal footer -->
-          
-      <div class="modal-footer">
-         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-         
-     <?php 
-
-      echo form_submit('submit', 'Submit',"class='btn btn-primary'");
-
-       echo form_close(); ?>
-   </div>
-       
-            </div>
-           </div>
-          </div>
-        </div>
-      
-
-
-</div>
-<!-- ------------------------------------------------------------------------------------- -->
-
-<!------------------ The View PDF Assignment Modal ------------------------------>
-
-
-<!-- Modal -->
-<div class="modal fade" id="viewAssignmentPDFModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">View submitted assignment</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-      <div class="modal-body">
-        <div class="form-group">
+  </div>
         
-     
-     
+  <!-- -------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
-      <div class="container">
+  <!-- ---------------------------------------------------- The PDF Upload Assignment Modal ------------------------------------------------------------- -->
 
-  <center>
-    <div id = "viewmyassgnmentpdf">
-      
-    </div>
-    
-
-  </center>
-
- </div>
-       
-     
-      
-      
-          <!-- Modal footer -->
-          
-      <div class="modal-footer">
-         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-   </div>
-       
-            </div>
-           </div>
+  <!-- Modal -->
+  <div class="modal fade" id="uploadAssignmentPdfModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Create new assignment</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <div class="form-group">
+            <?php 
+              echo form_open_multipart('Student/upload_assignment_pdf'); 
+              $data = array(
+                        'course_code'  => $course_code,
+                       'course_name' => $course_name,
+                       'rollno' => $rollno
+                        ); 
+              echo form_hidden($data);  
+            ?>    
+              <label for="userfile" class="col-lg-4 control-label">Select PDF of Assignment to Upload : </label>
+              <div>
+                <input type="hidden" name="assignment_no" id="pdf_assignment_no" value="">
+                <?php echo form_upload(['name'=>'userfile','class'=>'form-control']); ?>
+              </div>
+              <p class="text-danger">
+                Note: Upload PDF file of size less than 1MB (1024 KB)
+              </p>
+              <p class="text-success">
+                If your PDF's size is more than 1 MB you can compress it on 
+                <span class="text-primary"><a href="https://www.ilovepdf.com/compress_pdf" target="_blank"> ilovepdf.com</a> </span> 
+                or
+                <span class="text-primary"> <a href="https://pdfcandy.com/compress-pdf.html" target="_blank">pdfcandy.com</a> </span>
+              </p>
           </div>
         </div>
-      
+        <!-- Modal footer -->        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <?php 
+            echo form_submit('submit', 'Submit',"class='btn btn-primary'");
+            echo form_close(); 
+          ?>
+        </div> 
+      </div>
+    </div>
+  </div>
 
+  <!-- -------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
+  <!-- ---------------------------------------------------- The PDF Update Assignment Modal ------------------------------------------------------------- -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="updateAssignmentPdfModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Update assignment</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <div class="form-group">
+            <?php 
+              echo form_open_multipart('Student/update_assignment_pdf'); 
+              $data = array(
+                        'course_code'  => $course_code,
+                       'course_name' => $course_name,
+                       'rollno' => $rollno
+                        ); 
+              echo form_hidden($data);  
+            ?>
+              <label for="userfile" class="col-lg-4 control-label">Select PDF of assignment to Upload : </label>
+              <div>
+                <input type="hidden" name="assignment_no" id="update_pdf_assignment_no" value="">
+                <?php echo form_upload(['name'=>'updateuserfile','class'=>'form-control']); ?>
+              </div>
+              <div>
+                <p class="text-danger">
+                  Note: Upload PDF file of Size less than 1MB (1024 KB)
+                </p>
+                <p class="text-success">
+                  If your PDF's size is more than 1 MB you can compress it on 
+                  <span class="text-primary"><a href="https://www.ilovepdf.com/compress_pdf" target="_blank"> ilovepdf.com</a> </span> 
+                  or
+                  <span class="text-primary"> <a href="https://pdfcandy.com/compress-pdf.html" target="_blank">pdfcandy.com</a> </span>
+                </p>
+              </div>
+        <!-- Modal footer -->     
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>  
+          <?php 
+            echo form_submit('submit', 'Submit',"class='btn btn-primary'");
+            echo form_close(); 
+          ?>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<!-- ------------------------------------------------------------------------------------- -->
-
 </div>
 
-</body>
+  <!-- -------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
-<script type="text/javascript">
-  function uploadText(a_no)
-  {
-    var an = a_no;
+  <!-- -------------------------------------------------------The View PDF Assignment Modal-------------------------------------------------------------- -->
 
-   $('#uploadAssignmentTextModal').modal("show");
+  <!-- Modal -->
+  <div class="modal fade" id="viewAssignmentPDFModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <!-- Modal Header-->
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">View Submitted Assignment</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <!-- Modal Body-->
+        <div class="modal-body">
+          <div class="form-group">
+            <div class="container">
+              <center>
+                <div id = "viewmyassgnmentpdf"></div>
+              </center>
+            </div>
+          </div>
+        </div>
+        <!-- Modal footer -->     
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+        
 
-   document.getElementById('text_assignment_no').value = an; 
+  <!-- -------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
-   //console.log(an);          
-         
-  }
+    <!-- ----------------------------------------------------------------- Footer --------------------------------------------------------------------- -->
 
-  function uploadPDF(a_no)
-  {
-    var an = a_no;
+    <br/><br/><br/><br/><br/><br/><br/><br/>
+    <footer class="py-3 bg-dark">
+      <div class="container text-center text-white-50">
+        <small>&COPY; 2019 COMPUTER TECHNOLOGY. All Rights Reserved</small>
+      </div>
+    </footer>
 
-   $('#uploadAssignmentPdfModal').modal("show");
+    <!-- ---------------------------------------------------------------------------------------------------------------------------------------------- -->
 
-   document.getElementById('pdf_assignment_no').value = an; 
-
-  }
-
-  function updateText(a_no,submitted_text)
-  {
-    var an = a_no;
-    
-   $('#updatessignmentTextModal').modal("show");
-
-   
-   document.getElementById('update_text_assignment_no').value = an; 
-   document.getElementById('myassignment').value = submitted_text ;
-  }
+  </section>
 
   
+  <script type="text/javascript">
 
-  function viewText(a_no,submitted_text)
-  {
-    var an = a_no;
-    //alert(submitted_text);
-   //  console.log(a_no);
-   // console.log(submitted_text);
+    function uploadText(a_no)
+    {
+      var an = a_no;
+      $('#uploadAssignmentTextModal').modal("show");
+      document.getElementById('text_assignment_no').value = an;    
+    }
 
+    function uploadPDF(a_no)
+    {
+      var an = a_no;
+      $('#uploadAssignmentPdfModal').modal("show");
+      document.getElementById('pdf_assignment_no').value = an; 
+    }
 
-   $('#viewAssignmentTextModal').modal("show");
+    function updateText(a_no,submitted_text)
+    {
+      var an = a_no; 
+      $('#updatessignmentTextModal').modal("show");
+      document.getElementById('update_text_assignment_no').value = an; 
+      document.getElementById('myassignment').value = submitted_text ;
+    }
 
-   
-   //document.getElementById('update_text_assignment_no').value = an; 
-   document.getElementById('viewmyassgnmenttext').innerHTML = "<pre>"+submitted_text+"</pre>" ;
-  }
+    function viewText(a_no,submitted_text)
+    {
+      var an = a_no;
+      $('#viewAssignmentTextModal').modal("show");
+      document.getElementById('viewmyassgnmenttext').innerHTML = "<pre>"+submitted_text+"</pre>" ;
+    }
 
-  function updatePDF(a_no)
-  {
-     var an = a_no;
+    function updatePDF(a_no)
+    {
+      var an = a_no;
+      $('#updateAssignmentPdfModal').modal("show");
+      document.getElementById('update_pdf_assignment_no').value = an; 
+    }
 
-   $('#updateAssignmentPdfModal').modal("show");
+   function viewPDF(a_no,submitted_text)
+    {
+      var an = a_no;
+      console.log(a_no);
+      console.log(submitted_text);
+      var str = '<object data="'+submitted_text+'" type="application/pdf" width="80%" height="1000px"></object>';
+      document.getElementById('viewmyassgnmentpdf').innerHTML = str;
+      $('#viewAssignmentPDFModal').modal("show");
+    }
 
-   document.getElementById('update_pdf_assignment_no').value = an; 
+  </script>
 
-  }
-
-  function viewPDF(a_no,submitted_text)
-  {
-    var an = a_no;
-    //alert(submitted_text);
-   console.log(a_no);
-   console.log(submitted_text);
-   //alert(submitted_text);
-   var str = '<object data="'+submitted_text+'" type="application/pdf" width="80%" height="1000px"></object>';
-
-   
-
-   
-   //document.getElementById('update_text_assignment_no').value = an; 
-   document.getElementById('viewmyassgnmentpdf').innerHTML = str;
-   // document.getElementById('viewmyassgnmentpdf').reload();
-   $('#viewAssignmentPDFModal').modal("show");
-  }
-</script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
 </html>
