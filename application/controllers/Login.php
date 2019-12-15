@@ -131,28 +131,33 @@ class Login extends MY_Controller{
       return redirect('Login');
    }
 
-   public function change_password_admin()
+  
+
+  public function change_password_admin()
    {
-     $this->load->view('Admin/change_password_admin');
-
+     $this->load->model('Admin_model');
+     $id = $this->session->userdata('admin_id');
+     $adminemail = $this->Admin_model->getEmailAdmin($id);
+     if($adminemail==NULL)
+     {
+       $this->session->set_flashdata("failure","To change the Password first set your email through Update My Info button on admin dashboard ");
+      return redirect('Admin');
+     }else{
+     $this->session->set_userdata('email',$adminemail);
+     return redirect('Email/sendemail');
+     }
    }
-
    public function update_admin_password()
    {
       $admin_id = $this->session->userdata('admin_id');
       $userdata = array(
          'password' => md5($this->input->post('new_password'))
-
       );
-
       $this->load->model('LoginModel');
       $this->LoginModel->change_password_admin($userdata,$admin_id);
-
       $this->session->set_flashdata("success","Password Updated Successfully");
       return redirect('Admin');
-
    }
-
    public function update_teacher_password()
    {
       $id = $this->input->post('id');
@@ -187,6 +192,30 @@ class Login extends MY_Controller{
          return redirect('Admin');
       else
          return redirect('Student');
+
+   }
+
+   public function single_admin_login()
+   {
+    $userdata = array(
+                    'username' => $this->input->post('username'),
+                    'password' => md5($this->input->post('password')),
+                 );
+      $this->load->model('LoginModel');
+
+      $user_id = $this->LoginModel->admin_login($userdata);
+     
+      if($user_id)
+      {
+        $this->session->set_userdata('admin_id',$user_id);
+        $this->session->set_flashdata("success","You are logged in");
+        return redirect('Admin/load_reset_key');
+      }
+      else
+      {
+        $this->session->set_flashdata("login_failed","No such account exists in database");
+        return redirect('Login');
+      }
 
    }
 

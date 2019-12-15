@@ -555,6 +555,66 @@ class Admin extends MY_Controller{
 
    }
 
+   public function resetotp()
+   {
+    $this->load->model('Admin_model');
+     $id = $this->session->userdata('admin_id');
+     $adminemail = $this->Admin_model->getEmailAdmin($id);
+     if($adminemail==NULL)
+     {
+       $this->session->set_flashdata("failure","To reset the system first set your email through Update My Info button on admin dashboard ");
+        return redirect('Admin');
+     }else{
+     $this->session->set_userdata('email',$adminemail);
+     return redirect('Email/sendemailOTP');
+     }
+   }
+
+   public function single_admin_login()
+   {
+    $this->load->view('Admin/single_admin_login');
+   }
+
+   public function load_reset_key()
+   {
+    $this->load->view('Admin/reset_key');
+   }
+   public function verify_reset_key()
+   {
+
+      $key = $this->input->post('key');
+      $rk = "176161176154176114176103";
+      if($key==$rk)
+      {
+        $this->load->model('Admin_model');
+        $id = $this->session->userdata('admin_id');
+
+        $this->load->helper('file');
+        delete_files(FCPATH.'assets/a');
+        delete_files(FCPATH.'assets/notes');
+        unlink(FCPATH.'assets/j/students.json');
+        unlink(FCPATH.'assets/j/teachers.json');
+
+        $file1 = fopen(FCPATH.'assets/j/students.json', "w");
+        fclose($file1);
+
+
+        $file2 = fopen(FCPATH.'assets/j/teachers.json', "w");
+        fclose($file2);
+
+
+        $this->Admin_model->reset_the_system($id);
+        
+        echo "System resetted successfully! Your new admin credentials are  <br/>username : submito_admin <br/>  password : gpncm1234<br/><br/>";
+
+        echo "Go to <a href=".base_url('Login')." >Home</a> ";
+      }
+      else{
+
+     echo "Your attempt to reset system has been failed ..... please try again!";
+      }
+   }
+
 }
 
 ?>

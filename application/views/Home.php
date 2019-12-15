@@ -23,10 +23,18 @@
 
 	<?php $this->view('header'); ?>
 
+
 	<div class="container">
+
     	<br/><br/><br/><br/>
     	<h1>SubMito!</h1>
 		<h2>Online Assignment Management System</h2>
+		<?php if($success = $this->session->flashdata('success')): 
+		echo '<div class="alert alert-dismissible alert-success">' . $success . '</div>';
+	 endif; ?>
+	 <?php if($failure = $this->session->flashdata('failure')): 
+		echo '<div class="alert alert-dismissible alert-danger">' . $failure . '</div>';
+	 endif; ?>
 		<br/><br/>
 	    <h4>
 	      <marquee> 

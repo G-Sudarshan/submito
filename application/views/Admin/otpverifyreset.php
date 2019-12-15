@@ -20,7 +20,7 @@
    endif; ?>
    <p> OTP has been sent to your email address : <?= $this->session->userdata('email'); ?> OTP is valid for 4 minutes </p>
      
-            <?php  echo form_open('Email/verify_otp') ?>
+            <?php  echo form_open('Email/verify_otp_reset') ?>
             <div class="text-center sm-4">
 
                 

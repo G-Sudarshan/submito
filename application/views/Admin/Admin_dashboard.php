@@ -337,7 +337,7 @@ if(!$this->session->userdata('admin_id'))
 
 <button class="btn btn-outline-success" data-toggle="modal" data-target="#addAdmin">Add new Admin</button>
 
-<button class="btn btn-outline-danger" data-toggle="modal" data-target="#myUpdateModaladmin">Reset the whole System</button>
+<button class="btn btn-outline-danger" data-toggle="modal" data-target="#resetModal">Reset the whole System</button>
 
 <!--------------------------------- update info model ------------------------------->
 
@@ -428,6 +428,34 @@ if(!$this->session->userdata('admin_id'))
 	        	<div class="modal-footer">
 	          		<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
 	          		<a class="btn btn-danger" href=<?= base_url('Login/logout'); ?> >Logout</a>
+	        	</div>
+	      	</div>
+	    </div>
+	</div>
+
+  	<!-- --------------------------------------------------------------------------------- -->
+  	<!---------------------------------- Reset Modal --------------------------------------->
+
+
+      
+
+	<!-- Modal-->
+	<div class="modal fade" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	    <div class="modal-dialog" role="document">
+	       <div class="modal-content">
+	       		<!-- Modal Header-->
+	            <div class="modal-header">
+	                <h5 class="modal-title" id="exampleModalLabel">Are you Sure?</h5>
+	          		<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+	            		<span aria-hidden="true">×</span>
+	          		</button>
+	        	</div>
+	        	<!-- Modal Body-->
+	        	<div class="modal-body">Select "Reset" below if you are ready to DELETE everything(data) on your system.</div>
+	        	<!-- Modal footer -->
+	        	<div class="modal-footer">
+	          		<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+	          		<a class="btn btn-danger" href=<?= base_url('Admin/resetotp'); ?> >Reset</a>
 	        	</div>
 	      	</div>
 	    </div>

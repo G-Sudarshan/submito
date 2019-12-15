@@ -238,6 +238,33 @@ class Admin_model extends CI_Model{
       	return $result[0]['allcount'];
 
       }
+
+
+      public function reset_the_system($id)
+      {
+      	$userdata = array(
+	      'username' => 'submito_admin',
+	      'password' => md5('gpncm1234')
+		);
+
+      	$this->db->empty_table('assignments');
+		$this->db->empty_table('events');
+		$this->db->empty_table('notification');
+		$this->db->empty_table('static_assignments');
+		$this->db->empty_table('tbl_admin_login');
+		$this->db->empty_table('tbl_courses_db');
+		$this->db->empty_table('tbl_departments');
+		$this->db->empty_table('tbl_student_db');
+		$this->db->empty_table('tbl_teachers_db');
+
+		$this->db->where('title', 'college_name');
+        $this->db->update('tbl_info',['value' => 'Your Institute Name Here']);
+
+        $this->db->where('title', 'reset_by');
+        $this->db->update('tbl_info',['value' => $id]);
+
+        $this->db->insert('tbl_admin_login' , $userdata );
+      }
 }
 
 ?>
