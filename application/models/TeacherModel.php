@@ -86,6 +86,12 @@ class TeacherModel extends CI_Model{
 
 		return $data->row()->email;
 	}
+
+	public function add_notes($userdata)
+	{
+		return $this->db->insert('notes' , $userdata );
+
+	}
 }
 
 ?>

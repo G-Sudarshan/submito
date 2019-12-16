@@ -357,6 +357,86 @@ class Teacher extends MY_Controller{
         
     }
 
+    public function load_share_notes()
+    {
+     $cc =  $this->input->post('course_code');
+     $cn = $this->input->post('course_name');
+     $teacher_name = $this->input->post('teacher_name');
+      $this->load->view('Teacher/share_notes',['course_code'=>$cc,'course_name'=>$cn,'teacher_name'=>$teacher_name]);
+    }
+
+    public function upload_notes()
+    { 
+      $cc =  $this->input->post('course_code');
+     $cn = $this->input->post('course_name');
+     $teacher_name = $this->input->post('teacher_name');
+
+                $config['upload_path']          = './assets/notes/';
+                $config['allowed_types']        = 'gif|jpg|png|pdf|ppt|xls|doc';
+                $config['max_width']            = 1024;
+                $config['max_height']           = 768;
+
+                $this->load->library('upload', $config);
+
+                
+                if($this->upload->do_upload() )
+                {
+      
+
+                        $data =  $this->upload->data();
+
+                        $path = "assets/notes/".$data['raw_name'].$data['file_ext'];
+                        
+                        $id = $this->session->userdata('teacher_id');
+
+                        $userdata = array(
+                                'path' => $path,
+                                'course_code' => $cc,
+                                'teacher_name' => $teacher_name,
+                                'teacher_id' => $id,
+
+                                 );
+
+                      $this->load->model('TeacherModel');
+                      $this->TeacherModel->add_notes($userdata);
+                          $this->session->set_flashdata('success','Notes uploaded successfully !');
+                        return redirect('Teacher');
+
+                }
+                else{            
+                        $error = array('error' => $this->upload->display_errors());
+
+                        $this->load->view('Teacher/share_notes',['error'=>$error,'course_code'=>$cc,'course_name'=>$cn,'teacher_name'=>$teacher_name]);
+                }
+
+
+               // $this->load->library('upload', $config);
+    
+    if($this->upload->do_upload() )
+    {
+      $post = $this->input->post();
+      unset($post['submit']);
+
+      $data = $this->upload->data();
+      
+
+      $pdf_path = "uploads/".$data['raw_name'].$data['file_ext'];
+      $post['pdf_path'] = $pdf_path;
+
+      $this->load->model('Admin_model');
+      $this->Admin_model->add_notification($post);
+          $this->session->set_flashdata('success','Notification added successfully !');
+        return redirect('Admin/notification');
+    }
+    else{
+      $upload_error = $this->upload->display_errors();
+      echo $upload_error;
+      echo "Upload unsuccessful";
+    }
+
+
+    }
+
 
 
 

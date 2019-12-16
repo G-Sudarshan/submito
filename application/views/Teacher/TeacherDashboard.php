@@ -133,7 +133,18 @@
                     echo form_close();
                   ?>
                 </td>
-                <td><button class="btn btn-warning btn-sm ">Share study material</button></td> 
+                <td>
+                <?php
+                    echo form_open('Teacher/load_share_notes');
+                    $data = array(
+                             'course_code'  => $selectedCourse->course_code,
+                             'course_name' => $selectedCourse->name,
+                             'teacher_name' => $teacherData->name
+                              );
+                    echo form_hidden($data);
+                    echo form_submit('submit', 'Share study material',"class='btn btn-info btn-sm '");
+                    echo form_close();
+                  ?></td> 
               </tr>
               <?php endforeach; ?>
           </tbody> 
