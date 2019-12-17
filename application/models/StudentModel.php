@@ -79,6 +79,13 @@ class StudentModel extends CI_Model{
 		$this->db->where($userdata);
 		$this->db->update('assignments');
 	}
+
+	public function get_notes($cc)
+	{
+		$data = $this->db->select(['path','teacher_name'])->from('notes')->where('course_code',$cc)->get();
+
+		return $data;
+	}
 }
 
 ?>

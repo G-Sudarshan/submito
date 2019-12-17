@@ -15,7 +15,18 @@ class Student extends MY_Controller{
 
 
     $user =  $this->getUserById($student_id);
-    $course_codes = $user['course_codes'];
+    //$course_codes = $user['course_codes']; 
+
+
+
+    if(isset($user['course_codes']))
+    {
+      $course_codes = $user['course_codes'];
+    }
+    else{
+      $course_codes = [9934999,9923491];
+    }
+
 
 
 
@@ -314,93 +325,61 @@ class Student extends MY_Controller{
            }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //   $userdata = array(
-    //   'course_code' => $this->input->post('course_code'),
-    //   'rollno' => $this->input->post('rollno'),
-    //   'student_id' => $this->session->userdata('student_id'),
-    //   'assignment_no' => $this->input->post('assignment_no'),
-    //    );
-
-    //   $rollno = $this->input->post('rollno');
-    //   $course_code = $this->input->post('course_code');
-    //   $assignment_no = $this->input->post('assignment_no');
-
-    // $config = [
-    //     'upload_path' => './assets/a',
-    //     'allowed_types' => 'pdf', 
-    //     'file_name' => $rollno."_".$course_code."_".$assignment_no."_".".pdf",
-    //     'max_size' => 2048
-    //         ];
-         
-    //      $this->load->library('upload', $config);
-    
-    //     if($this->upload->do_upload('updateuserfile'))
-    //        {
-    //         // echo $v;
-    //           $data = $this->upload->data();
-      
-
-    //            $updated_path = "assets/a/".$data['raw_name'].$data['file_ext'];
-    //            // $userdata['pdf_path'] = $pdf_path;
-
-    //             $this->load->model('StudentModel');
-    //            //   $this->StudentModel->upload_assignment_pdf($userdata);
-    //             $path = $this->StudentModel->get_path($userdata);
-
-    //             $final_path = $path->row()->pdf_path;
-
-
-    //             // $this->load->helper('file');
-    //             // unlink(FCPATH."/".$final_path);
-
-    //             $this->StudentModel->update_pdf_path($userdata,$updated_path);
-          
-    //            $cc =  $this->input->post('course_code');
-    //            $cn = $this->input->post('course_name');
-    //            $rollno = $this->input->post('rollno');
-    //            $id = $this->session->userdata('student_id');
-
-    //            $createdAssignmentData = $this->StudentModel->getCreatedAssignments($cc);
-    //             $uploadedAssignmentData = $this->StudentModel->getUploadedAssignments($id,$cc);
-     
-    //             // echo "<pre>";
-    //             // echo var_dump($uploadedAssignmentData->result());
-    //             // echo "</pre>";
-
-    //             $path = $this->StudentModel->get_path($userdata);
-
-    //             $final_path = $path->row()->pdf_path;
-
-    //             unlink($final_path);
-     
-    //  $this->session->set_flashdata('success','Your assignment has been Updated successfully!');
-
-    // $this->load->view('Student/upload_assignment',['course_code'=>$cc,'course_name'=>$cn,'rollno'=>$rollno,'cad'=>$createdAssignmentData,'uad'=>$uploadedAssignmentData]);
-    //        }
-    //        else
-    //        {
-    //          echo "Upload was failed try again file size should be less than 2MB ";
-    //        }
-
  }
+
+
+
+public function load_shared_notes()
+{
+ 
+  $course_code = $this->input->post('course_code');
+  $course_name = $this->input->post('course_name');
+  $rollno = $this->input->post('rollno');
+                     
+
+  
+
+  $this->load->model('StudentModel');
+  $notes = $this->StudentModel->get_notes($course_code);
+
+  $this->load->view('Student/shared_notes',['course_name'=>$course_name,'course_code'=>$course_code,'notes'=>$notes]);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

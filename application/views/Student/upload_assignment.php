@@ -43,6 +43,9 @@
     else
     {
       $ua[0]['t'] = NULL;
+      $ua[0]['p'] = NULL;
+      $ua[0]['c'] = NULL;
+      $ua[0]['m'] = NULL;
     }
 
     $submitted_assignments_no = Array();

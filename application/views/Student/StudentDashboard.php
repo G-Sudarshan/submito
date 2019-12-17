@@ -111,7 +111,19 @@
 
                   ?>
                 </td>           
-                <td><button class="btn btn-success btn-sm">See shared Study material</button></td>  
+                <td>
+                <?php
+                    echo form_open('Student/load_shared_notes');
+                    $data = array(
+                              'course_code'  => $selectedCourse->course_code,
+                             'course_name' => $selectedCourse->name,
+                             'rollno' => $studentData->rollno
+                                  );
+                    echo form_hidden($data);
+                    echo form_submit('submit', 'See shared Study material',"class='btn btn-success btn-sm '");
+                    echo form_close();
+
+                  ?></td>  
               </tr>
             <?php endforeach; ?>
           </tbody>  
@@ -153,11 +165,12 @@
             <!-- Modal Body-->
             <div class="modal-body">
               <?php
-                echo "Name: ".$studentData->name."<br/>";
+                echo "Name : ".$studentData->name."<br/>";
                 echo "Roll No.: ".$studentData->rollno."<br/>";
-                echo "Department: ".$studentData->department."<br/>";
-                echo "Department Id: ".$studentData->department_id."<br/>";
-                echo "Mobile No.: ".$studentData->mobile_no."<br/>";
+                echo "Email : ".$studentData->email."<br/>";
+                echo "Department : ".$studentData->department."<br/>";
+                echo "Department Id : ".$studentData->department_id."<br/>";
+                echo "Mobile No. : ".$studentData->mobile_no."<br/>";
               ?>
             </div>
             <!-- Modal footer -->
@@ -189,7 +202,7 @@
             <!-- Modal footer -->
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href=<?= base_url('Login/logout'); ?> >Logout</a>
+                <a class="btn btn-danger" href=<?= base_url('Login/logout'); ?> >Logout</a>
             </div>
           </div>
       </div>
