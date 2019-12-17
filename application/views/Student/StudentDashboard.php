@@ -103,7 +103,7 @@
                     $data = array(
                               'course_code'  => $selectedCourse->course_code,
                              'course_name' => $selectedCourse->name,
-                             /* 'rollno' => $studentData->rollno, */
+                             'rollno' => $studentData->rollno
                                   );
                     echo form_hidden($data);
                     echo form_submit('submit', 'Upload assignements',"class='btn btn-primary btn-sm '");
@@ -127,7 +127,7 @@
     <br/>
     <footer class="py-3 bg-dark">
       <div class="container text-center text-white-50">
-        <small>&COPY; 2019 COMPUTER TECHNOLOGY. All Rights Reserved</small>
+        <small>&COPY; 2019 TEAM SUBMITO. All Rights Reserved</small>
       </div>
     </footer>
 
@@ -289,6 +289,26 @@
   </div>
 
   <!-- -------------------------------------------------------------------------------------------------------------------------------------------------- --> 
+</script><script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
+<script>
+ 
+  var options = {
+  bottom: '64px', // default: '32px'
+  right: '32px', // default: '32px'
+  left: 'unset', // default: 'unset'
+  time: '0.5s', // default: '0.3s'
+  mixColor: '#fff', // default: '#fff'
+  backgroundColor: '#ffffff',  // default: '#fff'
+  buttonColorDark: 'grey',  // default: '#100f2c'
+  buttonColorLight: '#ffffff', // default: '#fff'
+  saveInCookies: false, // default: true,
+  label: '🐧', // default: ''
+  autoMatchOsTheme: true // default: true
+}
 
+const darkmode = new Darkmode(options);
+darkmode.showWidget();
+ 
+</script>
 </body>
 </html>

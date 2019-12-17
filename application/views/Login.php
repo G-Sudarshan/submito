@@ -281,7 +281,7 @@
   buttonColorDark: '#100f2c',  // default: '#100f2c'
   buttonColorLight: '#fff', // default: '#fff'
   saveInCookies: false, // default: true,
-  label: '🎁', // default: ''
+  label: '☯', // default: ''
   autoMatchOsTheme: true // default: true
 }
 

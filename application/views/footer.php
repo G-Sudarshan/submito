@@ -15,11 +15,11 @@
 
 	<footer class="py-3 bg-dark">
 	    <div class="container text-center text-white-50">
-	    	<h6><a href=<?= base_url('Login/aboutus'); ?> >About Us</a></h6>
-	    	<h6><a href=<?= base_url('Login/terms'); ?> >Terms and Conditions</a></h6>
-	    	<h6><a href=<?= base_url('Login/privacy'); ?> >Privacy Policy</a></h6>
-	    	<h6><a href=<?= base_url('Login/contactus'); ?> >Contact Us</a></h6>
-	      	<small>&COPY; 2019 COMPUTER TECHNOLOGY. All Rights Reserved</small>
+	    	<h6><a href=<?= base_url('Login/aboutus'); ?> >About Us&nbsp;|</a>
+	    	<a href=<?= base_url('Login/terms'); ?> >Terms and Conditions&nbsp;|</a>
+	    	<a href=<?= base_url('Login/privacy'); ?> >Privacy Policy&nbsp;|</a>
+	    	<a href=<?= base_url('Login/contactus'); ?> >Contact Us</a></h6>
+	      	<small>&COPY; 2019 TEAM SUBMITO. &nbsp;All Rights Reserved</small>
 	    </div>
 	</footer>
 </body>

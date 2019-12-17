@@ -45,14 +45,14 @@
 		}
 		.team-title h5 
 		{
-			font-size: 15px;
+			font-size: 16px;
 		    margin-bottom: 0px;
 		    display: block;
 		    text-transform: uppercase;
 		}
 		.team-title span 
 		{
-		    font-size: 13px;
+		    font-size: 14px;
 		    text-transform: uppercase;
 		    color: #a6a6a6;
 		    letter-spacing: 1px;
@@ -134,7 +134,7 @@
 		.ih-item.square {
 		  position: relative;
 		  width: 235px;
-		  height: 330px;
+		  height: 300px;
 		  border: 8px solid #fff;
 		  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 		}
@@ -188,7 +188,7 @@
 		  padding: 10px 5px;
 		  font-style: italic;
 		  margin: 0 30px;
-		  font-size: 12px;
+		  font-size: 15px;
 		  border-top: 1px solid rgba(255, 255, 255, 0.5);
 		}
 
@@ -260,7 +260,7 @@
 		}
 		.ih-item.square.effect2 .info p {
 		  font-style: italic;
-		  font-size: 12px;
+		  font-size: 15px;
 		  position: relative;
 		  color: #bbb;
 		  padding: 20px 20px 20px;
@@ -302,7 +302,7 @@
 	<?php $this->view('header'); ?>
 	<br/>
 
-	<section>
+	<section class="text-center">
 
 		<h2>ABOUT US</h2>
 		<div class="container">
@@ -322,22 +322,21 @@
 					<div class="col-lg-3 col-md-3 col-sm-12">
 						<div class="ih-item circle effect2 left_to_right">
 							<i>
-								<div class="img"><img src="<?php echo base_url('assets\images\img2.jpg'); ?>" alt="img"></div>
+								<div class="img"><img src="<?php echo base_url('assets\images\malisir.jpg'); ?>" alt="img"></div>
 								<div class="info">
 			  						<h3>Mr. Mali Sir</h3>
 			  						<p>A Professor of Computer Technology in Government Polytechnic Nashik.</p>
-			  						<br/><br/><br/>
+			  						<br/><br/>
 			  						<p>
-		                        		<a class="fa fa-facebook" href="#"></a>
-		             					<a class="fa fa-instagram" href="#"></a>
+		                        		<a class="fa fa-facebook" href="https://www.facebook.com/pravin.mali.90260/"></a>
 		                        	</p>
 								</div>
 							</i>
 						</div>
 					</div>
-						<div class="team-title">
-			            	<h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mr. Mali Sir</h5>
-			            	<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Professor</span>
+						<div class="team-title ">
+			            	<h5>Mr. Mali Sir</h5>
+			            	<span>Professor</span>
 			        	</div>
 				</div>
 				<div class="col-lg-4 col-md-4 col-sm-12">
@@ -367,11 +366,10 @@
 				<div class="col-lg-3 col-md-3 col-sm-6">
 					<div class="ih-item square effect2">
 						<i>
-        					<div class="img"><img src="<?php echo base_url('assets\images\img2.jpg'); ?>" alt="img"></div>
+        					<div class="img"><img src="<?php echo base_url('assets\images\saurabh.jpg'); ?>" alt="img"></div>
         					<div class="info">
           						<h3>Saurabh Bhalerao</h3>
-          						<p>A student of Computer Technology in Government Polytechnic Nashik.</p>
-          						<p>Roll No. 176103</p>
+          						<p>Developer of notes sharing module and all videos of SubMito channel on YouTube, Blogs, Documentation.</p>
           						<p>
                             		<a class="fa fa-instagram" href="https://www.instagram.com/saurabh.wakadikar/"></a>
                  					<a class="fa fa-github" href="https://github.com/Guru7prvhilla/"></a>
@@ -388,11 +386,10 @@
 				<div class="col-lg-3 col-md-3 col-sm-6">
 					<div class="ih-item square effect2">
 						<i>
-        					<div class="img"><img src="<?php echo base_url('assets\images\img3.jpg'); ?>" alt="img"></div>
+        					<div class="img"><img src="<?php echo base_url('assets\images\sudarshan.jpg'); ?>" alt="img"></div>
         					<div class="info">
           						<h3>Sudarshan Gawale</h3>
-          						<p>A student of Computer Technology in Government Polytechnic Nashik.</p>
-          						<p>Roll No. 176114</p>
+          						<p>Developer of assignment upload  module and some admin dashboard features and in-modal PDF view feature.</p>
           						<p>
                             		<a class="fa fa-instagram" href="https://www.instagram.com/g.sudarshan_11/"></a>
                  					<a class="fa fa-github" href="https://github.com/G-Sudarshan/"></a>
@@ -409,11 +406,10 @@
 	            <div class="col-lg-3 col-md-3 col-sm-6">
 					<div class="ih-item square effect2">
 						<i>
-        					<div class="img"><img src="<?php echo base_url('assets\images\img2.jpg'); ?>" alt="img"></div>
+        					<div class="img"><img src="<?php echo base_url('assets\images\saurabh.jpg'); ?>" alt="img"></div>
         					<div class="info">
           						<h3>Aniket Sinare</h3>
-          						<p>A student of Computer Technology in Government Polytechnic Nashik.</p>
-          						<p>Roll No. 176154</p>
+          						<p>Developer of popular features of this project like dynamic academic calendar, Mail OTP verification, csv to database upload of students.</p>
           						<p>
                             		<a class="fa fa-instagram" href="https://www.instagram.com/aniket.sinu/"></a>
                  					<a class="fa fa-github" href="https://github.com/aniket4206/"></a>
@@ -430,11 +426,10 @@
 	            <div class="col-lg-3 col-md-3 col-sm-6">
 					<div class="ih-item square effect2">
 						<i>
-        					<div class="img"><img src="<?php echo base_url('assets\images\img2.jpg'); ?>" alt="img"></div>
+        					<div class="img"><img src="<?php echo base_url('assets\images\prajakta.jpg'); ?>" alt="img"></div>
         					<div class="info">
           						<h3>Prajakta Dhage</h3>
-          						<p>A student of Computer Technology in Government Polytechnic Nashik.</p>
-          						<p>Roll No. 176161</p>
+          						<p>Developer of Login authentication and Designer of all three dashboards of this project and all the validations.</p>
           						<p>
                             		<a class="fa fa-instagram" href="https://www.instagram.com/_prajaktagd_/"></a>
                  					<a class="fa fa-github" href="https://github.com/prajaktagd/"></a>
