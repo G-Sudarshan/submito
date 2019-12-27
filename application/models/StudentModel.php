@@ -93,6 +93,13 @@ class StudentModel extends CI_Model{
 
 		return $data->row()->email;
 	}
+
+	public function get_all_crs_names_of_my_dpt($id)
+	{
+		$data = $this->db->from('tbl_courses_db')->where('department_id',$id)->get();
+
+		return $data;
+	}
 }
 
 ?>

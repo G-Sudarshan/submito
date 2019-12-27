@@ -9,8 +9,9 @@ class Student extends MY_Controller{
 		$this->load->model('StudentModel');
 
 		$studentData = $this->StudentModel->getStudentData($student_id);
-    $this->load->model('Admin_model');
-    $courseData = $this->Admin_model->get_crs_names();
+    $department_id = $studentData->department_id;
+    //$this->load->model('Admin_model');
+    $courseData = $this->StudentModel->get_all_crs_names_of_my_dpt($department_id);
 
 
 
