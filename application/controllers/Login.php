@@ -234,6 +234,22 @@ class Login extends MY_Controller{
 
    }
 
+   public function change_password_student()
+   {
+     $this->load->model('StudentModel');
+     $id = $this->session->userdata('student_id');
+     $teacheremail = $this->StudentModel->getStudentEmail($id);
+     if($teacheremail==NULL)
+     {
+       $this->session->set_flashdata("failure","To change the Password first set your email through Update My Info button on admin dashboard ");
+      return redirect('Student');
+     }else{
+     $this->session->set_userdata('email',$teacheremail);
+     return redirect('Student/sendemail');
+     }
+
+   }
+
 
 }
 

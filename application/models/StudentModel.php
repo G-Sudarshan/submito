@@ -86,6 +86,13 @@ class StudentModel extends CI_Model{
 
 		return $data;
 	}
+
+	public function getStudentEmail($id)
+	{
+		$data = $this->db->select('email')->from('tbl_student_db')->where('id',$id)->get();
+
+		return $data->row()->email;
+	}
 }
 
 ?>

@@ -51,12 +51,12 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right">
               <a class="dropdown-item" href="#" data-toggle="modal" data-target="#profileModal">Profile</a>
-              <a class="dropdown-item" href=<?= base_url('Student/load_change_password_student'); ?> >Change Password</a>
+              <a class="dropdown-item" href=<?= base_url('Login/change_password_student'); ?> >Change Password</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
             </div>
           </li>
-        </ul>
+        </ul> 
     </nav>
 
     <!-- ---------------------------------------------------------------------------------------------------------------------------------------------- -->
@@ -69,8 +69,12 @@
 
       <!-- Flashdata -->
       <br/>
-      <?php if($success = $this->session->flashdata('success')): 
+     <?php if($success = $this->session->flashdata('success')): 
               echo '<div class="alert alert-dismissible alert-success">' . $success . '</div>';
+            endif; 
+      ?>
+      <?php if($failure = $this->session->flashdata('failure')): 
+              echo '<div class="alert alert-dismissible alert-danger">' . $failure . '</div>';
             endif; 
       ?>
       <br/>
