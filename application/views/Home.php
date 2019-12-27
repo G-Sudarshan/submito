@@ -25,8 +25,9 @@
 
 	<div class="container">
 
-    	<br/><br/><br/><br/>
-    	<h1>SubMito!</h1>
+    	<br/>
+    	<!-- <h1>SubMito!</h1> -->
+    	<img src=<?= base_url("/assets/images/image.png") ?> >
 		<h2>Online Assignment Management System</h2>
 		
 		<br/><br/>

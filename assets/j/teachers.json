@@ -10,5 +10,11 @@
         "course_codes": [
             "CM6237"
         ]
+    },
+    {
+        "id": "9",
+        "course_codes": [
+            "CM6218"
+        ]
     }
 ]
