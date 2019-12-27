@@ -16,7 +16,7 @@ class Teacher extends MY_Controller{
     $crs_names = $this->Admin_model->get_crs_names();  
 
 
-		$user =  $this->getUserById($teacher_id);
+		//$user =  $this->getUserById($teacher_id);
 
     if(isset($user['course_codes']))
     {
@@ -28,6 +28,10 @@ class Teacher extends MY_Controller{
 
       
 		$selectedcourseData = $this->TeacherModel->getCourses($course_codes);
+    if(!$selectedcourseData)
+    {
+      $selectedcourseData = NULL;
+    }
     
 
     
@@ -69,15 +73,15 @@ class Teacher extends MY_Controller{
 			'course_codes' => $arr
 		);
 
-		echo "<pre>";
-		var_dump($arr);
-		echo "<pre>";
+		// echo "<pre>";
+		// var_dump($arr);
+		// echo "<pre>";
 
-        $this->updateUser($data,$id);
+        $this->createUser($data,$id);
 
        $this->session->set_flashdata('success',"Your subjects saved succcessfully");
 
-        return redirect('Teacher');
+        //return redirect('Teacher');
 		
 	}
 
@@ -494,13 +498,22 @@ class Teacher extends MY_Controller{
 
    public function createUser($data,$userId)
     {
-      $users = $this->getUsers();
+      //$users = $this->getUsers();
 
-      $data['id'] = $userId;
+      //$data['id'] = $userId;
 
       $users[] = $data;
 
+      $id = $this->session->userdata('teacher_id');
+
+      $my_file = FCPATH.'assets/j/teachers/'.$id.'.json';
+
+      $handle = fopen($my_file, 'w') or die('Cannot open file:  '.$my_file);
+
       $this->putJson($users);
+
+
+      fclose($handle);
 
       return $data; 
     }
@@ -508,7 +521,8 @@ class Teacher extends MY_Controller{
     public function putJson($users)
     {
       //base_url('assets/js/bootstrap.min.js');
-      file_put_contents(FCPATH.'assets/j/teachers.json', json_encode($users,JSON_PRETTY_PRINT));
+      $id = $this->session->userdata('teacher_id');
+      file_put_contents(FCPATH.'assets/j/teachers/'.$id.'.json', json_encode($users,JSON_PRETTY_PRINT));
 
     }
 

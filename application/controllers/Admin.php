@@ -203,7 +203,7 @@ class Admin extends MY_Controller{
      
     $data = [];
 
-    $this->createUserT($data,$id);
+    //$this->createUserT($data,$id);
 
     $teachers = $this->Admin_model->get_staff_names($d_id);
 
@@ -468,9 +468,9 @@ class Admin extends MY_Controller{
         
      $id = $sid->row()->id;
      
-     $data = [];
+     //$data = [];
 
-     $this->createUserS($data,$id);
+     //$this->createUserS($data,$id);
 
      $students = $this->Admin_model->get_department_students($d_id);    
 
