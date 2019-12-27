@@ -16,7 +16,7 @@ class Teacher extends MY_Controller{
     $crs_names = $this->Admin_model->get_crs_names();  
 
 
-		//$user =  $this->getUserById($teacher_id);
+		$user =  $this->getUserById($teacher_id);
 
     if(isset($user['course_codes']))
     {
@@ -79,9 +79,9 @@ class Teacher extends MY_Controller{
 
         $this->createUser($data,$id);
 
-       $this->session->set_flashdata('success',"Your subjects saved succcessfully");
+        $this->session->set_flashdata('success',"Your subjects saved succcessfully");
 
-        //return redirect('Teacher');
+        return redirect('Teacher');
 		
 	}
 
@@ -490,17 +490,27 @@ class Teacher extends MY_Controller{
 
 	// -----------------JSON FUNCTIONS OF TEACHER------------------//
 
-   public function getUsers()
+   public function getUser($id)
    {
     //echo FCPATH;
-    return json_decode(file_get_contents(FCPATH.'assets/j/teachers.json'), true);
+    //$id = $this->session->userdata('teacher_id');
+    if(!file_exists(FCPATH.'assets/j/teachers/'.$id.'.json'))
+    { 
+      $id = $this->session->userdata('teacher_id');
+
+      $data = array(
+         'course_codes' => null
+        );
+      $this->createUser($data,$id);
+    }
+    return json_decode(file_get_contents(FCPATH.'assets/j/teachers/'.$id.'.json'), true);
    }
 
    public function createUser($data,$userId)
     {
       //$users = $this->getUsers();
 
-      //$data['id'] = $userId;
+      $data['id'] = $userId;
 
       $users[] = $data;
 
@@ -528,8 +538,10 @@ class Teacher extends MY_Controller{
 
    public function updateUser($data,$id)
     {
+
+
 		$updateUser = [];
-		$users = $this->getUsers();
+		$users = $this->getUser($id);
 		foreach ($users as $i => $user) {
 			if($user['id'] == $id)
 			{	
@@ -543,18 +555,26 @@ class Teacher extends MY_Controller{
 
     }
 
-    public function getUserById($id)
-   {
-		$users = $this->getUsers();
-		foreach ($users as $user) {
-			if($user['id'] == $id)
-			{
-				return $user;
-			}
-		}
+ //    public function getUserById($id)
+ //   {
 
-		return null;
-	}
+	// 	return json_decode(file_get_contents(FCPATH.'assets/j/teachers/'.$id.'.json'), true);
+
+	// }
+
+
+  public function getUserById($id)
+   {
+    $users = $this->getUser($id);
+    foreach ($users as $user) {
+      if($user['id'] == $id)
+      {
+        return $user;
+      }
+    }
+
+    return null;
+  }
 
 
 
