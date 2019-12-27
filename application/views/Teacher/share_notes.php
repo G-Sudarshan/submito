@@ -24,10 +24,14 @@ if(isset($error))
 }
 ?>
 <h4 align="left"><a href="<?= base_url('Teacher'); ?>" ><i class="fa fa-arrow-circle-left font-weight-bold text-dark"></i></a></h4><br><br><br><br><br>
-<h4 class="text-success">You can share word document, excel sheet, powerpoint presentation,  pnj, jpg, gif, pdf etc.</h4>
+<h4 class="text-success">You can share word document, excel sheet, powerpoint presentation,  png, jpg, gif, pdf etc.</h4>
 <br><br>
 <?php echo form_open_multipart('Teacher/upload_notes');?>
+<?php 
 
+echo form_input(['name'=>'title','placeholder'=>'Enter Title for notes','class'=>'form-control'],'','required'); 
+?>
+<br><br>
 <input type="file" name="userfile" class="form-control" />
 
 <br /><br /><br><br><br>

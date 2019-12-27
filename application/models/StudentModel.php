@@ -82,7 +82,7 @@ class StudentModel extends CI_Model{
 
 	public function get_notes($cc)
 	{
-		$data = $this->db->select(['path','teacher_name'])->from('notes')->where('course_code',$cc)->get();
+		$data = $this->db->select(['path','teacher_name','title'])->from('notes')->where('course_code',$cc)->get();
 
 		return $data;
 	}

@@ -389,13 +389,16 @@ class Teacher extends MY_Controller{
                         
                         $id = $this->session->userdata('teacher_id');
 
+                        $title = $this->input->post('title');
+
                         $userdata = array(
                                 'path' => $path,
                                 'course_code' => $cc,
                                 'teacher_name' => $teacher_name,
                                 'teacher_id' => $id,
-
+                                'title' => $title
                                  );
+                    
 
                       $this->load->model('TeacherModel');
                       $this->TeacherModel->add_notes($userdata);
@@ -436,6 +439,35 @@ class Teacher extends MY_Controller{
 
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
