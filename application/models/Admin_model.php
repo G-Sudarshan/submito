@@ -38,9 +38,10 @@ class Admin_model extends CI_Model{
 
 	public function get_crs_names()
 	{
-		$crs_names = $this->db->get('tbl_courses_db');
+		$this->db->order_by("course_code", "asc");
+        $crs_names = $this->db->get('tbl_courses_db');
 
-		return $crs_names;
+        return $crs_names;
 
 	}
 

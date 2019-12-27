@@ -36,6 +36,15 @@
       font-size: 13px;
     }
 
+    /* Important part */
+.modal-dialog{
+    overflow-y: initial !important
+}
+.modal-body-s{
+    height: 375px;
+    overflow-y: auto;
+}
+
   </style>
  
 </head>
@@ -246,7 +255,7 @@
           </button>
         </div>
         <!-- Modal Body-->
-        <div class="modal-body">
+        <div class="modal-body-s">
           <?php echo form_open('Teacher/saveMySubjects'); ?>
             <div class="form-group">
               <div class="form-check">
