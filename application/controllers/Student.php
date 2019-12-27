@@ -32,6 +32,11 @@ class Student extends MY_Controller{
 
     $selectedcourseData = $this->StudentModel->getCourses($course_codes);
 
+    if(!$selectedcourseData)
+    {
+      $selectedcourseData = NULL;
+    }
+
 		$this->load->view('Student/StudentDashboard',['studentData' => $studentData,'courses'=>$courseData,'selectedcourses'=>$selectedcourseData,'scc'=>$course_codes]);
 	}
 
@@ -473,21 +478,41 @@ public function load_shared_notes()
 
   // -----------------JSON FUNCTIONS OF STUDENT------------------//
 
-   public function getUsers()
+   
+   public function getUser($id)
    {
     //echo FCPATH;
-    return json_decode(file_get_contents(FCPATH.'assets/j/students.json'), true);
+    //$id = $this->session->userdata('teacher_id');
+    if(!file_exists(FCPATH.'assets/j/students/'.$id.'.json'))
+    { 
+      $id = $this->session->userdata('student_id');
+
+      $data = array(
+         'course_codes' => null
+        );
+      $this->createUser($data,$id);
+    }
+    return json_decode(file_get_contents(FCPATH.'assets/j/students/'.$id.'.json'), true);
    }
 
    public function createUser($data,$userId)
     {
-      $users = $this->getUsers();
+      //$users = $this->getUsers();
 
       $data['id'] = $userId;
 
       $users[] = $data;
 
+      $id = $this->session->userdata('student_id');
+
+      $my_file = FCPATH.'assets/j/students/'.$id.'.json';
+
+      $handle = fopen($my_file, 'w') or die('Cannot open file:  '.$my_file);
+
       $this->putJson($users);
+
+
+      fclose($handle);
 
       return $data; 
     }
@@ -495,14 +520,17 @@ public function load_shared_notes()
     public function putJson($users)
     {
       //base_url('assets/js/bootstrap.min.js');
-      file_put_contents(FCPATH.'assets/j/students.json', json_encode($users,JSON_PRETTY_PRINT));
+      $id = $this->session->userdata('student_id');
+      file_put_contents(FCPATH.'assets/j/students/'.$id.'.json', json_encode($users,JSON_PRETTY_PRINT));
 
     }
 
-    function updateUser($data,$id)
+   public function updateUser($data,$id)
     {
+
+
     $updateUser = [];
-    $users = $this->getUsers();
+    $users = $this->getUser($id);
     foreach ($users as $i => $user) {
       if($user['id'] == $id)
       { 
@@ -516,9 +544,17 @@ public function load_shared_notes()
 
     }
 
-     public function getUserById($id)
+ //    public function getUserById($id)
+ //   {
+
+  //  return json_decode(file_get_contents(FCPATH.'assets/j/teachers/'.$id.'.json'), true);
+
+  // }
+
+
+  public function getUserById($id)
    {
-    $users = $this->getUsers();
+    $users = $this->getUser($id);
     foreach ($users as $user) {
       if($user['id'] == $id)
       {
@@ -528,8 +564,6 @@ public function load_shared_notes()
 
     return null;
   }
-
-
 
    //-----------------------------------------------------------------//
 }
