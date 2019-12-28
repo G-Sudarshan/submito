@@ -406,12 +406,12 @@
 	            <div class="col-lg-3 col-md-3 col-sm-6">
 					<div class="ih-item square effect2">
 						<i>
-        					<div class="img"><img src="<?php echo base_url('assets\images\saurabh.jpg'); ?>" alt="img"></div>
+        					<div class="img"><img src="<?php echo base_url('assets\images\aniket.jpg'); ?>" alt="img"></div>
         					<div class="info">
           						<h3>Aniket Sinare</h3>
           						<p>Developer of popular features of this project like dynamic academic calendar, Mail OTP verification, csv to database upload of students.</p>
           						<p>
-                            		<a class="fa fa-instagram" href="https://www.instagram.com/aniket.sinu/"></a>
+                            		<a class="fa fa-instagram" href="https://www.instagram.com/sinu_96k/"></a>
                  					<a class="fa fa-github" href="https://github.com/aniket4206/"></a>
                         		</p>
         					</div>
