@@ -50,7 +50,7 @@ class Login extends MY_Controller{
       else
       {
         $this->session->set_flashdata("login_failed","No such account exists in database");
-        return redirect('Login');
+        return redirect('Login/loginpage');
       }
 
     }
@@ -75,7 +75,7 @@ class Login extends MY_Controller{
       else
       {
           $this->session->set_flashdata("login_failed","No such account exists in database");
-          return redirect('Login');
+          return redirect('Login/loginpage');
       }
       
     }
@@ -100,7 +100,7 @@ class Login extends MY_Controller{
       else
       {
           $this->session->set_flashdata("login_failed","No such account exists in database");
-          return redirect('Login');
+          return redirect('Login/loginpage');
       }
       
    }
@@ -128,7 +128,7 @@ class Login extends MY_Controller{
    public function logout()
    {
       $this->session->sess_destroy();
-      return redirect('Login');
+      return redirect('Login/loginpage');
    }
 
   
@@ -229,7 +229,7 @@ class Login extends MY_Controller{
       else
       {
         $this->session->set_flashdata("login_failed","No such account exists in database");
-        return redirect('Login');
+        return redirect('Login/loginpage');
       }
 
    }

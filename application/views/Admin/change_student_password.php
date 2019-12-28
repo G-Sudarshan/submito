@@ -47,7 +47,35 @@
 			echo "<td>".$content."</td>";
 			echo "<td>".$content1."</td>";
 			echo "<td>".$content2."</td>";
-			echo "<td>"."<button class='btn btn-outline-success'>Change Password</button>"."</td>";
+			// echo "<td>"."<button class='btn btn-outline-success'>Change Password</button>"."</td>";
+			
+			?>
+			<td>
+
+			<?php
+
+					echo form_open('Admin/load_update_student_password');
+
+					$s1 = array(
+                    'name'  => $data['name'],
+                   'rollno' => $content1,
+                   'department'  => $content2,
+                   'id' => $data['id']
+                    );
+    					
+    				echo form_hidden($s1);
+
+    				echo form_submit(['name'=>'submit','value'=>'Change Password','class'=>'btn btn-outline-success']); 
+
+					echo form_close();
+
+
+			?>
+
+		</td>
+			<?php
+
+
 			echo "</tr>";
 			$sno++;
 

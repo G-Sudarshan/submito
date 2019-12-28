@@ -45,16 +45,16 @@
     <?php if(isset($_SESSION['success'])) { ?>
         <div class="alert alert success"><?php echo $_SESSION['success']; ?></div>
     <?php } ?>
-
+<div class="container" align="center">
     <?php if($error = $this->session->flashdata('login_failed')): ?>
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-6" >
                 <div class="alert alert-dismissible alert-danger">
                     <?= $error ?>
                 </div>
             </div>
         </div>
-    <?php endif; ?>
+    <?php endif; ?></div>
 
     <div class="container">
         <div class="row">
