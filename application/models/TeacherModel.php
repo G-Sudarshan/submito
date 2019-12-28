@@ -92,6 +92,21 @@ class TeacherModel extends CI_Model{
 		return $this->db->insert('notes' , $userdata );
 
 	}
+
+	public function get_columns($cc)
+	{
+		$data = $this->db->select('assignment_no','type')->from('static_assignments')->where('course_code',$cc)->get();
+
+		return $data;
+	}
+
+	public function get_marks_matrix($cc)
+	{
+		$data = $this->db->select('rollno','assignment_no','marks')->from('assignments')->where('course_code',$cc)->get();
+
+		return $data;
+
+	}
 }
 
 ?>

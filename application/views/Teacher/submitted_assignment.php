@@ -91,7 +91,7 @@
           echo form_close();
         ?>
         <br/>
-        <button class="btn btn-success btn-sm">Print Rollno and Marks Matrix</button>
+        
         <br/><br/>
       </div>
 

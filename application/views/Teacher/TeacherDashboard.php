@@ -107,7 +107,8 @@
             <th>Name</th>
             <th>Create</th>
             <th>Check</th>         
-            <th>Share</th>           
+            <th>Share</th> 
+            
           </thead>
           <tbody>
             <?php $i=1 ?>            

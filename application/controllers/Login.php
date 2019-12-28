@@ -250,6 +250,32 @@ class Login extends MY_Controller{
 
    }
 
+   public function load_calendar()
+   {
+
+     $data['result'] = $this->db->get("events")->result();
+   
+        foreach ($data['result'] as $key => $value) {
+            $data['data'][$key]['title'] = $value->title;
+            $data['data'][$key]['start'] = $value->start_date;
+            $data['data'][$key]['end'] = $value->end_date;
+            $data['data'][$key]['backgroundColor'] = "#00a65a";
+        }           
+      
+     $this->load->view('header');  
+     $this->load->view('calendar', $data); 
+     $this->load->view('footer'); 
+   }
+
+   public function notification()
+   {
+    $this->load->model('Admin_model');
+     $data = $this->Admin_model->getAllNotifications();
+      $this->load->view('header');  
+     $this->load->view('notification',['data'=>$data]);
+     $this->load->view('footer'); 
+     
+   }
 
 }
 

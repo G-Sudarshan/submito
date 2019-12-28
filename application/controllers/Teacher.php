@@ -445,6 +445,24 @@ class Teacher extends MY_Controller{
     }
 
 
+    public function load_print_marks()
+    {
+
+     $cc =  $this->input->post('course_code');
+     $cn = $this->input->post('course_name');
+     $teacher_name = $this->input->post('teacher_name');
+
+      //$this->load->view('Teacher/share_notes',['course_code'=>$cc,'course_name'=>$cn,'teacher_name'=>$teacher_name]);
+
+     $this->load->model('TeacherModel');
+
+     $columns  = $this->TeacherModel->get_columns($cc);
+     $matrix = $this->TeacherModel->get_marks_matrix($cc);
+
+      $this->load->view('Teacher/print_marks',['c'=>$columns,'m'=>$matrix,'course_code'=>$cc,'course_name'=>$cn,'teacher_name'=>$teacher_name]);
+    }
+
+
 
 
 
