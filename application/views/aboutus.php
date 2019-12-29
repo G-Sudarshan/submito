@@ -306,8 +306,7 @@
 
 		<h2>ABOUT US</h2>
 		<div class="container">
-			<p><h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;We strive to build an application where teacher can set assignments for various classes she handles/teaches. Students are expected to participate in these assignments related to topics they are part of.</h6></p>
-			<p><h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is easy to create assignments, attach files, submit assignments online, etc. with the help of this application.</h6></p>
+			<p><h6>The challenges faced by students in meeting assignment deadlines and cost associated with printing hard copies of paper, necessitated developers to develop a user friendly system to tackle these challenges. The system allows students to submit assignments online to a particular course, Teachers who have access to the system for grading purpose. The most obvious advantage offered by online assignment submission and management system is that it offers faster transmission of assignments than using traditional way by using online system.</h6></p>
 		</div>	
 		<br/>
 		<h2>OUR GUIDE</h2>

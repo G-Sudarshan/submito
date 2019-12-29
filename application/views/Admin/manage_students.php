@@ -23,6 +23,8 @@
 	  <a class="btn btn-info" href=<?= base_url('Admin') ?> >Back to Admin Dashboard</a><br/>
 	<br><br>
     	<button class="btn btn-outline-success" data-toggle="modal" data-target="#addStudent">Add Student</button>
+
+    	<button class="btn btn-outline-success" data-toggle="modal" data-target="#importcsv">Import CSV</button>
          <br><br>
 
         
@@ -64,9 +66,10 @@
 			</tr>
 
 			<?php endforeach; ?></tbody></table>
-     </div>
-    </div> 
 
+			</div>
+</div>
+     
 
 <!-------------------------------------------------------------------------->
 
@@ -115,8 +118,48 @@
       		</div>
     	</div>
     </div>
-
+</div>
   	<!-- --------------------------------------------------------------------------------- -->
+
+
+  
+  	<!--------------------------------------------------------------- Import CSV Modal  ---------------------------------------------------------------------->
+
+  <!-- Modal -->
+  <div class="modal" id="importcsv">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Import CSV</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal Body -->
+      <div class="modal-body">
+        <div class="form-group">
+          <?php echo form_open_multipart('Csv_import/import_students');?>
+			<div class="form-group">
+				<label>Select CSV File</label>
+				<input type="file" name="csv_file" id="csv_file" required accept=".csv" />
+			</div>
+        </div>
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">                  
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+         <button type="submit" name="import_csv" class="btn btn-info" id="import_csv_btn">Import CSV</button>
+					<?php
+
+						echo form_close();
+					?>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- -------------------------------------------------------------------------------------------------------------------------------------------------- --> 
+
+  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
