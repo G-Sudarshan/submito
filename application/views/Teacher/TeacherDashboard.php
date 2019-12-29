@@ -55,10 +55,12 @@
     <!-- ----------------------------------------------------------------- Header --------------------------------------------------------------------- -->    
     
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-      <a class="navbar-brand mr-1" href="#">SubMito!</a>
+      <a class="navbar-brand mr-1" href=<?= base_url('Login'); ?>>SubMito!</a>&nbsp;
+      <a class="navbar-brand mr-1" href=<?= base_url('Login'); ?>><?= $clgname; ?></a>
         <!-- Right corner menu -->
         <ul class="nav navbar-nav ml-auto">
           <li>
+            <a class="navbar-brand mr-1" href="#"><?= "Welcome ".$teacherData->name; ?></a></li><li>
             <a class="nav-link" href="#" data-toggle="dropdown">
               <i class="fa fa-user-circle"></i>
             </a>

@@ -28,7 +28,6 @@
 </head>
 <body class="hm-gradient">
 
-	<?php $this->view('header'); ?>
 	<br/><br/>
 
 	<section>

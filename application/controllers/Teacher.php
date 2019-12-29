@@ -13,7 +13,10 @@ class Teacher extends MY_Controller{
 
 		$this->load->model('Admin_model');
    	
-    $crs_names = $this->Admin_model->get_crs_names();  
+    $crs_names = $this->Admin_model->get_crs_names(); 
+
+     
+    $clgname = $this->TeacherModel->get_clg_name(); 
 
 
 		$user =  $this->getUserById($teacher_id);
@@ -45,7 +48,7 @@ class Teacher extends MY_Controller{
 		// }
 //--------------------------------------------------------------------------//		
 
-		$this->load->view('Teacher/TeacherDashboard',['teacherData'=>$teacherData,'selectedcourses'=>$selectedcourseData,'courses'=>$crs_names,'scc'=>$course_codes]);
+		$this->load->view('Teacher/TeacherDashboard',['teacherData'=>$teacherData,'selectedcourses'=>$selectedcourseData,'courses'=>$crs_names,'scc'=>$course_codes,'clgname'=>$clgname]);
 	}
 
 	public function load_change_password_teacher()

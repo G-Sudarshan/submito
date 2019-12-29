@@ -54,7 +54,7 @@ class StudentModel extends CI_Model{
 	public function upload_assignment_pdf($userdata)
 	{
 		return $this->db->insert('assignments' , $userdata );
-	}Mali Sir
+	}
 
 	public function getUploadedAssignments($id,$cc)
 	{

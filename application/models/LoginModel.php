@@ -17,6 +17,13 @@ class LoginModel extends CI_Model{
 		return $n_data;
 	}
 
+
+	public function getAllNotifications()
+	{
+		$n_data = $this->db->get('notification');
+		return $n_data;
+	}
+
 public function admin_login($userdata)
 	{
 		$this->db->select('*');

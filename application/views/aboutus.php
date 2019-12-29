@@ -299,7 +299,7 @@
 </head>
 <body class="hm-gradient">
 
-	<?php $this->view('header'); ?>
+	
 	<br/>
 
 	<section class="text-center">

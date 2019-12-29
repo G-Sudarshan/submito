@@ -17,7 +17,7 @@
   <!-- Style -->
   <style type="text/css">
 
-    /* body */
+    /* body */ 
     .hm-gradient 
     {
         background-image: linear-gradient(to top, #f3e7e9 20%, #e3eeff 60%, #e3eeff 100%);
@@ -53,12 +53,15 @@
     <!-- ----------------------------------------------------------------- Header --------------------------------------------------------------------- -->    
     
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-      <a class="navbar-brand mr-1" href="#">SubMito!</a>
+      <a class="navbar-brand mr-1" href="#">SubMito!</a>&nbsp;
+      <a class="navbar-brand mr-1" href=<?= base_url('Login'); ?>><?= $clgname; ?></a>
         <!-- Right corner menu -->
         <ul class="nav navbar-nav ml-auto">
+           <li>
+            <a class="navbar-brand mr-1" href="#"><?= "Welcome ".$studentData->name; ?></a></li><li>
           <li>
             <a class="nav-link" href="#" data-toggle="dropdown">
-              <i class="fa fa-user-circle"></i>
+              <i class="fa fa-user-circle "></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
               <a class="dropdown-item" href="#" data-toggle="modal" data-target="#profileModal">Profile</a>

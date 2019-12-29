@@ -38,7 +38,11 @@ class Student extends MY_Controller{
       $selectedcourseData = NULL;
     }
 
-		$this->load->view('Student/StudentDashboard',['studentData' => $studentData,'courses'=>$courseData,'selectedcourses'=>$selectedcourseData,'scc'=>$course_codes]);
+    $clgname = $this->StudentModel->get_clg_name();
+
+    
+
+		$this->load->view('Student/StudentDashboard',['studentData' => $studentData,'courses'=>$courseData,'selectedcourses'=>$selectedcourseData,'scc'=>$course_codes,'clgname'=>$clgname]);
 	}
 
 	public function upload_assignment()

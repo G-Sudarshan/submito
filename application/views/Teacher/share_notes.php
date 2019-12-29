@@ -34,7 +34,7 @@ echo form_input(['name'=>'title','placeholder'=>'Enter Title for notes','class'=
 <br><br>
 <input type="file" name="userfile" class="form-control" />
 
-<br /><br /><br><br><br>
+<br />
 
 <?php $data = array(
                              'course_code'  => $course_code,

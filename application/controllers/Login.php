@@ -16,21 +16,21 @@ class Login extends MY_Controller{
 
     //---- IF USER IS LOGGED IN HE WILL BE REDIRECTED TO RESPECTIVE DASHBOARD ------//
 
-    // if($this->session->userdata('student_id'))
-    //       return redirect('Student');
+    if($this->session->userdata('student_id'))
+          return redirect('Student');
 
 
-    // if($this->session->userdata('teacher_id'))
-    //       return redirect('Teacher');
+    if($this->session->userdata('teacher_id'))
+          return redirect('Teacher');
 
-    // if($this->session->userdata('admin_id'))
-    //       return redirect('Admin');
+    if($this->session->userdata('admin_id'))
+          return redirect('Admin');
 
     //------------------------------------------------------------------------------//
 
     $this->load->model('LoginModel'); 
     $clgname = $this->LoginModel->get_clg_name();
-    $this->load->view('header',$clgname);  
+    $this->load->view('header',['clgname'=>$clgname]);  
     $this->load->view('Login');	
    	$this->load->view('footer'); 
 
@@ -113,21 +113,33 @@ class Login extends MY_Controller{
 
    public function aboutus()
    {
+       $this->load->model('LoginModel'); 
+      $clgname = $this->LoginModel->get_clg_name();
+      $this->load->view('header',['clgname'=>$clgname]);  
       $this->load->view('aboutus'); 
    }
 
    public function contactus()
    {
+     $this->load->model('LoginModel'); 
+      $clgname = $this->LoginModel->get_clg_name();
+      $this->load->view('header',['clgname'=>$clgname]);  
       $this->load->view('contactus'); 
    }
 
    public function terms()
    {
+       $this->load->model('LoginModel'); 
+      $clgname = $this->LoginModel->get_clg_name();
+      $this->load->view('header',['clgname'=>$clgname]);  
       $this->load->view('terms_and_conditions'); 
    }
 
    public function privacy()
    {
+       $this->load->model('LoginModel'); 
+      $clgname = $this->LoginModel->get_clg_name();
+      $this->load->view('header',['clgname'=>$clgname]);  
       $this->load->view('privacy_policy'); 
    }
 
@@ -268,16 +280,21 @@ class Login extends MY_Controller{
             $data['data'][$key]['backgroundColor'] = "#00a65a";
         }           
       
-     $this->load->view('header');  
-     $this->load->view('calendar', $data); 
-     $this->load->view('footer'); 
+      $this->load->model('LoginModel'); 
+      $clgname = $this->LoginModel->get_clg_name();
+      $this->load->view('header',['clgname'=>$clgname]);  
+      $this->load->view('calendar', $data); 
+      $this->load->view('footer'); 
    }
 
    public function notification()
    {
-    $this->load->model('Admin_model');
-     $data = $this->Admin_model->getAllNotifications();
-      $this->load->view('header');  
+       $this->load->model('LoginModel'); 
+     $data = $this->LoginModel->getAllNotifications();
+
+      $clgname = $this->LoginModel->get_clg_name();
+      $this->load->view('header',['clgname'=>$clgname]);  
+    
      $this->load->view('notification',['data'=>$data]);
      $this->load->view('footer'); 
      

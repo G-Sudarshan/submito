@@ -35,7 +35,7 @@
 </head>
 <body class="hm-gradient">
 
-	<?php $this->view('header'); ?>
+	
 
 	<section>
 		<div class="container text-center">
