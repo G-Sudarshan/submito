@@ -48,14 +48,14 @@ class Email1 extends CI_Controller {
 
 	    $this->email->message('my message is :'."\r".$message."\r\n".'My Name is :'."\r".$name."\r\n".'My contact number is :'."\r".$contact_no."\r\v".'My email is : '.$email1."\r\n".'Thanks for visiting');
 	    if($this->email->send()){
-	    	$this->session->set_flashdata('message', 'Email sent');
+	    	$this->session->set_flashdata('success', 'Message Sent Succesfully');
 	    }
 	    else{
-	    	$this->session->set_flashdata('message', show_error($this->email->print_debugger()));
+	    	$this->session->set_flashdata('failure', show_error($this->email->print_debugger()));
 	     	
 	    }
 
-	    redirect('/');
+	    return redirect('Login/contactus');
 
 	}
 }

@@ -39,6 +39,14 @@
 
 	<section>
 		<div class="container text-center">
+			<?php if($success = $this->session->flashdata('success')): 
+              echo '<div class="alert alert-dismissible alert-success">' . $success . '</div>';
+            endif; 
+      ?>
+      <?php if($failure = $this->session->flashdata('failure')): 
+              echo '<div class="alert alert-dismissible alert-danger">' . $failure . '</div>';
+            endif; 
+      ?>
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12">
 					<h2>Contact Us</h2>
@@ -135,7 +143,27 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
+<script>
+ 
+  var options = {
+  bottom: '64px', // default: '32px'
+  right: '32px', // default: '32px'
+  left: 'unset', // default: 'unset'
+  time: '0.5s', // default: '0.3s'
+  mixColor: '#fff', // default: '#fff'
+  backgroundColor: '#ffffff',  // default: '#fff'
+  buttonColorDark: 'grey',  // default: '#100f2c'
+  buttonColorLight: '#ffffff', // default: '#fff'
+  saveInCookies: false, // default: true,
+  label: '🐧', // default: ''
+  autoMatchOsTheme: true // default: true
+}
 
+const darkmode = new Darkmode(options);
+darkmode.showWidget();
+ 
+</script>
 
 </body>
 </html>

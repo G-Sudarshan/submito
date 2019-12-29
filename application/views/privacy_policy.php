@@ -120,6 +120,27 @@
 		</div>
 
 	</section>
+	<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
+<script>
+ 
+  var options = {
+  bottom: '64px', // default: '32px'
+  right: '32px', // default: '32px'
+  left: 'unset', // default: 'unset'
+  time: '0.5s', // default: '0.3s'
+  mixColor: '#fff', // default: '#fff'
+  backgroundColor: '#ffffff',  // default: '#fff'
+  buttonColorDark: 'grey',  // default: '#100f2c'
+  buttonColorLight: '#ffffff', // default: '#fff'
+  saveInCookies: false, // default: true,
+  label: '🐧', // default: ''
+  autoMatchOsTheme: true // default: true
+}
+
+const darkmode = new Darkmode(options);
+darkmode.showWidget();
+ 
+</script>
 
 	<?php $this->view('footer'); ?>
 
