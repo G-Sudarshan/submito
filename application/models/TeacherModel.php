@@ -2,6 +2,14 @@
 
 class TeacherModel extends CI_Model{
 
+	public function get_clg_name()
+	{
+		$clg_name = $this->db->select('value')->from('tbl_info')->where('title','college_name')->get();
+
+		return $clg_name->row()->value;
+
+	}
+
 	public function getTeacherData($id)
 	{
 		$data = $this->db->select(['id','name','department','staff_id','department_id','username','email','mobile_no'])->from('tbl_teachers_db')->where('id',$id)->get();

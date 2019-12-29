@@ -4,8 +4,11 @@ class Login extends MY_Controller{
 
   public function index()
   {
-    $this->load->model('Admin_model');     
-    $n_data = $this->Admin_model->fetch_notifications();
+    $this->load->model('LoginModel');     
+    $n_data = $this->LoginModel->fetch_notifications();
+    $clgname = $this->LoginModel->get_clg_name();
+
+    $this->load->view('header',['clgname'=>$clgname]);  
     $this->load->view('Home',['n_data' => $n_data]);
   }
    public function loginpage()
@@ -24,7 +27,10 @@ class Login extends MY_Controller{
     //       return redirect('Admin');
 
     //------------------------------------------------------------------------------//
-    $this->load->view('header');  
+
+    $this->load->model('LoginModel'); 
+    $clgname = $this->LoginModel->get_clg_name();
+    $this->load->view('header',$clgname);  
     $this->load->view('Login');	
    	$this->load->view('footer'); 
 

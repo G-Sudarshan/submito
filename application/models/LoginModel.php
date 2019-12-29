@@ -2,6 +2,21 @@
 
 class LoginModel extends CI_Model{
 
+
+	public function get_clg_name()
+	{
+		$clg_name = $this->db->select('value')->from('tbl_info')->where('title','college_name')->get();
+
+		return $clg_name->row()->value;
+
+	}
+
+	public function fetch_notifications()
+	{
+		$n_data = $this->db->get('notification');
+		return $n_data;
+	}
+
 public function admin_login($userdata)
 	{
 		$this->db->select('*');

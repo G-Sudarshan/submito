@@ -2,6 +2,14 @@
 
 class StudentModel extends CI_Model{
 
+	public function get_clg_name()
+	{
+		$clg_name = $this->db->select('value')->from('tbl_info')->where('title','college_name')->get();
+
+		return $clg_name->row()->value;
+
+	}
+
 	public function getStudentData($student_id)
 	{
 
@@ -46,7 +54,7 @@ class StudentModel extends CI_Model{
 	public function upload_assignment_pdf($userdata)
 	{
 		return $this->db->insert('assignments' , $userdata );
-	}
+	}Mali Sir
 
 	public function getUploadedAssignments($id,$cc)
 	{

@@ -21,14 +21,15 @@
 </head>
 <body class="hm-gradient">
 
-	<?php $this->view('header'); ?>
+	
 
 	<div class="container">
 
     	<br/>
     	<!-- <h1>SubMito!</h1> -->
-    	<img src=<?= base_url("/assets/images/image.png") ?> >
+    	<img src=<?= base_url("/assets/images/submito.png") ?> >
 		<h2>Online Assignment Management System</h2>
+		
 		
 		<br/><br/>
 	    <h4>

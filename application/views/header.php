@@ -14,7 +14,9 @@
 <body>
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark bg-secondary">
-			<a class="navbar-brand mr-1" href="#">SubMito!</a>
+			<a class="navbar-brand mr-1" href=<?= base_url('Login'); ?>>SubMito!</a>&nbsp;
+			<a class="navbar-brand mr-1" href=<?= base_url('Login'); ?>><?= $clgname; ?></a>
+			
 
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
