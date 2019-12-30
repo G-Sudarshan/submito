@@ -604,21 +604,18 @@ class Admin extends MY_Controller{
         $id = $this->session->userdata('admin_id');
 
         $this->load->helper('file');
+
         delete_files(FCPATH.'assets/a');
         delete_files(FCPATH.'assets/notes');
         delete_files(FCPATH.'uploads');
-        unlink(FCPATH.'assets/j/students.json');
-        unlink(FCPATH.'assets/j/teachers.json');
 
-        $file1 = fopen(FCPATH.'assets/j/students.json', "w");
-        fclose($file1);
+        delete_files(FCPATH.'assets/j/students');
+        delete_files(FCPATH.'assets/j/teachers');
 
+      
 
-        $file2 = fopen(FCPATH.'assets/j/teachers.json', "w");
-        fclose($file2);
-
-
-        $this->Admin_model->reset_the_system($id);
+        $name = $this->Admin_model->get_admin_name($id);
+        $this->Admin_model->reset_the_system($name);
         
         echo "System resetted successfully! Your new admin credentials are  <br/>username : submito_admin <br/>  password : gpncm1234<br/><br/>";
 

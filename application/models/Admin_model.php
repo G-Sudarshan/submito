@@ -10,6 +10,14 @@ class Admin_model extends CI_Model{
 
 	}
 
+	public function get_admin_name($id)
+	{
+		$data = $this->db->select('username')->from('tbl_admin_login')->where('id',$id)->get();
+
+		return $data->row()->username;
+
+	}
+
 	public function set_clg_name($new_clg_name)
 	{      
 		$this->db->where('title', 'college_name');
@@ -241,7 +249,7 @@ class Admin_model extends CI_Model{
       }
 
 
-      public function reset_the_system($id)
+      public function reset_the_system($name)
       {
       	$userdata = array(
 	      'username' => 'submito_admin',
@@ -257,12 +265,13 @@ class Admin_model extends CI_Model{
 		$this->db->empty_table('tbl_departments');
 		$this->db->empty_table('tbl_student_db');
 		$this->db->empty_table('tbl_teachers_db');
+		$this->db->empty_table('notes');
 
 		$this->db->where('title', 'college_name');
         $this->db->update('tbl_info',['value' => 'Your Institute Name Here']);
 
         $this->db->where('title', 'reset_by');
-        $this->db->update('tbl_info',['value' => $id]);
+        $this->db->update('tbl_info',['value' => $name]);
 
         $this->db->insert('tbl_admin_login' , $userdata );
       }
