@@ -1,0 +1,2 @@
+1. Email settings for smtp server
+2. Set one event in academic calendar
