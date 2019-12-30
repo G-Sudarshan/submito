@@ -1,5 +1,12 @@
 <?php
 
+if(!$this->session->userdata('teacher_id'))
+          return redirect('Login');
+
+?>
+
+<?php
+
 // $this->session->set_userdata('name',$teacherData->name);
 // $this->session->set_userdata('department',$teacherData->department);
 ?><!DOCTYPE html>

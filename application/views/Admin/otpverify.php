@@ -1,3 +1,9 @@
+<?php
+
+if(!$this->session->userdata('admin_id'))
+          return redirect('Login');
+
+?>
 <!DOCTYPE html>
 
 <html lang="en">

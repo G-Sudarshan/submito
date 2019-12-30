@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+<?php
+
+if(!$this->session->userdata('admin_id') && !$this->session->userdata('teacher_id'))
+          return redirect('login');
+
+?><!DOCTYPE html>
 <html>
 <head>
 	<title>Change Password</title>

@@ -1,3 +1,9 @@
+<?php
+
+if(!$this->session->userdata('admin_id') && !$this->session->userdata('student_id'))
+          return redirect('login');
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
