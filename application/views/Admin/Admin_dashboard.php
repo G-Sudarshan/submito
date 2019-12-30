@@ -365,19 +365,19 @@ if(!$this->session->userdata('admin_id'))
 
   
   echo "Your Name :  ";
-  echo form_input(['name'=>'admin_name','placeholder'=>'Name of Admin','class'=>'form-control','value'=>set_value('admin_name',$admin->name)]);
+  echo form_input(['name'=>'admin_name','placeholder'=>'Name of Admin','class'=>'form-control','value'=>set_value('admin_name',$admin->name)],'','required');
    echo "<br/><br/>"; 
   
   echo "Your Email :  ";
-  echo form_input(['name'=>'admin_email','type'=>'email','placeholder'=>'Enter email eg. ganesha@gmail.com','class'=>'form-control','value'=>set_value('admin_email',$admin->email)]); 
+  echo form_input(['name'=>'admin_email','type'=>'email','placeholder'=>'Enter email eg. ganesha@gmail.com','class'=>'form-control','value'=>set_value('admin_email',$admin->email)],'','required'); 
     echo "<br/><br/>";
 
     echo "Department :  ";
-  echo form_input(['name'=>'admin_department','placeholder'=>'Enter year eg. First Year ','class'=>'form-control','value'=>set_value('admin_department',$admin->department)]); 
+  echo form_input(['name'=>'admin_department','placeholder'=>'Enter year eg. First Year ','class'=>'form-control','value'=>set_value('admin_department',$admin->department)],'','required'); 
     echo "<br/><br/>";
 
     echo " Mobile no :  ";
-  echo form_input(['name'=>'admin_mobile','placeholder'=>'Enter your mobile no','class'=>'form-control','value'=>set_value('admin_mobile',$admin->mobile_no)]); 
+  echo form_input(['name'=>'admin_mobile','placeholder'=>'Enter your mobile no','class'=>'form-control','value'=>set_value('admin_mobile',$admin->mobile_no)],'','required'); 
     echo "<br/><br/>"; ?>
 
   

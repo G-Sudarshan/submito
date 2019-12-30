@@ -32,7 +32,7 @@ if(!$this->session->userdata('admin_id'))
       	  <div class="form-group">
       <label for="inputEmail" class="col-lg-4 control-label">Notification Title</label>
       <div class="col-lg-8">
-      	<?php echo form_input(['name'=>'title','class'=>'form-control' ,'placeholder'=>'Notification Title','value'=>set_value('title')]); ?>
+      	<?php echo form_input(['name'=>'title','class'=>'form-control' ,'placeholder'=>'Notification Title','value'=>set_value('title')],'','required'); ?>
       </div>
     </div>
 </div>
