@@ -294,16 +294,18 @@
 </head>
 <body class="hm-gradient">
 
-	
+	<div class="hm-gradient">
 	<br/>
 
 	<section class="text-center">
 
 		<h2>ABOUT US</h2>
 		<div class="container">
-			<p><h6>The challenges faced by students in meeting assignment deadlines and cost associated with printing hard copies of paper, necessitated developers to develop a user friendly system to tackle these challenges. The system allows students to submit assignments online to a particular course, Teachers who have access to the system for grading purpose. The most obvious advantage offered by online assignment submission and management system is that it offers faster transmission of assignments than using traditional way by using online system.</h6></p>
+			<p><h6>The challenges faced by students in meeting assignment deadlines and cost associated with printing hard copies of paper, necessitated developers to develop a user friendly system to tackle these challenges. The system allows students to submit assignments online to a particular course, Teachers who have access to the system for grading purpose. The most obvious advantage offered by online assignment submission and management system is that it offers faster transmission of assignments than using traditional way by using online system.
+				<span class="text-success">Watch our <a href="https://youtu.be/ErxDe89BLek"><span class="text-primary">Introduction Video</span></a>on YouTube!</span></h6></p>
 		</div>	
 		<br/>
+		<div align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/ErxDe89BLek" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 		<h2>OUR GUIDE</h2>
 		<br/>
 		<div class="container">
@@ -440,7 +442,7 @@
 			</div>
 		</div>
 	</section>
-
+</div>
 	<?php $this->view('footer'); ?>
 
 

@@ -176,6 +176,13 @@
 						<div class="form-group">
 							<label>Select CSV File</label>
 							<input type="file" name="csv_file" id="csv_file" required accept=".csv" />
+							<br/><br/>
+              <p class="text-success">
+                Columns are | rollno | password | department | department_id |
+               
+              </p>
+
+<br />
 						</div>
 	        		</div>
 	      		</div>

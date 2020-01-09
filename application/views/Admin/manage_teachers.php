@@ -183,6 +183,13 @@ if(!$this->session->userdata('admin_id'))
 						<div class="form-group">
 							<label>Select CSV File</label>
 							<input type="file" name="csv_file" id="csv_file" required accept=".csv" />
+
+							<br/><br/>
+              <p class="text-success">
+                Columns are | username | name | staff_id | password | department | department_id |
+               
+              </p>
+
 						</div>
 		        	</div>
 		      	</div>

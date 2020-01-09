@@ -33,7 +33,7 @@
 </head>
 <body class="hm-gradient">
 
-	
+	<div class="hm-gradient">
 
 	<section>
 		<div class="container text-center">
@@ -133,6 +133,8 @@
 			</div>
 		</div>
 	</section>
+
+</div>
 
 	<?php $this->view('footer'); ?>
 

@@ -30,8 +30,8 @@ if(!$this->session->userdata('student_id'))
     
 </head>
 <body class="hm-gradient">
-
-      <div class="container-fluid">
+<div class="container" align="center">
+      <div>
         <div align="left">&nbsp;
           <h4>
             <a href="<?= base_url('Student'); ?>" ><i class="fa fa-arrow-circle-left font-weight-bold text-dark"></i></a>
@@ -39,7 +39,9 @@ if(!$this->session->userdata('student_id'))
         </div>
       </div>
 
-      <div class="container" align="center">
+    
+
+      <div>
         <?php 
           if($success = $this->session->flashdata('success')): 
           echo '<div class="alert alert-dismissible alert-success">' . $success . '</div>';
@@ -53,8 +55,8 @@ if(!$this->session->userdata('student_id'))
         <p> OTP has been sent to your email address : <?= $this->session->userdata('email'); ?> OTP is valid for 4 minutes </p>
      
             <?php  echo form_open('Student/verify_otp') ?>
-              <div class="text-center sm-4"> 
-                <h1 class="h3 sm-3 font-weight-normal">Enter your OTP To verify</h1>
+              <div class="text-center lg-4"> 
+                <h1 class="h3 lg-3 font-weight-normal">Enter your OTP To verify</h1>
               </div>
               <div class="col-lg-4">
                 <div class="form-label-group">
@@ -65,9 +67,12 @@ if(!$this->session->userdata('student_id'))
                 <a href="<?= base_url('Student') ?>" class="btn btn-lg btn-danger btn-block" type="submit">Back</a>
             <?php echo form_close(); ?>
               </div>
-      </div>
-
-  <!-- ------------------------------------------------------------------------------------------------------ -->
+            </div>
+          </div>
     
+    
+  <!-- ------------------------------------------------------------------------------------------------------ -->
+
+     
 </body>
 </html>

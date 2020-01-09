@@ -27,9 +27,9 @@
     
 </head>
 <body class="hm-gradient">
-    <section>
+  <div class="container" align="center">  <section>
 
-      <div class="container-fluid">
+      <div>
         <div align="left">&nbsp;
           <h4>
             <a href="<?= base_url('Teacher'); ?>" ><i class="fa fa-arrow-circle-left font-weight-bold text-dark"></i></a>
@@ -37,7 +37,7 @@
         </div>
       </div>
 
-      <div class="container" align="center">
+      <div>
         <?php 
           if($success = $this->session->flashdata('success')): 
           echo '<div class="alert alert-dismissible alert-success">' . $success . '</div>';
@@ -67,7 +67,7 @@
     <!-- ----------------------------------------------------------------------------------------------- -->
 
     </section>
-
+</div>
     <!-- ----------------------------------------------------------------------------------------------------- -->
 </body>
 </html>
