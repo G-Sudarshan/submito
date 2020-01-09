@@ -1,8 +1,6 @@
 <?php
-
-if(!$this->session->userdata('teacher_id'))
+  if(!$this->session->userdata('teacher_id'))
           return redirect('Login');
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,10 +13,6 @@ if(!$this->session->userdata('teacher_id'))
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <!-- Bootstrap font awesome link -->
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <!-- Script links -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
   <!-- Style -->
   <style type="text/css">
@@ -37,15 +31,14 @@ if(!$this->session->userdata('teacher_id'))
 
   <section>
 
-    <!-- ----------------------------------------------------------------- Header --------------------------------------------------------------------- -->    
+    <!-- ----------------------------------------- Header-------------------------------------------- -->    
     
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
       <a class="navbar-brand mr-1" href="#">SubMito!</a>
     </nav>
 
-    <!-- ---------------------------------------------------------------------------------------------------------------------------------------------- -->
-
-    <!-- ----------------------------------------------------------------- Content -------------------------------------------------------------------- -->
+    <!-- ----------------------------------------------------------------------------------------- -->
+    <!-- ---------------------------------- Content ---------------------------------------- -->
 
     <div class="container-fluid">
       <div align="left">&nbsp;
@@ -74,7 +67,7 @@ if(!$this->session->userdata('teacher_id'))
       <div>
         <table class="table table-striped">
           <thead>
-            <th>Assignment no.</th>
+            <th>Assignment No.</th>
             <th>Title</th>
             <th>Created By</th>
             <th>Last Date to Submit</th>
@@ -133,9 +126,8 @@ if(!$this->session->userdata('teacher_id'))
     
     </div>
 
-    <!-- ---------------------------------------------------------------------------------------------------------------------------------------------- -->
-
-    <!-- ----------------------------------------------------------------- Footer --------------------------------------------------------------------- -->
+    <!-- ------------------------------------------------------------------------------------------------- -->
+    <!-- ------------------------------------------ Footer -------------------------------------------- -->
 
     <br/><br/><br/><br/><br/><br/><br/><br/>
     <footer class="py-3 bg-dark">
@@ -144,13 +136,12 @@ if(!$this->session->userdata('teacher_id'))
       </div>
     </footer>
 
-    <!-- ---------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- ------------------------------------------------------------------------------------------ -->
 
   </section>
 
-  <!-- -------------------------------------------------------------------------------------------------------------------------------------------------- -->
-
-  <!-- ------------------------------------------------------------ Create Assignment Modal ------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------------------------------------- -->
+  <!-- --------------------------------- Create Assignment Modal -------------------------------------- -->
 
   <!-- Modal -->
   <div class="modal fade" id="createAssignmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -175,19 +166,19 @@ if(!$this->session->userdata('teacher_id'))
                         );
               echo form_hidden($data);
 
-        			echo "Enter Assignment No :  ";
-        			echo form_input(['name'=>'a_no','class'=>'form-control','placeholder'=>' Assignment No. eg. 1,2,3,4 etc.']); 
+        			echo "Enter Assignment No :";
+        			echo form_input(['name'=>'a_no','class'=>'form-control','placeholder'=>' Assignment No. eg. 1,2,3,4 etc.'],'','required'); 
         			
-        			echo "Enter title of Assignment to be created &nbsp; :&nbsp; ";
-        			echo form_input(['name'=>'a_title','class'=>'form-control','placeholder'=>' Title of assignment eg. Write a program for Hello world in C ']); 
+        			echo "Enter title of Assignment to be created :";
+        			echo form_input(['name'=>'a_title','class'=>'form-control','placeholder'=>' Title of assignment eg. Write a program for Hello world in C '],'','required'); 
 
-        			echo "Enter Description of Assignment to be created &nbsp; :&nbsp; ";
-        			echo form_textarea(['name'=>'a_description','class'=>'form-control','placeholder'=>' description of assignment  ']);
+        			echo "Enter Description of Assignment to be created :";
+        			echo form_textarea(['name'=>'a_description','class'=>'form-control','placeholder'=>' description of assignment  '],'','required');
 
-        			echo "Enter last date to submit for Assignment to be created &nbsp; :&nbsp; ";
-        			echo form_input(['name'=>'a_deadline','type'=>'date','class'=>'form-control','placeholder'=>' Last date to submit assignment ','value'=>set_value('crs_code')]);
+        			echo "Enter last date to submit for Assignment to be created :";
+        			echo form_input(['name'=>'a_deadline','type'=>'date','class'=>'form-control','placeholder'=>' Last date to submit assignment ','value'=>set_value('crs_code')],'','required');
         		   
-        		  echo "Choose assignment type &nbsp; :&nbsp; "; 
+        		  echo "Choose assignment type :"; 
             ?>
 
               <div class="form-check form-check-inline">
@@ -213,9 +204,8 @@ if(!$this->session->userdata('teacher_id'))
     </div>
   </div>
 
-  <!-- -------------------------------------------------------------------------------------------------------------------------------------------------- -->
-
-  <!-- -------------------------------------------------------------- Edit Assignment Modal ------------------------------------------------------------- -->
+  <!-- ------------------------------------------------------------------------------------------------ -->
+  <!-- -------------------------------------- Edit Assignment Modal ----------------------------------- -->
 
   <!-- Modal -->
   <div class="modal fade" id="editAssignmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -245,11 +235,11 @@ if(!$this->session->userdata('teacher_id'))
               <input type="text" class="form-control" name="assignment_no" id="edit_assignment_no" disabled>
               <input type="hidden" name="a_no" id="aa">
             <?php             
-              echo "Enter title of Assignment to be created &nbsp; :&nbsp; ";
-              echo form_input(['name'=>'a_title','class'=>'form-control','placeholder'=>' Title of Assignment eg. Write a program for Hello world in C ','id'=>'edit_assignment_name']);
+              echo "Enter title of Assignment to be created :";
+              echo form_input(['name'=>'a_title','class'=>'form-control','placeholder'=>' Title of Assignment eg. Write a program for Hello world in C ','id'=>'edit_assignment_name'],'','required');
 
-              echo "Enter Description of Assignment to be created &nbsp; :&nbsp; ";
-              echo form_textarea(['name'=>'a_description','class'=>'form-control','placeholder'=>' Description of Assignment  ','id'=>'edit_assignment_description']);
+              echo "Enter Description of Assignment to be created :";
+              echo form_textarea(['name'=>'a_description','class'=>'form-control','placeholder'=>' Description of Assignment  ','id'=>'edit_assignment_description'],'','required');
             ?>
           </div>
         </div>
@@ -265,7 +255,12 @@ if(!$this->session->userdata('teacher_id'))
     </div>
   </div>
         
-  <!-- -------------------------------------------------------------------------------------------------------------------------------------------------- -->
+  <!-- ------------------------------------------------------------------------------------------------ -->
+
+  <!-- Script links -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
   <script type="text/javascript">
 

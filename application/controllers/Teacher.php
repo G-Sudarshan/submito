@@ -280,7 +280,7 @@ class Teacher extends MY_Controller{
     }
 
     public function sendemail(){
-    $subject = 'Welcome To GPNashik Portal  ';
+    $subject = 'OTP for SubMito | GP Nashik | Teacher ';
     $otp = $this->generate_otp();
     $this->session->set_userdata('user_otp',$otp);
     $message = urlencode("Otp number is ".$otp);
@@ -292,8 +292,8 @@ class Teacher extends MY_Controller{
         'protocol' => 'smtp',
         'smtp_host' => 'ssl://smtp.googlemail.com',
         'smtp_port' => 465,
-        'smtp_user' => 'error4206@gmail.com', // change it to yours
-        'smtp_pass' => 'aniket@2001', // change it to yours
+        'smtp_user' => 'gpnashik8@gmail.com', // change it to yours
+        'smtp_pass' => 'Gpnashik@2001', // change it to yours
         'mailtype' => 'html',
         'charset' => 'iso-8859-1',
         'wordwrap' => TRUE

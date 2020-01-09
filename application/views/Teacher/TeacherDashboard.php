@@ -4,12 +4,7 @@ if(!$this->session->userdata('teacher_id'))
           return redirect('Login');
 
 ?>
-
-<?php
-
-// $this->session->set_userdata('name',$teacherData->name);
-// $this->session->set_userdata('department',$teacherData->department);
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Teacher Dashboard</title>
@@ -20,10 +15,6 @@ if(!$this->session->userdata('teacher_id'))
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <!-- Bootstrap font awesome link -->
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <!-- Script links -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
   <!-- Style -->
   <style type="text/css">
@@ -44,13 +35,15 @@ if(!$this->session->userdata('teacher_id'))
     }
 
     /* Important part */
-.modal-dialog{
-    overflow-y: initial !important
-}
-.modal-body-s{
-    height: 375px;
-    overflow-y: auto;
-}
+    .modal-dialog
+    {
+      overflow-y: initial !important
+    }
+    .modal-body-s
+    {
+      height: 375px;
+      overflow-y: auto;
+    }
 
   </style>
  
@@ -59,10 +52,10 @@ if(!$this->session->userdata('teacher_id'))
 
   <section>
 
-    <!-- ----------------------------------------------------------------- Header --------------------------------------------------------------------- -->    
+    <!-- ----------------------------------------- Header -------------------------------------------- -->
     
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-      <a class="navbar-brand mr-1" href=<?= base_url('Login'); ?>>SubMito!</a>&nbsp;
+      <a class="navbar-brand mr-1" href=<?= base_url('Login'); ?>>SubMito!</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <a class="navbar-brand mr-1" href=<?= base_url('Login'); ?>><?= $clgname; ?></a>
         <!-- Right corner menu -->
         <ul class="nav navbar-nav ml-auto">
@@ -81,9 +74,8 @@ if(!$this->session->userdata('teacher_id'))
         </ul>
     </nav>
 
-    <!-- ---------------------------------------------------------------------------------------------------------------------------------------------- -->
-
-    <!-- ----------------------------------------------------------------- Content -------------------------------------------------------------------- -->
+    <!-- ----------------------------------------------------------------------------------------------- -->
+    <!-- ------------------------------------------ Content ------------------------------------------- -->
     <div class="container text-center">
 
       <br/><br/>
@@ -135,7 +127,7 @@ if(!$this->session->userdata('teacher_id'))
                              'teacher_name' => $teacherData->name
                               );
                     echo form_hidden($data);
-                    echo form_submit('submit', 'Create assignements',"class='btn btn-primary btn-sm '");
+                    echo form_submit('submit', 'Create assignments',"class='btn btn-primary btn-sm '");
                     echo form_close();
                   ?>                   
                 </td>          
@@ -173,24 +165,22 @@ if(!$this->session->userdata('teacher_id'))
 
     </div>
 
-    <!-- ---------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- ----------------------------------------------------------------------------------------------- -->
+    <!-- -------------------------------------- Footer----------------------------------------------- -->
 
-    <!-- ----------------------------------------------------------------- Footer --------------------------------------------------------------------- -->
-
-    <br/>
+    <br/><br/><br/><br/><br/><br/>
     <footer class="py-3 bg-dark">
       <div class="container text-center text-white-50">
         <small>&COPY; 2019 TEAM SUBMITO. All Rights Reserved</small>
       </div>
     </footer>
 
-    <!-- ---------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- ---------------------------------------------------------------------------------------------- -->
 
   </section>
 
-  <!-- -------------------------------------------------------------------------------------------------------------------------------------------------- -->
-
-  <!-- --------------------------------------------------------------- Profile Modal -------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------------------------------------- -->
+  <!-- ----------------------------------- Profile Modal---------------------------------------------- -->
 
   <!-- Modal-->
   <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -223,9 +213,8 @@ if(!$this->session->userdata('teacher_id'))
       </div>
   </div>
 
-  <!-- -------------------------------------------------------------------------------------------------------------------------------------------------- --> 
-
-  <!-- --------------------------------------------------------------- Logout Modal ------------------------------------------------------------------------>
+  <!-- -------------------------------------------------------------------------------------------- -->
+  <!-- ------------------------------------- Logout Modal ----------------------------------------------->
 
   <!-- Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -249,9 +238,8 @@ if(!$this->session->userdata('teacher_id'))
       </div>
   </div>
 
-  <!-- -------------------------------------------------------------------------------------------------------------------------------------------------- -->
-
-  <!-- --------------------------------------------------------------- Subject Modal ------------------------------------------------------------------------>
+  <!-- ----------------------------------------------------------------------------------------- -->
+  <!-- ------------------------------------- Subject Modal------------------------------------------->
 
   <!-- Modal -->
   <div class="modal fade" id="mySubjectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -295,9 +283,8 @@ if(!$this->session->userdata('teacher_id'))
     </div>
   </div>
         
-  <!-- -------------------------------------------------------------------------------------------------------------------------------------------------- -->
-
-  <!--------------------------------------------------------------- Edit Profie Model ---------------------------------------------------------------------->
+  <!-- ------------------------------------------------------------------------------------------ -->
+  <!---------------------------------- Edit Profie Model---------------------------------------------->
 
   <div class="modal" id="editProfileModal">
     <div class="modal-dialog">
@@ -313,15 +300,15 @@ if(!$this->session->userdata('teacher_id'))
             <?php echo form_open('Teacher/update_teacher'); ?>
             <?php   
               echo "Name :  ";
-              echo form_input(['name'=>'teacher_name','placeholder'=>'Enter your name','class'=>'form-control','value'=>set_value('teacher_name',$teacherData->name)]);
+              echo form_input(['name'=>'teacher_name','placeholder'=>'Enter your name','class'=>'form-control','value'=>set_value('teacher_name',$teacherData->name)],'','required');
               echo "<br/>"; 
             
               echo "Email :  ";
-              echo form_input(['name'=>'teacher_email','type'=>'email','placeholder'=>'Enter email eg. ganesha@gmail.com','class'=>'form-control','value'=>set_value('teacher_email',$teacherData->email)]); 
+              echo form_input(['name'=>'teacher_email','type'=>'email','placeholder'=>'Enter email eg. ganesha@gmail.com','class'=>'form-control','value'=>set_value('teacher_email',$teacherData->email)],'','required'); 
               echo "<br/>";
 
               echo "Mobile No. :  ";
-              echo form_input(['name'=>'teacher_mobile','placeholder'=>'Enter your mobile no','class'=>'form-control','value'=>set_value('teacher_mobile',$teacherData->mobile_no)]); 
+              echo form_input(['name'=>'teacher_mobile','placeholder'=>'Enter your mobile no','class'=>'form-control','value'=>set_value('teacher_mobile',$teacherData->mobile_no)],'','required'); 
               echo "<br/>"; ?>
           </div>
         </div>
@@ -337,7 +324,12 @@ if(!$this->session->userdata('teacher_id'))
     </div>
   </div>
 
-  <!-- -------------------------------------------------------------------------------------------------------------------------------------------------- -->
+  <!-- --------------------------------------------------------------------------------------------------- -->
+
+  <!-- Script links -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 </body>
 </html>

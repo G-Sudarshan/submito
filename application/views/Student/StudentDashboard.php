@@ -1,30 +1,24 @@
 <?php
-
-if(!$this->session->userdata('student_id'))
+    if(!$this->session->userdata('student_id'))
           return redirect('Login');
-
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Student Dashboard</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Student Dashboard</title>
   <!-- Bootstrap Link -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <!-- Bootstrap font awesome link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!-- Script links -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
   <!-- Style -->
   <style type="text/css">
 
     /* body */ 
-    .hm-gradient 
+     .hm-gradient 
     {
         background-image: linear-gradient(to top, #f3e7e9 20%, #e3eeff 60%, #e3eeff 100%);
         font-family: 'Source Sans Pro', sans-serif;
@@ -38,33 +32,33 @@ if(!$this->session->userdata('student_id'))
       font-size: 13px;
     }
 
-
-
-/* Important part */
-.modal-dialog{
-    overflow-y: initial !important
-}
-.modal-body-s{
-    height: 375px;
-    overflow-y: auto;
-}
+    /* Important part */
+    .modal-dialog{
+        overflow-y: initial !important
+    }
+    .modal-body-s{
+        height: 375px;
+        overflow-y: auto;
+    }
 
   </style>
 
 </head>
 <body class="hm-gradient">
+  <div class="hm-gradient">
 
   <section>
 
-    <!-- ----------------------------------------------------------------- Header --------------------------------------------------------------------- -->    
-    
+    <!-- -------------------------------------------Header------------------------------------------------------------ -->    
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-      <a class="navbar-brand mr-1" href="#">SubMito!</a>&nbsp;
+      <a class="navbar-brand mr-1" href="#">SubMito!</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <a class="navbar-brand mr-1" href=<?= base_url('Login'); ?>><?= $clgname; ?></a>
         <!-- Right corner menu -->
         <ul class="nav navbar-nav ml-auto">
            <li>
-            <a class="navbar-brand mr-1" href="#"><?= "Welcome ".$studentData->name; ?></a></li><li>
+            <a class="navbar-brand mr-1" href="#"><?= "Welcome ".$studentData->name; ?></a>
+          </li>
+            
           <li>
             <a class="nav-link" href="#" data-toggle="dropdown">
               <i class="fa fa-user-circle "></i>
@@ -79,9 +73,9 @@ if(!$this->session->userdata('student_id'))
         </ul> 
     </nav>
 
-    <!-- ---------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- ------------------------------------------------------------------------------------------------- -->
+    <!-- ------------------------------------------ Content------------------------------------------------- -->
 
-    <!-- ----------------------------------------------------------------- Content -------------------------------------------------------------------- -->
     <div class="container text-center">
 
       <br/><br/>
@@ -108,7 +102,7 @@ if(!$this->session->userdata('student_id'))
       <div>
         <table class="table table-striped">
           <thead>
-            <th>Sr No.</th>
+            <th>Sr. No.</th>
             <th>Course Code</th>
             <th>Name</th>
             <th>Upload</th>
@@ -130,7 +124,7 @@ if(!$this->session->userdata('student_id'))
                              'rollno' => $studentData->rollno
                                   );
                     echo form_hidden($data);
-                    echo form_submit('submit', 'Upload assignements',"class='btn btn-primary btn-sm '");
+                    echo form_submit('submit', 'Upload assignments',"class='btn btn-primary btn-sm '");
                     echo form_close();
 
                   ?>
@@ -156,24 +150,22 @@ if(!$this->session->userdata('student_id'))
 
     </div>
 
-    <!-- ---------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- ------------------------------------------------------------------------------------------- -->
+    <!-- ---------------------------------------------------Footer----------------------------------------- -->
 
-    <!-- ----------------------------------------------------------------- Footer --------------------------------------------------------------------- -->
-
-    <br/>
+    <br/><br/><br/><br/><br/>
     <footer class="py-3 bg-dark">
       <div class="container text-center text-white-50">
         <small>&COPY; 2019 TEAM SUBMITO. All Rights Reserved</small>
       </div>
     </footer>
 
-    <!-- ---------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- ------------------------------------------------------------------------------------------------- -->
 
   </section>
 
-  <!-- -------------------------------------------------------------------------------------------------------------------------------------------------- -->  
-
-  <!-- --------------------------------------------------------------- Profile Modal -------------------------------------------------------------------- -->
+  <!-- -------------------------------------------------------------------------------------------------- -->  
+  <!-- ----------------------------------------Profile Modal-------------------------------------------- -->
 
   <!-- Modal-->
   <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -206,9 +198,8 @@ if(!$this->session->userdata('student_id'))
       </div>
   </div>
 
-  <!-- -------------------------------------------------------------------------------------------------------------------------------------------------- --> 
-
-  <!-- --------------------------------------------------------------- Logout Modal ------------------------------------------------------------------------>
+  <!-- ---------------------------------------------------------------------------------------------------------------- --> 
+  <!-- --------------------------------------------------Logout Modal----------------------------------------------------->
 
   <!-- Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -232,9 +223,8 @@ if(!$this->session->userdata('student_id'))
       </div>
   </div>
 
-  <!-- -------------------------------------------------------------------------------------------------------------------------------------------------- --> 
-
-  <!-- ------------------------------------------------------------------ Subject Modal ----------------------------------------------------------------- -->
+  <!-- ------------------------------------------------------------------------------------------------------ --> 
+  <!-- ------------------------------------------------ Subject Modal-------------------------------------- -->
 
 
   <!-- Modal -->
@@ -278,9 +268,8 @@ if(!$this->session->userdata('student_id'))
     </div>
   </div>
 
-  <!-- -------------------------------------------------------------------------------------------------------------------------------------------------- --> 
-
-  <!--------------------------------------------------------------- Edit Profie modal ---------------------------------------------------------------------->
+  <!-- --------------------------------------------------------------------------------------------------- --> 
+  <!---------------------------------------Edit Profie modal----------------------------------------------->
 
   <!-- Modal -->
   <div class="modal" id="editProfileModal">
@@ -297,19 +286,19 @@ if(!$this->session->userdata('student_id'))
           <?php echo form_open('Student/update_student'); ?>
             <?php 
               echo "Name:  ";
-              echo form_input(['name'=>'student_name','placeholder'=>'Name of Student','class'=>'form-control','value'=>set_value('student_name',$studentData->name)]);
+              echo form_input(['name'=>'student_name','placeholder'=>'Name of Student','class'=>'form-control','value'=>set_value('student_name',$studentData->name)],'','required');
               echo "<br/>"; 
 
               echo "Email:  ";
-              echo form_input(['name'=>'student_email','type'=>'email','placeholder'=>'Enter email eg. ganesha@gmail.com','class'=>'form-control','value'=>set_value('student_email',$studentData->email)]); 
+              echo form_input(['name'=>'student_email','type'=>'email','placeholder'=>'Enter email eg. ganesha@gmail.com','class'=>'form-control','value'=>set_value('student_email',$studentData->email)],'','required'); 
               echo "<br/>";
 
               echo "Year:  ";
-              echo form_input(['name'=>'student_year','placeholder'=>'Enter year eg. First Year ','class'=>'form-control','value'=>set_value('student_year',$studentData->year)]); 
+              echo form_input(['name'=>'student_year','placeholder'=>'Enter year eg. First Year ','class'=>'form-control','value'=>set_value('student_year',$studentData->year)],'','required'); 
               echo "<br/>";
 
               echo " Mobile No.:  ";
-              echo form_input(['name'=>'student_mobile','placeholder'=>'Enter your mobile no','class'=>'form-control','value'=>set_value('student_mobile',$studentData->mobile_no)]);  
+              echo form_input(['name'=>'student_mobile','placeholder'=>'Enter your mobile no','class'=>'form-control','value'=>set_value('student_mobile',$studentData->mobile_no)],'','required');  
             ?>
         </div>
       </div>
@@ -324,30 +313,35 @@ if(!$this->session->userdata('student_id'))
       </div>
     </div>
   </div>
+</div>
+  <!-- ---------------------------------------------------------------------------------------------------------------- -->
 
-  <!-- -------------------------------------------------------------------------------------------------------------------------------------------------- --> 
-</script>
+  <!-- Script links -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
-<script>
- 
-  var options = {
-  bottom: '64px', // default: '32px'
-  right: '32px', // default: '32px'
-  left: 'unset', // default: 'unset'
-  time: '0.5s', // default: '0.3s'
-  mixColor: '#fff', // default: '#fff'
-  backgroundColor: '#ffffff',  // default: '#fff'
-  buttonColorDark: 'grey',  // default: '#100f2c'
-  buttonColorLight: '#ffffff', // default: '#fff'
-  saveInCookies: false, // default: true,
-  label: '🐧', // default: ''
-  autoMatchOsTheme: true // default: true
-}
+  <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
+  <script>
+   
+    var options = 
+    {
+      bottom: '64px', // default: '32px'
+      right: '32px', // default: '32px'
+      left: 'unset', // default: 'unset'
+      time: '0.5s', // default: '0.3s'
+      mixColor: '#fff', // default: '#fff'
+      backgroundColor: '#ffffff',  // default: '#fff'
+      buttonColorDark: 'grey',  // default: '#100f2c'
+      buttonColorLight: '#ffffff', // default: '#fff'
+      saveInCookies: false, // default: true,
+      label: '🐧', // default: ''
+      autoMatchOsTheme: true // default: true
+    }
 
-const darkmode = new Darkmode(options);
-darkmode.showWidget();
- 
-</script>
+    const darkmode = new Darkmode(options);
+    darkmode.showWidget();
+   
+  </script>
 </body>
 </html>

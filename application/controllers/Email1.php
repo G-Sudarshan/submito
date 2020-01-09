@@ -27,8 +27,8 @@ class Email1 extends CI_Controller {
 	  		'protocol' => 'smtp',
 	  		'smtp_host' => 'ssl://smtp.googlemail.com',
 	  		'smtp_port' => 465,
-	  		'smtp_user' => 'error4206@gmail.com', // change it to yours
-	  		'smtp_pass' => 'aniket@2001', // change it to yours
+	  		'smtp_user' => 'gpnashik8@gmail.com', // change it to yours
+	  		'smtp_pass' => 'Gpnashik@2001', // change it to yours
 	  		'mailtype' => 'html',
 	  		'charset' => 'iso-8859-1',
 	  		'wordwrap' => TRUE
@@ -37,7 +37,7 @@ class Email1 extends CI_Controller {
 	    $this->load->library('email', $config);
 	    $this->email->set_newline("\r\n");
 	    $this->email->from($config['smtp_user']); // change it to yours
-	    $this->email->to('aniket.sinu@gmail.com');
+	    $this->email->to('team.submito@gmail.com');
 	   // $this->email->to($email);// change it to yours
 	    $this->email->subject($subject);
 	    
