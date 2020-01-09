@@ -84,7 +84,7 @@ class Email extends CI_Controller {
 
 	    if($this->email->send()){
 	    	
-	    	 return redirect(base_url('email/verfiy'));
+	    	 return redirect('email/verfiy');
 	    }
 	    else{
 	    	$this->session->set_flashdata('message', show_error($this->email->print_debugger()));
@@ -125,7 +125,7 @@ class Email extends CI_Controller {
 
 	    if($this->email->send()){
 	    	
-	    	 return redirect(base_url('email/verfiyreset'));
+	    	 return redirect('email/verfiyreset');
 	    }
 	    else{
 	    	$this->session->set_flashdata('message', show_error($this->email->print_debugger()));

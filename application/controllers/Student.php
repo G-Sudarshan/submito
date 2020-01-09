@@ -386,7 +386,7 @@ public function load_shared_notes()
 
       if($this->email->send()){
         
-         return redirect(base_url('Student/verfiy'));
+         return redirect('Student/verfiy');
       }
       else{
         $this->session->set_flashdata('message', show_error($this->email->print_debugger()));

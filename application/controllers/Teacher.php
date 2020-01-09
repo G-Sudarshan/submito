@@ -308,7 +308,7 @@ class Teacher extends MY_Controller{
 
       if($this->email->send()){
         
-         return redirect(base_url('Teacher/verfiy'));
+         return redirect('Teacher/verfiy');
       }
       else{
         $this->session->set_flashdata('message', show_error($this->email->print_debugger()));
