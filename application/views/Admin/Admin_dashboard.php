@@ -191,6 +191,13 @@ if(!$this->session->userdata('admin_id'))
 		{
 		  background: #343a40;
 		}
+
+		#profileModal {
+  			  z-index: 1999; 
+					}
+		#myUpdateModaladmin {
+  			  z-index: 2000; 
+				}
 	</style>
 
 	
@@ -377,6 +384,7 @@ if(!$this->session->userdata('admin_id'))
 <!------------------------------------------------ Edit Profile--- --------------------------------------------->
 
 	<!-- Modal-->
+
     <div class="modal" id="myUpdateModaladmin">
       <div class="modal-dialog">
         <div class="modal-content">
