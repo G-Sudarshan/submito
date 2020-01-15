@@ -16,6 +16,26 @@ if(!$this->session->userdata('student_id'))
   <!-- Bootstrap font awesome link -->
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
+  <script> 
+        function printDiv() { 
+            var divContents = document.getElementById("viewmyassgnmenttext").innerHTML; 
+            var a = window.open('', '', 'height=500, width=500'); 
+            a.document.write('<html>'); 
+            var d = Date(); 
+    
+  // Converting the number value to string 
+            da = d.toString();
+    
+  // Printing the current date 
+            a.document.write("<body >Printed on : " + da + " | assignment submitted online using SubMito! | contact us at https://submito.business.site");
+            a.document.write('<h1> Submitted Assignment </h1><br/><br>'); 
+            a.document.write(divContents); 
+            a.document.write('</body></html>'); 
+            a.document.close(); 
+            a.print(); 
+        } 
+    </script> 
+
   <!-- Style -->
   <style type="text/css">
 
@@ -235,13 +255,12 @@ if(!$this->session->userdata('student_id'))
   <!-- ------------------------------- The Text Upload Assignment Modal --------------------------------- -->
 
   <!-- Modal -->
-  <div class="modal fade" id="uploadAssignmentTextModal
-  S" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal fade" id="uploadAssignmentTextModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <!-- Modal Header -->
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Create New Assignment</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">Submit New Assignment</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -261,8 +280,10 @@ if(!$this->session->userdata('student_id'))
               <input type="hidden" name="assignment_no" id="text_assignment_no" value="">
             <?php 
               echo "Type assignment Text&nbsp; :&nbsp; ";
-              echo form_textarea(['name'=>'a_text','class'=>'form-control','id'=>'my123','placeholder'=>' Assignment   ']); 
+              echo form_textarea(['name'=>'a_text','class'=>'form-control','id'=>'my123','placeholder'=>' Assignment', 'onpaste'=>'return false;','onselectstart'=>'return false', 'onpaste'=>'return false;', 'onCopy'=>'return false', 'onCut'=>'return false', 'onDrag'=>'return false', 'onDrop'=>'return false', 'autocomplete'=>'off'],'','required'); 
             ?>
+
+           <!--  <textarea type="text" onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off/></textarea><br> -->
           </div>
         </div>
         <!-- Modal footer -->
@@ -331,7 +352,7 @@ if(!$this->session->userdata('student_id'))
       <div class="modal-content">
         <!-- Modal Header -->
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">View Submitted Assignment</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">View Submitted Assignment &nbsp;&nbsp;&nbsp;&nbsp;<button  onclick="printDiv()" class="btn btn-success btn-sm">Print</button></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -555,6 +576,8 @@ if(!$this->session->userdata('student_id'))
       document.getElementById('viewmyassgnmentpdf').innerHTML = str;
       $('#viewAssignmentPDFModal').modal("show");
     }
+
+  
 
   </script>
 

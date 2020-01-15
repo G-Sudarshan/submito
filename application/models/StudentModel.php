@@ -40,7 +40,15 @@ class StudentModel extends CI_Model{
 
 	public function getCreatedAssignments($cc)
 	{
-		$data = $this->db->where('course_code',$cc)->get('static_assignments');
+
+		// $this->db->where($array);
+		// $this->db->order_by("rollno", "asc");
+		// $data = $this->db->get('assignments');
+
+
+		$data = $this->db->where('course_code',$cc);
+		$this->db->order_by("assignment_no", "asc");
+		$data = $this->db->get('static_assignments');
 
 		return $data;
 
