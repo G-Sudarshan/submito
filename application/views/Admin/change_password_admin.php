@@ -49,7 +49,7 @@ if(!$this->session->userdata('admin_id'))
 			<div class="col-lg-6 col-md-6 col-sm-12" >
 			<?php 
 				echo form_open('Login/update_admin_password');
-				echo form_input(['name' => 'new_password','placeholder'=>'Enter new Password','class'=>'form-control'],'','required');
+				echo form_input(['name' => 'new_password','placeholder'=>'Enter new Password','class'=>'form-control','minlength'=>8],'','required');
 				echo "<br/>";
 				echo form_submit(['name'=>'submit','value'=>'Change Password','class'=>'btn btn-primary']);
 				echo form_close();

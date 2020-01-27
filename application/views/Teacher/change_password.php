@@ -61,7 +61,7 @@ if(!$this->session->userdata('admin_id') && !$this->session->userdata('teacher_i
           ?>
           <div class="form-group">
               <label for="new_password">Your New Password:</label>
-              <input type="text" name="new_password" class="form-control" placeholder="Enter new password" autocomplete="off" required>
+              <input type="text" name="new_password" class="form-control" placeholder="Enter new password" minlength="8" autocomplete="off" required>
           </div>
           <br/>
           <?php 
