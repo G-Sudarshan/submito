@@ -212,8 +212,10 @@ if(!$this->session->userdata('student_id'))
                   {  
                     $key = array_search($a->assignment_no, array_column($ua, 'a_no'));
                     $submitted_text = $ua[$key]['t'];
+                    $marks = $ua[$key]['m'];
                     $strV = "<input type='hidden' id='idv".$a->assignment_no."' value='".$submitted_text."'>";
-                    echo $strV."<button class='btn btn-primary' onclick='viewText(".$a->assignment_no.",document.getElementById(\"idv".$a->assignment_no."\").value)'".(in_array($a->assignment_no, $submitted_assignments_no) ? '' : 'disabled').">View Text</button>";
+                    $strM = "<input type='hidden' id='idvM".$a->assignment_no."' value='".$marks."'>";
+                    echo $strV.$strM."<button class='btn btn-primary' onclick='viewText(".$a->assignment_no.",document.getElementById(\"idv".$a->assignment_no."\").value".",document.getElementById(\"idvM".$a->assignment_no."\").value)'".(in_array($a->assignment_no, $submitted_assignments_no) ? '' : 'disabled').">View Text</button>";
                   } 
                 ?>     
               </td>
@@ -255,8 +257,8 @@ if(!$this->session->userdata('student_id'))
   <!-- ------------------------------- The Text Upload Assignment Modal --------------------------------- -->
 
   <!-- Modal -->
-  <div class="modal fade" id="uploadAssignmentTextModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+  <div class="modal fade " id="uploadAssignmentTextModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <!-- Modal Header -->
         <div class="modal-header">
@@ -302,7 +304,7 @@ if(!$this->session->userdata('student_id'))
 
   <!-- Modal -->
   <div class="modal fade" id="updatessignmentTextModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <!-- Modal Header -->
         <div class="modal-header">
@@ -400,7 +402,7 @@ if(!$this->session->userdata('student_id'))
               <label for="userfile" class="col-lg-4 control-label">Select PDF of Assignment to Upload : </label>
               <div>
                 <input type="hidden" name="assignment_no" id="pdf_assignment_no" value="">
-                <?php echo form_upload(['name'=>'userfile','class'=>'form-control']); ?>
+                <?php echo form_upload(['name'=>'userfile','class'=>'form-control','accept'=>'application/pdf']); ?>
               </div>
               <p class="text-danger">
                 Note: Upload PDF file of size less than 1MB (1024 KB)
@@ -451,10 +453,10 @@ if(!$this->session->userdata('student_id'))
                         ); 
               echo form_hidden($data);  
             ?>
-              <label for="userfile" class="col-lg-4 control-label">Select PDF of assignment to Upload : </label>
+              <label for="userfile" class="col-lg-4 control-label">Select PDF of assignment to Update : </label>
               <div>
                 <input type="hidden" name="assignment_no" id="update_pdf_assignment_no" value="">
-                <?php echo form_upload(['name'=>'updateuserfile','class'=>'form-control']); ?>
+                <?php echo form_upload(['name'=>'updateuserfile','class'=>'form-control','accept'=>'application/pdf']); ?>
               </div>
               <div>
                 <p class="text-danger">
@@ -520,7 +522,7 @@ if(!$this->session->userdata('student_id'))
     <br/><br/><br/><br/>
     <footer class="py-3 bg-dark">
       <div class="container text-center text-white-50">
-        <small>&COPY; 2019 TEAM SUBMITO. All Rights Reserved</small>
+        <small>&COPY; 2020 TEAM SUBMITO. All Rights Reserved</small>
       </div>
     </footer>
 
@@ -553,11 +555,21 @@ if(!$this->session->userdata('student_id'))
       document.getElementById('myassignment').value = submitted_text ;
     }
 
-    function viewText(a_no,submitted_text)
+    function viewText(a_no,submitted_text,marks)
     {
       var an = a_no;
+      
+      var marksJS;
+      if(marks == 0)
+      {
+        marksJS = "Not assessd yet";
+      }
+      else
+      {
+        marksJS = marks;
+      }
       $('#viewAssignmentTextModal').modal("show");
-      document.getElementById('viewmyassgnmenttext').innerHTML = "<pre>"+submitted_text+"</pre>" ;
+      document.getElementById('viewmyassgnmenttext').innerHTML = "<h3> Marks : "+marksJS+"</h3><br/>"+"<pre>"+submitted_text+"</pre>" ;
     }
 
     function updatePDF(a_no)

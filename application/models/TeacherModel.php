@@ -115,6 +115,49 @@ class TeacherModel extends CI_Model{
 		return $data;
 
 	}
+
+	public function getStaticAssignemntsCount($cc)
+	{
+		// $data = $this->db->where('course_code',$cc);
+		// $this->db->order_by("assignment_no", "asc");
+		// $data = $this->db->get('static_assignments');
+
+		$data = $this->db->select('assignment_no')->from('static_assignments')->where('course_code',$cc)->order_by("assignment_no", "asc")->get();
+
+		return $data;
+	}
+
+	public function getMarksData($cc)
+	{
+		// $data = $this->db->select('rollno','marks','assignment_no','checked')->from('assignments')->where('course_code',$cc)->group_by('rollno')->order_by("rollno", "asc")->get();
+
+		// return $data;
+
+		$sql = "SELECT rollno, marks, assignment_no, checked FROM assignments WHERE course_code = '$cc' GROUP BY rollno ORDER BY rollno";
+
+		$data = $this->db->query($sql);
+
+		return $data;
+
+	}
+
+	public function getDistnctRn($cc)
+	{
+		$sql = "SELECT DISTINCT rollno FROM assignments WHERE course_code = '$cc' ORDER BY rollno";
+
+		$data = $this->db->query($sql);
+
+		return $data;
+	}
+
+	public function getMatrix($cc)
+	{
+		$sql = "SELECT  rollno,assignment_no,marks FROM assignments WHERE course_code = '$cc' ORDER BY rollno";
+
+		$data = $this->db->query($sql);
+
+		return $data;
+	}
 }
 
 ?>

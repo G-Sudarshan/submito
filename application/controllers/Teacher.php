@@ -467,7 +467,36 @@ class Teacher extends MY_Controller{
 
 
 
+   public function load_marks_matrix()
+   {
+     $cc =  $this->input->post('course_code');
+     $cn = $this->input->post('course_name');
+     $teacher_name = $this->input->post('teacher_name');
 
+     $this->load->model('TeacherModel');
+
+     $staticAssigmentCountR = $this->TeacherModel->getStaticAssignemntsCount($cc);
+
+     $staticAssigmentCount = $staticAssigmentCountR->result();
+     //print_r($staticAssigmentCount->result());
+
+     $marks_dataR = $this->TeacherModel->getMarksData($cc);
+     $marks_data = $marks_dataR->result();
+
+    // print_r($marks_data);
+
+     $distinct_rn = $this->TeacherModel->getDistnctRn($cc);
+     $rn = $distinct_rn->result();
+
+     $matrixR = $this->TeacherModel->getMatrix($cc);
+     $matrix = $matrixR->result();
+     //print_r($matrix->result());
+     //print_r($rn);
+     //echo "<br/><br/>";
+     //print_r($distinct_rn);
+     
+   $this->load->view('Teacher/marks_matrix',['course_code'=>$cc,'course_name'=>$cn,'teacher_name'=>$teacher_name,'sac'=>$staticAssigmentCount,'rn'=>$distinct_rn,'matrix'=>$matrix]);
+   }
 
 
 

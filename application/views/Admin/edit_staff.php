@@ -84,7 +84,7 @@ if(!$this->session->userdata('admin_id'))
 	    <br/><br/><br/><br/><br/><br/><br/><br/><br/>
 	    <footer class="py-3 bg-dark">
 	      <div class="container text-center text-white-50">
-	        <small>&COPY; 2019 TEAM SUBMITO. All Rights Reserved</small>
+	        <small>&COPY; 2020 TEAM SUBMITO. All Rights Reserved</small>
 	      </div>
 	    </footer>
 

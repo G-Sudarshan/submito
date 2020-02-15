@@ -49,7 +49,7 @@ if(!$this->session->userdata('admin_id'))
 	    <div class="container">
 	        <div>
 				<?php 
-					echo form_open(base_url().'index.php/Admin/loadRecordT'); 
+					echo form_open('Admin/loadRecordT'); 
 				?>
 			 		<input type='text' class="form-control" name='search' placeholder="Search By rollno or name or email or department" value='<?= $search ?>'><br/>
 					<center><input type='submit' class="btn btn-primary" name='submit' value='Search'></center>
@@ -124,7 +124,7 @@ if(!$this->session->userdata('admin_id'))
       <br/><br/><br/>
       <footer class="py-3 bg-dark">
         <div class="container text-center text-white-50">
-          <small>&COPY; 2019 TEAM SUBMITO. All Rights Reserved</small>
+          <small>&COPY; 2020 TEAM SUBMITO. All Rights Reserved</small>
         </div>
       </footer>
 

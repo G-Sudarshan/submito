@@ -108,7 +108,8 @@ if(!$this->session->userdata('teacher_id'))
             <th>Name</th>
             <th>Create</th>
             <th>Check</th>         
-            <th>Share</th> 
+            <th>Share</th>
+            <th>Marks</th> 
             
           </thead>
           <tbody>
@@ -156,6 +157,18 @@ if(!$this->session->userdata('teacher_id'))
                     echo form_submit('submit', 'Share study material',"class='btn btn-info btn-sm '");
                     echo form_close();
                   ?></td> 
+                  <td>
+                <?php
+                    echo form_open('Teacher/load_marks_matrix');
+                    $data = array(
+                             'course_code'  => $selectedCourse->course_code,
+                             'course_name' => $selectedCourse->name,
+                             'teacher_name' => $teacherData->name
+                              );
+                    echo form_hidden($data);
+                    echo form_submit('submit', 'Marks Matrix',"class='btn btn-warning btn-sm '");
+                    echo form_close();
+                  ?></td> 
               </tr>
               <?php endforeach; ?>
           </tbody> 
@@ -171,7 +184,7 @@ if(!$this->session->userdata('teacher_id'))
     <br/><br/><br/><br/><br/><br/>
     <footer class="py-3 bg-dark">
       <div class="container text-center text-white-50">
-        <small>&COPY; 2019 TEAM SUBMITO. All Rights Reserved</small>
+        <small>&COPY; 2020 TEAM SUBMITO. All Rights Reserved</small>
       </div>
     </footer>
 
