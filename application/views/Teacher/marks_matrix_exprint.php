@@ -40,10 +40,7 @@
 	<h5 class="text-success"><?= $course_code; ?></h5>
 	
 	<h5 class="text-success"><?= $teacher_name; ?></h5>
- <?php if($success = $this->session->flashdata('success')): 
-              echo '<div class="alert alert-dismissible alert-success">' . $success . '</div>';
-            endif; 
-      ?>
+
 	 <div class="container-fluid">
           <div align="left">&nbsp;
             <h4><a href="<?= base_url('Teacher'); ?>" ><i class="fa fa-arrow-circle-left font-weight-bold text-dark"></i></a></h4>
@@ -51,18 +48,12 @@
 
            <div class="container-fluid">
           <div align="right">&nbsp;
-            
-                    <?php
-                    echo form_open('Teacher/exprint');
-                    $data = array(
-                             'course_code'  => $course_code,
-                             'course_name' => $course_name,
-                             'teacher_name' => $teacher_name
-                              );
-                    echo form_hidden($data);
-                    echo form_submit('submit', 'Export to Excel or Print',"class='btn btn-primary btn-sm '");
-                    echo form_close();
-                  ?>    
+            <h4><button onclick="window.print()" class="btn btn-lg btn-default"><i class="fa fa-print" aria-hidden="true" >Print</i></button></h4>
+            &nbsp;&nbsp;
+            <h4> 
+                  <?php echo "<button class='btn btn-success' onclick=\"exportToExcel('ex','".$course_name."')\" >Download Excel File</button>";
+						
+						?>
                 </h4>
           </div>
          
@@ -81,19 +72,17 @@
 				echo "<th>".$an->assignment_no."</th>";
 			}
 			?>
-			<th><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Update</th>
+			
 			
 		</thead>
 		<tbody>
 			<?php foreach ($rn->result() as $r){ ?>
 			<tr>
-				<?php  echo form_open('Teacher/UpdateMarksThroughMatrix'); ?>
+				
 				<td>
 					<?= $r->rollno; ?>
-					<input type="hidden" name="rollno" value="<?= $r->rollno; ?>">	
-					<input type="hidden" name="course_code" value="<?= $course_code; ?>">
-					<input type="hidden" name="teacher_name" value="<?= $teacher_name; ?>">
-					<input type="hidden" name="course_name" value="<?= $course_name; ?>">
+					
+					
 					</td>
 
 				<?php 
@@ -112,7 +101,7 @@
 						if($m->marks == 0)
 						{
 						?>
-							<td><input type="" name="marksmatrixstudent[<?= $current_static_assignment ?>]" class="form-control" placeholder="NA" required></td>
+							<td>NA</td>
 						<?php }else
 						{
 
@@ -122,8 +111,7 @@
 
 
 
-						<td><input type="" name="marksmatrixstudent[<?= $current_static_assignment ?>]" class="form-control" value="<?= $m->marks; ?>" required>
-						</td>
+						<td><?= $m->marks; ?></td>
 						<?php
 					    }
 						$flag = 1;
@@ -138,8 +126,7 @@
 			 		echo "<td>-</td>";
 			 	}} ?>
 			
-			<td><?php echo form_submit(['name'=>'submit','value'=>'Update','class'=>'btn btn-primary']) ?></td>
-			<?php echo form_close(); ?>
+			
 				
 			</tr>
 		<?php } ?>
@@ -160,6 +147,39 @@
 
  
 </body>
+<script type="text/javascript">
+function exportToExcel(tableID, filename = ''){
+    var downloadurl;
+    var dataFileType = 'application/vnd.ms-excel';
+    var tableSelect = document.getElementById(tableID);
+    var tableHTMLData = tableSelect.outerHTML.replace(/ /g, '%20');
+    
+    // Specify file name
+    filename = filename?filename+'.xls':'export_excel_data.xls';
+    
+    // Create download link element
+    downloadurl = document.createElement("a");
+    
+    document.body.appendChild(downloadurl);
+    
+    if(navigator.msSaveOrOpenBlob){
+        var blob = new Blob(['\ufeff', tableHTMLData], {
+            type: dataFileType
+        });
+        navigator.msSaveOrOpenBlob( blob, filename);
+    }else{
+        // Create a link to the file
+        downloadurl.href = 'data:' + dataFileType + ', ' + tableHTMLData;
+    
+        // Setting the file name
+        downloadurl.download = filename;
+        
+        //triggering the function
+        downloadurl.click();
+    }
+}
+ 
+</script>
   
 
 </html>
