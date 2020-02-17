@@ -11,27 +11,47 @@
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
+   <style type="text/css">
+   	 .hm-gradient 
+    {
+        background-image: linear-gradient(to top, #f3e7e9 20%, #e3eeff 60%, #e3eeff 100%);
+        font-family: 'Source Sans Pro', sans-serif;
+    } 
+   </style>
 </head>
 <body>
-
-	<div class="container" align="center">
-	<h4 class="text-primary">Marks Matrix</h4>
+	<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+	      <a class="navbar-brand mr-1" href="#">SubMito!</a>
+	    </nav>
+<div class="hm-gradient">
+	<div class="container " align="center" id="pdiv">
+	<br/><h4 class="text-primary">Marks Matrix</h4>
 	
 	<h5 class="text-success"><?= $course_name; ?></h5>
 	
 	<h5 class="text-success"><?= $course_code; ?></h5>
 	
 	<h5 class="text-success"><?= $teacher_name; ?></h5>
-
+ <?php if($success = $this->session->flashdata('success')): 
+              echo '<div class="alert alert-dismissible alert-success">' . $success . '</div>';
+            endif; 
+      ?>
 	 <div class="container-fluid">
           <div align="left">&nbsp;
             <h4><a href="<?= base_url('Teacher'); ?>" ><i class="fa fa-arrow-circle-left font-weight-bold text-dark"></i></a></h4>
           </div>
 
+           <div class="container-fluid">
+          <div align="right">&nbsp;
+            <h4><i class="fa fa-print" aria-hidden="true" onclick="window.print()"></i></h4>
+          </div>
+
+          
+
 	<h6 class="" align="left"> NA : Not Assessed <br/> - : Not Submitted</h6>
 
 	<br>
-	<table class="table" border="1">
+	<table class="table" border="2">
 
 		<thead>
 			<th>Roll No.</th>
@@ -40,13 +60,20 @@
 				echo "<th>".$an->assignment_no."</th>";
 			}
 			?>
-			<th>Update</th>
+			<th><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Update</th>
 			
 		</thead>
 		<tbody>
 			<?php foreach ($rn->result() as $r){ ?>
 			<tr>
-				<td><?= $r->rollno; ?></td>
+				<?php  echo form_open('Teacher/UpdateMarksThroughMatrix'); ?>
+				<td>
+					<?= $r->rollno; ?>
+					<input type="hidden" name="rollno" value="<?= $r->rollno; ?>">	
+					<input type="hidden" name="course_code" value="<?= $course_code; ?>">
+					<input type="hidden" name="teacher_name" value="<?= $teacher_name; ?>">
+					<input type="hidden" name="course_name" value="<?= $course_name; ?>">
+					</td>
 
 				<?php 
 				foreach ($sac as $an) {
@@ -63,14 +90,18 @@
 					{
 						if($m->marks == 0)
 						{
-							echo "<td>NA</td>";
-						}else
+						?>
+							<td><input type="" name="marksmatrixstudent[<?= $current_static_assignment ?>]" class="form-control" placeholder="NA" required></td>
+						<?php }else
 						{
 
 
 						?>
 
-						<td><?= $m->marks; ?></td>
+
+
+
+						<td><input type="" name="marksmatrixstudent[<?= $current_static_assignment ?>]" class="form-control" value="<?= $m->marks; ?>" required></td>
 						<?php
 					    }
 						$flag = 1;
@@ -85,7 +116,8 @@
 			 		echo "<td>-</td>";
 			 	}} ?>
 			
-			<td><button class="btn btn-primary">Update</button></td>
+			<td><?php echo form_submit(['name'=>'submit','value'=>'Update','class'=>'btn btn-primary']) ?></td>
+			<?php echo form_close(); ?>
 				
 			</tr>
 		<?php } ?>
@@ -94,5 +126,16 @@
 	</table>
 
 </div>
+<br/><br/>
+
+</div></div></div>
+
+<footer class="py-3 bg-dark">
+      <div class="container text-center text-white-50">
+        <small>&COPY; 2020 TEAM SUBMITO. All Rights Reserved</small>
+      </div>
+    </footer>
+
+
 </body>
 </html>

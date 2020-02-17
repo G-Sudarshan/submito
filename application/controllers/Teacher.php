@@ -500,6 +500,76 @@ class Teacher extends MY_Controller{
 
 
 
+   public function UpdateMarksThroughMatrix()
+   {
+    $arr = $this->input->post('marksmatrixstudent');
+    $rollno = $this->input->post('rollno');
+    $cc =  $this->input->post('course_code');
+    $cn = $this->input->post('course_name');
+    $teacher_name = $this->input->post('teacher_name');
+    $id = $this->session->userdata('teacher_id');
+
+    $arrlen =  sizeof($arr);
+   //  print_r($arr);
+
+   //  echo "$rollno";echo "<br/>";
+   //  echo "$cc";echo "<br/>";
+   //  echo "$cn";echo "<br/>";
+   //  echo "$teacher_name";echo "<br/>";
+   //  echo "$id";echo "<br/>";
+   // 
+
+    // foreach ($arr as $a) {
+
+    //   $marks = $a;
+
+    //   echo "$marks   ";
+    //   # code...
+    // }
+
+   
+
+    $this->load->model('TeacherModel');
+    foreach ($arr as $assignment_no => $marks) {
+      
+     // echo "$an : $marks <br/>";
+
+      $this->TeacherModel->set_marks($cc,$assignment_no,$rollno,$id,$marks);
+    }
+    
+
+   
+     $this->session->set_flashdata('success', "Marks Matrix Updated Successfully for Roll no. ".$rollno);
+
+
+      $staticAssigmentCountR = $this->TeacherModel->getStaticAssignemntsCount($cc);
+
+     $staticAssigmentCount = $staticAssigmentCountR->result();
+     //print_r($staticAssigmentCount->result());
+
+     $marks_dataR = $this->TeacherModel->getMarksData($cc);
+     $marks_data = $marks_dataR->result();
+
+    // print_r($marks_data);
+
+     $distinct_rn = $this->TeacherModel->getDistnctRn($cc);
+     $rn = $distinct_rn->result();
+
+     $matrixR = $this->TeacherModel->getMatrix($cc);
+     $matrix = $matrixR->result();
+     //print_r($matrix->result());
+     //print_r($rn);
+     //echo "<br/><br/>";
+     //print_r($distinct_rn);
+     
+   $this->load->view('Teacher/marks_matrix',['course_code'=>$cc,'course_name'=>$cn,'teacher_name'=>$teacher_name,'sac'=>$staticAssigmentCount,'rn'=>$distinct_rn,'matrix'=>$matrix]);
+
+
+        
+      
+
+    
+  }
 
 
 
