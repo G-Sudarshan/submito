@@ -60,7 +60,28 @@ if(!$this->session->userdata('teacher_id'))
 
     <div class="container-fluid">
       <div align="left">&nbsp;
-        <h4><a href="<?= base_url('Teacher'); ?>" ><i class="fa fa-arrow-circle-left font-weight-bold text-dark"></i></a></h4>
+        <h4> <?php
+                    echo form_open('Teacher/back_to_submitted_assignments');
+                    $data = array(
+                             'course_code'  => $course_code,
+                             'course_name' => $course_name,
+                             'teacher_name' => $teacher_name,
+                             'assignment_no' => $assignment_no,
+                             'assignment_type' => $assignment_type
+                              );
+                    echo form_hidden($data);?>
+                  <!-- i class="fa fa-arrow-circle-left font-weight-bold text-dark"></i>  --><?
+                   $data = array(
+                      'name' => 'submit',
+                      'value' => 'true',
+                      'type' => 'submit',
+                      'content' => '<i class="fa fa-arrow-circle-left font-weight-bold text-dark"></i>'
+                    );
+
+                    echo form_button($data); 
+                    echo form_close();
+                  ?> </h4>
+
       </div>
     </div>
 

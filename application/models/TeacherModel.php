@@ -41,7 +41,7 @@ class TeacherModel extends CI_Model{
 
 	public function getCreatedAssignments($cc)
 	{
-		$data = $this->db->where('course_code',$cc)->get('static_assignments');
+		$data = $this->db->where('course_code',$cc)->order_by("assignment_no", "asc")->get('static_assignments');
 
 		return $data;
 

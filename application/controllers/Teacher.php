@@ -157,6 +157,7 @@ class Teacher extends MY_Controller{
    public function load_check_assignment()
    {
      $cc =  $this->input->post('course_code');
+
      $cn = $this->input->post('course_name');
      $teacher_name = $this->input->post('teacher_name');
 
@@ -217,7 +218,7 @@ class Teacher extends MY_Controller{
     {
       $cc =  $this->input->post('course_code');
      $cn = $this->input->post('course_name');
-     //$teacher_name = $this->input->post('teacher_name');
+     $teacher_name = $this->input->post('teacher_name');
      $assignment_no = $this->input->post('assignment_no');
      $assignment_type = $this->input->post('assignment_type');
 
@@ -228,7 +229,7 @@ class Teacher extends MY_Controller{
 
      $submittedAssignmentData = $this->TeacherModel->get_submitted_assignment($cc,$assignment_no);
 
-     $this->load->view('Teacher/previously_checked_assignment',['course_code'=>$cc,'course_name'=>$cn,'assignment_no'=>$assignment_no,'assignment_type'=>$assignment_type,'sad'=>$submittedAssignmentData]);
+     $this->load->view('Teacher/previously_checked_assignment',['course_code'=>$cc,'course_name'=>$cn,'assignment_no'=>$assignment_no,'assignment_type'=>$assignment_type,'sad'=>$submittedAssignmentData,'teacher_name'=>$teacher_name]);
 
     }
 
@@ -603,8 +604,38 @@ class Teacher extends MY_Controller{
    $this->load->view('Teacher/marks_matrix_exprint',['course_code'=>$cc,'course_name'=>$cn,'teacher_name'=>$teacher_name,'sac'=>$staticAssigmentCount,'rn'=>$distinct_rn,'matrix'=>$matrix]);
   }
 
+  public function back_to_checked_assignments()
+  {
+     $cc =  $this->input->post('course_code');
+     $cn = $this->input->post('course_name');
+     $teacher_name = $this->input->post('teacher_name');
+
+      $this->load->model('TeacherModel');
+
+     $createdAssignmentData = $this->TeacherModel->getCreatedAssignments($cc);
+     
+
+     $this->load->view('Teacher/check_assignment',['course_code'=>$cc,'course_name'=>$cn,'teacher_name'=>$teacher_name,'cad'=>$createdAssignmentData]);
+  }
+
+  public function back_to_submitted_assignments()
+  { 
+     $cc =  $this->input->post('course_code');
+     $cn = $this->input->post('course_name');
+     $teacher_name = $this->input->post('teacher_name');
+     $assignment_no = $this->input->post('assignment_no');
+     $assignment_type = $this->input->post('assignment_type');
 
 
+     $this->load->model('TeacherModel');
+
+     //$createdAssignmentData = $this->TeacherModel->getCreatedAssignments($cc);
+
+     $submittedAssignmentData = $this->TeacherModel->get_submitted_assignment($cc,$assignment_no);
+
+     $this->load->view('Teacher/submitted_assignment',['course_code'=>$cc,'course_name'=>$cn,'teacher_name'=>$teacher_name,'assignment_no'=>$assignment_no,'assignment_type'=>$assignment_type,'sad'=>$submittedAssignmentData]);
+
+  }
 
 
 

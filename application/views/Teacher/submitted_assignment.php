@@ -60,7 +60,25 @@ if(!$this->session->userdata('teacher_id'))
 
     <div class="container-fluid">
       <div align="left">&nbsp;
-        <h4><a href="<?= base_url('Teacher'); ?>" ><i class="fa fa-arrow-circle-left font-weight-bold text-dark"></i></a></h4>
+        <h4> <?php
+                    echo form_open('Teacher/back_to_checked_assignments');
+                    $data = array(
+                             'course_code'  => $course_code,
+                             'course_name' => $course_name,
+                             'teacher_name' => $teacher_name
+                              );
+                    echo form_hidden($data);?>
+                  <!-- i class="fa fa-arrow-circle-left font-weight-bold text-dark"></i>  --><?
+                   $data = array(
+                      'name' => 'submit',
+                      'value' => 'true',
+                      'type' => 'submit',
+                      'content' => '<i class="fa fa-arrow-circle-left font-weight-bold text-dark"></i>'
+                    );
+
+                    echo form_button($data); 
+                    echo form_close();
+                  ?> </h4>
       </div>
     </div>
 
@@ -85,7 +103,8 @@ if(!$this->session->userdata('teacher_id'))
                    'course_code'  => $course_code,
                    'course_name'  => $course_name,
                    'assignment_type' => $assignment_type,
-                   'assignment_no' => $assignment_no
+                   'assignment_no' => $assignment_no,
+                   'teacher_name' => $teacher_name
                     );
           echo form_hidden($data);
           echo form_submit('submit', 'Previously checked assignments',"class='btn btn-primary btn-sm '");
@@ -108,6 +127,7 @@ if(!$this->session->userdata('teacher_id'))
                 <th>View</th>
                 <th>Marks</th>
                 <th>Submit</th>
+                <th>Send Feedback</th>
               </thead>
               <tbody>
                 <?php foreach ($sad->result() as $a): 
@@ -141,7 +161,8 @@ if(!$this->session->userdata('teacher_id'))
                       echo form_submit(['name'=>'submit','value'=>'submit','class'=>'btn btn-success btn sm']);
                       echo form_close();
                     ?>     
-                  </td>  
+                  </td>
+                  <td><button class="btn btn-success" >send feedback</button></td>  
                 </tr>
                   <?php endif; ?>
                 <?php endforeach; ?>
