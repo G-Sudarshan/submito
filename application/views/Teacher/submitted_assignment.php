@@ -151,7 +151,8 @@ if(!$this->session->userdata('teacher_id'))
                                'course_code'  => $course_code,
                                'rollno' => $a->rollno,
                                'assignment_no' => $a->assignment_no,
-                               'assignment_type' => $assignment_type
+                               'assignment_type' => $assignment_type,
+                               'teacher_name' => $teacher_name
                                 );
                       echo form_hidden($data);
                       echo form_input(['name'=>'marks','class'=>'form-control col-lg-2']);
@@ -163,7 +164,10 @@ if(!$this->session->userdata('teacher_id'))
                       echo form_close();
                     ?>     
                   </td>
-                  <td><button class="btn btn-success" >send feedback</button></td>  
+                  <td>
+                    <?php 
+                   
+                    echo "<button class='btn btn-primary' onclick='sendFeedback(\"".$a->rollno."\",\"".$course_code."\",\"".$a->assignment_no."\",\"".$assignment_type."\",\"".$teacher_name."\",\"".$course_name."\"".")'><i class='fa fa-paper-plane' ></i>&nbsp;Send Feedback</button>" ?></td>  
                 </tr>
                   <?php endif; ?>
                 <?php endforeach; ?>
@@ -184,6 +188,7 @@ if(!$this->session->userdata('teacher_id'))
                 <th>View</th>
                 <th>Marks</th>
                 <th>Submit</th>
+                <th>Send Feedback</th>
               </thead>
               <tbody>
                 <?php foreach ($sad->result() as $a): 
@@ -206,7 +211,8 @@ if(!$this->session->userdata('teacher_id'))
                                'course_code'  => $course_code,
                                'rollno' => $a->rollno,
                                'assignment_no' => $a->assignment_no,
-                               'assignment_type' => $assignment_type
+                               'assignment_type' => $assignment_type,
+                               'teacher_name' => $teacher_name
                                 );
                       echo form_hidden($data);
                       echo form_input(['name'=>'marks','class'=>'form-control col-lg-2']);
@@ -218,6 +224,10 @@ if(!$this->session->userdata('teacher_id'))
                       echo form_close();
                     ?>                   
                   </td>
+                  <td>
+                    <?php 
+                   
+                    echo "<button class='btn btn-primary' onclick='sendFeedback(\"".$a->rollno."\",\"".$course_code."\",\"".$a->assignment_no."\",\"".$assignment_type."\",\"".$teacher_name."\",\"".$course_name."\"".")'><i class='fa fa-paper-plane' ></i>&nbsp;Send Feedback</button>" ?></td>  
                 </tr>
                   <?php endif; ?>
                 <?php endforeach; ?>
@@ -234,6 +244,55 @@ if(!$this->session->userdata('teacher_id'))
       ?>
 
     </div>
+
+    <!-- -------------------- The Send Feedback Modal--------------------------------- -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="sendFeedbackModal" tabindex="-3" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Send Feedback</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <div class="form-group">
+            <?php 
+              echo form_open('Teacher/sendFeedback'); 
+              ?>
+
+              <input type="hidden" id="feedback_rollno" name="rollno">
+              <input type="hidden" id="feedback_course_code" name="course_code">
+              <input type="hidden" id="feedback_course_name" name="course_name">
+              <input type="hidden" id="feedback_teacher_name" name="teacher_name">
+              <input type="hidden" id="feedback_assignment_no" name="assignment_no">
+              <input type="hidden" id="feedback_assignment_type" name="assignment_type">
+
+              <span id="ft"></span><br/>
+              <?php 
+             // echo "Feedback :&nbsp; "."<br/>";
+              echo form_textarea(['name'=>'feedback','class'=>'form-control','id'=>'my123','placeholder'=>' Your Feedback to Student'],'','required'); 
+            ?>
+              
+          </div>
+        </div>
+        <!-- Modal footer -->        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <?php 
+            echo form_submit('submit', 'Send Feedback',"class='btn btn-success'");
+            echo form_close(); 
+          ?>
+        </div> 
+      </div>
+    </div>
+  </div>
+
+  <!-- ----------------------------------------------------------------------------------------------------- -->
 
     <!-- ------------------------------------------------------------------------------------------------- -->
     <!-- ---------------------------------------- Footer ----------------------------------------------- -->
@@ -335,6 +394,37 @@ if(!$this->session->userdata('teacher_id'))
       $('#viewAssignmentTextModal').modal("show");
       document.getElementById('viewmyassgnmenttext').innerHTML = "<pre>"+submitted_text+"</pre>" ;
     }
+
+     function sendFeedback(rollno,course_code,assignment_no,assignment_type,teacher_name,course_name)
+    {
+      //var an = a_no;
+      console.log('send feedback');
+      console.log(rollno);
+      console.log(course_code);
+      console.log(assignment_no);
+      console.log(assignment_type);
+      console.log(teacher_name);
+      console.log(course_name);
+      $('#sendFeedbackModal').modal("show");
+      document.getElementById('ft').innerHTML ="<b>Feedback to "+rollno+" : </b>";
+
+      document.getElementById('feedback_rollno').value = rollno; 
+      document.getElementById('feedback_course_code').value = course_code; 
+      document.getElementById('feedback_course_name').value = course_name; 
+      document.getElementById('feedback_teacher_name').value = teacher_name; 
+      document.getElementById('feedback_assignment_no').value = assignment_no; 
+      document.getElementById('feedback_assignment_type').value = assignment_type; 
+
+     // document.getElementById('pdf_assignment_no').value = an; 
+
+     // <input type="hidden" id="feedback_rollno" name="rollno">
+     //          <input type="hidden" id="feedback_course_code" name="course_code">
+     //          <input type="hidden" id="feedback_course_name" name="course_name">
+     //          <input type="hidden" id="feedback_teacher_name" name="teacher_name">
+     //          <input type="hidden" id="feedback_assignment_no" name="assignment_no">
+     //          <input type="hidden" id="feedback_assignment_type" name="assignment_type">
+    }
+
 
   </script>         
 

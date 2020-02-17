@@ -194,6 +194,7 @@ class Teacher extends MY_Controller{
 
      $cc =  $this->input->post('course_code');
      $cn = $this->input->post('course_name');
+     $teacher_name = $this->input->post('teacher_name');
     
      $assignment_no = $this->input->post('assignment_no');
      $assignment_type = $this->input->post('assignment_type');
@@ -210,7 +211,7 @@ class Teacher extends MY_Controller{
 
      $this->session->set_flashdata('success','Marks of Roll no '.$rollno.' submitted successfully');
 
-     $this->load->view('Teacher/submitted_assignment',['course_code'=>$cc,'course_name'=>$cn,'assignment_no'=>$assignment_no,'assignment_type'=>$assignment_type,'sad'=>$submittedAssignmentData]);
+     $this->load->view('Teacher/submitted_assignment',['course_code'=>$cc,'course_name'=>$cn,'assignment_no'=>$assignment_no,'assignment_type'=>$assignment_type,'sad'=>$submittedAssignmentData,'teacher_name'=>$teacher_name]);
 
     }
 
@@ -637,6 +638,68 @@ class Teacher extends MY_Controller{
 
   }
 
+
+  public function sendFeedback()
+  {
+     $cc =  $this->input->post('course_code');
+     $cn = $this->input->post('course_name');
+     $teacher_name = $this->input->post('teacher_name');
+     $assignment_no = $this->input->post('assignment_no');
+     $assignment_type = $this->input->post('assignment_type');
+     $rollno = $this->input->post('rollno');
+     $feedback = $this->input->post('feedback');
+
+     $this->load->model('TeacherModel');
+     $mail = $this->TeacherModel->getEmailOfStudent($rollno);
+
+     echo $mail;
+
+     $subject = "feedback from ".$teacher_name." | SubMito | ".$cn."( ".$cc." )"." | assignment no. ".$assignment_no;
+
+
+
+   
+
+   
+
+      $config = Array(
+        'protocol' => 'smtp',
+        'smtp_host' => 'ssl://smtp.googlemail.com',
+        'smtp_port' => 465,
+        'smtp_user' => 'gpnashik8@gmail.com', // change it to yours
+        'smtp_pass' => 'Gpnashik@2001', // change it to yours
+        'mailtype' => 'html',
+        'charset' => 'iso-8859-1',
+        'wordwrap' => TRUE
+    );
+
+      $this->load->library('email', $config);
+      $this->email->set_newline("\r\n");
+      $this->email->from($config['smtp_user']); // change it to yours
+      $this->email->to($mail);
+     // $this->email->to($email);// change it to yours
+      $this->email->subject($subject);
+      
+    //  $this->email->name($name);
+    //  $this->email->email1($email1);
+      //$this->email->address($address);
+      //$this->email->contact_no($contact_no);
+
+      $this->email->message($feedback);
+      if($this->email->send()){
+        $this->session->set_flashdata('success', "Feedback sent successfully to ".$rollno);
+
+         $submittedAssignmentData = $this->TeacherModel->get_submitted_assignment($cc,$assignment_no);
+
+     $this->load->view('Teacher/submitted_assignment',['course_code'=>$cc,'course_name'=>$cn,'teacher_name'=>$teacher_name,'assignment_no'=>$assignment_no,'assignment_type'=>$assignment_type,'sad'=>$submittedAssignmentData]);
+      }
+      else{
+        $this->session->set_flashdata('failure', show_error($this->email->print_debugger()));
+        
+      }
+
+
+  }
 
 
 

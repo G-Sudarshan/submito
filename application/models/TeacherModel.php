@@ -158,6 +158,13 @@ class TeacherModel extends CI_Model{
 
 		return $data;
 	}
+
+	public function getEmailOfStudent($rollno)
+	{
+		$data = $this->db->select('email')->from('tbl_student_db')->where('rollno',$rollno)->get();
+
+		return $data->row()->email;
+	}
 }
 
 ?>

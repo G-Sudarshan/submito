@@ -112,7 +112,7 @@
 
 						<div class="form-row">
 							<div class="form-group col-lg-12 col-md-12 col-sm-12 text-center">
-								<button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i>Send Message</button>
+								<button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i>&nbsp;Send Message</button>
 							</div>
 						</div>
 
