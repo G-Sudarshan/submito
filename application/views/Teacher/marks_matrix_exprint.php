@@ -43,7 +43,28 @@
 
 	 <div class="container-fluid">
           <div align="left">&nbsp;
-            <h4><a href="<?= base_url('Teacher'); ?>" ><i class="fa fa-arrow-circle-left font-weight-bold text-dark"></i></a></h4>
+            <h4> <?php
+                    echo form_open('Teacher/load_marks_matrix');
+                    $data = array(
+                             'course_code'  => $course_code,
+                             'course_name' => $course_name,
+                             'teacher_name' => $teacher_name
+                            
+                              );
+                    echo form_hidden($data);?>
+                  <!-- i class="fa fa-arrow-circle-left font-weight-bold text-dark"></i>  --><?
+                   $data = array(
+                      'name' => 'submit',
+                      'value' => 'true',
+                      'type' => 'submit',
+                      'class' => 'btn btn-default btn-lg',
+                      'content' => '<i class="fa fa-arrow-circle-left font-weight-bold text-dark"></i>'
+                    );
+
+                    echo form_button($data); 
+                    echo form_close();
+                  ?> </h4>
+
           </div>
 
            <div class="container-fluid">

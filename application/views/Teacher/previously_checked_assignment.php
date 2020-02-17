@@ -75,6 +75,7 @@ if(!$this->session->userdata('teacher_id'))
                       'name' => 'submit',
                       'value' => 'true',
                       'type' => 'submit',
+                      'class' => 'btn btn-default btn-lg',
                       'content' => '<i class="fa fa-arrow-circle-left font-weight-bold text-dark"></i>'
                     );
 
