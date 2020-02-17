@@ -652,7 +652,7 @@ class Teacher extends MY_Controller{
      $this->load->model('TeacherModel');
      $mail = $this->TeacherModel->getEmailOfStudent($rollno);
 
-     echo $mail;
+     //echo $mail;
 
      $subject = "feedback from ".$teacher_name." | SubMito | ".$cn."( ".$cc." )"." | assignment no. ".$assignment_no;
 
@@ -687,7 +687,7 @@ class Teacher extends MY_Controller{
 
       $this->email->message($feedback);
       if($this->email->send()){
-        $this->session->set_flashdata('success', "Feedback sent successfully to ".$rollno);
+        $this->session->set_flashdata('success', "Feedback sent successfully to ".$rollno." on ".$mail);
 
          $submittedAssignmentData = $this->TeacherModel->get_submitted_assignment($cc,$assignment_no);
 
@@ -700,8 +700,6 @@ class Teacher extends MY_Controller{
 
 
   }
-
-
 
 
 
