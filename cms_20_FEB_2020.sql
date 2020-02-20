@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 09, 2020 at 05:04 PM
+-- Generation Time: Feb 20, 2020 at 02:11 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.1.33
 
@@ -40,7 +40,7 @@ CREATE TABLE `assignments` (
   `checked_by` varchar(50) NOT NULL,
   `checked_on` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `student_id` int(11) NOT NULL,
-  `text` text NOT NULL
+  `text` mediumtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -121,7 +121,7 @@ CREATE TABLE `tbl_admin_login` (
 --
 
 INSERT INTO `tbl_admin_login` (`id`, `username`, `password`, `email`, `name`, `mobile_no`, `department`) VALUES
-(10, 'submito_admin', 0x3862366565336633353265393331346264313938333037336331326532616663, '', '', 0, '');
+(12, 'admin', 0x6339336363643738623230373635323833343632313662336232663730316536, '', '', 0, '');
 
 -- --------------------------------------------------------
 
@@ -166,7 +166,7 @@ CREATE TABLE `tbl_info` (
 
 INSERT INTO `tbl_info` (`id`, `title`, `value`) VALUES
 (1, 'college_name', 'Your Institute Name Here'),
-(2, 'reset_by', 'admin');
+(2, 'reset_by', 'submito_admin');
 
 -- --------------------------------------------------------
 
@@ -287,13 +287,13 @@ ALTER TABLE `tbl_teachers_db`
 -- AUTO_INCREMENT for table `assignments`
 --
 ALTER TABLE `assignments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=250;
 
 --
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `notes`
@@ -311,25 +311,25 @@ ALTER TABLE `notification`
 -- AUTO_INCREMENT for table `static_assignments`
 --
 ALTER TABLE `static_assignments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `tbl_admin_login`
 --
 ALTER TABLE `tbl_admin_login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tbl_courses_db`
 --
 ALTER TABLE `tbl_courses_db`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '1', AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '1', AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `tbl_departments`
 --
 ALTER TABLE `tbl_departments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '1', AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '1', AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tbl_info`
@@ -341,13 +341,13 @@ ALTER TABLE `tbl_info`
 -- AUTO_INCREMENT for table `tbl_student_db`
 --
 ALTER TABLE `tbl_student_db`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '1', AUTO_INCREMENT=139;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '1', AUTO_INCREMENT=200;
 
 --
 -- AUTO_INCREMENT for table `tbl_teachers_db`
 --
 ALTER TABLE `tbl_teachers_db`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '1', AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '1', AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
