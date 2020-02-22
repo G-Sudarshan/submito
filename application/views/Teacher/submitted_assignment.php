@@ -392,7 +392,7 @@ if(!$this->session->userdata('teacher_id'))
     {
       var an = a_no;
       $('#viewAssignmentTextModal').modal("show");
-      document.getElementById('viewmyassgnmenttext').innerHTML = "<pre>"+submitted_text+"</pre>" ;
+      document.getElementById('viewmyassgnmenttext').innerHTML = "<pre><xmp>"+submitted_text+"</xmp></pre>" ;
     }
 
      function sendFeedback(rollno,course_code,assignment_no,assignment_type,teacher_name,course_name)

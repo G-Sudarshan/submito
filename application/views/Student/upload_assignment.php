@@ -569,7 +569,7 @@ if(!$this->session->userdata('student_id'))
         marksJS = marks;
       }
       $('#viewAssignmentTextModal').modal("show");
-      document.getElementById('viewmyassgnmenttext').innerHTML = "<h3> Marks : "+marksJS+"</h3><br/>"+"<pre>"+submitted_text+"</pre>" ;
+      document.getElementById('viewmyassgnmenttext').innerHTML = "<h3> Marks : "+marksJS+"</h3><br/>"+"<pre><xmp>"+submitted_text+"</xmp></pre>" ;
     }
 
     function updatePDF(a_no)
