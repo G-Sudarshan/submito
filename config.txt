@@ -1,4 +1,5 @@
 1. Email settings for smtp server
 2. Set one event in academic calendar
 3. index.php on upload,a,j,notes folders
-4. password should be of minimum 8 characters
+4. create a,j[students and teachers],notes folders
+5. u : admin p : admin1234

@@ -28,7 +28,9 @@
     {
         background-image: linear-gradient(to top, #f3e7e9 20%, #e3eeff 60%, #e3eeff 100%);
         font-family: 'Source Sans Pro', sans-serif;
-    } 
+    }
+
+
    </style>
 </head>
 <body>
@@ -36,7 +38,7 @@
 	      <a class="navbar-brand mr-1" href="#">SubMito!</a>
 	    </nav>
 <div class="hm-gradient">
-	<div class="container " align="center" id="pdiv">
+	<div  align="center" id="pdiv">
 	<br/><h4 class="text-primary">Marks Matrix</h4>
 	
 	<h5 class="text-success"><?= $course_name; ?></h5>
