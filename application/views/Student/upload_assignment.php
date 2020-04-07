@@ -617,7 +617,7 @@ if(!$this->session->userdata('student_id'))
       document.getElementById('viewmyassgnmentpdf').innerHTML = str;
       $('#viewAssignmentPDFModal').modal("show");
 
-      document.getElementById('printPDFAssignment').innerHTML = "<h3>Roll no : "+rn+"</h3><h3> Assignment no : "+an+"</h3><b><h3> Marks : "+marksJS+"</h3></b><h3>Submitted On : "+submitted_on+"</h3><h3> Assignment Type : PDF </h3><h3> Course : "+course_name+"</h3><h3> Course Code : "+course_code+"</h3><br/><hr/>" ;
+      document.getElementById('printPDFAssignment').innerHTML = "<h3>Roll no : "+rn+"</h3><h3> Assignment no : "+an+"</h3><b><h3> Marks : "+marksJS+"</h3></b><h3>Submitted On : "+submitted_on+"</h3><h3> Assignment Type : PDF </h3><h3> Course : "+course_name+"</h3><h3> Course Code : "+course_code+"</h3><hr/>" ;
     }
 
   
