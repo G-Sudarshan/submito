@@ -80,6 +80,7 @@ if(!$this->session->userdata('student_id'))
         $ua[$i]['p'] = $u->pdf_path;
         $ua[$i]['c'] = $u->checked;
         $ua[$i]['m'] = $u->marks;
+        $ua[$i]['d'] = $u->upload_datetime;
       }  
     }
     else
@@ -88,6 +89,7 @@ if(!$this->session->userdata('student_id'))
       $ua[0]['p'] = NULL;
       $ua[0]['c'] = NULL;
       $ua[0]['m'] = NULL;
+      $ua[0]['d'] = NULL;
     }
 
     $submitted_assignments_no = Array();
@@ -222,11 +224,12 @@ if(!$this->session->userdata('student_id'))
                   { 
                     $key = array_search($a->assignment_no, array_column($ua, 'a_no'));
                     $marks = $ua[$key]['m'];
+                    $submitted_on = $ua[$key]['d'];
                   
                     $strM = "<input type='hidden' id='idvM".$a->assignment_no."' value='".$marks."'>";
                     $pdf_path = $ua[$key]['p'];
                     $strV = "<input type='hidden' id='idpv".$a->assignment_no."' value='".base_url($pdf_path)."'>";
-                    echo $strV.$strM."<button class='btn btn-primary' onclick='viewPDF(".$a->assignment_no.",document.getElementById(\"idpv".$a->assignment_no."\").value".",document.getElementById(\"idvM".$a->assignment_no."\").value".",\"".$course_name."\",\" ".$course_code." \",\" ".$rollno." \")'".(in_array($a->assignment_no, $submitted_assignments_no) ? '' : 'disabled').">View PDF</button>";
+                    echo $strV.$strM."<button class='btn btn-primary' onclick='viewPDF(".$a->assignment_no.",document.getElementById(\"idpv".$a->assignment_no."\").value".",document.getElementById(\"idvM".$a->assignment_no."\").value".",\"".$course_name."\",\" ".$course_code." \",\" ".$rollno." \",\" ".$submitted_on." \")'".(in_array($a->assignment_no, $submitted_assignments_no) ? '' : 'disabled').">View PDF</button>";
                   } 
                 ?>
                 <?php 
@@ -235,9 +238,10 @@ if(!$this->session->userdata('student_id'))
                     $key = array_search($a->assignment_no, array_column($ua, 'a_no'));
                     $submitted_text = $ua[$key]['t'];
                     $marks = $ua[$key]['m'];
+                    $submitted_on = $ua[$key]['d'];
                     $strV = "<input type='hidden' id='idv".$a->assignment_no."' value='".$submitted_text."'>";
                     $strM = "<input type='hidden' id='idvM".$a->assignment_no."' value='".$marks."'>";
-                    echo $strV.$strM."<button class='btn btn-primary' onclick='viewText(".$a->assignment_no.",document.getElementById(\"idv".$a->assignment_no."\").value".",document.getElementById(\"idvM".$a->assignment_no."\").value".",\"".$course_name."\",\" ".$course_code." \",\" ".$rollno." \")'".(in_array($a->assignment_no, $submitted_assignments_no) ? '' : 'disabled').">View Text</button>";
+                    echo $strV.$strM."<button class='btn btn-primary' onclick='viewText(".$a->assignment_no.",document.getElementById(\"idv".$a->assignment_no."\").value".",document.getElementById(\"idvM".$a->assignment_no."\").value".",\"".$course_name."\",\" ".$course_code." \",\" ".$rollno." \",\" ".$submitted_on." \")'".(in_array($a->assignment_no, $submitted_assignments_no) ? '' : 'disabled').">View Text</button>";
                   } 
                 ?>     
               </td>
@@ -580,7 +584,7 @@ if(!$this->session->userdata('student_id'))
       document.getElementById('myassignment').value = submitted_text ;
     }
 
-    function viewText(a_no,submitted_text,marks,course_name,course_code,rn)
+    function viewText(a_no,submitted_text,marks,course_name,course_code,rn,submitted_on)
     {
       var an = a_no;
       
@@ -594,7 +598,7 @@ if(!$this->session->userdata('student_id'))
         marksJS = marks;
       }
       $('#viewAssignmentTextModal').modal("show");
-      document.getElementById('viewmyassgnmenttext').innerHTML = "<h3>Roll no : "+rn+"</h3><h3> Assignment no : "+an+"</h3><b><h3> Marks : "+marksJS+"</h3></b><h3> Assignment Type : TEXT </h3><h3> Course : "+course_name+"</h3><h3> Course Code : "+course_code+"</h3><hr/><br/>"+"<pre><xmp>"+submitted_text+"</xmp></pre>" ;
+      document.getElementById('viewmyassgnmenttext').innerHTML = "<h3>Roll no : "+rn+"</h3><h3> Assignment no : "+an+"</h3><b><h3> Marks : "+marksJS+"</h3></b><h3>Submitted On : "+submitted_on+"</h3><h3> Assignment Type : TEXT </h3><h3> Course : "+course_name+"</h3><h3> Course Code : "+course_code+"</h3><hr/><br/>"+"<pre><xmp>"+submitted_text+"</xmp></pre>" ;
     }
 
     function updatePDF(a_no)
@@ -604,7 +608,7 @@ if(!$this->session->userdata('student_id'))
       document.getElementById('update_pdf_assignment_no').value = an; 
     }
 
-   function viewPDF(a_no,submitted_text,marksJS,course_name,course_code,rn)
+   function viewPDF(a_no,submitted_text,marksJS,course_name,course_code,rn,submitted_on)
     {
       var an = a_no;
       console.log(a_no);
@@ -613,7 +617,7 @@ if(!$this->session->userdata('student_id'))
       document.getElementById('viewmyassgnmentpdf').innerHTML = str;
       $('#viewAssignmentPDFModal').modal("show");
 
-      document.getElementById('printPDFAssignment').innerHTML = "<h3>Roll no : "+rn+"</h3><h3> Assignment no : "+an+"</h3><b><h3> Marks : "+marksJS+"</h3></b><h3> Assignment Type : PDF </h3><h3> Course : "+course_name+"</h3><h3> Course Code : "+course_code+"</h3><br/><hr/>" ;
+      document.getElementById('printPDFAssignment').innerHTML = "<h3>Roll no : "+rn+"</h3><h3> Assignment no : "+an+"</h3><b><h3> Marks : "+marksJS+"</h3></b><h3>Submitted On : "+submitted_on+"</h3><h3> Assignment Type : PDF </h3><h3> Course : "+course_name+"</h3><h3> Course Code : "+course_code+"</h3><br/><hr/>" ;
     }
 
   

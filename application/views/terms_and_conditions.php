@@ -34,7 +34,7 @@
 		<br/>
 
 		<div class="container">
-			<p>These Terms & Conditions (“Terms”) of (a) use of our website  (“Website”), our applications (“Application”) or any products or services in connection with the Application/, Website/products (“Services”) or (b) any modes of registrations or usage of products, including through SD cards, tablets or other storage/transmitting device are between Think & Learn Private Limited (“Company/We/Us/Our”) and its users (“User/You/Your”).</p>
+			<p>These Terms & Conditions (“Terms”) of (a) use of our website  (“Website”), our applications (“Application”) or any products or services in connection with the Application/, Website/products (“Services”) or (b) any modes of registrations or usage of products, including through SD cards, tablets or other storage/transmitting device are between SubMiito! (“Company/We/Us/Our”) and its users (“User/You/Your”).</p>
 
 			<p>These Terms constitute an electronic record in accordance with the provisions of the Information Technology Act, 2000 and the Information Technology (Intermediaries guidelines) Rules, 2011 thereunder, as amended from time to time.</p>
 
