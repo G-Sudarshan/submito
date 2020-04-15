@@ -51,9 +51,49 @@ class Teacher extends MY_Controller{
 		$this->load->view('Teacher/TeacherDashboard',['teacherData'=>$teacherData,'selectedcourses'=>$selectedcourseData,'courses'=>$crs_names,'scc'=>$course_codes,'clgname'=>$clgname]);
 	}
 
+  public function load_allocate_subjects_to_teacher()
+  {
+
+    $teacher_id = $this->input->post('teacher_id');
+    $tname = $this->input->post('name');
+
+    $did = $this->input->post('did');
+    $dname = $this->input->post('dname');
+
+    $this->load->model('Admin_model');
+    $this->load->model('TeacherModel');
+    
+    $crs_names = $this->Admin_model->get_crs_names(); 
+
+     
+    $clgname = $this->TeacherModel->get_clg_name(); 
+
+
+    $user =  $this->getUserById($teacher_id);
+
+    if(isset($user['course_codes']))
+    {
+      $course_codes = $user['course_codes'];
+    }
+    else{
+      $course_codes = [993499,9923491];
+    }
+
+      
+    $selectedcourseData = $this->TeacherModel->getCourses($course_codes);
+    if(!$selectedcourseData)
+    {
+      $selectedcourseData = NULL;
+    }
+
+    $this->load->view('Admin/allocate_subject_to_teachers',['selectedcourses'=>$selectedcourseData,'courses'=>$crs_names,'scc'=>$course_codes,'clgname'=>$clgname,'teacher_name'=>$tname,'did'=>$did,'dname'=>$dname,'teacher_id'=>$teacher_id]);
+
+  }
+
 	public function load_change_password_teacher()
 	{
 		$id = $this->session->userdata('teacher_id');
+
 		$this->load->model('TeacherModel');
 
 		$teacherData = $this->TeacherModel->getTeacherData($id);
@@ -70,7 +110,7 @@ class Teacher extends MY_Controller{
 	public function saveMySubjects()
 	{
 		$arr = $this->input->post('check_list');
-		$id = $this->session->userdata('teacher_id');
+		$id = $this->input->post('teacher_id');
 
 		$data = array(
 			'course_codes' => $arr
@@ -82,9 +122,15 @@ class Teacher extends MY_Controller{
 
         $this->createUser($data,$id);
 
-        $this->session->set_flashdata('success',"Your subjects saved succcessfully");
+        $this->session->set_flashdata('success',"Subjects saved succcessfully");
 
-        return redirect('Teacher');
+    $this->load->model('Admin_model');
+    $dname = $this->input->post('dname');
+    $d_id = $this->input->post('d_id');
+
+    $teachers = $this->Admin_model->get_staff_names($d_id);
+
+    $this->load->view('Admin/manage_teachers',['teachers'=>$teachers,'dname'=>$dname,'d_id'=>$d_id]);
 		
 	}
 
@@ -739,7 +785,7 @@ class Teacher extends MY_Controller{
     //$id = $this->session->userdata('teacher_id');
     if(!file_exists(FCPATH.'assets/j/teachers/'.$id.'.json'))
     { 
-      $id = $this->session->userdata('teacher_id');
+      $id = $id;
 
       $data = array(
          'course_codes' => null
@@ -757,13 +803,13 @@ class Teacher extends MY_Controller{
 
       $users[] = $data;
 
-      $id = $this->session->userdata('teacher_id');
+      $id = $userId;
 
       $my_file = FCPATH.'assets/j/teachers/'.$id.'.json';
 
       $handle = fopen($my_file, 'w') or die('Cannot open file:  '.$my_file);
 
-      $this->putJson($users);
+      $this->putJson($users,$userId);
 
 
       fclose($handle);
@@ -771,10 +817,10 @@ class Teacher extends MY_Controller{
       return $data; 
     }
 
-    public function putJson($users)
+    public function putJson($users,$userId)
     {
       //base_url('assets/js/bootstrap.min.js');
-      $id = $this->session->userdata('teacher_id');
+      $id = $userId;
       file_put_contents(FCPATH.'assets/j/teachers/'.$id.'.json', json_encode($users,JSON_PRETTY_PRINT));
 
     }

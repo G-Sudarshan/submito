@@ -662,6 +662,12 @@ class Admin extends MY_Controller{
     $this->load->view('Admin/manage_courses',['courses'=>$courses,'dname'=>$dname,'d_id'=>$d_id]);
    }
 
+   // public function load_allocate_subjects_to_teacher()
+   // {
+   //  $teacher_id = $this->input->post('id');
+    
+   // }
+
 
 }
 

@@ -161,7 +161,7 @@ class Student extends MY_Controller{
       'course_code' => $this->input->post('course_code'),
       'rollno' => $this->input->post('rollno'),
       'student_id' => $this->session->userdata('student_id'),
-      'text' => $this->input->post('a_text'),
+      'text' => str_replace("'", "",$this->input->post('a_text')),
       'assignment_no' => $this->input->post('assignment_no'),
        );
 
@@ -191,7 +191,7 @@ class Student extends MY_Controller{
       'course_code' => $this->input->post('course_code'),
       'rollno' => $this->input->post('rollno'),
       'student_id' => $this->session->userdata('student_id'),
-      'text' => $this->input->post('updated_a_text'),
+      'text' => str_replace("'", "",$this->input->post('updated_a_text')),
       'assignment_no' => $this->input->post('assignment_no'),
        );
 

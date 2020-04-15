@@ -73,7 +73,7 @@ if(!$this->session->userdata('admin_id'))
 							<td>Staff Id </td>
 							<td>Staff Name</td>
 							<td>Department</td>
-							<td>Manage</td>
+							<td>Edit</td>
 						</tr>
 					</thead>
 					<tbody>			
@@ -86,9 +86,12 @@ if(!$this->session->userdata('admin_id'))
 							<td><?= $staff_name->department; ?></td>
 							<td>
 								<?php 
-									echo form_open('Admin/edit_staff');
-									echo form_hidden('id',$staff_name->id);
-									echo form_submit(['name'=>'submit','value'=>'Edit','class'=>'btn btn-outline-success']);
+									echo form_open('Teacher/load_allocate_subjects_to_teacher');
+									echo form_hidden('teacher_id',$staff_name->id);
+									echo form_hidden('name',$staff_name->name);
+									echo form_hidden('did',$d_id);
+									echo form_hidden('dname',$dname);
+									echo form_submit(['name'=>'submit','value'=>'Subjects','class'=>'btn btn-outline-success']);
 							 		echo form_close();
 								?> 
 							</td>

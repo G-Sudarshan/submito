@@ -93,9 +93,6 @@ if(!$this->session->userdata('teacher_id'))
       ?>
       <br/>
 
-      <div align="right">
-        <button class="btn btn-primary" data-toggle="modal" data-target="#mySubjectModal">Edit Subjects</button>
-      </div>
       <br/>
 
       <!-- Subject Table -->
@@ -252,51 +249,7 @@ if(!$this->session->userdata('teacher_id'))
   </div>
 
   <!-- ----------------------------------------------------------------------------------------- -->
-  <!-- ------------------------------------- Subject Modal------------------------------------------->
-
-  <!-- Modal -->
-  <div class="modal fade" id="mySubjectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <!-- Modal Header-->
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Subjects</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <!-- Modal Body-->
-        <div class="modal-body-s">
-          <?php echo form_open('Teacher/saveMySubjects'); ?>
-            <div class="form-group">
-              <div class="form-check">
-                <table class="table table-hover">                       
-                  <tr>
-                    <?php foreach( $courses->result() as $course ): ?>
-                    <div class="form-check" align="left">
-                      <?php 
-                        echo "<input type='checkbox' name='check_list[]'' value='$course->course_code'".(in_array($course->course_code, $scc) ? ' checked="checked"' : '')." ><label class='form-check-label' for='exampleCheck1'>"."&nbsp;&nbsp".$course->course_code.' ( '.$course->name.' ) '."</label>"
-                      ?>
-                    </div>
-                  </tr>  
-                    <?php endforeach; ?>
-                </table>
-              </div>
-            </div>
-        </div>
-        <!-- Modal footer -->           
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>     
-          <?php 
-            echo form_submit('submit', 'Save changes',"class='btn btn-primary'");
-            echo form_close(); 
-          ?>       
-        </div>
-      </div>
-    </div>
-  </div>
-        
-  <!-- ------------------------------------------------------------------------------------------ -->
+  
   <!---------------------------------- Edit Profie Model---------------------------------------------->
 
   <div class="modal" id="editProfileModal">
