@@ -608,6 +608,7 @@ class Admin extends MY_Controller{
         delete_files(FCPATH.'assets/a');
         delete_files(FCPATH.'assets/notes');
         delete_files(FCPATH.'uploads');
+        delete_files(FCPATH.'zips');
 
         delete_files(FCPATH.'assets/j/students');
         delete_files(FCPATH.'assets/j/teachers');

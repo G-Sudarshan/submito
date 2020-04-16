@@ -276,6 +276,18 @@ if(!$this->session->userdata('admin_id'))
 		          <span>Change Password of Student</span>
 		      	</a>
 		      </li>
+		            <li class="nav-item">
+		        <a class="nav-link" href=<?= base_url('Zip'); ?> >
+		          <i class="fa fa-download"></i>
+		          <span>Download File Backup</span>
+		      	</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href=<?= base_url('Zip/db_backup'); ?> >
+		          <i class="fa fa-database"></i>
+		          <span>Download Database Backup</span>
+		      	</a>
+		      </li>
 
 		    </ul>
 		
@@ -292,7 +304,7 @@ if(!$this->session->userdata('admin_id'))
 			{ echo '<div class="alert alert-dismissible alert-success">' . $dpt_msg . '</div>'; } ?>
 
 			<?php if($success = $this->session->flashdata('success')): 
-				echo '<div class="alert alert-dismissible alert-success">' . $success . '</div>';
+				echo '<div class="alert alert-dismissible alert-success">'.$success.'</div>';
 			 endif; ?>
 			 <?php if($failure = $this->session->flashdata('failure')): 
 				echo '<div class="alert alert-dismissible alert-danger">' . $failure . '</div>';

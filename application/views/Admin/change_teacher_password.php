@@ -107,7 +107,7 @@ if(!$this->session->userdata('admin_id'))
 			</table>
 
 			<!-- Paginate -->
-			<!--<div class="pagination pagination-info" style='margin-top: 10px;'>
+			<div class="pagination pagination-info" style='margin-top: 10px;'>
 				
 			</div>
 
@@ -115,7 +115,7 @@ if(!$this->session->userdata('admin_id'))
 			  <ul class="pagination">
 			   <?= $pagination; ?>
 			  </ul>
-			</nav>-->
+			</nav>
 		</div>
 
       <!-- -------------------------------------------------------------------------------------------------- -->

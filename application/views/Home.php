@@ -14,14 +14,20 @@
 		    background-image: linear-gradient(to top, #f3e7e9 30%, #e3eeff 100%, #e3eeff 100%);
 		    font-family: 'Source Sans Pro', sans-serif;
 		}
+		.responsive
+		{
+			width: 100%;
+			height: auto;
+		}
+		
     </style>
 </head>
 <body class="hm-gradient">
-
+	
 	<div class="container">
     	<br/>
     	<!-- <h1>SubMito!</h1> -->
-    	<img src=<?= base_url("/assets/images/submito.png") ?> >
+    	<img class="responsive" src=<?= base_url("/assets/images/submito.png") ?> >
 		<h3 align="center">Online Assignment Submission and Management System</h3>
 		
 		
@@ -39,6 +45,7 @@
 	</div>
 
 	<?php $this->view('footer'); ?>
+	
 
 
 
