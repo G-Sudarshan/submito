@@ -4,3 +4,4 @@
 4. create a,j[students and teachers],notes folders
 5. u : admin p : admin1234
 6. print and print frontpage in uplload assignment in js set domain name
+7. Change permissions for asssets

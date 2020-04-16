@@ -146,7 +146,7 @@ class Login extends MY_Controller{
    public function logout()
    {
       $this->session->sess_destroy();
-      return redirect('Login/loginpage');
+      return redirect('Login');
    }
 
   

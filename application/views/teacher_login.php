@@ -33,8 +33,7 @@
     </style>
 </head>
 <body class="hm-gradient">
-    
-    <div class="hm-gradient" >
+    <div class="hm-gradient">
 
     <br/><br/><br/><br/><br/>
     <?php if(isset($_SESSION['success'])) { ?>
@@ -54,12 +53,13 @@
     <div class="container">
         <div class="row">
           
-            <div class="col-lg-4 col-md-4 col-sm-12">
+
+          <div class="col-lg-4 col-md-4 col-sm-12">
             <?php 
-                $attributes = ['id' => 'studentLogin'];
-                echo form_open('Login/student_login', $attributes);
+                $attributes = ['id' => 'teacherLogin'];
+                echo form_open('Login/teacher_login', $attributes);
             ?>
-            <h2>Student Login</h2>
+            <h2>Teacher Login</h2>
                 <div class="form-group">
                     <label for="username">Username:</label>
                     <input type="text" name="username" class="form-control" autocomplete="off">
@@ -69,16 +69,19 @@
                     <input type="password" name="password" class="form-control">
                 </div>
                 <?php 
-                    echo form_submit(['name'=>'student_login','value'=>'Login','class'=>'btn btn-primary']);
+                    echo form_submit(['name'=>'teacher_login','value'=>'Login','class'=>'btn btn-primary']);
                     echo form_close(); 
                 ?>
           </div>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         <iframe style="border: 10px solid #FFFFFF" width="560" height="315" src="https://www.youtube.com/embed/BPJ9OMhbILw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
 
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <iframe style="border: 10px solid #FFFFFF" width="560" height="315" src="https://www.youtube.com/embed/iOU7E4vqW20" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
       </div>
- 
+        </div>
+      </div>
+    
+
     <br/><br/><br/><br/>  <br/><br/>
     </div>  
 
@@ -235,28 +238,7 @@
 
       });
       
-  </script><script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
-<script>
- 
-  var options = {
-  bottom: '64px', // default: '32px'
-  right: '32px', // default: '32px'
-  left: 'unset', // default: 'unset'
-  time: '0.5s', // default: '0.3s'
-  mixColor: '#fff', // default: '#fff'
-  backgroundColor: '#ffffff',  // default: '#fff'
-  buttonColorDark: 'grey',  // default: '#100f2c'
-  buttonColorLight: '#ffffff', // default: '#fff'
-  saveInCookies: false, // default: true,
-  label: '🐧', // default: ''
-  autoMatchOsTheme: true // default: true
-}
-
-const darkmode = new Darkmode(options);
-darkmode.showWidget();
- 
-</script>
+  </script>
 
 </body>
 </html>                            
