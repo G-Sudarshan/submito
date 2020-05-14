@@ -94,11 +94,13 @@ class Login extends MY_Controller{
                       'password' => md5($this->input->post('password'))
                    );
       $this->load->model('LoginModel');
+      $roll = $this->input->post('username');
       $user_id = $this->LoginModel->student_login($userdata);
 
       if($user_id)
       {
           $this->session->set_userdata('student_id',$user_id);
+          $this->session->set_userdata('roll',$roll);
           $this->session->set_flashdata('success',"You are logged in");
 
           return redirect('Student');

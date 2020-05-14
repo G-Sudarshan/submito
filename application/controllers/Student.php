@@ -143,7 +143,7 @@ class Student extends MY_Controller{
  {
      $cc =  $this->input->post('course_code');
      $cn = $this->input->post('course_name');
-     $rollno = $this->input->post('rollno');
+     $rollno = $this->session->userdata('roll');
      $id = $this->session->userdata('student_id');
      $this->load->model('StudentModel');
 
@@ -170,7 +170,7 @@ class Student extends MY_Controller{
 
     $cc =  $this->input->post('course_code');
      $cn = $this->input->post('course_name');
-     $rollno = $this->input->post('rollno');
+     $rollno = $this->session->userdata('roll');
      $id = $this->session->userdata('student_id');
 
      $createdAssignmentData = $this->StudentModel->getCreatedAssignments($cc);
@@ -197,7 +197,7 @@ class Student extends MY_Controller{
 
        $cc =  $this->input->post('course_code');
        $cn = $this->input->post('course_name');
-       $rollno = $this->input->post('rollno');
+       $rollno = $this->session->userdata('roll');
        $id = $this->session->userdata('student_id');
        $an = $this->input->post('assignment_no');
 
@@ -206,7 +206,7 @@ class Student extends MY_Controller{
 
       $cc =  $this->input->post('course_code');
       $cn = $this->input->post('course_name');
-      $rollno = $this->input->post('rollno');
+      $rollno = $this->session->userdata('roll');
       $id = $this->session->userdata('student_id');
 
      $createdAssignmentData = $this->StudentModel->getCreatedAssignments($cc);
@@ -227,7 +227,7 @@ class Student extends MY_Controller{
       'assignment_no' => $this->input->post('assignment_no'),
        );
 
-    $rollno = $this->input->post('rollno');
+    $rollno = $this->session->userdata('roll');
     $course_code = $this->input->post('course_code');
     $assignment_no = $this->input->post('assignment_no');
 
@@ -253,7 +253,7 @@ class Student extends MY_Controller{
           
                $cc =  $this->input->post('course_code');
                $cn = $this->input->post('course_name');
-               $rollno = $this->input->post('rollno');
+               $rollno = $this->session->userdata('roll');
                $id = $this->session->userdata('student_id');
 
                $createdAssignmentData = $this->StudentModel->getCreatedAssignments($cc);
@@ -283,7 +283,7 @@ class Student extends MY_Controller{
       'assignment_no' => $this->input->post('assignment_no'),
        );
 
-    $rollno = $this->input->post('rollno');
+    $rollno = $this->session->userdata('roll');
     $course_code = $this->input->post('course_code');
     $assignment_no = $this->input->post('assignment_no');
 
@@ -318,7 +318,7 @@ class Student extends MY_Controller{
           
                $cc =  $this->input->post('course_code');
                $cn = $this->input->post('course_name');
-               $rollno = $this->input->post('rollno');
+               $rollno = $this->session->userdata('roll');
                $id = $this->session->userdata('student_id');
 
                $createdAssignmentData = $this->StudentModel->getCreatedAssignments($cc);
@@ -344,7 +344,7 @@ public function load_shared_notes()
  
   $course_code = $this->input->post('course_code');
   $course_name = $this->input->post('course_name');
-  $rollno = $this->input->post('rollno');
+  $rollno = $this->session->userdata('roll');
                      
 
   

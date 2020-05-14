@@ -3,7 +3,7 @@
 3. index.php on upload,a,j,notes folders
 4. create a,j[students and teachers],notes folders
 5. u : admin p : admin1234
-6. print and print frontpage in uplload assignment in js set domain name
+6. print and print frontpage in upload assignment in js set domain name
 7. Change permissions for asssets
 8. zips folder and its index.php
 9. important : check all index.php of custom folders

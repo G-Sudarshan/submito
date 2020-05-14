@@ -18,29 +18,8 @@
             {
                 return redirect('login');
             }
-            // $path = FCPATH."/assets/";
-
-            // $this->zip->read_dir($path,FALSE);
-
-            // // Download the file to your desktop. Name it "my_backup.zip"
-            // $this->zip->download('SubMito_Backup.zip');
-           
-
-            // $this->zip->add_data($filename, $filedata); 
             
-            // //Create zip file on server with name."example_backup.zip"
-            // $this->zip->archive('/zippedfiles/example_backup.zip');  
-
-            // //Download the file to your system. It will be named "example_backup.zip"
-            // $this->zip->download('example_backup.zip');
-            // $this->session->set_flashdata('sucess','Backup downloaded successfully');
-            // return redirect('Admin');
-
-
-//file name:compress.php
-//Title:How to compress a Folder containing Sub-Folders and Files with PHP
-//Date:6-12-2012
-               $source=FCPATH."/assets/";// Path To the folder;
+               $source=FCPATH."/assets/";
 $destination=FCPATH.'/zips/SubMito_Backup.zip';// Path to the file and file name ; 
 $this->ZipBackup($source,$destination);
 
@@ -61,7 +40,7 @@ $this->ZipBackup($source,$destination);
         }
 
      
-        function ZipBackup($source, $destination)
+public function ZipBackup($source, $destination)
 {
 if (!extension_loaded('zip') || !file_exists($source)) {
     return false;
@@ -107,7 +86,7 @@ if (is_dir($source) === true)
 }
 else if (is_file($source) === true)
 {
-    $zip->addFromString(basename($source), file_get_contents($source));
+    $zip->addFromString((FCPATH.$source), file_get_contents($source));
 }
 
 return $zip->close();
@@ -131,16 +110,23 @@ $db_name = 'db_backup-on-'. date("Y-m-d-H-i-s") .'.zip';
 $save = 'zips/'.$db_name;
 
 $this->load->helper('file');
-write_file($save, $backup); 
+write_file($save, $backup,'w+'); 
 
 
 //$this->load->helper('download');
 force_download($db_name, $backup);
 
- unlink(FCPATH.$save);
+if(unlink(FCPATH.$save))
+{
+    echo "success";
+     }
+else
+{
+    echo "backup file on server has not deleted | Contact Developer : save :".$save."<br/> path : :".FCPATH.$save;
+}
 
-     $this->session->set_flashdata('sucess','Backup downloaded successfully');
-     return redirect('Admin');
+   //  $this->session->set_flashdata('sucess','Backup downloaded successfully');
+    // return redirect('Admin');
 }
 
     }
