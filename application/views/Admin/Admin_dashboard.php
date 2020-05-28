@@ -278,8 +278,8 @@ if(!$this->session->userdata('admin_id'))
 		      </li>
 		            <li class="nav-item">
 		        <a class="nav-link" href=<?= base_url('Zip'); ?> >
-		          <i class="fa fa-download"></i>
-		          <span>Download File Backup</span>
+		          <i class="fa fa-cloud"></i>
+		          <span>Files Cloud Backup</span>
 		      	</a>
 		      </li>
 		      <li class="nav-item">

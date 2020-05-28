@@ -19,10 +19,58 @@
                 return redirect('login');
             }
 
-            $this->load->library('zip');
-            $path=FCPATH."/assets/";
-            $this->zip->read_dir($path); 
-            $this->zip->download('my_backup.zip');
+            /**
+            *@copyright: g-sudarshan  *
+            *@version : 1.0           *
+            * GIT BACKUP SCRIPT       *
+            *                         *
+                                    **/
+                $date = date("Y-m-d");
+                $r = rand(10,99999);
+             // The commands
+                $commands = array(
+                  //'echo $PWD',
+                 //'whoami',
+                //'git reset --hard HEAD',
+                // 'git pull',
+                // 'git status',
+                // 'git submodule sync',
+                // 'git submodule update',
+                // 'git submodule status',
+                 
+                
+                'whoami',
+                'cd '.FCPATH,
+                'echo $PWD',
+                'git status',
+                'git add .',
+                "git commit -m '$date - n : $r aws '",
+                'git push',
+                'git status'
+             );
+    // Run the commands for output 
+    $output = '';
+    foreach($commands AS $command){
+        // Run it
+        $tmp = system($command);
+        // Output
+        $output .= "<br/><br/><span style=\"color: #6BE234;\">\$</span> <span style=\"color: #729FCF;\">{$command}\n</span>";
+        $output .= htmlentities(trim($tmp)) . "\n";
+    }
+
+    echo $output;
+           
+
+
+
+
+
+
+
+
+
+
+
             
 //                $source=FCPATH."/assets/";
 // $destination=FCPATH.'/zips/SubMito_Backup.zip';// Path to the file and file name ; 
