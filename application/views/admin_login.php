@@ -30,6 +30,13 @@
         {
             background-image: linear-gradient(to top, #f3e7e9 30%, #e3eeff 100%, #e3eeff 100%);
         }
+         .navbar {
+                position: relative;
+                min-height: 50px;
+                margin-bottom: 0px;
+                border: 1px solid transparent;
+                border-radius: 0px;
+        }
     </style>
 </head>
 <body class="hm-gradient">
