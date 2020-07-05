@@ -286,7 +286,7 @@ class Login extends MY_Controller{
       $clgname = $this->LoginModel->get_clg_name();
       $this->load->view('header',['clgname'=>$clgname]);  
       $this->load->view('calendar', $data); 
-      $this->load->view('footer'); 
+      //$this->load->view('footer'); 
    }
 
    public function notification()

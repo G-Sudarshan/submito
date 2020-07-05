@@ -23,6 +23,9 @@
           background-image: linear-gradient(to top, #f3e7e9 20%, #e3eeff 60%, #e3eeff 100%);
           font-family: 'Source Sans Pro', sans-serif;
       } 
+      footer{
+      position: relative;!important;
+    }
     </style>
 </head>
 <body class="hm-gradient">
@@ -36,7 +39,7 @@
         <center>
           <br/>
           <h1>Academic Calendar</h1>
-          <br/><br/><br/>
+          <br
           <div class="row" style="width:50%">
             <div class="col-md-12">
               <div id="calendar"></div>
@@ -52,6 +55,21 @@
 
   <br/><br/><br/><br/>
 </div>
+
+<footer class="py-3 bg-dark">
+      <div class="container text-center text-white-50">
+        <h6><a target="_blank" href=<?= base_url('Login/aboutus'); ?>  >About Us&nbsp;|</a>
+        <a target="_blank" href=<?= base_url('Login/terms'); ?> >Terms and Conditions&nbsp;|</a>
+        <a target="_blank" href=<?= base_url('Login/privacy'); ?> >Privacy Policy&nbsp;|</a>
+        <a target="_blank" href=<?= base_url('Login/contactus'); ?> >Contact Us &nbsp;|</a>
+        <a target="_blank" href="https://submito.business.site/" ><i class="fa fa-globe" aria-hidden="true"></i> &nbsp;| </a>
+        <a target="_blank" href="https://www.youtube.com/channel/UCAzHBeop4ACbeOKuoDcMoAQ" ><i class="fa fa-youtube" aria-hidden="true"></i> &nbsp;| </a>
+
+        <a target="_blank" href="https://www.instagram.com/__team_submito_1/" ><i class="fa fa-instagram" aria-hidden="true"></i> &nbsp; </a>
+        </h6>
+          <small>&COPY; 2020 TEAM SUBMITO. &nbsp;All Rights Reserved</small>
+      </div>
+  </footer>
 
     <script type="text/javascript">
        
@@ -78,28 +96,7 @@
         });
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.3/lib/darkmode-js.min.js"></script>
-    <script>
-     
-      var options = 
-      {
-        bottom: '64px', // default: '32px'
-        right: '32px', // default: '32px'
-        left: 'unset', // default: 'unset'
-        time: '0.5s', // default: '0.3s'
-        mixColor: '#fff', // default: '#fff'
-        backgroundColor: '#ffffff',  // default: '#fff'
-        buttonColorDark: 'grey',  // default: '#100f2c'
-        buttonColorLight: '#ffffff', // default: '#fff'
-        saveInCookies: false, // default: true,
-        label: '🐧', // default: ''
-        autoMatchOsTheme: true // default: true
-      }
-
-      const darkmode = new Darkmode(options);
-      darkmode.showWidget();
-     
-    </script>
+    
 
   
 </body>

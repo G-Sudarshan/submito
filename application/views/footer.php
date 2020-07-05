@@ -4,9 +4,17 @@
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
+	<style type="text/css">
+		footer{
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+		}
+	</style>	
 </head>
+
 <body>
+
 
 	<footer class="py-3 bg-dark">
 	    <div class="container text-center text-white-50">

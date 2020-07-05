@@ -20,13 +20,18 @@
 	        font-family: 'Source Sans Pro', sans-serif;
 	    } 
 
+	    #tc{
+	    	display: flex;
+	    	flex-direction: column;
+	    }
+
 	</style>
 </head>
-<body class="hm-gradient">
+<body>
    <div class="hm-gradient">
 	<br/><br/>
 
-	<section>
+	<section id="tc">
 		
 		<h2 class="text-center">Welcome to SubMito!</h2>
 		<br/>
@@ -152,7 +157,7 @@
 <script>
  
   var options = {
-  bottom: '64px', // default: '32px'
+  bottom: '100px', // default: '32px'
   right: '32px', // default: '32px'
   left: 'unset', // default: 'unset'
   time: '0.5s', // default: '0.3s'

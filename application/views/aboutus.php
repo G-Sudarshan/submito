@@ -289,12 +289,24 @@
 		  transform: translateY(0);
 		}
 
-
+		footer{
+			position: relative;
+			bottom: 0;
+			width: 100%;
+		}
+		.au{
+			display: flex;
+			flex-direction: column;;
+			height: 100%;
+			width: 100%;
+			align-self: center;
+			justify-content: center;
+		}
 	</style>
 </head>
-<body class="hm-gradient">
+<body>
 
-	<div class="hm-gradient">
+	<div class="hm-gradient au">
 	<br/>
 
 	<section class="text-center">
@@ -305,7 +317,7 @@
 				<span class="text-success">Watch our <a href="https://youtu.be/ErxDe89BLek"><span class="text-primary">Introduction Video</span></a>on YouTube!</span></h6></p>
 		</div>	
 		<br/>
-		<div align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/ErxDe89BLek" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+		
 		<h2>OUR GUIDE</h2>
 		<br/>
 		<div class="container">
@@ -443,7 +455,20 @@
 		</div>
 	</section>
 </div>
-	<?php $this->view('footer'); ?>
+	<footer class="py-3 bg-dark">
+	    <div class="container text-center text-white-50">
+	    	<h6><a target="_blank" href=<?= base_url('Login/aboutus'); ?>  >About Us&nbsp;|</a>
+	    	<a target="_blank" href=<?= base_url('Login/terms'); ?> >Terms and Conditions&nbsp;|</a>
+	    	<a target="_blank" href=<?= base_url('Login/privacy'); ?> >Privacy Policy&nbsp;|</a>
+	    	<a target="_blank" href=<?= base_url('Login/contactus'); ?> >Contact Us &nbsp;|</a>
+	    	<a target="_blank" href="https://submito.business.site/" ><i class="fa fa-globe" aria-hidden="true"></i> &nbsp;| </a>
+	    	<a target="_blank" href="https://www.youtube.com/channel/UCAzHBeop4ACbeOKuoDcMoAQ" ><i class="fa fa-youtube" aria-hidden="true"></i> &nbsp;| </a>
+
+	    	<a target="_blank" href="https://www.instagram.com/__team_submito_1/" ><i class="fa fa-instagram" aria-hidden="true"></i> &nbsp; </a>
+	    	</h6>
+	      	<small>&COPY; 2020 TEAM SUBMITO. &nbsp;All Rights Reserved</small>
+	    </div>
+	</footer>
 
 
 
@@ -455,7 +480,7 @@
 <script>
  
   var options = {
-  bottom: '64px', // default: '32px'
+  bottom: '100px', // default: '32px'
   right: '32px', // default: '32px'
   left: 'unset', // default: 'unset'
   time: '0.5s', // default: '0.3s'
