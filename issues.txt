@@ -1,3 +1,9 @@
 1. Student login problem : The first student registred in database do nt returns id 
 Found : 18 NOV 2019
 Resolved : 18 NOV 2019
+
+2. backup of file
+
+3. google analytics code
+
+4.global variable of email and password
