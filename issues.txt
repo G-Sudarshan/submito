@@ -15,3 +15,11 @@ Resolved : 18 NOV 2019
 7. table in responsive layout
 
 8. security in ci
+
+9. FCPATH instead of address for verified badge logo
+
+10. Responsive students panel
+
+11. Responsive teachers panel
+
+12. Responsive Admin Panel
