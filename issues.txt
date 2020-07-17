@@ -6,4 +6,5 @@ Resolved : 18 NOV 2019
 
 3. google analytics code
 
-4.global variable of email and password
+4. global variable of email and password
+5. implement session in password change
