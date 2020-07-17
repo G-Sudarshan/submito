@@ -41,10 +41,22 @@
         overflow-y: auto;
     }
 
+    /* .navbar{
+      width: 100%;
+      height:auto;
+    } */
+
+    /* #subject_table{
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+    } */
+
   </style>
 
 </head>
-<body class="hm-gradient">
+<body>
   <div class="hm-gradient">
 
   <section>
@@ -100,7 +112,7 @@
 
       <!-- Subject Table -->
       <div>
-        <table class="table table-striped">
+        <table id="subject_table" class="table table-striped">
           <thead>
             <th>Sr. No.</th>
             <th>Course Code</th>
