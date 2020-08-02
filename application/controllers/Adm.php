@@ -1,29 +1,26 @@
-<?php 
+<?php
 
-class Adm extends MY_Controller{
+class Adm extends MY_Controller
+{
 
-   public function index()
-   {
-   	 if($this->session->userdata('student_id'))
-          return redirect('Student');
+      public function index()
+      {
+            if ($this->session->userdata('student_id'))
+                  return redirect('Student');
 
 
-    if($this->session->userdata('teacher_id'))
-          return redirect('Teacher');
+            if ($this->session->userdata('teacher_id'))
+                  return redirect('Teacher');
 
-    if($this->session->userdata('admin_id'))
-          return redirect('Admin');
+            if ($this->session->userdata('admin_id'))
+                  return redirect('Admin');
 
-    //------------------------------------------------------------------------------//
+            //------------------------------------------------------------------------------//
 
-    $this->load->model('LoginModel'); 
-    $clgname = $this->LoginModel->get_clg_name();
-    $this->load->view('header',['clgname'=>$clgname]);  
-    $this->load->view('admin_login');	
-   	$this->load->view('footer'); 
-
-   }
-
+            $this->load->model('LoginModel');
+            $clgname = $this->LoginModel->get_clg_name();
+            $this->load->view('header', ['clgname' => $clgname]);
+            $this->load->view('admin_login');
+            $this->load->view('footer');
+      }
 }
-
-?>

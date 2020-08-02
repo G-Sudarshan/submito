@@ -23,3 +23,9 @@ Resolved : 18 NOV 2019
 11. Responsive teachers panel
 
 12. Responsive Admin Panel
+
+13. change hashing algorithem
+
+14. copy paste disable [ advance level ]
+
+15. disable add admin button
