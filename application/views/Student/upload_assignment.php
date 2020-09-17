@@ -23,13 +23,14 @@ if(!$this->session->userdata('student_id'))
             var a = window.open('', '', 'height=500, width=500'); 
             a.document.write('<html>'); 
             var d = Date(); 
+            var img = "<span><h2> Submitted Assignment   <img src='http://" + window.location.hostname + "/cms/assets/images/submito_verified.jpg' height='30px' width='30px'></h2></span>" 
     
   // Converting the number value to string 
             da = d.toString();
     
   // Printing the current date 
             a.document.write("<body>Printed on : " + da + " | assignment submitted online using SubMito! ");
-            a.document.write('<span><h2> Submitted Assignment   <img src="http://localhost/cms/assets/images/submito_verified.jpg" height="30px" width="30px"></h2></span>'); 
+            a.document.write(img); 
             a.document.write(divContents); 
             a.document.write('</body></html>'); 
             a.document.close(); 

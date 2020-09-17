@@ -29,3 +29,7 @@ Resolved : 18 NOV 2019
 14. copy paste disable [ advance level ]
 
 15. disable add admin button
+
+16. security of input text
+
+17. cpatcha in contact us and login

@@ -106,5 +106,3 @@ public function admin_login($userdata)
 	}
 
 }
-
-?>

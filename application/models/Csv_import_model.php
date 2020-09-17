@@ -18,4 +18,3 @@ class Csv_import_model extends CI_Model
 		$this->db->insert_batch('tbl_courses_db', $data);
 	}
 }
-?>

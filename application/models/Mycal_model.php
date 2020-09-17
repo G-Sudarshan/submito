@@ -1,17 +1,18 @@
 <?php
 
-class Mycal_model extends CI_Model {
+class Mycal_model extends CI_Model
+{
 
 	public $prefs;
 	public function __construct()
 	{
 		//parent::Model();
 		$this->prefs = array(
-        'start_day'    => 'monday',
-        'month_type'   => 'long',
-        'day_type'     => 'short',
-        'show_next_prev' => TRUE,
-       // 'next_prev_url'   => base_url().'/mycal/index/'
+			'start_day'    => 'monday',
+			'month_type'   => 'long',
+			'day_type'     => 'short',
+			'show_next_prev' => TRUE,
+			// 'next_prev_url'   => base_url().'/mycal/index/'
 		);
 		$this->prefs['template'] = '
 		{table_open}
@@ -60,40 +61,40 @@ class Mycal_model extends CI_Model {
         {table_close}</table>{/table_close}
 		';
 	}
-	public function getcalender($year , $month)
+	public function getcalender($year, $month)
 	{
-		$this->load->library('calendar',$this->prefs); // Load calender library
+		$this->load->library('calendar', $this->prefs); // Load calender library
 		// $data = array(
-  //       3  => 'check',
-  //       7  => 'check1',
-  //       13 => 'bar',
-  //       26 => 'ytr'
+		//       3  => 'check',
+		//       7  => 'check1',
+		//       13 => 'bar',
+		//       26 => 'ytr'
 		// );
 
-       // $now = new \DateTime('now');
-       // $month = $now->format('m');
-       // $year = $now->format('Y');
+		// $now = new \DateTime('now');
+		// $month = $now->format('m');
+		// $year = $now->format('Y');
 
-		$data = $this->get_calender_data($year,$month);
-		return $this->calendar->generate($year , $month , $data);
+		$data = $this->get_calender_data($year, $month);
+		return $this->calendar->generate($year, $month, $data);
 	}
 
-	public function get_calender_data($year , $month)
+	public function get_calender_data($year, $month)
 	{
-		$query =  $this->db->select('date,content')->from('calendar')->like('date',"$year-$month",'after')->get();
+		$query =  $this->db->select('date,content')->from('calendar')->like('date', "$year-$month", 'after')->get();
 		//echo $this->db->last_query();exit;
 		$cal_data = array();
 		foreach ($query->result() as $row) {
-            $calendar_date = date("Y-m-j", strtotime($row->date)); // to remove leading zero from day format
-			$cal_data[substr($calendar_date, 8,2)] = $row->content;
+			$calendar_date = date("Y-m-j", strtotime($row->date)); // to remove leading zero from day format
+			$cal_data[substr($calendar_date, 8, 2)] = $row->content;
 		}
-		
+
 		return $cal_data;
 	}
 
-	public function add_calendar_data($data , $date)
+	public function add_calendar_data($data, $date)
 	{
-		$this->db->insert('calendar',array(
+		$this->db->insert('calendar', array(
 			'date'	=> $date,
 			'content'	=> $data,
 		));

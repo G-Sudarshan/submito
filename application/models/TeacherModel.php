@@ -166,5 +166,3 @@ class TeacherModel extends CI_Model{
 		return $data->row()->email;
 	}
 }
-
-?>
