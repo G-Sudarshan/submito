@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 20, 2020 at 02:11 PM
+-- Generation Time: Sep 17, 2020 at 01:40 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.1.33
 
@@ -55,6 +55,13 @@ CREATE TABLE `events` (
   `start_date` date NOT NULL,
   `end_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `events`
+--
+
+INSERT INTO `events` (`id`, `title`, `start_date`, `end_date`) VALUES
+(1, 'Happy Independenc Day', '2021-08-15', '2021-08-16');
 
 -- --------------------------------------------------------
 
@@ -121,7 +128,7 @@ CREATE TABLE `tbl_admin_login` (
 --
 
 INSERT INTO `tbl_admin_login` (`id`, `username`, `password`, `email`, `name`, `mobile_no`, `department`) VALUES
-(12, 'admin', 0x6339336363643738623230373635323833343632313662336232663730316536, '', '', 0, '');
+(12, 'submito_admin', 0x3862366565336633353265393331346264313938333037336331326532616663, '', '', 0, '');
 
 -- --------------------------------------------------------
 
@@ -287,19 +294,19 @@ ALTER TABLE `tbl_teachers_db`
 -- AUTO_INCREMENT for table `assignments`
 --
 ALTER TABLE `assignments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=250;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=943;
 
 --
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `notes`
 --
 ALTER TABLE `notes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `notification`

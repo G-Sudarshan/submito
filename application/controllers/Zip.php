@@ -19,130 +19,79 @@
                 return redirect('login');
             }
 
-            /**
-            *@copyright: g-sudarshan  *
-            *@version : 1.0           *
-            * GIT BACKUP SCRIPT       *
-            *                         *
-                                    **/
-                $date = date("Y-m-d");
-                $r = rand(10,99999);
-             // The commands
-                $commands = array(
-                  //'echo $PWD',
-                 //'whoami',
-                //'git reset --hard HEAD',
-                // 'git pull',
-                // 'git status',
-                // 'git submodule sync',
-                // 'git submodule update',
-                // 'git submodule status',
+                        
+            $source=FCPATH."/assets/";
+            $destination=FCPATH.'/zips/SubMito_Backup.zip';
+            // Path to the file and file name ; 
+            $this->ZipBackup($source,$destination);
+
+                if (file_exists ( $destination ))
+                {
+                $data = file_get_contents ( $destination );
+                 //force download
+                 force_download ("SubMito_Backup_".date("Y-m-d-H-i-s").".zip", $data );
+                 unlink($destination);
+
+                 $this->session->set_flashdata('sucess','Backup downloaded successfully');
+                 return redirect('Admin');
+             }else
+             {
+                echo "Error while dowloaing backup";
+             }
+
+                    }
+
                  
-                
-                'whoami',
-                'cd '.FCPATH,
-                'echo $PWD',
-                'git status',
-                'git add .',
-                "git commit -m '$date - n : $r aws '",
-                'git push',
-                'git status'
-             );
-    // Run the commands for output 
-    $output = '';
-    foreach($commands AS $command){
-        // Run it
-        $tmp = system($command);
-        // Output
-        $output .= "<br/><br/><span style=\"color: #6BE234;\">\$</span> <span style=\"color: #729FCF;\">{$command}\n</span>";
-        $output .= htmlentities(trim($tmp)) . "\n";
-    }
+            public function ZipBackup($source, $destination)
+            {
+            if (!extension_loaded('zip') || !file_exists($source)) {
+                return false;
+            }
 
-    echo $output;
-           
+            $zip = new ZipArchive();
+            if (!$zip->open($destination, ZIPARCHIVE::CREATE)) {
+                return false;
+            }
+
+            if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+                DEFINE('DS', DIRECTORY_SEPARATOR); //for windows
+            } else {
+                DEFINE('DS', '/'); //for linux
+            }
 
 
+            $source = str_replace('\\', DS, realpath($source));
 
+            if (is_dir($source) === true)
+            {
+                $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($source), RecursiveIteratorIterator::SELF_FIRST);
+                echo $source;
+                foreach ($files as $file)
+                {
+                    $file = str_replace('\\',DS, $file);
+                    // Ignore "." and ".." folders
+                    if( in_array(substr($file, strrpos($file, DS)+1), array('.', '..')) )
+                        continue;
 
+                    $file = realpath($file);
 
+                    if (is_dir($file) === true)
+                    {
+                        $zip->addEmptyDir(str_replace($source . DS, '', $file . DS));
+                    }
+                    else if (is_file($file) === true)
+                    {
+                        $zip->addFromString(str_replace($source . DS, '', $file), file_get_contents($file));
+                    }
+                    echo $source;
+                }
+            }
+            else if (is_file($source) === true)
+            {
+                $zip->addFromString((FCPATH.$source), file_get_contents($source));
+            }
 
-
-
-
-
-
-            
-//                $source=FCPATH."/assets/";
-// $destination=FCPATH.'/zips/SubMito_Backup.zip';// Path to the file and file name ; 
-// $this->ZipBackup($source,$destination);
-
-//     if (file_exists ( $destination ))
-//     {
-//     $data = file_get_contents ( $destination );
-//      //force download
-//      force_download ("SubMito_Backup_".date("Y-m-d-H-i-s").".zip", $data );
-//      unlink($destination);
-
-//      $this->session->set_flashdata('sucess','Backup downloaded successfully');
-//      return redirect('Admin');
-//  }else
-//  {
-//     echo "Error while dowloaing backup";
-//  }
-
-//         }
-
-     
-// public function ZipBackup($source, $destination)
-// {
-// if (!extension_loaded('zip') || !file_exists($source)) {
-//     return false;
-// }
-
-// $zip = new ZipArchive();
-// if (!$zip->open($destination, ZIPARCHIVE::CREATE)) {
-//     return false;
-// }
-
-// if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-//     DEFINE('DS', DIRECTORY_SEPARATOR); //for windows
-// } else {
-//     DEFINE('DS', '/'); //for linux
-// }
-
-
-// $source = str_replace('\\', DS, realpath($source));
-
-// if (is_dir($source) === true)
-// {
-//     $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($source), RecursiveIteratorIterator::SELF_FIRST);
-//     echo $source;
-//     foreach ($files as $file)
-//     {
-//         $file = str_replace('\\',DS, $file);
-//         // Ignore "." and ".." folders
-//         if( in_array(substr($file, strrpos($file, DS)+1), array('.', '..')) )
-//             continue;
-
-//         $file = realpath($file);
-
-//         if (is_dir($file) === true)
-//         {
-//             $zip->addEmptyDir(str_replace($source . DS, '', $file . DS));
-//         }
-//         else if (is_file($file) === true)
-//         {
-//             $zip->addFromString(str_replace($source . DS, '', $file), file_get_contents($file));
-//         }
-//         echo $source;
-//     }
-// }
-// else if (is_file($source) === true)
-// {
-//     $zip->addFromString((FCPATH.$source), file_get_contents($source));
-// }
-
-// return $zip->close();
+            return $zip->close();
 }
 
 

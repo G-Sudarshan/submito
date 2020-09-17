@@ -53,7 +53,7 @@ class Login extends MY_Controller
          return redirect('Admin');
       } else {
          $this->session->set_flashdata("login_failed", "No such account exists in database");
-         return redirect('Login/loginpage');
+         return redirect('Adm');
       }
    }
 
@@ -74,7 +74,7 @@ class Login extends MY_Controller
          return redirect('Teacher');
       } else {
          $this->session->set_flashdata("login_failed", "No such account exists in database");
-         return redirect('Login/loginpage');
+         return redirect('Tea');
       }
    }
 
